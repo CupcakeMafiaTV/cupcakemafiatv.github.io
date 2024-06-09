@@ -13,7 +13,8 @@ banner:
 features:
   - title: "What's Included in Hugoplate"
     image: "/images/Main-Cupcake.png"
-    content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
+    link: https://www.twitch.tv/cupcakemafiatv
+   # content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
     bulletpoints:
       - "10+ Pre-build pages"
       - "95+ Google Pagespeed Score"
@@ -21,10 +22,6 @@ features:
       - "Fully responsive on all devices"
       - "SEO-optimized for better search engine rankings"
       - "**Open-source and free** for personal and commercial use"
-    button:
-      enable: false
-      label: "Get Started Now"
-      link: "#"
 
   - title: "Discover the Key Features Of Hugo"
     image: "/images/service-2.png"
