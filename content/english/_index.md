@@ -12,7 +12,7 @@ banner:
 # Features
 features:
   - title: "What's Included in Hugoplate"
-       <www.twitch.tv/cupcakemafiatv>
+       [![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
        # content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
     bulletpoints:
       - "10+ Pre-build pages"
