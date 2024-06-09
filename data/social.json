@@ -1,9 +1,9 @@
 {
   "main": [
     {
-      "name": "facebook",
-      "icon": "fab fa-facebook",
-      "link": "https://www.facebook.com/"
+      "name": "Twitch",
+      "icon": "fa-brands fa-twitch",
+      "link": "https://www.twitch.tv/cupcakemafiatv"
     },
     {
       "name": "twitter",
