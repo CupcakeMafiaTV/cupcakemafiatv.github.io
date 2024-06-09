@@ -6,19 +6,29 @@
       "link": "https://www.twitch.tv/cupcakemafiatv"
     },
     {
-      "name": "twitter",
-      "icon": "fab fa-twitter",
+      "name": "YouTube",
+      "icon": "<fa-brands fa-youtube",
+      "link": "https://www.youtube.com/@cupcakemafiatv"
+    },
+    {
+     "name": "X",
+      "icon": "<fa-solid fa-x",
       "link": "https://x.com/CupcakeMafiaTV"
     },
     {
-      "name": "github",
-      "icon": "fab fa-github",
-      "link": "https://www.github.com/"
-    },
-    {
-      "name": "linkedin",
+      "name": "Discord",
+      "icon": "fa-brands fa-discord",
+      "link": "https://discord.com/invite/x5Zsn2Hm7v"
+    }
+     {
+      "name": "Instagram",
       "icon": "fab fa-linkedin",
-      "link": "https://www.linkedin.com/"
+      "link": "fa-brands fa-square-instagram"
+    }
+     {
+      "name": "Tiktok",
+      "icon": "fab fa-linkedin",
+      "link": "fa-brands fa-tiktok"
     }
   ]
 }
