@@ -11,40 +11,39 @@ name = "About"
 pageRef = "/about"
 weight = 2
 
-[[main]]
-name = "Elements"
-pageRef = "/elements"
-weight = 3
+# [[main]]
+# name = "Elements"
+# pageRef = "/elements"
+# weight = 3
 
-[[main]]
-weight = 4
-name = "Pages"
+# [[main]]
+# weight = 4
+# name = "Pages"
 
-[[main]]
-parent = "Pages"
-name = "Blog"
-pageRef = "/blog"
+# [[main]]
+# parent = "Pages"
+# name = "Blog"
+# pageRef = "/blog"
 
-[[main]]
-parent = "Pages"
-name = "Contact"
-pageRef = "/contact"
+# [[main]]
+# parent = "Pages"
+# name = "Contact"
+# pageRef = "/contact"
 
-[[main]]
-parent = "Pages"
-name = "Authors"
-pageRef = "/authors"
+# [[main]]
+# parent = "Pages"
+# name = "Authors"
+# pageRef = "/authors"
 
-[[main]]
-parent = "Pages"
-name = "Categories"
-pageRef = "/categories"
+# [[main]]
+# parent = "Pages"
+# name = "Categories"
+# pageRef = "/categories"
 
-[[main]]
-parent = "Pages"
-name = "404 Page"
-pageRef = "/404"
-
+# [[main]]
+# parent = "Pages"
+# name = "404 Page"
+# pageRef = "/404"
 
 # footer menu
 [[footer]]
@@ -52,10 +51,10 @@ name = "About"
 pageRef = "/about"
 weight = 1
 
-[[footer]]
-name = "Elements"
-pageRef = "/elements"
-weight = 2
+# [[footer]]
+# name = "Elements"
+# pageRef = "/elements"
+# weight = 2
 
 [[footer]]
 name = "Privacy Policy"
