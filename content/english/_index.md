@@ -11,7 +11,7 @@ banner:
 
 # Features
 features:
-  - title: "Watch the stream"
+   title: "Watch the stream"
     [https://www.twitch.tv/cupcakemafiatv]
    # content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
     bulletpoints:
