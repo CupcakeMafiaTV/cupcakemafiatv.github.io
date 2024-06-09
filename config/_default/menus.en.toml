@@ -1,15 +1,25 @@
 ############# English navigation ##############
 
 # main menu
-[[main]]
-name = "Home"
-pageRef = "/"
-weight = 1
+#[[main]]
+#name = "Home"
+#pageRef = "/"
+#weight = 1
 
 [[main]]
 name = "About"
 pageRef = "/about"
+weight = 1
+
+[[main]]
+name = "Setup"
+pageRef = "/setup"
 weight = 2
+
+
+
+
+
 
 # [[main]]
 # name = "Elements"
