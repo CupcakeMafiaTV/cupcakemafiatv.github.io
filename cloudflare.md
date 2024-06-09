@@ -14,3 +14,4 @@ NODE_VERSION=18.16.0
 
 # Cloudflare Pages v2
 Version 2 uses appropriate versions of Hugo, Go and Node.js by default.
+
