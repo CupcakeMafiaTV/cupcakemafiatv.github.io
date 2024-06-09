@@ -5,7 +5,7 @@ banner:
   content: "Test Test"
 
   #link
-  [<img src="/images/MainCupcake.png">](https://www.twitch.tv/cupcakemafiatv)
+  <img src="/images/MainCupcake.png">](https://www.twitch.tv/cupcakemafiatv)
 
   
 ---
