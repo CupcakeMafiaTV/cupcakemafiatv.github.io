@@ -3,7 +3,7 @@
 banner:
   title: "Test"
   content: "Test Test"
-  image: "/images/Main-Cupcake.png"
+  image: "/images/MainCupcake.png"
   
 # Twitch
 title: Watch the stream live!
