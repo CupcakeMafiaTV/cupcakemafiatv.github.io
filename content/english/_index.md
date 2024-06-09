@@ -1,7 +1,7 @@
 ---
 # Banner
 banner:
-  title: "Test"
+# title:
   content: "Test Test"
   image: "/images/MainCupcake.png"
   button:
