@@ -1,101 +1,103 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const fs = require("fs");
+const path = require("path");
+const themePath = path.join(__dirname, "data/theme.json");
+const themeRead = fs.readFileSync(themePath, "utf8");
+const theme = JSON.parse(themeRead);
 
-// tailwind.config.js
+let font_base = Number(theme.fonts.font_size.base.replace("px", ""));
+let font_scale = Number(theme.fonts.font_size.scale);
+let h6 = font_scale;
+let h5 = h6 * font_scale;
+let h4 = h5 * font_scale;
+let h3 = h4 * font_scale;
+let h2 = h3 * font_scale;
+let h1 = h2 * font_scale;
+let fontPrimary, fontPrimaryType, fontSecondary, fontSecondaryType;
+if (theme.fonts.font_family.primary) {
+  fontPrimary = theme.fonts.font_family.primary
+    .replace(/\+/g, " ")
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
+  fontPrimaryType = theme.fonts.font_family.primary_type;
+}
+if (theme.fonts.font_family.secondary) {
+  fontSecondary = theme.fonts.font_family.secondary
+    .replace(/\+/g, " ")
+    .replace(/:[ital,]*[ital@]*[wght@]*[0-9,;.]+/gi, "");
+  fontSecondaryType = theme.fonts.font_family.secondary_type;
+}
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./layouts/**/*.html', './content/**/*.md'],
-  darkMode: 'class',
+  content: ["./hugo_stats.json"],
+  safelist: [{ pattern: /^swiper-/ }],
+  darkMode: "class",
   theme: {
+    screens: {
+      sm: "540px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1536px",
+    },
+    container: {
+      center: true,
+      padding: "2rem",
+    },
     extend: {
       colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
-        'primary': {
-          DEFAULT: '#6366F1',
-          50: '#FFFFFF',
-          100: '#F9F9FE',
-          200: '#D3D4FB',
-          300: '#AEAFF8',
-          400: '#888BF4',
-          500: '#6366F1',
-          600: '#3034EC',
-          700: '#1317D1',
-          800: '#0E119E',
-          900: '#0A0C6A'
+        text: theme.colors.default.text_color.default,
+        light: theme.colors.default.text_color.light,
+        dark: theme.colors.default.text_color.dark,
+        primary: theme.colors.default.theme_color.primary,
+        secondary: theme.colors.default.theme_color.secondary,
+        body: theme.colors.default.theme_color.body,
+        border: theme.colors.default.theme_color.border,
+        "theme-light": theme.colors.default.theme_color.theme_light,
+        "theme-dark": theme.colors.default.theme_color.theme_dark,
+        darkmode: {
+          text: theme.colors.darkmode.text_color.default,
+          light: theme.colors.darkmode.text_color.light,
+          dark: theme.colors.darkmode.text_color.dark,
+          primary: theme.colors.darkmode.theme_color.primary,
+          secondary: theme.colors.darkmode.theme_color.secondary,
+          body: theme.colors.darkmode.theme_color.body,
+          border: theme.colors.darkmode.theme_color.border,
+          "theme-light": theme.colors.darkmode.theme_color.theme_light,
+          "theme-dark": theme.colors.darkmode.theme_color.theme_dark,
         },
-        'secondary': {
-          DEFAULT: '#EC4899',
-          50: '#FDEEF6',
-          100: '#FBDCEB',
-          200: '#F8B7D7',
-          300: '#F492C2',
-          400: '#F06DAE',
-          500: '#EC4899',
-          600: '#E4187D',
-          700: '#B11261',
-          800: '#7F0D45',
-          900: '#4C0829'
-        },
-        'neutral': {
-          DEFAULT: '#6B7280',
-          50: '#CDD0D5',
-          100: '#C2C5CC',
-          200: '#ACB0BA',
-          300: '#969BA7',
-          400: '#7F8694',
-          500: '#6B7280',
-          600: '#515761',
-          700: '#383C43',
-          800: '#1E2024',
-          900: '#050506'
-        },
-        // To change these, use https://www.tailwindshades.com/ with https://tailwindcss.com/docs/customizing-colors or create your own custom colors.
       },
-      lineHeight: {
-        'extra-loose': '2.5',
-        '12': '3rem',
+      fontSize: {
+        base: font_base + "px",
+        "base-sm": font_base * 0.8 + "px",
+        h1: h1 + "rem",
+        "h1-sm": h1 * 0.9 + "rem",
+        h2: h2 + "rem",
+        "h2-sm": h2 * 0.9 + "rem",
+        h3: h3 + "rem",
+        "h3-sm": h3 * 0.9 + "rem",
+        h4: h4 + "rem",
+        h5: h5 + "rem",
+        h6: h6 + "rem",
       },
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            '--tw-prose-body': theme('colors.zinc[800]'),
-            '--tw-prose-headings': theme('colors.zinc[900]'),
-            '--tw-prose-lead': theme('colors.zinc[700]'),
-            '--tw-prose-links': theme('colors.zinc[900]'),
-            '--tw-prose-bold': theme('colors.zinc[900]'),
-            '--tw-prose-counters': theme('colors.zinc[600]'),
-            '--tw-prose-bullets': theme('colors.zinc[400]'),
-            '--tw-prose-hr': theme('colors.zinc[300]'),
-            '--tw-prose-quotes': theme('colors.zinc[900]'),
-            '--tw-prose-quote-borders': theme('colors.zinc[300]'),
-            '--tw-prose-captions': theme('colors.zinc[700]'),
-            '--tw-prose-code': theme('colors.indigo[500]'),
-            '--tw-prose-pre-code': theme('colors.indigo[300]'),
-            '--tw-prose-pre-bg': theme('colors.gray[900]'),
-            '--tw-prose-th-borders': theme('colors.zinc[300]'),
-            '--tw-prose-td-borders': theme('colors.zinc[200]'),
-            '--tw-prose-invert-body': theme('colors.zinc[200]'),
-            '--tw-prose-invert-headings': theme('colors.white'),
-            '--tw-prose-invert-lead': theme('colors.zinc[300]'),
-            '--tw-prose-invert-links': theme('colors.indigo[400]'),
-            '--tw-prose-invert-bold': theme('colors.white'),
-            '--tw-prose-invert-counters': theme('colors.zinc[400]'),
-            '--tw-prose-invert-bullets': theme('colors.zinc[200]'),
-            '--tw-prose-invert-hr': theme('colors.zinc[500]'),
-            '--tw-prose-invert-quotes': theme('colors.zinc[100]'),
-            '--tw-prose-invert-quote-borders': theme('colors.zinc[700]'),
-            '--tw-prose-invert-captions': theme('colors.zinc[400]'),
-            '--tw-prose-invert-code': theme('colors.indigo[400]'),
-            '--tw-prose-invert-pre-code': theme('colors.indigo[300]'),
-            '--tw-prose-invert-pre-bg': theme('colors.gray[900]'),
-            '--tw-prose-invert-th-borders': theme('colors.zinc[100]'),
-            '--tw-prose-invert-td-borders': theme('colors.zinc[500]'),
-          },
-        },
-      }),
+      fontFamily: {
+        primary: [fontPrimary, fontPrimaryType],
+        secondary: [fontSecondary, fontSecondaryType],
+      },
     },
   },
-  variants: {
-    typography: ["dark"],
-  },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/forms"),
+    require("tailwind-bootstrap-grid")({
+      generateContainer: false,
+      gridGutterWidth: "2rem",
+      gridGutters: {
+        1: "0.25rem",
+        2: "0.5rem",
+        3: "1rem",
+        4: "1.5rem",
+        5: "3rem",
+      },
+    }),
+  ],
 };

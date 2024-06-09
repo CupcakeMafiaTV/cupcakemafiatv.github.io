@@ -1,27 +1,38 @@
-name = "TailBliss"
-license = "Apache-2.0"
-licenselink = "https://github.com/nusserstudios/tailbliss/blob/main/LICENSE"
-description = "TailBliss is an Hugo Starter with Tailwind CSS 3.2 and Alpine.js with light and dark modes. Submitted for Hacktoberfest 2022."
+name = "Hugoplate"
+license = "MIT"
+licenselink = "https://github.com/zeon-studio/hugoplate/blob/main/LICENSE"
+description = "Hugoplate is a free starter template built with Hugo, and TailwindCSS, providing everything you need to jumpstart your Hugo project and save valuable time."
+homepage = "https://github.com/zeon-studio/hugoplate"
+demosite = "https://zeon.studio/preview?project=hugoplate"
+min_version = "0.124.1"
 
-# The home page of the theme, where the source can be found.
-homepage = "https://github.com/nusserstudios/tailbliss"
+tags = [
+  "blog",
+  "responsive",
+  "minimal",
+  "personal",
+  "light",
+  "dark",
+  "multilingual",
+  "landing",
+  "contact",
+  "dark mode",
+  "tailwindcss",
+]
 
-# If you have a running demo of the theme.
-demosite = "https://tailbliss.netlify.app/"
+features = [
+  "Multi-Authors",
+  "Search",
+  "Multilingual",
+  "Dark Mode",
+  "Taxonomies",
+]
 
-tags = ["blog", "tailwind", "tailwindcss", "dark", "light", "responsive", "minimal", "portfolio", "company", "gallery", "personal" ]
-features = ["blog", "categories", "webp", "tailwind3", "alpinejs"]
-
-min_version = "0.104.0"
-
-# If the theme has a single author
 [author]
-    name = "Jeremy Nusser"
-    homepage = "https://nusserstudios.com"
+name = "Zeon Studio"
+homepage = "https://zeon.studio"
 
-# If porting an existing theme
 [original]
-  name = "Hugo-Tailwind-3.1"
-  author = "4044ever"
-  homepage = "https://github.com/4044ever"
-  repo = "https://github.com/4044ever/Hugo-Tailwind-3.1"
+author = "Zeon Studio"
+homepage = "https://zeon.studio"
+repo = "https://github.com/zeon-studio/themeplate"

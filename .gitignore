@@ -1,9 +1,17 @@
-node_modules/
-resources/
-public/
+Thumbs.db
+.DS_Store
+.dist
+.tmp
+.lock
+.sass-cache
+npm-debug.log
+node_modules
+builds
+package-lock.json
+public
+resources
 .hugo_build.lock
-.vercel
-yarn-error.log
-# Local Netlify folder
-.netlify
-yarn-error.log
+jsconfig.json
+hugo_stats.json
+go.sum
+yarn.lock
