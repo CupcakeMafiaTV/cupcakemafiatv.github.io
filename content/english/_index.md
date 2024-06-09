@@ -1,7 +1,7 @@
 ---
 # Banner
 banner:
-# title:
+  title: "Test"
   content: "Test Test"
   image: "/images/MainCupcake.png"
   button:
@@ -10,8 +10,10 @@ banner:
 #    link: "https://github.com/zeon-studio/hugoplate"
 
 # Features
-   title: "Watch the stream"
-    [https://www.twitch.tv/cupcakemafiatv]
+features:
+  - title: "What's Included in Hugoplate"
+    image: "/images/Main-Cupcake.png"
+    link: https://www.twitch.tv/cupcakemafiatv
    # content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
     bulletpoints:
       - "10+ Pre-build pages"
@@ -20,10 +22,6 @@ banner:
       - "Fully responsive on all devices"
       - "SEO-optimized for better search engine rankings"
       - "**Open-source and free** for personal and commercial use"
-    button:
-      enable: false
-      label: "Get Started Now"
-      link: "#"
 
   - title: "Discover the Key Features Of Hugo"
     image: "/images/service-2.png"
