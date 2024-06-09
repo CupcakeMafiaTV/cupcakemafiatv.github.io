@@ -7,7 +7,7 @@
     },
     {
       "name": "YouTube",
-      "icon": "<fa-brands fa-youtube",
+      "icon": "fa-brands fa-youtube",
       "link": "https://www.youtube.com/@cupcakemafiatv"
     },
     {
@@ -22,12 +22,12 @@
     },
      {
       "name": "Instagram",
-      "icon": "fab fa-linkedin",
-      "link": "fa-brands fa-square-instagram"
+      "icon": "<fa-brands fa-square-instagram",
+      "link": "https://www.instagram.com/cupcakemafiatv/"
     },
      {
       "name": "Tiktok",
-      "icon": "fab fa-linkedin",
+      "icon": "<fa-brands fa-tiktok",
       "link": "fa-brands fa-tiktok"
     }
   ]
