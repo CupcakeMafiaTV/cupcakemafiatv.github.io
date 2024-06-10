@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+
+
 <!-- Banner -->
   {{ with .Params.banner }}
     <section class="section pt-14">
@@ -35,6 +37,39 @@
   {{ end }}
   <!-- /Banner -->
 
+
+<!-- Twitch -->
+<section class="section pt-14">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="lg:col-7 md:col-9 mb-8 text-center">
+        <h1 class="mb-4 text-h3 lg:text-h1">
+        </h1>
+        <p class="mb-8">
+        </p>
+      <!-- Add a placeholder for the Twitch embed -->
+      <div id="twitch-embed"></div>
+
+      <!-- Load the Twitch embed script -->
+      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+      <!-- Create a Twitch.Player object. This will render within the placeholder div -->
+      <script type="text/javascript">
+        new Twitch.Player("twitch-embed", {
+          width: 854,
+          height: 480,
+          parent: ["cupcakemafiatv.github.io", "localhost"],    
+          channel: "cupcakemafiatv"
+        });
+      </script>
+      </div>
+      <div class="col-12">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /Twitch -->
+  
   <!-- Features -->
   {{ range $i, $e:= .Params.features }}
     <section class="section-sm {{ if (modBool $i 2) }}bg-gradient{{ end }}">
