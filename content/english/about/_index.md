@@ -13,16 +13,6 @@ Cupcake is a huge fan of Scott Pilgrim vs the World, WWE/Wrestling, Detective Co
 
 <hr>
 
-### Tables
-
-| Tables        |      Are      |
-| ------------- | :-----------: |
-| col 3 is      | image: "/images/avatar.png" |
-| col 2 is      |   centered    | 
-| zebra stripes |   are neat    |  
-
-<hr>
-
 {{< accordion "Where are you from?" >}}
 
 I'm located in Canada!
