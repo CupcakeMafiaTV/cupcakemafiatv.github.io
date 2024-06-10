@@ -1,10 +1,9 @@
 ---
 # Banner
 banner:
-  title: "CupcakeMafiaTV"
+  title: "Test"
   content: "Test Test"
   image: "/images/MainCupcake.png"
   <hr>
 ---
-
 
