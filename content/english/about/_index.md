@@ -10,6 +10,19 @@ CupcakeMafiaTV is a variety Twitch streamer from Canada who from a very young ag
 
 Cupcake is a huge fan of Scott Pilgrim vs the World, WWE/Wrestling, Detective Comics (DC) (Especially Punchline, Harley Quinn & Batman), Pokémon, The Shantae Video Game series, The Trailer Park Boys, The Simpsons & collecting Funko POPs and retro video games.
 
+
+<hr>
+
+### Tables
+
+| Tables        |      Are      |
+| ------------- | :-----------: |
+| col 3 is      | image: "/images/avatar.png" |
+| col 2 is      |   centered    | 
+| zebra stripes |   are neat    |  
+
+<hr>
+
 {{< accordion "Where are you from?" >}}
 
 I'm located in Canada!
