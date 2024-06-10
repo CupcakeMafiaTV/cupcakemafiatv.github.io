@@ -1,9 +1,13 @@
 ---
 # Banner
 banner:
-  title: "Test"
+  title: "CupcakeMafiaTV"
   content: "Test Test"
-  image: "/images/MainCupcake.png"
+#  image: "/images/MainCupcake.png"
+
+{{< button label="Follow me on Twitch!" link="/" style="solid" >}}
+
+  <hr>
 ---
 
 
