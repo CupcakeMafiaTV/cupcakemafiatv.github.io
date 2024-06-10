@@ -2,7 +2,7 @@
   "main": [
     {
       "name": "Twitch",
-      "icon": "/assets/images/twitch.png",
+      "Image:/assets/images/twitch.png",
       "link": "https://www.twitch.tv/cupcakemafiatv"
     },
     {
