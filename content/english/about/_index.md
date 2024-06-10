@@ -10,7 +10,7 @@ CupcakeMafiaTV is a variety Twitch streamer from Canada who from a very young ag
 
 <hr>
 
-FQA
+title "FAQ"
 
 {{< accordion "Where are you from?" >}}
 
@@ -23,3 +23,5 @@ I'm located in Canada!
 Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 {{< /accordion >}}
+
+<hr>
