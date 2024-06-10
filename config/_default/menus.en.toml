@@ -21,6 +21,11 @@ name = "Collection"
 pageRef = "/collection"
 weight = 3
 
+[[main]]
+name = "Accomplishments"
+pageRef = "/Accomplishments"
+weight = 4
+
 # [[main]]
 # name = "Elements"
 # pageRef = "/elements"
