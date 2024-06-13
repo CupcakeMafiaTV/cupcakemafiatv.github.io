@@ -1,8 +1,5 @@
 {{ define "main" }}
-
-
-
-<!-- Banner -->
+  <!-- Banner -->
   {{ with .Params.banner }}
     <section class="section pt-14">
       <div class="container">
@@ -29,7 +26,7 @@
             {{ end }}
           </div>
           <div class="col-12">
-            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" "DisplayXL" "800x" ) }}     
+            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" "DisplayXL" "800x" ) }}
           </div>
         </div>
       </div>
@@ -37,39 +34,6 @@
   {{ end }}
   <!-- /Banner -->
 
-
-<!-- Twitch -->
-<section class="section pt-14">
-  <div class="container">
-    <div class="row justify-center">
-      <div class="lg:col-7 md:col-9 mb-8 text-center">
-        <h1 class="mb-4 text-h3 lg:text-h1">
-        </h1>
-        <p class="mb-8">
-        </p>
-      <!-- Add a placeholder for the Twitch embed -->
-      <div id="twitch-embed"></div>
-
-      <!-- Load the Twitch embed script -->
-      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-
-      <!-- Create a Twitch.Player object. This will render within the placeholder div -->
-      <script type="text/javascript">
-        new Twitch.Player("twitch-embed", {
-          width: 854,
-          height: 480,
-          parent: ["cupcakemafiatv.github.io", "localhost"],    
-          channel: "cupcakemafiatv"
-        });
-      </script>
-      </div>
-      <div class="col-12">
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /Twitch -->
-  
   <!-- Features -->
   {{ range $i, $e:= .Params.features }}
     <section class="section-sm {{ if (modBool $i 2) }}bg-gradient{{ end }}">
@@ -79,7 +43,18 @@
             class="mb:md-0 {{ if not (modBool $i 2) }}
               md:order-2
             {{ end }} md:col-5 mb-6">
-            {{ partial "image" (dict "Src" .image "Alt" "feature image" "DisplayXL" "520x" "DisplayLG" "425x" "DisplayMD" "360x") }}
+
+            {{ if eq (len .image) 0 }}
+              
+            {{ else if eq .image "twitch" }}
+              {{ partial "twitch" }}
+            {{ else }}
+              {{ partial "image" (dict "Src" .image "Alt" "feature image" "DisplayXL" "520x" "DisplayLG" "425x" "DisplayMD" "360x") }}       
+          {{ end }}
+
+
+          
+
           </div>
           <div
             class="{{ if not (modBool $i 2) }}
@@ -152,7 +127,7 @@
                         </blockquote>
                         <div class="mt-11 flex items-center">
                           <div class="text-dark dark:text-white">
-                            {{ partial "image" (dict "Src" .avatar "Size" "50x50" "Class" "rounded-full" "Alt" .name) }}
+                            {{ partial "image" (dict "Src" .avatar "Size" "50x50" "Class" "rounded-full" "Alt" .name) }}                            
                           </div>
                           <div class="ml-4">
                             <h3 class="h5 font-primary font-semibold">
