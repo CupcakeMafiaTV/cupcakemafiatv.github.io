@@ -23,8 +23,10 @@ I'm located in Canada!
 
 {{< accordion "When did you start streaming??" >}}
 
+<p align="left">
 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-
+  </p>
+  
 {{< /accordion >}}
 
 <hr>
