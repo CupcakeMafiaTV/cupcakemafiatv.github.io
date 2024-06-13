@@ -30,7 +30,7 @@ features:
       - "1 AM to 1 AM"
     button:
       enable: true
-      label: "Watch Now"
+      label: "Watch dNow"
       link: "https://www.twitch.tv/cupcakemafiatv"
 
   - title: "Watch me on youtube"

@@ -10,6 +10,27 @@
   @apply border-primary bg-primary dark:border-darkmode-primary dark:text-dark text-white dark:bg-darkmode-primary;
 }
 
+.btn-primary1 {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.btn-primary2 {
+  background-color: #7289DA;
+  color: #ffffff;
+}
+
+.btn-primary3 {
+  background-color: #ff0050;
+  color: #ffffff;
+}
+
+.btn-primary4 {
+  background-color: #7289DA;
+  color: #ffffff;
+}
+
 .btn-outline-primary {
-  @apply border-dark text-dark hover:bg-dark dark:hover:text-dark bg-transparent hover:text-white dark:border-darkmode-primary dark:text-white dark:hover:bg-darkmode-primary;
+  background-color: #7289DA;
+  color: #ffffff;
 }
