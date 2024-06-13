@@ -1,13 +1,13 @@
 ---
 # Banner
-banner:
-  title: "The Ultimate Starter Template You Need To Start Your Hugo Project"
-  content: "Hugoplate is a free starter template built with Hugo and TailwindCSS, providing everything you need to jumpstart your Hugo project and save valuable time."
-  image: "/images/banner.png"
-  button:
-    enable: true
-    label: "Get Started For Free"
-    link: "https://github.com/zeon-studio/hugoplate"
+# banner:
+#   title: "The Ultimate Starter Template You Need To Start Your Hugo Project"
+#   content: "Hugoplate is a free starter template built with Hugo and TailwindCSS, providing everything you need to jumpstart your Hugo project and save valuable time."
+#   image: "/images/banner.png"
+#   button:
+#     enable: true
+#     label: "Get Started For Free"
+#     link: "https://github.com/zeon-studio/hugoplate"
 
 # Features
 features:
@@ -34,7 +34,7 @@ features:
       link: "https://www.twitch.tv/cupcakemafiatv"
 
   - title: "Watch me on youtube"
-    image: "/images/MainCupcake.png"
+    image: "youtube"
     content: "With Hugo, you can build modern and content-focused websites without sacrificing performance or ease of use."
     bulletpoints:
       - "Instantly load static sites for better user experience and SEO."
@@ -45,4 +45,9 @@ features:
       enable: true
       label: "watch me now"
       link: "https://www.youtube.com/@cupcakemafiatv/featured"
+
+  - title: "whatever it is"
+    image: "/images/MainCupcake.png"
+    content: "followme"
+
 ---

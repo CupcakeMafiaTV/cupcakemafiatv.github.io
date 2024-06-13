@@ -47,13 +47,14 @@
             {{ if eq (len .image) 0 }}
               
             {{ else if eq .image "twitch" }}
-              {{ partial "twitch" }}
+                {{ partial "twitch" }}
+
+            {{ else if eq .image "youtube" }}
+              {{ partial "youtube" }}
+
             {{ else }}
               {{ partial "image" (dict "Src" .image "Alt" "feature image" "DisplayXL" "520x" "DisplayLG" "425x" "DisplayMD" "360x") }}       
           {{ end }}
-
-
-          
 
           </div>
           <div
@@ -64,7 +65,13 @@
               {{ .title | markdownify }}
             </h2>
             <p class="mb-8 text-lg">
-              {{ .content | markdownify }}
+
+              {{ if eq .content "followme" }}
+                {{ partial "followme" }}
+              {{ else }}
+                {{ .content | markdownify }}
+              {{ end }}
+
             </p>
             <ul>
               {{ range .bulletpoints }}
