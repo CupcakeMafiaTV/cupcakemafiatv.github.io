@@ -44,6 +44,7 @@ features:
     button:
       enable: true
       label: "Watch Now"
+      color: blue
       link: "https://www.youtube.com/@cupcakemafiatv/featured"
 
   - title: "Stay Informed With The Content!"
