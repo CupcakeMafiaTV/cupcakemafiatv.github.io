@@ -43,10 +43,10 @@ features:
       - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
     button:
       enable: true
-      label: "watch me now"
+      label: "Watch Now"
       link: "https://www.youtube.com/@cupcakemafiatv/featured"
 
-  - title: "whatever it is"
+  - title: "Stay Informed With The Content!"
     image: "/images/MainCupcake.png"
     content: "followme"
 
