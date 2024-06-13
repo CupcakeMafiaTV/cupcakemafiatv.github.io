@@ -17,7 +17,9 @@ title: "Frequently Asked Questions"
 
 {{< accordion "Where are you from?" >}}
 
+<p align="left">
 I'm located in Canada!
+</p>
   
 {{< /accordion >}}
 
