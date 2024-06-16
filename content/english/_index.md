@@ -11,44 +11,49 @@
 
 # Features
 features:
-  - title: "Get to know me"
-    image: "/images/MainCupcake.png"
-    content: "Join me on my Twitch stream, where I bring you along on my gaming adventures! From epic wins to hilarious fails, we'll create unforgettable memories together."
-    bulletpoints:
-      - "Streamer"
-      - "Content creater"
-    button:
-      enable: false
-      label: "Get Started Now"
-      link: "#"
+#  - title: "Get to know me"
+#    image: "/images/MainCupcake.png"
+#    content: "Join me on my Twitch stream, where I bring you along on my gaming adventures! From epic wins to hilarious fails, we'll create unforgettable memories together."
+#    bulletpoints:
+#      - "Streamer"
+#      - "Content creater"
+#    button:
+#      enable: false
+#      label: "Get Started Now"
+#      link: "#"
 
-  - title: "Check out my live stream"
+  - title: "Watch Live!"
     image: "twitch"
-    content: "Hugo is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
-    bulletpoints:
-      - "Monday to Friday"
-      - "1 AM to 1 AM"
+    content: ""
     button:
       enable: true
-      label: "Watch dNow"
+      label: "Twitch"
       link: "https://www.twitch.tv/cupcakemafiatv"
 
-  - title: "Watch me on youtube"
+  - title: "Watch Clips"
     image: "youtube"
-    content: "With Hugo, you can build modern and content-focused websites without sacrificing performance or ease of use."
-    bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Hugo a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
+    content: ""
     button:
       enable: true
-      label: "Watch Now"
-      color: blue
+      label: "YouTube"
       link: "https://www.youtube.com/@cupcakemafiatv/featured"
 
-  - title: "Stay Informed With The Content!"
-    image: "/images/MainCupcake.png"
-    content: "followme"
+ # - title: "Stay Informed With The Content!"
+ #   image: "/images/MainCupcake4.png"
+ #   content: "followme"
 
+  - title: "Stay Connected!"
+    image: "twitter"
+    content: ""
+    button:
+      enable: true
+      label: "twitter"
+      link: "https://www.twitch.tv/cupcakemafiatv"
+
+  - title: Contact Me
+    image: "/images/Duo.png"
+    button:
+      enable: true
+      label: "Contact Me"
+      link: "mailto:cupcakemafiatvgaming@gmail.com"
 ---

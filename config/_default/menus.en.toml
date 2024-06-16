@@ -22,8 +22,8 @@ pageRef = "/collection"
 weight = 3
 
 [[main]]
-name = "Accomplishments"
-pageRef = "/Accomplishments"
+name = "Merch"
+pageRef = "/Merch"
 weight = 4
 
 # [[main]]
