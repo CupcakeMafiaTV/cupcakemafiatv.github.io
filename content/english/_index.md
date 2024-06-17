@@ -73,7 +73,7 @@ features:
       link: "https://www.tiktok.com/@cupcakemafiatv"
 
   - title: Contact Me
-    image: "/images/duo.png"
+    image: "/images/Duo.png"
     button:
       enable: true
       label: "Contact Me"

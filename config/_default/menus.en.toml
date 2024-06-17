@@ -1,34 +1,34 @@
 ############# English navigation ##############
 
 # main menu
-#[[main]]
-#name = "Home"
-#pageRef = "/"
-#weight = 1
+[[main]]
+name = "Home"
+pageRef = "/"
+weight = 1
 
 [[main]]
 name = "About"
 pageRef = "/about"
-weight = 1
+weight = 2
 
 [[main]]
 name = "Setup"
 pageRef = "/setup"
-weight = 2
-
-# [[main]]
-# name = "Collection"
-# pageRef = "/collection"
-# weight = 3
+weight = 3
 
 [[main]]
 name = "Merch"
 pageRef = "/Merch"
-weight = 3
+weight = 4
 
 # [[main]]
 # name = "Elements"
 # pageRef = "/elements"
+# weight = 3
+
+# [[main]]
+# name = "Collection"
+# pageRef = "/collection"
 # weight = 3
 
 # [[main]]

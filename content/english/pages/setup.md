@@ -1,4 +1,10 @@
-
+---
+title: "Setup"
+meta_title: "Setup"
+description: ""
+image: "/images/avatar.png"
+draft: false
+---
 
 ## Streaming Setup
 
