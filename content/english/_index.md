@@ -22,7 +22,7 @@ features:
 #      label: "Get Started Now"
 #      link: "#"
 
-  - title: "Watch Live!"
+  - title: "Twitch"
     image: "twitch"
     content: ""
     button:
@@ -30,7 +30,7 @@ features:
       label: "Twitch"
       link: "https://www.twitch.tv/cupcakemafiatv"
 
-  - title: "Watch Clips"
+  - title: "YouTube"
     image: "youtube"
     content: ""
     button:
@@ -42,16 +42,38 @@ features:
  #   image: "/images/MainCupcake4.png"
  #   content: "followme"
 
-  - title: "Stay Connected!"
+  - title: "Twitter"
     image: "twitter"
     content: ""
     button:
       enable: true
       label: "twitter"
-      link: "https://www.twitch.tv/cupcakemafiatv"
+      link: "https://x.com/CupcakeMafiaTV"
+
+  - title: Discord
+    image: "discord"
+    button:
+      enable: true
+      label: "Discord"
+      link: "https://discord.gg/x5Zsn2Hm7v"
+
+  - title: "Instagram"
+    image: "instagram"
+    content: ""
+    button:
+      enable: true
+      label: "Instagram"
+      link: "https://www.instagram.com/cupcakemafiatv/"
+
+  - title: TikTok
+    image: "tiktok"
+    button:
+      enable: true
+      label: "Tiktok"
+      link: "https://www.tiktok.com/@cupcakemafiatv"
 
   - title: Contact Me
-    image: "/images/Duo.png"
+    image: "/images/duo.png"
     button:
       enable: true
       label: "Contact Me"
