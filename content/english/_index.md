@@ -42,40 +42,40 @@ features:
  #   image: "/images/MainCupcake4.png"
  #   content: "followme"
 
-  - title: "Twitter"
-    image: "twitter"
-    content: ""
-    button:
-      enable: true
-      label: "twitter"
-      link: "https://x.com/CupcakeMafiaTV"
+  # - title: "Twitter"
+  #   image: "twitter"
+  #   content: ""
+  #   button:
+  #     enable: true
+  #     label: "twitter"
+  #     link: "https://x.com/CupcakeMafiaTV"
 
-  - title: Discord
-    image: "discord"
-    button:
-      enable: true
-      label: "Discord"
-      link: "https://discord.gg/x5Zsn2Hm7v"
+  # - title: Discord
+  #   image: "discord"
+  #   button:
+  #     enable: true
+  #     label: "Discord"
+  #     link: "https://discord.gg/x5Zsn2Hm7v"
 
-  - title: "Instagram"
-    image: "instagram"
-    content: ""
-    button:
-      enable: true
-      label: "Instagram"
-      link: "https://www.instagram.com/cupcakemafiatv/"
+  # - title: "Instagram"
+  #   image: "instagram"
+  #   content: ""
+  #   button:
+  #     enable: true
+  #     label: "Instagram"
+  #     link: "https://www.instagram.com/cupcakemafiatv/"
 
-  - title: TikTok
-    image: "tiktok"
-    button:
-      enable: true
-      label: "Tiktok"
-      link: "https://www.tiktok.com/@cupcakemafiatv"
+  # - title: TikTok
+  #   image: "tiktok"
+  #   button:
+  #     enable: true
+  #     label: "Tiktok"
+  #     link: "https://www.tiktok.com/@cupcakemafiatv"
 
-  - title: Contact Me
-    image: "/images/Duo.png"
-    button:
-      enable: true
-      label: "Contact Me"
-      link: "mailto:cupcakemafiatvgaming@gmail.com"
+  # - title: Contact Me
+  #   image: "/images/Duo.png"
+  #   button:
+  #     enable: true
+  #     label: "Contact Me"
+  #     link: "mailto:cupcakemafiatvgaming@gmail.com"
 ---

@@ -9,14 +9,16 @@ draft: false
 ## Streaming Setup
 
 #### PC (HP Omen 30L)
-{{< image src="\assets\images\30L.png" caption="" alt="alter-text" height="50" width="50" position="center" command="fill" option="q100" class="img-fluid" title="image title"  webp="false" >}}
 - 32 GB RAM
 - [11th Gen Intel(R) Core(TM) i7-11700KF @ 3.60GHz](https://www.amazon.ca/i7-11700-Desktop-Processor-LGA1200-Chipset/dp/B08X6QHYDL/ref=sr_1_3?crid=2DXYV5MVZYOM5&dib=eyJ2IjoiMSJ9.ZxWnUX4_RbBmpjbw0xrRwY5HGLUnrzgpD10kdGVnHbBRPMFbh3j5ZhWFTnFR0V2i7pAXgOJLSHjtu1KoEc7riZ4oy-kYtx6kvmrd6YghPkx0JGp_pNNw5l3olB8d4xvb4MxVdn6QUjxChwssdxyX4ECpHn4GMTsSS_OK26XTs61-BRwOrwINEYOxFXL_GWoex3zXdqXxN84Hg6lKve0oHV7dCAvA7xqW4IBmOFLcYfXvrUzJFD2-YgEbNh2MSw6v1-4bHmEXRzaZKg7djKCWhDg11wE_SVJEQKqVUbsU-AE.bEm631F1V7q8zZciX0rjS4sTzD8ARU8PVrWOXttJ4hs&dib_tag=se&keywords=i7%2Bintel%2B11th%2Bgen&qid=1718647908&sprefix=i7%2Bintel%2B11th%2Bgen%2Caps%2C90&sr=8-3&th=1)
 - [NVIDIA GeForce RTX 3080](https://www.amazon.ca/EVGA-GeForce-10G-P5-3897-KL-Technology-Backplate/dp/B09CDX4DKR/ref=sr_1_7?crid=OL73J10CM4RD&dib=eyJ2IjoiMSJ9.zxaCelcG5SBc88WBm5ehkjNgrxCsAaLNTrVBAk1WvFjfj0gKgM4w12oC3Ai_IIuX660iK42yppy-KxqoK1mQOeKIdKwjTIn8k6UqlhkQoz26GT3zFNSQ1KXKFMW4CVLWwt86LDhFoFtoZmGTFCpzp_UDpYOIdr2-hiOG0vRpklTC3JiaVvFBaTAi1OvyCGYsS6fw6PfrG1TaQm4LBVfLUGfdHgCzfnDcTCO7u1KzPK_ZpMw63M9Q3z5ajxGZDlM16yIAQ74QlYbvaI0lho1E-cIh1uSJPNSucTNjoavvHgI.xRt5GPXeLVbvKBdPWO_rnh-R7DpAKL19DypmiRqhZtA&dib_tag=se&keywords=3080&qid=1718648029&sprefix=3080%2Caps%2C89&sr=8-7)
 - Samsung 1 TB 7200RPM SATA SSD
 
+{{< image src="images/30L.png" caption="" alt="alter-text" height="" width="" position="left" command="fill" option="q100" class="img-fluid" title="image title"  webp="false" >}}
+
 #### Monitors
 - [HP OMEN 27i x2](https://www.amazon.ca/HP-Freesync-Compatible-DisplayPort-Mountable/dp/B0CLPLHR48/ref=sr_1_5?crid=2503P292AA3M0&dib=eyJ2IjoiMSJ9.rtNcrXLbrtVhpEjndsiQ-Ff7uK5qHzZvK-fmLk6_c0aH7U9MjVhsvCUo46Zs8N8MLghZDxZnuM-Mr8xK9ohR_MJBNPE2aWiFFqy_xzqUOyIXe95xDydoaw7yKxeQQmY8UQ8DPnsQNAT5viXSAFjr-tGfm6LphGwyW19wl4JBhW_dK7NKL5MyLYDVhLu1ZFBFGAuNSREsDOu_SzToPdOvHephNAFQnCYL5vy0xhSXSV4WyGfUIlhA1h2Fi-JOrfGGagv0zy0vR6ml9lZuVd-7RHwrdM3ZS-HJfvZgpQMYAT8.4DFeqFggr128NDZ0Oact_mUHLqYbYljAbGoaGQ3v9vM&dib_tag=se&keywords=hp+omen+27i&qid=1718647929&sprefix=hp+omen+27i%2Caps%2C89&sr=8-5)
+
 
 #### Accessories
 - [Elgato Stream Deck XL](https://www.amazon.ca/Elgato-Stream-Deck-Controller-Customizable/dp/B07RL8H55Z/ref=sr_1_6?crid=YITTUB1SLN1I&dib=eyJ2IjoiMSJ9.-AwCJsdA9YwHgSJKqvwxgAYjdqwDWmtltsafahRwkOj3Trd6LpStKSVcVluuPKjGSOjDm0rdc1LPNrlZLc3UqQ3y86z4USj6ihMA7-UIliINTYUv1kRgJDtfRtgyCFAy7164F2EsoZhNmCDVmOGsrZ9HCwEdl3IE176DMD0FT3t5l3ZFNn93uaIfT6CgOvSitMHfBbLN8UwPVAq4pn360ztj9YyMBX6_XrVcSZ0qLK2khJva8Actadd-UkOravnD0B8nw2X7Yb_h5fLXMISV3XSxg8xrRXVlO2hsG4YEZMQ.4R3ZkLXMGSHRV1wErJZRcIYQ8EIetX8yGBhWlCi3mao&dib_tag=se&keywords=stream+deck&qid=1718647883&sprefix=streamdeck%2Caps%2C92&sr=8-6)

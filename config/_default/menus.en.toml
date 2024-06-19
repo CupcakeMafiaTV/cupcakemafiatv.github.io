@@ -21,6 +21,12 @@ name = "Merch"
 pageRef = "/Merch"
 weight = 4
 
+[[main]]
+name = "Test"
+pageRef = "/Test"
+weight = 5
+
+
 # [[main]]
 # name = "Elements"
 # pageRef = "/elements"
