@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+    {{- partial "head.html" . -}}
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden dark:text-gray">
+
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">
+
+            <div class="header-wrapper text-white">
+              <header id="site-header" class="text-white">
+                <div class="max-w-[1360px] mx-auto px-5">
+                  <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+              
+                    <!-- Logo -->
+                    <div class="shrink-0">
+                      <a href="/">
+                        <svg width="140" height="20" viewBox="0 0 140 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <text x="10" y="15" font-size="16" font-weight="bold" font-family="Raleway, sans-serif" class="fill-gray-900 dark:fill-white">CupcakeMafiaTV</text>
+                        </svg>
+                      </a>
+                    </div>
+                    <!-- Logo / End -->
+          
+                    <!-- Navigation (Desktop) -->
+                    {{- partial "header.html" . -}}
+                    <!-- Navigation (Desktop) / End -->
+          
+                    <!-- Header Controls -->
+                    <div class="flex ml-auto -mr-3">
+          
+                      <div class="flex items-center py-4 px-1 sm:px-2">
+                        <label for="theme-toggle" class="relative inline-flex cursor-pointer items-center">
+                          <input type="checkbox" value="" id="theme-toggle" class="peer sr-only">
+                          <span class="relative z-10 block h-6 w-11 rounded-full border-2 border-gray-900 after:absolute after:top-0.5 after:left-0.5 after:h-4 after:w-4 after:rounded-full after:bg-gray-900 after:transition-transform peer-checked:after:translate-x-[20px] dark:border-white dark:after:bg-white"></span>
+                          <svg role="img" class="pointer-events-none absolute left-[5px] top-1 h-4 w-4 stroke-accent">
+                            <use xlink:href="img/yt1/sprite.svg#sun"></use>
+                          </svg>
+                          <svg role="img" class="pointer-events-none absolute right-[5px] top-1 h-4 w-4 stroke-accent">
+                            <use xlink:href="img/yt1/sprite.svg#moon"></use>
+                          </svg>
+                        </label>
+                      </div>
+          
+                    </div>
+                    <!-- Header Controls / End -->
+          
+                  </nav>
+                </div>
+              </header>
+          
+            </div>
+          
+            <!-- Mobile Menu -->
+            {{- partial "header_mobile.html" . -}}
+            <!-- Mobile Menu / End -->
+          
+            <!-- Slider -->
+            {{- partial "slider.html" . -}}
+            <!-- Slider / End -->
+          
+            <main id="main-content" class="grow lg:pt-0">
+          
+              <div class="py-10 pb-20 md:pb-24 lg:pb-[120px]">
+                <div class="container">
+          
+                  <div class="mb-10 md:mb-12 lg:mb-16 xl:mb-20">
+                    <h2 class="text-2.5xl font-bold tracking-tighter text-gray-900 before:text-accent before:content-['.'] dark:text-white sm:text-3.5xl md:text-4xl lg:text-[62px] lg:leading-none">
+                      Top Streamed Games
+                    </h2>
+          
+                  </div>
+          
+                  <div class="swiper js-vv-games-swiper">
+          
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-1-170x220.jpg" alt="a-Rex Legends">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">a-Rex Legends</h5>
+                            <div class="text-gray-500">35 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-2-170x220.jpg" alt="Xenowatch">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">Xenowatch</h5>
+                            <div class="text-gray-500">24 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-3-170x220.jpg" alt="Witch Hunters">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">Witch Hunters</h5>
+                            <div class="text-gray-500">20 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-4-170x220.jpg" alt="Super Robo Bross II">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">Super Robo Bross II</h5>
+                            <div class="text-gray-500">17 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-5-170x220.jpg" alt="Mochi’s Island">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">Mochi’s Island</h5>
+                            <div class="text-gray-500">12 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-6-170x220.jpg" alt="Rony da Hedgehog">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">Rony da Hedgehog</h5>
+                            <div class="text-gray-500">9 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                      <div class="swiper-slide">
+          
+                        <a class="flex flex-col gap-y-5 group" href="#">
+                          <figure class="relative overflow-hidden">
+                            <img class="w-full object-cover aspect-[17/22] transition-transform duration-300 group-hover:scale-110" src="img/str1/samples/game-7-170x220.jpg" alt="Zodiac Goddess">
+                            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all bg-accent/80 duration-300">
+                              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-7.5 aspect-square bg-gray-900 grid place-items-center text-white scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="h-2.5 aspect-square" fill="currentColor">
+                                  <use xlink:href="img/str1/sprite.svg#plus-thinest"></use>
+                                </svg>
+                              </div>
+                            </div>
+                          </figure>
+                          <div class="leading-tight">
+                            <h5 class="font-bold text-gray-900 dark:text-white mb-1.5 group-hover:text-accent">Zodiac Goddess</h5>
+                            <div class="text-gray-500">7 Videos</div>
+                          </div>
+                        </a>
+          
+                      </div>
+                    </div>
+          
+                    <div class="flex justify-center gap-x-3.5 pt-8 sm:pt-10 md:pt-12 lg:pt-16">
+                      <button class="js-vv-games-swiper-btn-prev flex w-8 aspect-square items-center justify-center text-white hover:cursor-pointer hover:text-accent">
+                        <svg class="h-2.5 w-1.5" fill="currentColor">
+                          <use xlink:href="img/str1/sprite.svg#arrow-left-pixel-alt"></use>
+                        </svg>
+                      </button>
+                      <button class="js-vv-games-swiper-btn-next flex w-8 aspect-square items-center justify-center text-white hover:cursor-pointer hover:text-accent">
+                        <svg class="h-2.5 w-1.5" fill="currentColor">
+                          <use xlink:href="img/str1/sprite.svg#arrow-right-pixel-alt"></use>
+                        </svg>
+                      </button>
+                    </div>
+          
+                  </div>
+                </div>
+              </div>
+          
+              <div class="pb-20 md:pb-24 lg:pb-[130px]">
+                <div class="container">
+          
+                  <div class="mb-10 md:mb-12 lg:mb-16 xl:mb-20">
+                    <h2 class="text-2.5xl font-bold tracking-tighter text-gray-900 before:text-accent before:content-['.'] dark:text-white sm:text-3.5xl md:text-4xl lg:text-[62px] lg:leading-none">
+                      Featured Streams
+                    </h2>
+          
+                  </div>
+          
+                  <div class="grid grid-cols-12 gap-5 md:gap-6 lg:gap-7.5 mb-7.5">
+          
+                    <figure class="col-span-full md:row-start-1 md:row-end-2 lg:col-span-8 lg:row-start-1 lg:row-end-3">
+                      <a class="group relative block h-full overflow-hidden bg-gray-900 glightbox" href="https://player.twitch.tv/?video=1703307874&parent=valkivid.dan-fisher.dev">
+                        <img class="aspect-[77/46] w-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:opacity-75" src="img/str1/samples/video-2-770x460.jpg" alt="I Play the Witch Hunters Story Mode!">
+          
+                        <div class="absolute inset-0 bg-black/60"></div>
+          
+                        <span class="absolute top-1/2 left-1/2 flex aspect-square -translate-x-2/4 -translate-y-2/4 items-center justify-center w-10">
+                          <svg role="img" class="fill-white aspect-[18/22] ml-[2px] w-6">
+                            <use xlink:href="img/yt1/sprite.svg#play"></use>
+                          </svg>
+                        </span>
+          
+                        <div class="absolute flex inset-x-5 xl:inset-x-6 top-5 xl:top-6 gap-x-3">
+                          <figure class="shrink-0">
+                            <img class="w-10 object-cover aspect-square" src="img/str1/samples/stream-avatar-40x40.jpg" alt="">
+                          </figure>
+                          <div class="flex-1 leading-tight min-w-0">
+                            <h6 class="font-bold text-white truncate w-full">I Play the Witch Hunters Story Mode!</h6>
+                            <time class="text-gray text-sm" datetime="2023-03-01 21:30">January 3rd, 2023</time>
+                          </div>
+                        </div>
+                      </a>
+                    </figure>
+          
+                    <figure class="col-span-full md:row-start-2 md:row-end-2 md:col-span-6 lg:col-span-4 lg:row-start-1 lg:row-end-2">
+                      <a class="group relative block h-full overflow-hidden bg-gray-900 glightbox" href="https://player.twitch.tv/?video=1703307874&parent=valkivid.dan-fisher.dev">
+                        <img class="aspect-[370/215] w-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:opacity-75" src="img/str1/samples/video-4-370x215.jpg" alt="I Play the Witch Hunters Story Mode!">
+          
+                        <div class="absolute inset-0 bg-black/60"></div>
+          
+                        <span class="absolute top-1/2 left-1/2 flex aspect-square -translate-x-2/4 -translate-y-2/4 items-center justify-center w-10">
+                          <svg role="img" class="fill-white aspect-[18/22] ml-[2px] w-6">
+                            <use xlink:href="img/yt1/sprite.svg#play"></use>
+                          </svg>
+                        </span>
+          
+                        <div class="absolute flex inset-x-5 xl:inset-x-6 top-5 xl:top-6 gap-x-3">
+                          <figure class="shrink-0">
+                            <img class="w-10 object-cover aspect-square" src="img/str1/samples/stream-avatar-40x40.jpg" alt="">
+                          </figure>
+                          <div class="flex-1 leading-tight min-w-0">
+                            <h6 class="font-bold text-white truncate w-full">First Play: Zodiac Goddess</h6>
+                            <time class="text-gray text-sm" datetime="2023-03-01 21:30">December 17th, 2022</time>
+                          </div>
+                        </div>
+                      </a>
+                    </figure>
+          
+                    <figure class="col-span-full md:row-start-2 md:row-end-2 md:col-span-6 lg:col-span-4 lg:row-start-2 lg:row-end-3">
+                      <a class="group relative block h-full overflow-hidden bg-gray-900 glightbox" href="https://player.twitch.tv/?video=1703307874&parent=valkivid.dan-fisher.dev">
+                        <img class="aspect-[370/215] w-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:opacity-75" src="img/str1/samples/video-8-370x215.jpg" alt="I Play the Witch Hunters Story Mode!">
+          
+                        <div class="absolute inset-0 bg-black/60"></div>
+          
+                        <span class="absolute top-1/2 left-1/2 flex aspect-square -translate-x-2/4 -translate-y-2/4 items-center justify-center w-10">
+                          <svg role="img" class="fill-white aspect-[18/22] ml-[2px] w-6">
+                            <use xlink:href="img/yt1/sprite.svg#play"></use>
+                          </svg>
+                        </span>
+          
+                        <div class="absolute flex inset-x-5 xl:inset-x-6 top-5 xl:top-6 gap-x-3">
+                          <figure class="shrink-0">
+                            <img class="w-10 object-cover aspect-square" src="img/str1/samples/stream-avatar-40x40.jpg" alt="">
+                          </figure>
+                          <div class="flex-1 leading-tight min-w-0">
+                            <h6 class="font-bold text-white truncate w-full">Mochi’s Island CHARITY SPEEDRUN</h6>
+                            <time class="text-gray text-sm" datetime="2023-03-01 21:30">October 22nd, 2022</time>
+                          </div>
+                        </div>
+                      </a>
+                    </figure>
+          
+          
+                  </div>
+          
+                  <div class="grid grid-cols-12 gap-5 md:gap-6 lg:gap-7.5">
+                    <div class="col-span-full md:col-span-6">
+          
+                      <div class="relative isolate w-full aspect-[57/16] flex bg-accent text-gray-900 overflow-hidden justify-between items-center">
+                        <div class="leading-tight pl-5 lg:pl-8 xl:pl-10 xl:pb-2 lg:pb-3 flex-1">
+                          <div class="font-bold text-base leading-none sm:text-lg md:text-base md:leading-none lg:text-lg mb-1.5 xl:mb-2.5">Want to see more? Check out</div>
+                          <h4 class="font-bold text-2xl sm:text-3xl md:text-2xl md:leading-none leading-none lg:text-3xl xl:text-[42px]">All Stream Videos</h4>
+                        </div>
+          
+                        <img class="absolute -z-10 right-0 top-0 bottom-0 object-cover object-left max-w-[39%]" src="img/str1/samples/stream-banner-1.png" alt="">
+          
+                        <a href="#" class="block absolute inset-0"></a>
+                      </div>
+          
+                    </div>
+          
+                    <div class="col-span-full md:col-span-6">
+          
+                      <div class="relative isolate w-full aspect-[57/16] flex bg-social-twitch text-white overflow-hidden justify-between items-center">
+                        <div class="leading-tight pl-5 lg:pl-8 xl:pl-10 xl:pb-2 lg:pb-3 flex-1">
+                          <div class="font-bold text-base leading-none sm:text-lg md:text-base md:leading-none lg:text-lg mb-1.5 xl:mb-2.5">Subscribe to my channel!</div>
+                          <h4 class="font-bold text-2xl sm:text-3xl md:text-2xl md:leading-none leading-none lg:text-3xl xl:text-[42px]">@NekoMaGiX</h4>
+                        </div>
+          
+                        <img class="absolute -z-10 right-0 top-0 bottom-0 object-cover object-left max-w-[27%]" src="img/str1/stream-banner-2.png" alt="">
+          
+                        <a href="#" class="block absolute inset-0"></a>
+                      </div>
+          
+                    </div>
+                  </div>
+                </div>
+              </div>          
+          
+            </main>
+          
+            <footer id="site-footer">
+                {{- partial "footer.html" . -}}
+            </footer>
+
+          </div>
+          
+          {{- partial "socials.html" . -}}
+
+          {{- partial "script.html" . -}}
+
+    </body>
+</html>
