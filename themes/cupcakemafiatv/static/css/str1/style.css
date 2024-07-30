@@ -1316,9 +1316,14 @@ select {
   background-color: #fc3b3b;
 }
 
+.vv-social-list-color a[href*="tiktok.com"] {
+  background-color: #000000;
+}
+
 .vv-social-list-color a[href*="twitter.com"] {
-    background-color: #17a5ff;
+    background-color: #000000;
   }
+
 .vv-social-list-color a[href*="instagram.com"] {
     background-color: #f7337d;
   }
@@ -4321,7 +4326,7 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(101 76 255 / var(--tw-bg-opacity));
 }
-.bg-social-twitter {
+.bg-social-x {
   --tw-bg-opacity: 1;
   background-color: rgb(23 165 255 / var(--tw-bg-opacity));
 }
@@ -6218,7 +6223,7 @@ select {
 .hover\:bg-social-twitch\/90:hover {
   background-color: rgb(101 76 255 / 0.9);
 }
-.hover\:bg-social-twitter\/90:hover {
+.hover\:bg-social-x\/90:hover {
   background-color: rgb(23 165 255 / 0.9);
 }
 .hover\:bg-white:hover {
