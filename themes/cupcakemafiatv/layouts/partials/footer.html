@@ -1,59 +1,50 @@
+<footer id="site-footer">
+  <div class="container">
 
+    <div class="grid grid-cols-12 gap-x-5 gap-y-9 border-t border-gray-500/20 py-16 md:gap-x-6 lg:gap-x-7.5 lg:pt-[75px] lg:pb-[66px]">
 
+      <div class="col-span-full lg:col-span-2">
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
+                            <!-- Logo / End -->
 
-<div class="container">
-          
-  <div class="grid grid-cols-12 gap-x-5 gap-y-9 border-t border-gray-500/20 py-16 md:gap-x-6 lg:gap-x-7.5 lg:pt-[75px] lg:pb-[66px]">
-
-    <div class="col-span-full lg:col-span-2">
-      <a href="/">
-        <svg width="140" height="20" viewBox="0 0 140 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <text x="10" y="15" font-size="16" font-weight="bold" font-family="Raleway, sans-serif" class="fill-gray-900 dark:fill-white">CupcakeMafiaTV</text>
-        </svg>
-      </a>
-    </div>
-
-    <div class="col-span-full lg:col-span-6">
-
-      <div>
-        <nav>
-          <ul class="grid grid-cols-9 gap-x-5 gap-y-4.5 text-sm font-bold md:gap-x-6 lg:gap-x-7.5">
-            <li class="col-span-3">
-              <a class="text-gray-900 transition-colors hover:text-accent dark:text-white dark:hover:text-accent" href="/">Home</a>
-            </li>
-            <li class="col-span-3">
-              <a class="text-gray-900 transition-colors hover:text-accent dark:text-white dark:hover:text-accent" href="/about">About</a>
-            </li>
-            <li class="col-span-3">
-              <a class="text-gray-900 transition-colors hover:text-accent dark:text-white dark:hover:text-accent" href="/setup">Setup</a>
-            </li>
-            <li class="col-span-3">
-              <a class="text-gray-900 transition-colors hover:text-accent dark:text-white dark:hover:text-accent" href="/merch">Merch</a>
-            </li>
-          </ul>
-        </nav>
       </div>
 
-    </div>
+      <div class="col-span-full lg:col-span-6">
 
-    <div class="col-span-full lg:col-span-4">
-
-      <div class="pt-1">
-        <a href="https://www.twitch.tv/cupcakemafiatv" class="inline-flex text-center font-bold leading-none transition-colors uppercase justify-center gap-x-3 py-4 px-4 md:py-[18px] lg:px-8 text-sm text-white bg-social-twitch hover:bg-social-twitch/90 w-full">
-          <svg class="h-[14px] w-[14px]" fill="currentColor">
-            <use xlink:href="img/social-icons.svg#twitch"></use>
-          </svg>
-          Subscribe to my channel!
-
-        </a>
-
-        <div class="mt-6 text-sm">
-          Support me by subscribing! You’ll get an awesome sub badge, custom emotes
-          and access to the private discord!
+        <div>
+          <nav>
+            <ul class="grid grid-cols-9 gap-x-5 gap-y-4.5 text-sm font-bold md:gap-x-6 lg:gap-x-7.5">
+              {{ range .Site.Menus.main }}
+              <li class="col-span-3">
+                <a class="text-gray-900 transition-colors hover:text-accent dark:text-white dark:hover:text-accent" href="{{ .URL }}">{{ .Name }}</a>
+              </li>
+              {{ end }}
+            </ul>
+          </nav>
         </div>
+
       </div>
 
-    </div>
-  </div>
+      <div class="col-span-full lg:col-span-4">
 
-</div>
+        <div class="pt-1">
+          <a href="https://www.twitch.tv/subs/cupcakemafiatv" class="inline-flex text-center font-bold leading-none transition-colors uppercase justify-center gap-x-3 py-4 px-4 md:py-[18px] lg:px-8 text-sm text-white bg-social-twitch hover:bg-social-twitch/90 w-full">
+            <svg class="h-[14px] w-[14px]" fill="currentColor">
+              <use xlink:href="img/social-icons.svg#twitch"></use>
+            </svg>
+            Subscribe to my channel!
+
+          </a>
+
+          <div class="mt-6 text-sm">
+            Support me by subscribing! You’ll get an awesome sub badge, custom emotes
+            and access to the private discord!
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</footer>

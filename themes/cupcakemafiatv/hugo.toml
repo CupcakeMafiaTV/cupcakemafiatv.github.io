@@ -1,1 +1,25 @@
 # Theme config.
+
+[[menu.main]]
+  identifier = "about"
+  name = 'About'
+  url = '/about'
+  weight = 1
+
+[[menu.main]]
+  identifier = "socials"
+  name = 'Socials'
+  url = '/socials'
+  weight = 2
+
+[[menu.main]]
+  identifier = "setup"
+  name = 'PC Setup'
+  url = '/setup'
+  weight = 3
+
+[[menu.main]]
+  identifier = "merch"
+  name = 'Merch'
+  url = '/merch'
+  weight = 4
