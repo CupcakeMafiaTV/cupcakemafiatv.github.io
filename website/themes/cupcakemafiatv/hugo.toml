@@ -14,7 +14,7 @@
 
 [[menu.main]]
   identifier = "setup"
-  name = 'PC Setup'
+  name = 'Setup'
   url = '/setup'
   weight = 3
 
