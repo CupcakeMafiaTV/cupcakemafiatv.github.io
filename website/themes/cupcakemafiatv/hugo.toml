@@ -3,7 +3,7 @@
 [[menu.main]]
   identifier = "Home"
   name = 'Home'
-  url = '/home'
+  url = '/'
   weight = 1
 
 [[menu.main]]
