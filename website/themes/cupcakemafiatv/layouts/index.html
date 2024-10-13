@@ -223,7 +223,7 @@
           <!-- Load the Twitch embed script -->
           <script src="https://player.twitch.tv/js/embed/v1.js"></script>
 
-          <!-- Create a Twitch.Player object. This will render within the placeholder div -->
+          <!-- Create a Twitch.Player object. This will render within the placeholder div
           <script type="text/javascript">
             new Twitch.Player("twitch-embed", {
               width: 560,
@@ -235,7 +235,36 @@
           <br>
           <br>
           <div class="pb-20 md:pb-24 lg:pb-[130px]">
-            <div class="container">
+            <div class="container"> -->
+
+              
+<html lang="en" style="background-color: #FFFFFF">
+  <style>
+    #twitch-embed {
+      height: 0;
+      position: relative;
+      overflow: hidden;
+      padding: 0 0 56.25%;
+      width: 100%;
+      border-radius: 0px;
+    }
+
+    #twitch-embed iframe {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <div id="twitch-embed">
+    <iframe src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=https://cupcakemafiatv.github.io/" frameborder="0" allowfullscreen="true" scrolling="no" height="100VH" width="100VM"></iframe>
+  </div>
+
+</html>
         
               <div class="mb-10 md:mb-12 lg:mb-16 xl:mb-20">
                 <h2 class="text-2.5xl font-bold tracking-tighter text-gray-900 before:text-accent before:content-['.'] dark:text-white sm:text-3.5xl md:text-4xl lg:text-[62px] lg:leading-none">
