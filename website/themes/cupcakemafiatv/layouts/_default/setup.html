@@ -1,68 +1,121 @@
-<!-- Main Content Area -->
-            <main id="main-content" class="grow lg:pt-0">
-                <div class="pt-8 pb-16 lg:pt-12">
-                    <div class="max-w-[1100px] mx-auto px-5">
+<!DOCTYPE html>
+<html lang="zxx" class="h-full overflow-x-hidden dark">
+
+    {{- partial "head.html" . -}}
+
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden dark:text-gray">
+
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">        
+        
+            <div class="header-wrapper text-white">
+
+                <header id="site-header" class="text-white">
+                    <div class="max-w-[1360px] mx-auto px-5">
+                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
+
+                            <!-- Navigation (Desktop) -->
+                            {{- partial "navigation.html" . -}}
+
+                            <!-- Header Controls -->
+                            <div class="flex ml-auto -mr-3">
+                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
+                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                        <use xlink:href="/img/sprites2.svg#menu"></use>
+                                    </svg>
+                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </nav>
+                    </div>
+                </header>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            {{- partial "mobile_menu.html" . -}}
+
+            <!-- Main Content Area -->
+            <main id="main-content" style="flex-grow: 1; padding: 40px 20px;">
+                <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
+                    
+                    <!-- Title Banner -->
+                    <div style="border-bottom: 1px solid #374151; padding-bottom: 16px; margin-bottom: 32px;">
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0 0 6px 0;">
+                            Gaming & Streaming Rig
+                        </h1>
+                        <p style="color: #22d3ee; font-weight: 600; margin: 0; font-size: 16px;">
+                            HP OMEN 30L Custom Build
+                        </p>
+                    </div>
+
+                    <!-- Container Layout -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
                         
-                        <!-- Header Banner -->
-                        <div class="border-b border-gray-800 pb-6 mb-10">
-                            <h1 class="text-gray-900 dark:text-white text-3xl sm:text-4xl font-extrabold tracking-tight">
-                                Gaming & Streaming Rig
-                            </h1>
-                            <p class="text-cyan-400 font-semibold mt-1">HP OMEN 30L Custom Build</p>
+                        <!-- Fixed Size Image -->
+                        <div style="width: 320px; max-width: 100%; flex-shrink: 0;">
+                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 16px; padding: 10px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+                                <img src="/img/pc-setup.jpg" alt="HP OMEN 30L Setup" style="width: 100%; height: 380px; object-fit: cover; border-radius: 12px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
+                            </div>
                         </div>
 
-                        <!-- Side-by-Side Flex Layout -->
-                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                        <!-- Specs Cards Grid -->
+                        <div style="flex: 1; min-width: 280px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
                             
-                            <!-- Compact Image Box -->
-                            <div class="w-full md:w-80 shrink-0">
-                                <div class="rounded-2xl overflow-hidden bg-gray-800/50 border border-gray-800 p-2 shadow-xl">
-                                    <img src="/img/pc-setup.jpg" alt="HP OMEN 30L Setup" class="w-full h-auto max-h-[380px] rounded-xl object-cover bg-gray-950" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
-                                </div>
+                            <!-- Processor -->
+                            <div style="background: rgba(31, 41, 55, 0.4); border: 1px solid #374151; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 11px; text-transform: uppercase; tracking-style: 1px; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">Processor</div>
+                                <div style="color: #ffffff; font-weight: 700; font-size: 18px;">Intel i7-11700KF</div>
+                                <div style="color: #9ca3af; font-size: 14px; margin-top: 4px;">11th Gen @ 3.60GHz</div>
                             </div>
 
-                            <!-- Specs Grid -->
-                            <div class="grow w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                
-                                <!-- CPU Card -->
-                                <div class="bg-gray-800/40 border border-gray-800 rounded-xl p-5 hover:border-cyan-500/50 transition-colors">
-                                    <div class="text-xs uppercase tracking-wider text-cyan-400 font-bold mb-1">Processor</div>
-                                    <div class="text-white font-bold text-lg">Intel i7-11700KF</div>
-                                    <div class="text-gray-400 text-sm mt-1">11th Gen @ 3.60GHz</div>
-                                </div>
+                            <!-- Graphics Card -->
+                            <div style="background: rgba(31, 41, 55, 0.4); border: 1px solid #374151; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 11px; text-transform: uppercase; tracking-style: 1px; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">Graphics Card</div>
+                                <div style="color: #ffffff; font-weight: 700; font-size: 18px;">NVIDIA RTX 3080</div>
+                                <div style="color: #9ca3af; font-size: 14px; margin-top: 4px;">10GB GDDR6X</div>
+                            </div>
 
-                                <!-- GPU Card -->
-                                <div class="bg-gray-800/40 border border-gray-800 rounded-xl p-5 hover:border-cyan-500/50 transition-colors">
-                                    <div class="text-xs uppercase tracking-wider text-cyan-400 font-bold mb-1">Graphics Card</div>
-                                    <div class="text-white font-bold text-lg">NVIDIA RTX 3080</div>
-                                    <div class="text-gray-400 text-sm mt-1">10GB GDDR6X</div>
-                                </div>
+                            <!-- Memory -->
+                            <div style="background: rgba(31, 41, 55, 0.4); border: 1px solid #374151; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 11px; text-transform: uppercase; tracking-style: 1px; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">Memory</div>
+                                <div style="color: #ffffff; font-weight: 700; font-size: 18px;">32 GB RAM</div>
+                                <div style="color: #9ca3af; font-size: 14px; margin-top: 4px;">High-Speed DDR4</div>
+                            </div>
 
-                                <!-- RAM Card -->
-                                <div class="bg-gray-800/40 border border-gray-800 rounded-xl p-5 hover:border-cyan-500/50 transition-colors">
-                                    <div class="text-xs uppercase tracking-wider text-cyan-400 font-bold mb-1">Memory</div>
-                                    <div class="text-white font-bold text-lg">32 GB RAM</div>
-                                    <div class="text-gray-400 text-sm mt-1">High-Speed DDR4</div>
-                                </div>
+                            <!-- Primary Storage -->
+                            <div style="background: rgba(31, 41, 55, 0.4); border: 1px solid #374151; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 11px; text-transform: uppercase; tracking-style: 1px; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">Primary Storage</div>
+                                <div style="color: #ffffff; font-weight: 700; font-size: 18px;">1 TB SSD</div>
+                                <div style="color: #9ca3af; font-size: 14px; margin-top: 4px;">PCIe NVMe M.2</div>
+                            </div>
 
-                                <!-- Primary Storage -->
-                                <div class="bg-gray-800/40 border border-gray-800 rounded-xl p-5 hover:border-cyan-500/50 transition-colors">
-                                    <div class="text-xs uppercase tracking-wider text-cyan-400 font-bold mb-1">Primary Storage</div>
-                                    <div class="text-white font-bold text-lg">1 TB SSD</div>
-                                    <div class="text-gray-400 text-sm mt-1">PCIe NVMe M.2</div>
-                                </div>
-
-                                <!-- Secondary Storage -->
-                                <div class="bg-gray-800/40 border border-gray-800 rounded-xl p-5 hover:border-cyan-500/50 transition-colors sm:col-span-2">
-                                    <div class="text-xs uppercase tracking-wider text-cyan-400 font-bold mb-1">Secondary Storage</div>
-                                    <div class="text-white font-bold text-lg">4 TB Samsung 870 QVO</div>
-                                    <div class="text-gray-400 text-sm mt-1">SATA III 2.5" SSD</div>
-                                </div>
-
+                            <!-- Secondary Storage -->
+                            <div style="background: rgba(31, 41, 55, 0.4); border: 1px solid #374151; border-radius: 12px; padding: 20px; grid-column: 1 / -1;">
+                                <div style="font-size: 11px; text-transform: uppercase; tracking-style: 1px; color: #22d3ee; font-weight: 700; margin-bottom: 4px;">Secondary Storage</div>
+                                <div style="color: #ffffff; font-weight: 700; font-size: 18px;">4 TB Samsung 870 QVO</div>
+                                <div style="color: #9ca3af; font-size: 14px; margin-top: 4px;">SATA III 2.5" SSD</div>
                             </div>
 
                         </div>
 
-                    </div>              
-                </div>
-            </main>
+                    </div>
+
+                </div>              
+            </main>            
+
+            {{- partial "footer.html" . -}}
+            {{- partial "scripts.html" . -}}
+
+        </div>
+
+        {{- partial "socials.html" . -}}
+
+    </body>
+
+</html>
