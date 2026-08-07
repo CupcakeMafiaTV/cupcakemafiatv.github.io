@@ -3,6 +3,9 @@
 
     {{- partial "head.html" . -}}
 
+    <!-- Font Awesome for Setup Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background-color: #0f172a;">        
@@ -45,8 +48,8 @@
                 <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
                     
                     <!-- Title Banner -->
-                    <div style="border-bottom: 1px solid #374151; padding-bottom: 16px; margin-bottom: 32px;">
-                        <h1 style="color: #22d3ee; font-size: 32px; font-weight: 800; margin: 0;">
+                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 16px; margin-bottom: 32px;">
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
                             PC Specs
                         </h1>
                     </div>
@@ -65,106 +68,166 @@
                         <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
                             
                             <!-- CPU -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">CPU</div>
-                                <a id="cpu-link" href="https://www.amazon.ca/AMD-RyzenTM-9800X3D-16-Thread-Processor/dp/B0DK22S9MD" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    AMD Ryzen 7 9800X3D ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">CPU</div>
+                                    <a id="cpu-link" href="https://www.amazon.ca/AMD-RyzenTM-9800X3D-16-Thread-Processor/dp/B0DK22S9MD" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        AMD Ryzen 7 9800X3D ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Motherboard -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Motherboard</div>
-                                <a href="https://www.google.com/search?q=GIGABYTE+X870E+AORUS+ELITE" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    GIGABYTE X870E AORUS ELITE ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-hard-drive"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Motherboard</div>
+                                    <a href="https://www.google.com/search?q=GIGABYTE+X870E+AORUS+ELITE" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        GIGABYTE X870E AORUS ELITE ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- RAM -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">RAM</div>
-                                <a href="https://www.google.com/search?q=Kingston+FURY+Beast+RGB+64GB+DDR5" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    Kingston FURY Beast RGB 64GB DDR5 ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-memory"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">RAM</div>
+                                    <a href="https://www.google.com/search?q=Kingston+FURY+Beast+RGB+64GB+DDR5" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        Kingston FURY Beast RGB 64GB DDR5 ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- GPU -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">GPU</div>
-                                <a href="https://www.google.com/search?q=MSI+GeForce+RTX+5080" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    MSI GeForce RTX 5080 ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid id fa-desktop"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">GPU</div>
+                                    <a href="https://www.google.com/search?q=MSI+GeForce+RTX+5080" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        MSI GeForce RTX 5080 ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Monitor -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Monitor</div>
-                                <a href="https://www.google.com/search?q=HP+OMEN+27+QHD+280Hz" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    HP OMEN 27" QHD 280Hz x3 ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-tv"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Monitor</div>
+                                    <a href="https://www.google.com/search?q=HP+OMEN+27+QHD+280Hz" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        HP OMEN 27" QHD 280Hz x3 ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Keyboard -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Keyboard</div>
-                                <a href="https://www.google.com/search?q=Razer+Huntsman+V3+Pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    Razer Huntsman V3 Pro ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-keyboard"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Keyboard</div>
+                                    <a href="https://www.google.com/search?q=Razer+Huntsman+V3+Pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        Razer Huntsman V3 Pro ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Mouse -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Mouse</div>
-                                <a href="https://www.google.com/search?q=Razer+Naga+V2+HyperSpeed" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    Razer Naga V2 HyperSpeed ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-computer-mouse"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Mouse</div>
+                                    <a href="https://www.google.com/search?q=Razer+Naga+V2+HyperSpeed" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        Razer Naga V2 HyperSpeed ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Capture Card -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Capture Card</div>
-                                <a href="https://www.google.com/search?q=AVerMedia+GC573" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    AVerMedia GC573 ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Capture Card</div>
+                                    <a href="https://www.google.com/search?q=AVerMedia+GC573" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        AVerMedia GC573 ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Microphone -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Microphone</div>
-                                <a href="https://www.google.com/search?q=Shure+SM7B" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    Shure SM7B ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Microphone</div>
+                                    <a href="https://www.google.com/search?q=Shure+SM7B" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        Shure SM7B ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Mixer -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Mixer</div>
-                                <a href="https://www.google.com/search?q=RodeCaster+Duo" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    RodeCaster Duo ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-sliders"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Mixer</div>
+                                    <a href="https://www.google.com/search?q=RodeCaster+Duo" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        RodeCaster Duo ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Camera -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Camera</div>
-                                <a href="https://www.google.com/search?q=Canon+EOS+M200" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    Canon EOS M200 ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-camera"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Camera</div>
+                                    <a href="https://www.google.com/search?q=Canon+EOS+M200" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        Canon EOS M200 ↗
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- Headphones -->
-                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Headphones</div>
-                                <a href="https://www.google.com/search?q=Beyerdynamic+DT+990+Pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
-                                    Beyerdynamic DT 990 Pro ↗
-                                </a>
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(34, 211, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 20px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-headphones"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Headphones</div>
+                                    <a href="https://www.google.com/search?q=Beyerdynamic+DT+990+Pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                        Beyerdynamic DT 990 Pro ↗
+                                    </a>
+                                </div>
                             </div>
 
                         </div>
 
                     </div>
 
-                </div>              
+                </div>               
             </main>            
 
             {{- partial "footer.html" . -}}
