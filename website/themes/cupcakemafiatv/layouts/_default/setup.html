@@ -1,13 +1,195 @@
-<!-- CPU -->
-<div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
-    <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">CPU</div>
-    <a id="cpu-link" 
-       href="YOUR_AMAZON_CA_LINK_HERE" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" 
-       onmouseover="this.style.color='#22d3ee'" 
-       onmouseout="this.style.color='#ffffff'">
-        AMD Ryzen 7 9800X3D ↗
-    </a>
-</div>
+<!DOCTYPE html>
+<html lang="zxx" class="h-full overflow-x-hidden dark">
+
+    {{- partial "head.html" . -}}
+
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
+
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background-color: #0f172a;">        
+        
+            <div class="header-wrapper text-white" style="background-color: #0f172a;">
+
+                <header id="site-header" class="text-white">
+                    <div class="max-w-[1360px] mx-auto px-5">
+                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
+
+                            <!-- Navigation (Desktop) -->
+                            {{- partial "navigation.html" . -}}
+
+                            <!-- Header Controls -->
+                            <div class="flex ml-auto -mr-3">
+                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
+                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                        <use xlink:href="/img/sprites2.svg#menu"></use>
+                                    </svg>
+                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                    </svg>
+                                </button>
+                            </div>
+
+                        </nav>
+                    </div>
+                </header>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            {{- partial "mobile_menu.html" . -}}
+
+            <!-- Main Content Area -->
+            <main id="main-content" style="flex-grow: 1; padding: 40px 20px; background-color: #0f172a;">
+                <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
+                    
+                    <!-- Title Banner -->
+                    <div style="border-bottom: 1px solid #374151; padding-bottom: 16px; margin-bottom: 32px;">
+                        <h1 style="color: #22d3ee; font-size: 32px; font-weight: 800; margin: 0;">
+                            PC Specs
+                        </h1>
+                    </div>
+
+                    <!-- Container Layout -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+                        
+                        <!-- Sticky PC Image Container -->
+                        <div style="width: 320px; max-width: 100%; flex-shrink: 0; position: sticky; top: 100px;">
+                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 16px; padding: 10px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+                                <img src="/img/pc-setup.jpg" alt="Setup Image" style="width: 100%; height: 380px; object-fit: cover; border-radius: 12px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
+                            </div>
+                        </div>
+
+                        <!-- Specs Cards Grid -->
+                        <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                            
+                            <!-- CPU (Updated with direct link & geo ID) -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">CPU</div>
+                                <a id="cpu-link" href="https://www.amazon.ca/AMD-RyzenTM-9800X3D-16-Thread-Processor/dp/B0DK22S9MD" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    AMD Ryzen 7 9800X3D ↗
+                                </a>
+                            </div>
+
+                            <!-- Motherboard -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Motherboard</div>
+                                <a href="https://www.google.com/search?q=GIGABYTE+X870E+AORUS+ELITE" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    GIGABYTE X870E AORUS ELITE ↗
+                                </a>
+                            </div>
+
+                            <!-- RAM -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">RAM</div>
+                                <a href="https://www.google.com/search?q=Kingston+FURY+Beast+RGB+64GB+DDR5" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    Kingston FURY Beast RGB 64GB DDR5 ↗
+                                </a>
+                            </div>
+
+                            <!-- GPU -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">GPU</div>
+                                <a href="https://www.google.com/search?q=MSI+GeForce+RTX+5080" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    MSI GeForce RTX 5080 ↗
+                                </a>
+                            </div>
+
+                            <!-- Monitor -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Monitor</div>
+                                <a href="https://www.google.com/search?q=HP+OMEN+27+QHD+280Hz" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 16px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    HP OMEN 27" QHD 280Hz x3 ↗
+                                </a>
+                            </div>
+
+                            <!-- Keyboard -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Keyboard</div>
+                                <a href="https://www.google.com/search?q=Razer+Huntsman+V3+Pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    Razer Huntsman V3 Pro ↗
+                                </a>
+                            </div>
+
+                            <!-- Mouse -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Mouse</div>
+                                <a href="https://www.google.com/search?q=Razer+Naga+V2+HyperSpeed" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    Razer Naga V2 HyperSpeed ↗
+                                </a>
+                            </div>
+
+                            <!-- Capture Card -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Capture Card</div>
+                                <a href="https://www.google.com/search?q=AVerMedia+GC573" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    AVerMedia GC573 ↗
+                                </a>
+                            </div>
+
+                            <!-- Microphone -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Microphone</div>
+                                <a href="https://www.google.com/search?q=Shure+SM7B" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    Shure SM7B ↗
+                                </a>
+                            </div>
+
+                            <!-- Mixer -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Mixer</div>
+                                <a href="https://www.google.com/search?q=RodeCaster+Duo" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    RodeCaster Duo ↗
+                                </a>
+                            </div>
+
+                            <!-- Camera -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Camera</div>
+                                <a href="https://www.google.com/search?q=Canon+EOS+M200" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    Canon EOS M200 ↗
+                                </a>
+                            </div>
+
+                            <!-- Headphones -->
+                            <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                                <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">Headphones</div>
+                                <a href="https://www.google.com/search?q=Beyerdynamic+DT+990+Pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 17px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
+                                    Beyerdynamic DT 990 Pro ↗
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>              
+            </main>            
+
+            {{- partial "footer.html" . -}}
+            {{- partial "scripts.html" . -}}
+
+        </div>
+
+        {{- partial "socials.html" . -}}
+
+        <!-- Auto Geo-redirect Script for Amazon links -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const cpuLink = document.getElementById("cpu-link");
+                if (!cpuLink) return;
+
+                // Detect user language/region setting
+                const userLocale = (navigator.language || navigator.userLanguage || "").toLowerCase();
+
+                // If user is NOT in Canada (e.g. en-us), swap .ca to .com
+                if (!userLocale.includes("ca")) {
+                    cpuLink.href = cpuLink.href.replace("amazon.ca", "amazon.com");
+                }
+            });
+        </script>
+
+    </body>
+
+</html>
