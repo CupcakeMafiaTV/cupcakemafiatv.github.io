@@ -1,13 +1,13 @@
 <footer id="site-footer">
   <div class="container">
 
-    <div class="grid grid-cols-12 gap-x-5 gap-y-6 border-t border-gray-500/25 py-8 md:gap-x-6 lg:gap-x-7.5 lg:py-10 items-center">
+    <div class="grid grid-cols-12 gap-x-5 gap-y-4 border-t border-gray-500/25 py-5 md:gap-x-6 lg:gap-x-7.5 lg:py-6 items-center">
 
       <!-- Navigation Links (All in a single row, larger text) -->
       <div class="col-span-full lg:col-span-8">
         <div>
           <nav>
-            <ul class="flex flex-wrap items-center gap-x-8 gap-y-3 text-base md:text-lg font-bold">
+            <ul class="flex flex-wrap items-center gap-x-8 gap-y-2 text-base md:text-lg font-bold">
               {{ range .Site.Menus.main }}
               <li>
                 <a class="text-gray-900 transition-colors hover:text-accent dark:text-white dark:hover:text-accent" href="{{ .URL }}">{{ .Name }}</a>
@@ -21,7 +21,7 @@
       <!-- Contact Me Email Button -->
       <div class="col-span-full lg:col-span-4">
         <div class="pt-1">
-          <a href="mailto:cupcakemafiatvgaming@gmail.com" class="inline-flex text-center font-bold leading-none transition-colors uppercase justify-center gap-x-3 py-3 px-4 md:py-3.5 lg:px-6 text-sm md:text-base text-white bg-gray-800 hover:bg-gray-700 border border-gray-600 w-full">
+          <a href="mailto:cupcakemafiatvgaming@gmail.com" class="inline-flex text-center font-bold leading-none transition-colors uppercase justify-center gap-x-3 py-2.5 px-4 md:py-3 lg:px-6 text-sm md:text-base text-white bg-gray-800 hover:bg-gray-700 border border-gray-600 w-full">
             <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
