@@ -14,8 +14,8 @@
 
 [[menu.main]]
   identifier = "setup"
-  name = 'Setup'
-  url = '/setup'
+  name = 'PC Specs'
+  url = '/pc-specs'
   weight = 3
 
 [[menu.main]]
