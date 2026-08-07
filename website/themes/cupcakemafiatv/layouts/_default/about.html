@@ -3,11 +3,11 @@
 
     {{- partial "head.html" . -}}
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden dark:text-gray">
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">        
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background-color: #0f172a;">        
         
-            <div class="header-wrapper text-white">
+            <div class="header-wrapper text-white" style="background-color: #0f172a;">
               <header id="site-header" class="text-white">
                   <div class="max-w-[1360px] mx-auto px-5">
                       <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
@@ -42,9 +42,9 @@
             {{- partial "mobile_menu.html" . -}}
             <!-- Mobile Menu / End -->
             
-            <main id="main-content" class="grow lg:pt-0">
+            <main id="main-content" class="grow lg:pt-0" style="background-color: #0f172a;">
               <div class="pt-10 pb-16 lg:pt-20 lg:pb-44">
-                <div class="container">
+                <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
                   <div class="flex flex-col gap-y-10 lg:gap-y-20">
                     
                     <!-- Bio Section -->
@@ -55,7 +55,7 @@
                         </a>
                       </div>
                       <div class="col-span-full md:col-span-8">
-                        <div class="mb-3" style="color: #ffffff!important;">
+                        <div class="mb-3" style="color: #ffffff!important; line-height: 1.6;">
                           Hello! I'm Cody, a variety live streamer from Canada and the self proclaimed First Try King. In between countlessly quoting The Simpsons and my other favorite TV sitcoms, I'm typically found bouncing between playing several different competitive style games such as League of Legends or Fortnite while continuing to try and obtain 100% completion and achievements within my endlessly large Steam library. By day I'm just your average computer technician but by night I'm your much inferior trashcan teammate that always seems to let you down within competitive games. As someone who enjoys tinkering with technology, combining that skillset with my overall love of gaming has made streaming a perfect match.<br/><br/>
                           Beyond streaming, I’m a massive collector of nerdy memorabilia, Funko POPs and trading cards and spend a lot of my free time looking for my next sought-after treasure to add to my collection. I’m a big fan of DC Comics and the Batman Universe especially Punchline & Harley Quinn and am most likely the only person that actually enjoyed the game Suicide Squad: Kill the Justice League. Some of my other all time favorite fandoms include Scott Pilgrim vs. The World, WWE/Wrestling, Pokémon, Yu-Gi-Oh & Digimon.
                         </div>
@@ -69,82 +69,82 @@
                     FAQ:
                   </h1>
       
-                  <!-- FAQ Accordion List -->
-                  <div class="accordion flex flex-col gap-y-6 lg:gap-y-8 xl:gap-y-11">
+                  <!-- FAQ Accordion List with Card Containers for a Cleaner Look -->
+                  <div class="accordion flex flex-col gap-y-4">
        
                     <!-- Item 1 -->
-                    <div class="accordion__item group">
-                      <div class="accordion__item-trigger relative flex flex-wrap items-center gap-3 lg:gap-4 text-gray-900 dark:text-white lg:text-2xl font-bold cursor-pointer">
-                        <span class="pr-8 md:pr-0">How long have you been streaming?</span>
-                        <span class="absolute right-0 top-0 w-5 aspect-square border-2 border-gray-650 group-[.active]:border-accent md:relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-650 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-650 group-[.active]:after:invisible group-[.active]:before:bg-gray-900 dark:group-[.active]:before:bg-white"></span>
+                    <div class="accordion__item group" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                      <div class="accordion__item-trigger relative flex flex-wrap items-center justify-between gap-3 text-white lg:text-xl font-bold cursor-pointer">
+                        <span>How long have you been streaming?</span>
+                        <span class="w-5 aspect-square border-2 border-gray-500 group-[.active]:border-accent relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-400 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-400 group-[.active]:after:invisible group-[.active]:before:bg-white"></span>
                       </div>
                       <div class="accordion__item-content hidden group-[.active]:block animate-fade">
-                        <div class="pt-6 lg:pt-8 xl:pt-10">
+                        <div class="pt-4 text-gray-300">
                           My first ever live stream occured on Dec 10th, 2017 and I have been streaming on and off ever since. Since May 2024, I have been taking streaming and content creation a lot more seriously and look forward to seeing just how far we can grow as a community.
                         </div>
                       </div>
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="accordion__item group">
-                      <div class="accordion__item-trigger relative flex flex-wrap items-center gap-3 lg:gap-4 text-gray-900 dark:text-white lg:text-2xl font-bold cursor-pointer">
-                        <span class="pr-8 md:pr-0">What type of things to do you collect?</span>
-                        <span class="absolute right-0 top-0 w-5 aspect-square border-2 border-gray-650 group-[.active]:border-accent md:relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-650 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-650 group-[.active]:after:invisible group-[.active]:before:bg-gray-900 dark:group-[.active]:before:bg-white"></span>
+                    <div class="accordion__item group" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                      <div class="accordion__item-trigger relative flex flex-wrap items-center justify-between gap-3 text-white lg:text-xl font-bold cursor-pointer">
+                        <span>What type of things to do you collect?</span>
+                        <span class="w-5 aspect-square border-2 border-gray-500 group-[.active]:border-accent relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-400 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-400 group-[.active]:after:invisible group-[.active]:before:bg-white"></span>
                       </div>
                       <div class="accordion__item-content hidden group-[.active]:block animate-fade">
-                        <div class="pt-6 lg:pt-8 xl:pt-10">
-                          I have always been a collector of various trinkets and gadgets. At the moment I mostly enjoy collecting Funko POPs, wrestling action figures, Pokémon cards, CGC graded comics, retro video games and much more! To see the full extent of my collection, make sure to check out my <a style="text-decoration: underline;" href="https://www.instagram.com/cupcakemafiatv/">Instagram</a>.
+                        <div class="pt-4 text-gray-300">
+                          I have always been a collector of various trinkets and gadgets. At the moment I mostly enjoy collecting Funko POPs, wrestling action figures, Pokémon cards, CGC graded comics, retro video games and much more! To see the full extent of my collection, make sure to check out my <a style="text-decoration: underline; color: #38bdf8;" href="https://www.instagram.com/cupcakemafiatv/">Instagram</a>.
                         </div>
                       </div>
                     </div>
 
                     <!-- Item 3 -->
-                    <div class="accordion__item group">
-                      <div class="accordion__item-trigger relative flex flex-wrap items-center gap-3 lg:gap-4 text-gray-900 dark:text-white lg:text-2xl font-bold cursor-pointer">
-                        <span class="pr-8 md:pr-0">Who does all of the art for your channel?</span>
-                        <span class="absolute right-0 top-0 w-5 aspect-square border-2 border-gray-650 group-[.active]:border-accent md:relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-650 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-650 group-[.active]:after:invisible group-[.active]:before:bg-gray-900 dark:group-[.active]:before:bg-white"></span>
+                    <div class="accordion__item group" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                      <div class="accordion__item-trigger relative flex flex-wrap items-center justify-between gap-3 text-white lg:text-xl font-bold cursor-pointer">
+                        <span>Who does all of the art for your channel?</span>
+                        <span class="w-5 aspect-square border-2 border-gray-500 group-[.active]:border-accent relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-400 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-400 group-[.active]:after:invisible group-[.active]:before:bg-white"></span>
                       </div>
                       <div class="accordion__item-content hidden group-[.active]:block animate-fade">
-                        <div class="pt-6 lg:pt-8 xl:pt-10">
-                          All of my channel art is done by <a style="text-decoration: underline;" href="https://x.com/sketchfarm">Sketch Farm</a>. She does absolutely phenomenal work and you should totally consider reaching out if you're in the need of any custom graphics.
+                        <div class="pt-4 text-gray-300">
+                          All of my channel art is done by <a style="text-decoration: underline; color: #38bdf8;" href="https://x.com/sketchfarm">Sketch Farm</a>. She does absolutely phenomenal work and you should totally consider reaching out if you're in the need of any custom graphics.
                         </div>
                       </div>
                     </div>
 
                     <!-- Item 4 -->
-                    <div class="accordion__item group">
-                      <div class="accordion__item-trigger relative flex flex-wrap items-center gap-3 lg:gap-4 text-gray-900 dark:text-white lg:text-2xl font-bold cursor-pointer">
-                        <span class="pr-8 md:pr-0">Pineapple on pizza or nah?</span>
-                        <span class="absolute right-0 top-0 w-5 aspect-square border-2 border-gray-650 group-[.active]:border-accent md:relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-650 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-650 group-[.active]:after:invisible group-[.active]:before:bg-gray-900 dark:group-[.active]:before:bg-white"></span>
+                    <div class="accordion__item group" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                      <div class="accordion__item-trigger relative flex flex-wrap items-center justify-between gap-3 text-white lg:text-xl font-bold cursor-pointer">
+                        <span>Pineapple on pizza or nah?</span>
+                        <span class="w-5 aspect-square border-2 border-gray-500 group-[.active]:border-accent relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-400 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-400 group-[.active]:after:invisible group-[.active]:before:bg-white"></span>
                       </div>
                       <div class="accordion__item-content hidden group-[.active]:block animate-fade">
-                        <div class="pt-6 lg:pt-8 xl:pt-10">
+                        <div class="pt-4 text-gray-300">
                           Any form of pineapple on pizza such as Hawaiian or any other variation is tolerable but is not going to top my all time great pizza combination list.
                         </div>
                       </div>
                     </div>
 
                     <!-- Item 5 -->
-                    <div class="accordion__item group">
-                      <div class="accordion__item-trigger relative flex flex-wrap items-center gap-3 lg:gap-4 text-gray-900 dark:text-white lg:text-2xl font-bold cursor-pointer">
-                        <span class="pr-8 md:pr-0">Do you watch anime?</span>
-                        <span class="absolute right-0 top-0 w-5 aspect-square border-2 border-gray-650 group-[.active]:border-accent md:relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-650 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-650 group-[.active]:after:invisible group-[.active]:before:bg-gray-900 dark:group-[.active]:before:bg-white"></span>
+                    <div class="accordion__item group" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                      <div class="accordion__item-trigger relative flex flex-wrap items-center justify-between gap-3 text-white lg:text-xl font-bold cursor-pointer">
+                        <span>Do you watch anime?</span>
+                        <span class="w-5 aspect-square border-2 border-gray-500 group-[.active]:border-accent relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-400 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-400 group-[.active]:after:invisible group-[.active]:before:bg-white"></span>
                       </div>
                       <div class="accordion__item-content hidden group-[.active]:block animate-fade">
-                        <div class="pt-6 lg:pt-8 xl:pt-10">
+                        <div class="pt-4 text-gray-300">
                           As of late, I started getting a lot more into anime! As a child, I was addicted to watching Pokémon, Yu-Gi-Oh, Digimon & Sailor Moon but it eventually fell out of favor. Recently I watched Spy x Family with a friend and absolutely loved it which really reignited my desire to watch more. The next big anime that I have on my watch list is Demon Slayer but I'm always open to new suggestions for what I should watch next!
                         </div>
                       </div>
                     </div>
 
                     <!-- Item 6 -->
-                    <div class="accordion__item group">
-                      <div class="accordion__item-trigger relative flex flex-wrap items-center gap-3 lg:gap-4 text-gray-900 dark:text-white lg:text-2xl font-bold cursor-pointer">
-                        <span class="pr-8 md:pr-0">Do you have any favorite games?</span>
-                        <span class="absolute right-0 top-0 w-5 aspect-square border-2 border-gray-650 group-[.active]:border-accent md:relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-650 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-650 group-[.active]:after:invisible group-[.active]:before:bg-gray-900 dark:group-[.active]:before:bg-white"></span>
+                    <div class="accordion__item group" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
+                      <div class="accordion__item-trigger relative flex flex-wrap items-center justify-between gap-3 text-white lg:text-xl font-bold cursor-pointer">
+                        <span>Do you have any favorite games?</span>
+                        <span class="w-5 aspect-square border-2 border-gray-500 group-[.active]:border-accent relative before:w-2 before:h-0.5 before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-gray-400 after:w-0.5 after:h-2 after:visible after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-gray-400 group-[.active]:after:invisible group-[.active]:before:bg-white"></span>
                       </div>
                       <div class="accordion__item-content hidden group-[.active]:block animate-fade">
-                        <div class="pt-6 lg:pt-8 xl:pt-10">
+                        <div class="pt-4 text-gray-300">
                           Yes! My favorite game of all time is Scott Pilgrim vs. the World: The Game. Although some additional favorite game franchises of mine are Life Is Strange, The Shantae Series, Mafia, League of Legends, World of Warcraft, Grounded & Genshin Impact.
                         </div>
                       </div>
