@@ -1,462 +1,251 @@
 <!DOCTYPE html>
-
 <html lang="zxx" class="h-full overflow-x-hidden dark">
-
 
     {{- partial "head.html" . -}}
 
-
     <!-- Font Awesome for Social Icons -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
 
-
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background-color: #0f172a;">        
-
-       
 
             <div class="header-wrapper text-white" style="background-color: #0f172a;">
 
-
                 <header id="site-header" class="text-white">
-
                     <div class="max-w-[1360px] mx-auto px-5">
-
                         <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
 
-
                             <!-- Logo -->
-
                             {{- partial "logo.html" . -}}
 
-
                             <!-- Navigation (Desktop) -->
-
                             {{- partial "navigation.html" . -}}
 
-
                             <!-- Header Controls -->
-
                             <div class="flex ml-auto -mr-3">
-
                                 <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-
                                     <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-
                                         <use xlink:href="/img/sprites2.svg#menu"></use>
-
                                     </svg>
-
                                     <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-
                                         <use xlink:href="/img/sprites2.svg#menu-close"></use>
-
                                     </svg>
-
                                 </button>
-
                             </div>
 
-
                         </nav>
-
                     </div>
-
                 </header>
-
 
             </div>
 
-
             <!-- Mobile Menu -->
-
             {{- partial "mobile_menu.html" . -}}
 
-
             <!-- Main Content Area -->
-
             <main id="main-content" style="flex-grow: 1; padding: 40px 20px; background-color: #0f172a;">
-
                 <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
-
-                   
-
+                    
                     <!-- Title Banner -->
-
-                    <div style="border-bottom: 1px solid #374151; padding-bottom: 16px; margin-bottom: 32px;">
-
-                        <h1 style="color: #22d3ee; font-size: 32px; font-weight: 800; margin: 0;">
-
+                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 16px; margin-bottom: 32px;">
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
                             Socials
-
                         </h1>
-
                     </div>
 
-
                     <!-- Socials Cards Grid -->
-
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-
-                       
-
+                        
                         <!-- ROW 1: Twitch, YouTube, YouTube -->
 
-
                         <!-- 1. Twitch -->
-
                         <a href="https://twitch.tv/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #2a1b3d 100%); border: 1px solid #9146FF; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(145, 70, 255, 0.25); display: flex; align-items: center; justify-content: center; font-size: 26px; color: #a970ff; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-twitch"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #a970ff; font-weight: 700; margin-bottom: 2px;">Twitch</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Live ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 2. YouTube -->
-
                         <a href="https://youtube.com/@CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #3a1c1c 100%); border: 1px solid #FF0000; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; font-size: 26px; color: #ff4d4d; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-youtube"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #ff4d4d; font-weight: 700; margin-bottom: 2px;">YouTube</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Main ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 3. YouTube -->
-
                         <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #3a1c1c 100%); border: 1px solid #FF0000; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 0, 0, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ff4d4d; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-youtube"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #ff4d4d; font-weight: 700; margin-bottom: 2px;">YouTube</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">VODs ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- ROW 2: Instagram, X, BlueSky -->
 
-
                         <!-- 4. Instagram -->
-
                         <a href="https://instagram.com/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #381c2d 100%); border: 1px solid #E4405F; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(228, 64, 95, 0.25); display: flex; align-items: center; justify-content: center; font-size: 26px; color: #f06a83; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-instagram"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #f06a83; font-weight: 700; margin-bottom: 2px;">Instagram</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Follow ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 5. X -->
-
                         <a href="https://x.com/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #283344 100%); border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ffffff; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-x-twitter"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #e2e8f0; font-weight: 700; margin-bottom: 2px;">X</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Follow ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 6. Bluesky -->
-
                         <a href="https://bsky.app/profile/cupcakemafiatv.bsky.social" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #12283e 100%); border: 1px solid #0085ff; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(0, 133, 255, 0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-
                                 <svg width="24" height="24" viewBox="0 0 568 501" fill="#339dff" xmlns="http://www.w3.org/2000/svg">
-
                                     <path d="M123.121 33.664C188.241 82.553 258.281 181.68 284 234.873C309.719 181.68 379.759 82.553 444.879 33.664C491.866 -1.583 568 -28.854 568 49.035C568 64.6 559.037 195.86 553.869 214.316C535.898 278.508 447.16 293.432 368.809 280.081C497.88 302.046 529.279 385.228 448 450.92C368.809 514.935 304.793 421.328 284 382.029C263.207 421.328 199.191 514.935 120 450.92C38.721 385.228 70.12 302.046 199.191 280.081C120.84 293.432 32.102 278.508 14.131 214.316C8.963 195.86 0 64.6 0 49.035C0 -28.854 76.134 -1.583 123.121 33.664Z"/>
-
                                 </svg>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #339dff; font-weight: 700; margin-bottom: 2px;">Bluesky</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Follow ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- ROW 3: TikTok, Discord, Spotify -->
 
-
                         <!-- 7. TikTok -->
-
                         <a href="https://tiktok.com/@CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #142f36 100%); border: 1px solid #25F4EE; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(37, 244, 238, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #52f6f1; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-tiktok"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #52f6f1; font-weight: 700; margin-bottom: 2px;">TikTok</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Follow ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 8. Discord -->
-
                         <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #1c223e 100%); border: 1px solid #5865F2; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(88, 101, 242, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #7983f5; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-discord"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #7983f5; font-weight: 700; margin-bottom: 2px;">Discord</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Discord ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 9. Spotify -->
-
                         <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=ac207efd9fe34e14" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #152d20 100%); border: 1px solid #1DB954; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(29, 185, 84, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #3be477; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-spotify"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #3be477; font-weight: 700; margin-bottom: 2px;">Spotify</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Playlist ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- ROW 4: Fourthwall, Tipping, Reddit -->
 
-
                         <!-- 10. Fourthwall Shop -->
-
                         <a href="https://cupcakemafiatv-shop.fourthwall.com/" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #3a222e 100%); border: 1px solid #ff6b8b; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 107, 139, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ff8ca3; flex-shrink: 0;">
-
                                 <i class="fa-solid fa-bag-shopping"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #ff8ca3; font-weight: 700; margin-bottom: 2px;">Fourthwall</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Merch ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 11. Tipping -->
-
                         <a href="https://streamelements.com/cupcakemafiatv/tip" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #15322b 100%); border: 1px solid #10b981; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(16, 185, 129, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #34d399; flex-shrink: 0;">
-
                                 <i class="fa-solid fa-hand-holding-dollar"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #34d399; font-weight: 700; margin-bottom: 2px;">Tipping</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Donate ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 12. Reddit -->
-
                         <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #3a2018 100%); border: 1px solid #FF4500; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 69, 0, 0.25); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ff6a2b; flex-shrink: 0;">
-
                                 <i class="fa-brands fa-reddit-alien"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #ff6a2b; font-weight: 700; margin-bottom: 2px;">Reddit</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Community ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- ROW 5: OP.GG, U.GG, League of Graphs -->
 
-
                         <!-- 13. OP.GG -->
-
                         <a href="https://op.gg/lol/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #1c263e 100%); border: 1px solid #5383e8; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(83, 131, 232, 0.25); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #769df2; font-weight: 900; flex-shrink: 0;">
-
                                 GG
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #769df2; font-weight: 700; margin-bottom: 2px;">OP.GG</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Stats ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 14. U.GG -->
-
                         <a href="https://u.gg/lol/profile/na1/cupcakemafia-na1/overview" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #152e3c 100%); border: 1px solid #00f0c8; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(0, 240, 200, 0.25); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #00f0c8; font-weight: 900; flex-shrink: 0;">
-
                                 U
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #00f0c8; font-weight: 700; margin-bottom: 2px;">U.GG</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Stats ↗</div>
-
                             </div>
-
                         </a>
-
 
                         <!-- 15. League of Graphs -->
-
                         <a href="https://www.leagueofgraphs.com/summoner/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #1e293b 0%, #202638 100%); border: 1px solid #3b82f6; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';" onmousedown="this.style.transform='scale(0.98)';" onmouseup="this.style.transform='translateY(-2px)';">
-
                             <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(59, 130, 246, 0.25); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #60a5fa; font-weight: 900; flex-shrink: 0;">
-
                                 <i class="fa-solid fa-chart-line"></i>
-
                             </div>
-
                             <div>
-
                                 <div style="font-size: 13px; text-transform: uppercase; color: #60a5fa; font-weight: 700; margin-bottom: 2px;">League of Graphs</div>
-
                                 <div style="color: #ffffff; font-weight: 700; font-size: 16px;">Stats ↗</div>
-
                             </div>
-
                         </a>
-
 
                     </div>
 
-
-                </div>              
-
+                </div>               
             </main>            
 
-
             {{- partial "footer.html" . -}}
-
             {{- partial "scripts.html" . -}}
-
 
         </div>
 
-
         {{- partial "socials.html" . -}}
-
 
     </body>
 
-
-</html> 
+</html>
