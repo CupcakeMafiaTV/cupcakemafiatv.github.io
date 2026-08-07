@@ -1,71 +1,28 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
-
-    {{- partial "head.html" . -}}
-
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden dark:text-gray">
-
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">        
-        
-            <div class="header-wrapper text-white">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-
-                            <!-- Header Controls -->
-                            <div class="flex ml-auto -mr-3">
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu"></use>
-                                    </svg>
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
-                                    </svg>
-                                </button>
-                            </div>
-
-                        </nav>
-                    </div>
-                </header>
-
-            </div>
-
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
-
-            <!-- Main Content Area -->
+<!-- Main Content Area -->
             <main id="main-content" class="grow lg:pt-0">
                 <div class="pt-8 pb-16 lg:pt-12">
                     <div class="max-w-[1100px] mx-auto px-5">
                         
                         <!-- Header Banner -->
-                        <div class="flex items-center justify-between border-b border-gray-800 pb-6 mb-10">
-                            <div>
-                                <h1 class="text-gray-900 dark:text-white text-3xl sm:text-4xl font-extrabold tracking-tight">
-                                    Gaming & Streaming Rig
-                                </h1>
-                                <p class="text-cyan-400 font-semibold mt-1">HP OMEN 30L Custom Build</p>
-                            </div>
+                        <div class="border-b border-gray-800 pb-6 mb-10">
+                            <h1 class="text-gray-900 dark:text-white text-3xl sm:text-4xl font-extrabold tracking-tight">
+                                Gaming & Streaming Rig
+                            </h1>
+                            <p class="text-cyan-400 font-semibold mt-1">HP OMEN 30L Custom Build</p>
                         </div>
 
-                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        <!-- Side-by-Side Flex Layout -->
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
                             
-                            <!-- PC Image / Photo Showcase -->
-                            <div class="lg:col-span-5">
-                                <div class="relative group rounded-2xl overflow-hidden bg-gray-800/50 border border-gray-800 p-2 shadow-2xl">
-                                    <img src="/img/pc-setup.jpg" alt="HP OMEN 30L Setup" class="w-full h-auto rounded-xl object-cover min-h-[320px] bg-gray-950" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
+                            <!-- Compact Image Box -->
+                            <div class="w-full md:w-80 shrink-0">
+                                <div class="rounded-2xl overflow-hidden bg-gray-800/50 border border-gray-800 p-2 shadow-xl">
+                                    <img src="/img/pc-setup.jpg" alt="HP OMEN 30L Setup" class="w-full h-auto max-h-[380px] rounded-xl object-cover bg-gray-950" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
                                 </div>
                             </div>
 
-                            <!-- Specs Grid Cards -->
-                            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Specs Grid -->
+                            <div class="grow w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 
                                 <!-- CPU Card -->
                                 <div class="bg-gray-800/40 border border-gray-800 rounded-xl p-5 hover:border-cyan-500/50 transition-colors">
@@ -108,15 +65,4 @@
 
                     </div>              
                 </div>
-            </main>            
-
-            {{- partial "footer.html" . -}}
-            {{- partial "scripts.html" . -}}
-
-        </div>
-
-        {{- partial "socials.html" . -}}
-
-    </body>
-
-</html>
+            </main>
