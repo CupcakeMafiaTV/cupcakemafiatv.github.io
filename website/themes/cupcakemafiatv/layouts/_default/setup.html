@@ -1,65 +1,20 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
-
-    {{- partial "head.html" . -}}
-
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-white dark:bg-gray-900 overflow-x-hidden dark:text-gray">
-
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">        
-        
-            <div class="header-wrapper text-white">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-
-                            <!-- Header Controls -->
-                            <div class="flex ml-auto -mr-3">
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu"></use>
-                                    </svg>
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
-                                    </svg>
-                                </button>
-                            </div>
-
-                        </nav>
-                    </div>
-                </header>
-
-            </div>
-
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
-
-            <!-- Main Content Area -->
+<!-- Main Content Area -->
             <main id="main-content" class="grow lg:pt-0">
                 <div class="pt-10 lg:pt-20">
                     <div class="container">
                         
-                        <!-- NEW CONTENT GOES HERE -->
-                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Welcome to My New Page</h1>
-                        <p class="mt-4 text-gray-500">Your fresh content starts here...</p>
+                        <h3 class="text-gray-900 dark:text-white text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold mb-8 md:mb-12">
+                            HP OMEN 30L
+                        </h3>
+
+                        <ul class="space-y-3 text-gray-700 dark:text-gray-300 text-base list-disc list-inside">
+                            <li><strong class="text-gray-900 dark:text-white">CPU:</strong> Intel 11th Gen i7-11700KF @ 3.60GHz</li>
+                            <li><strong class="text-gray-900 dark:text-white">GPU:</strong> NVIDIA GeForce RTX 3080</li>
+                            <li><strong class="text-gray-900 dark:text-white">RAM:</strong> 32 GB RAM</li>
+                            <li><strong class="text-gray-900 dark:text-white">Storage 1:</strong> 1 TB PCIe NVMe M.2 SSD</li>
+                            <li><strong class="text-gray-900 dark:text-white">Storage 2:</strong> 4 TB Samsung 870 QVO SATA SSD</li>
+                        </ul>
 
                     </div>              
                 </div>
-            </main>            
-
-            {{- partial "footer.html" . -}}
-            {{- partial "scripts.html" . -}}
-
-        </div>
-
-        {{- partial "socials.html" . -}}
-
-    </body>
-
-</html>
+            </main>
