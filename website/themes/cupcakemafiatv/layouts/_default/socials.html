@@ -3,6 +3,9 @@
 
     {{- partial "head.html" . -}}
 
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background-color: #0f172a;">        
@@ -42,7 +45,7 @@
 
             <!-- Main Content Area -->
             <main id="main-content" style="flex-grow: 1; padding: 40px 20px; background-color: #0f172a;">
-                <div style="max-width: 900px; margin: 0 auto; font-family: sans-serif;">
+                <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
                     
                     <!-- Title Banner -->
                     <div style="border-bottom: 1px solid #374151; padding-bottom: 16px; margin-bottom: 32px;">
@@ -52,70 +55,70 @@
                     </div>
 
                     <!-- Socials Cards Grid -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
                         
                         <!-- Twitch -->
-                        <a href="https://twitch.tv/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#9146FF'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
-                            <div style="font-size: 28px; color: #9146FF; display: flex; align-items: center;">
-                                <i class="fab fa-twitch"></i>
+                        <a href="https://twitch.tv/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#9146FF'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
+                            <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(145, 70, 255, 0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #9146FF; flex-shrink: 0;">
+                                <i class="fa-brands fa-twitch"></i>
                             </div>
                             <div>
-                                <div style="font-size: 14px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Twitch</div>
+                                <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Twitch</div>
                                 <div style="color: #ffffff; font-weight: 700; font-size: 18px;">/CupcakeMafiaTV ↗</div>
                             </div>
                         </a>
 
                         <!-- YouTube -->
-                        <a href="https://youtube.com/@CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#FF0000'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
-                            <div style="font-size: 28px; color: #FF0000; display: flex; align-items: center;">
-                                <i class="fab fa-youtube"></i>
+                        <a href="https://youtube.com/@CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#FF0000'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
+                            <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #FF0000; flex-shrink: 0;">
+                                <i class="fa-brands fa-youtube"></i>
                             </div>
                             <div>
-                                <div style="font-size: 14px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">YouTube</div>
+                                <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">YouTube</div>
                                 <div style="color: #ffffff; font-weight: 700; font-size: 18px;">/@CupcakeMafiaTV ↗</div>
                             </div>
                         </a>
 
                         <!-- X (Twitter) -->
-                        <a href="https://x.com/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#ffffff'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
-                            <div style="font-size: 28px; color: #ffffff; display: flex; align-items: center;">
-                                <i class="fab fa-x-twitter"></i>
+                        <a href="https://x.com/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#ffffff'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
+                            <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #ffffff; flex-shrink: 0;">
+                                <i class="fa-brands fa-x-twitter"></i>
                             </div>
                             <div>
-                                <div style="font-size: 14px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">X / Twitter</div>
+                                <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">X / Twitter</div>
                                 <div style="color: #ffffff; font-weight: 700; font-size: 18px;">/CupcakeMafiaTV ↗</div>
                             </div>
                         </a>
 
                         <!-- Instagram -->
-                        <a href="https://instagram.com/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#E4405F'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
-                            <div style="font-size: 28px; color: #E4405F; display: flex; align-items: center;">
-                                <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#E4405F'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
+                            <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(228, 64, 95, 0.15); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #E4405F; flex-shrink: 0;">
+                                <i class="fa-brands fa-instagram"></i>
                             </div>
                             <div>
-                                <div style="font-size: 14px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Instagram</div>
+                                <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Instagram</div>
                                 <div style="color: #ffffff; font-weight: 700; font-size: 18px;">/CupcakeMafiaTV ↗</div>
                             </div>
                         </a>
 
                         <!-- Discord -->
-                        <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#5865F2'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
-                            <div style="font-size: 28px; color: #5865F2; display: flex; align-items: center;">
-                                <i class="fab fa-discord"></i>
+                        <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#5865F2'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
+                            <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(88, 101, 242, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #5865F2; flex-shrink: 0;">
+                                <i class="fa-brands fa-discord"></i>
                             </div>
                             <div>
-                                <div style="font-size: 14px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Discord</div>
+                                <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">Discord</div>
                                 <div style="color: #ffffff; font-weight: 700; font-size: 18px;">/CupcakeMafiaTV ↗</div>
                             </div>
                         </a>
 
                         <!-- TikTok -->
-                        <a href="https://tiktok.com/@CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#25F4EE'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
-                            <div style="font-size: 28px; color: #25F4EE; display: flex; align-items: center;">
-                                <i class="fab fa-tiktok"></i>
+                        <a href="https://tiktok.com/@CupcakeMafiaTV" target="_blank" rel="noopener noreferrer" style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 20px; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.borderColor='#25F4EE'; this.style.transform='translateY(-2px)';" onmouseout="this.style.borderColor='#334155'; this.style.transform='translateY(0)';">
+                            <div style="width: 48px; height: 48px; border-radius: 10px; background: rgba(37, 244, 238, 0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #25F4EE; flex-shrink: 0;">
+                                <i class="fa-brands fa-tiktok"></i>
                             </div>
                             <div>
-                                <div style="font-size: 14px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">TikTok</div>
+                                <div style="font-size: 13px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 2px;">TikTok</div>
                                 <div style="color: #ffffff; font-weight: 700; font-size: 18px;">/@CupcakeMafiaTV ↗</div>
                             </div>
                         </a>
