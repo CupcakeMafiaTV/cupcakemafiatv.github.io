@@ -64,7 +64,7 @@
                         <!-- Specs Cards Grid -->
                         <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
                             
-                            <!-- CPU (Updated with direct link & geo ID) -->
+                            <!-- CPU -->
                             <div style="background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px;">
                                 <div style="font-size: 15px; text-transform: uppercase; color: #22d3ee; font-weight: 700; margin-bottom: 6px;">CPU</div>
                                 <a id="cpu-link" href="https://www.amazon.ca/AMD-RyzenTM-9800X3D-16-Thread-Processor/dp/B0DK22S9MD" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 18px; text-decoration: none; white-space: nowrap;" onmouseover="this.style.color='#22d3ee'" onmouseout="this.style.color='#ffffff'">
@@ -174,18 +174,32 @@
 
         {{- partial "socials.html" . -}}
 
-        <!-- Auto Geo-redirect Script for Amazon links -->
+        <!-- Smart Timezone-Based Geo-Redirect Script -->
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 const cpuLink = document.getElementById("cpu-link");
                 if (!cpuLink) return;
 
-                // Detect user language/region setting
-                const userLocale = (navigator.language || navigator.userLanguage || "").toLowerCase();
+                // Detect system time zone
+                const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
 
-                // If user is NOT in Canada (e.g. en-us), swap .ca to .com
-                if (!userLocale.includes("ca")) {
-                    cpuLink.href = cpuLink.href.replace("amazon.ca", "amazon.com");
+                // List of common Canadian time zones
+                const canadianZones = [
+                    "America/Toronto",
+                    "America/Vancouver",
+                    "America/Edmonton",
+                    "America/Winnipeg",
+                    "America/Halifax",
+                    "America/St_Johns",
+                    "America/Regina",
+                    "America/Moncton"
+                ];
+
+                const isCanadianUser = canadianZones.includes(userTimeZone) || userTimeZone.toLowerCase().includes("canada");
+
+                // If the user is NOT in Canada, redirect to US Amazon search query
+                if (!isCanadianUser) {
+                    cpuLink.href = "https://www.amazon.com/s?k=AMD+Ryzen+7+9800X3D";
                 }
             });
         </script>
