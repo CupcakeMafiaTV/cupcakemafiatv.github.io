@@ -88,24 +88,40 @@
         </h2>
       </div>
 
-      <div class="grid grid-cols-12 gap-5 md:gap-6 lg:gap-7.5 mb-7.5">
-        <figure class="col-span-full md:row-start-1 md:row-end-2 lg:col-span-8 lg:row-start-1 lg:row-end-3">
-          <div id="twitch-embed"></div>
-          <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-          <script type="text/javascript">
-            new Twitch.Player("twitch-embed", {
-              width: "100%",
-              height: 375,
-              parent: ["cupcakemafiatv.github.io", "localhost"],    
-              channel: "cupcakemafiatv"
-            });
-          </script>  
-        </figure>
+      <!-- Grid layout: Video on the left/top, Chat on the right/bottom -->
+      <div class="grid grid-cols-12 gap-5 md:gap-6 lg:gap-7.5 mb-7.5 items-start">
+        
+        <!-- Twitch Player Column -->
+        <div class="col-span-full lg:col-span-8">
+          <div class="relative w-full overflow-hidden rounded-lg shadow-lg" style="padding-bottom: 56.25%;">
+            <iframe 
+              src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.github.io&parent=localhost" 
+              frameborder="0" 
+              allowfullscreen="true" 
+              scrolling="no" 
+              class="absolute top-0 left-0 w-full h-full">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Twitch Chat Column -->
+        <div class="col-span-full lg:col-span-4">
+          <div class="w-full overflow-hidden rounded-lg shadow-lg bg-gray-900">
+            <iframe 
+              id="chat_embed"
+              src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.github.io&parent=localhost"
+              height="500"
+              width="100%"
+              class="w-full">
+            </iframe>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <!-- New League of Quizzes Section -->
+  <!-- League of Quizzes Section -->
   <div class="pt-10 pb-10 md:pt-16 md:pb-20 lg:pt-[60px] lg:pb-[60px]">
     <div class="container">
       <div class="mb-10 md:mb-12 lg:mb-16 xl:mb-20">
@@ -116,7 +132,6 @@
 
       <div class="grid grid-cols-12 gap-5 md:gap-6 lg:gap-7.5 mb-7.5">
         <figure class="col-span-full md:row-start-1 md:row-end-2 lg:col-span-8 lg:row-start-1 lg:row-end-3">
-          <!-- Responsive Iframe Wrapper -->
           <div class="relative w-full" style="padding-bottom: 56.25%;">
             <iframe class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/fnCxnmSMh9Q?si=9AWeAsNtUWk2CwjJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
