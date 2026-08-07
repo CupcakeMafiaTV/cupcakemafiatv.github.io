@@ -9,6 +9,40 @@
   <section class="py-1 lg:py-1 lg:pb-[70px]">
   </section>
 
+  <!-- Mafia Name Generator Section -->
+  <div class="pb-12 md:pb-20 lg:pb-[60px]">
+    <div class="container">
+      <div class="mb-8 md:mb-10">
+        <h2 class="text-2.5xl font-bold tracking-tighter text-gray-900 before:text-accent before:content-['.'] dark:text-white sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">
+          Mafia Name Generator
+        </h2>
+        <p class="text-gray-300 mt-2">Enter your name and find out what they call you down at the docks.</p>
+      </div>
+
+      <div class="max-w-xl bg-gray-900/50 border border-gray-800 p-6 md:p-8 rounded-lg shadow-xl backdrop-blur-sm">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input 
+            type="text" 
+            id="userInputName" 
+            placeholder="Enter your name (e.g., Cody)..." 
+            class="flex-grow px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white focus:outline-none focus:border-accent transition-colors"
+          >
+          <button 
+            onclick="generateMafiaName()" 
+            class="px-6 py-3 font-bold text-gray-900 bg-accent hover:opacity-90 rounded-lg transition-opacity"
+          >
+            Get Alias
+          </button>
+        </div>
+
+        <div id="mafiaResultContainer" class="mt-6 hidden text-center p-6 bg-gray-900/80 rounded-lg border border-accent/30">
+          <span class="text-xs uppercase tracking-widest text-gray-400 block mb-1">Your Underworld Alias</span>
+          <h3 id="mafiaResultText" class="text-2xl md:text-3xl font-extrabold text-accent"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="pb-0 md:pb-20 lg:pb-[60px]">
     <div class="container">
       <div class="mb-10 md:mb-12 lg:mb-16 xl:mb-20">
@@ -196,5 +230,41 @@
   </div>
 
 </main>
+
+<script>
+  function generateMafiaName() {
+    const nameInput = document.getElementById('userInputName').value.trim();
+    if (!nameInput) return;
+
+    // A list of classic mafia nicknames
+    const nicknames = [
+      "\"Tightlips\"",
+      "\"The Fixer\"",
+      "\"Two-Times\"",
+      "\"The Brick\"",
+      "\"No-Thumbs\"",
+      "\"The Cupcake\"",
+      "\"Vinnie the Fish\"",
+      "\"Slick\"",
+      "\"The Needle\"",
+      "\"Bones\""
+    ];
+
+    // Use a simple hash based on the input name so the same name always gets the same mafia nickname
+    let hash = 0;
+    for (let i = 0; i < nameInput.length; i++) {
+      hash = nameInput.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % nicknames.length;
+    
+    // Capitalize user input nicely
+    const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
+    
+    const resultText = `${formattedName} ${nicknames[index]}`;
+    
+    document.getElementById('mafiaResultText').innerText = resultText;
+    document.getElementById('mafiaResultContainer').classList.remove('hidden');
+  }
+</script>
 
 {{ end }}
