@@ -3,17 +3,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-  /* Responsive Two-Column Layout */
+  /* Outer Section Wrapper (Fills dark background without touching global body/header/footer) */
+  .socials-page-wrapper {
+    background-color: #0f172a;
+    color: #f8fafc;
+    width: 100%;
+    min-height: 80vh;
+    padding: 3rem 1rem;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Responsive Two-Column Inner Container */
   .socials-container {
     display: flex;
     flex-direction: row;
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1rem;
     align-items: flex-start;
-    color: #f8fafc;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   .socials-container .left-column {
@@ -31,7 +39,7 @@
     width: 100%;
   }
 
-  /* Responsive Grid Adjustments */
+  /* Responsive Layout Adjustments */
   @media (max-width: 900px) {
     .socials-container {
       flex-direction: column;
@@ -69,7 +77,7 @@
   .socials-container .social-card:hover {
     transform: translateY(-3px);
     border-color: var(--brand-color, #38bdf8);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px -3px var(--brand-color-glow, rgba(56, 189, 248, 0.3));
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px -3px var(--brand-color-glow, rgba(56, 189, 248, 0.3));
   }
 
   .socials-container .card-icon {
@@ -193,148 +201,150 @@
   }
 </style>
 
-<div class="socials-container">
-  <!-- Left Column: Gallery -->
-  <aside class="left-column">
-    <div class="gallery-container" style="display: flex; flex-direction: column; gap: 1rem;">
-      <img 
-        src="/img/social-photo-1.jpg" 
-        alt="CupcakeMafiaTV Image 1" 
-        class="gallery-img" 
-        loading="lazy"
-        onclick="openModal(this.src)" 
-        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80';"
-      />
-      <img 
-        src="/img/social-photo-2.jpg" 
-        alt="CupcakeMafiaTV Image 2" 
-        class="gallery-img" 
-        loading="lazy"
-        onclick="openModal(this.src)" 
-        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80';"
-      />
-    </div>
-  </aside>
+<div class="socials-page-wrapper">
+  <div class="socials-container">
+    <!-- Left Column: Gallery -->
+    <aside class="left-column">
+      <div class="gallery-container" style="display: flex; flex-direction: column; gap: 1rem;">
+        <img 
+          src="/img/social-photo-1.jpg" 
+          alt="CupcakeMafiaTV Image 1" 
+          class="gallery-img" 
+          loading="lazy"
+          onclick="openModal(this.src)" 
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80';"
+        />
+        <img 
+          src="/img/social-photo-2.jpg" 
+          alt="CupcakeMafiaTV Image 2" 
+          class="gallery-img" 
+          loading="lazy"
+          onclick="openModal(this.src)" 
+          onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80';"
+        />
+      </div>
+    </aside>
 
-  <!-- Right Column: Links Grid -->
-  <main class="right-column">
-    <div class="links-grid">
-      
-      <!-- Twitch -->
-      <a href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitch">
-        <div class="card-icon"><i class="fa-brands fa-twitch"></i></div>
-        <div class="card-content">
-          <h3>
-            Twitch
-            <span id="twitch-live-badge" class="live-badge" style="display: none;">
-              <span class="live-dot"></span> LIVE
-            </span>
-          </h3>
-          <p>Catch stream live broadcasts</p>
-        </div>
-      </a>
+    <!-- Right Column: Links Grid -->
+    <main class="right-column">
+      <div class="links-grid">
+        
+        <!-- Twitch -->
+        <a href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitch">
+          <div class="card-icon"><i class="fa-brands fa-twitch"></i></div>
+          <div class="card-content">
+            <h3>
+              Twitch
+              <span id="twitch-live-badge" class="live-badge" style="display: none;">
+                <span class="live-dot"></span> LIVE
+              </span>
+            </h3>
+            <p>Catch stream live broadcasts</p>
+          </div>
+        </a>
 
-      <!-- YouTube Main -->
-      <a href="https://www.youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-youtube">
-        <div class="card-icon"><i class="fa-brands fa-youtube"></i></div>
-        <div class="card-content">
-          <h3>YouTube</h3>
-          <p>Main channel uploads & edits</p>
-        </div>
-      </a>
+        <!-- YouTube Main -->
+        <a href="https://www.youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-youtube">
+          <div class="card-icon"><i class="fa-brands fa-youtube"></i></div>
+          <div class="card-content">
+            <h3>YouTube</h3>
+            <p>Main channel uploads & edits</p>
+          </div>
+        </a>
 
-      <!-- YouTube VODs -->
-      <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card card-youtube">
-        <div class="card-icon"><i class="fa-solid fa-video"></i></div>
-        <div class="card-content">
-          <h3>YouTube VODs</h3>
-          <p>Full stream archives</p>
-        </div>
-      </a>
+        <!-- YouTube VODs -->
+        <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card card-youtube">
+          <div class="card-icon"><i class="fa-solid fa-video"></i></div>
+          <div class="card-content">
+            <h3>YouTube VODs</h3>
+            <p>Full stream archives</p>
+          </div>
+        </a>
 
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card card-instagram">
-        <div class="card-icon"><i class="fa-brands fa-instagram"></i></div>
-        <div class="card-content">
-          <h3>Instagram</h3>
-          <p>Photos, stories & life updates</p>
-        </div>
-      </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card card-instagram">
+          <div class="card-icon"><i class="fa-brands fa-instagram"></i></div>
+          <div class="card-content">
+            <h3>Instagram</h3>
+            <p>Photos, stories & life updates</p>
+          </div>
+        </a>
 
-      <!-- X / Twitter -->
-      <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitter">
-        <div class="card-icon"><i class="fa-brands fa-x-twitter"></i></div>
-        <div class="card-content">
-          <h3>X / Twitter</h3>
-          <p>Announcements & daily thoughts</p>
-        </div>
-      </a>
+        <!-- X / Twitter -->
+        <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitter">
+          <div class="card-icon"><i class="fa-brands fa-x-twitter"></i></div>
+          <div class="card-content">
+            <h3>X / Twitter</h3>
+            <p>Announcements & daily thoughts</p>
+          </div>
+        </a>
 
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-tiktok">
-        <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
-        <div class="card-content">
-          <h3>TikTok</h3>
-          <p>Short clips & highlights</p>
-        </div>
-      </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-tiktok">
+          <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
+          <div class="card-content">
+            <h3>TikTok</h3>
+            <p>Short clips & highlights</p>
+          </div>
+        </a>
 
-      <!-- Fourthwall Merch -->
-      <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="social-card card-fourthwall">
-        <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
-        <div class="card-content">
-          <h3>Merch Shop</h3>
-          <p>Official Fourthwall apparel & gear</p>
-        </div>
-      </a>
+        <!-- Fourthwall Merch -->
+        <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="social-card card-fourthwall">
+          <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+          <div class="card-content">
+            <h3>Merch Shop</h3>
+            <p>Official Fourthwall apparel & gear</p>
+          </div>
+        </a>
 
-      <!-- Discord -->
-      <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="social-card card-discord">
-        <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
-        <div class="card-content">
-          <h3>Discord</h3>
-          <p>Join our community server</p>
-        </div>
-      </a>
+        <!-- Discord -->
+        <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="social-card card-discord">
+          <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
+          <div class="card-content">
+            <h3>Discord</h3>
+            <p>Join our community server</p>
+          </div>
+        </a>
 
-      <!-- Spotify -->
-      <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="social-card card-spotify">
-        <div class="card-icon"><i class="fa-brands fa-spotify"></i></div>
-        <div class="card-content">
-          <h3>Spotify</h3>
-          <p>Stream playlists & music</p>
-        </div>
-      </a>
+        <!-- Spotify -->
+        <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="social-card card-spotify">
+          <div class="card-icon"><i class="fa-brands fa-spotify"></i></div>
+          <div class="card-content">
+            <h3>Spotify</h3>
+            <p>Stream playlists & music</p>
+          </div>
+        </a>
 
-      <!-- Reddit -->
-      <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" class="social-card card-reddit">
-        <div class="card-icon"><i class="fa-brands fa-reddit-alien"></i></div>
-        <div class="card-content">
-          <h3>Reddit</h3>
-          <p>Community subreddit</p>
-        </div>
-      </a>
+        <!-- Reddit -->
+        <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" class="social-card card-reddit">
+          <div class="card-icon"><i class="fa-brands fa-reddit-alien"></i></div>
+          <div class="card-content">
+            <h3>Reddit</h3>
+            <p>Community subreddit</p>
+          </div>
+        </a>
 
-      <!-- OP.GG -->
-      <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-league">
-        <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
-        <div class="card-content">
-          <h3>OP.GG</h3>
-          <p>League of Legends stats</p>
-        </div>
-      </a>
+        <!-- OP.GG -->
+        <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-league">
+          <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+          <div class="card-content">
+            <h3>OP.GG</h3>
+            <p>League of Legends stats</p>
+          </div>
+        </a>
 
-      <!-- League of Graphs -->
-      <a href="https://www.leagueofgraphs.com/summoner/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-league">
-        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-        <div class="card-content">
-          <h3>League of Graphs</h3>
-          <p>Detailed gameplay analytics</p>
-        </div>
-      </a>
+        <!-- League of Graphs -->
+        <a href="https://www.leagueofgraphs.com/summoner/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-league">
+          <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <div class="card-content">
+            <h3>League of Graphs</h3>
+            <p>Detailed gameplay analytics</p>
+          </div>
+        </a>
 
-    </div>
-  </main>
+      </div>
+    </main>
+  </div>
 </div>
 
 <!-- Modal Lightbox Dialog -->
