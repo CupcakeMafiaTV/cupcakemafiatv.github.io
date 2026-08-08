@@ -338,7 +338,7 @@
 
                     </div>
 
-                </div>               
+                </div>              
             </main>            
 
             <!-- Footer pinned at page bottom -->
@@ -392,7 +392,36 @@
                 }
             }
 
-            checkTwitchLiveStatus('cupcakemafiatv');
+            // Dynamic YouTube Live Check
+            async function checkYouTubeLiveStatus(handle) {
+                const apiKey = 'AIzaSyCxAYY0nmuPPBopvaEzXs80ecuLWv7gDvk';
+                try {
+                    // First, get Channel ID from the handle
+                    const channelRes = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=id&forHandle=${handle}&key=${apiKey}`);
+                    const channelData = await channelRes.json();
+                    
+                    if (channelData.items && channelData.items.length > 0) {
+                        const channelId = channelData.items[0].id;
+                        
+                        // Second, check for active live streams on this channel
+                        const liveRes = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&eventType=live&key=${apiKey}`);
+                        const liveData = await liveRes.json();
+
+                        if (liveData.items && liveData.items.length > 0) {
+                            const badge = document.getElementById('youtube-live-badge');
+                            if (badge) badge.style.display = 'inline-block';
+                        }
+                    }
+                } catch (e) {
+                    console.log('Unable to check YouTube live status', e);
+                }
+            }
+
+            // Run Checks on Load
+            document.addEventListener('DOMContentLoaded', () => {
+                checkTwitchLiveStatus('cupcakemafiatv');
+                checkYouTubeLiveStatus('cupcakemafiatv');
+            });
         </script>
 
     </body>
