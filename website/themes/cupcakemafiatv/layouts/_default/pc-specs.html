@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* Spec Card Styles */
+        /* Base Spec Card Styles */
         .spec-card {
             position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -23,15 +23,33 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        /* CHANGED: Card Hover Highlight to Orange (#f97316) */
         .spec-card:hover {
             transform: translateY(-3px);
             background: rgba(30, 41, 59, 0.9);
-            border-color: #f97316;
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.6), 0 0 40px rgba(249, 115, 22, 0.3);
         }
 
-        /* External Link Arrow Indicator */
+        /* Section Hover Colors (Borders & Glows) */
+        .card-system:hover {
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.3);
+        }
+
+        .card-audio:hover {
+            border-color: #eab308;
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 0 0 40px rgba(234, 179, 8, 0.3);
+        }
+
+        .card-periph:hover {
+            border-color: #22c55e;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .card-desk:hover {
+            border-color: #ec4899;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6), 0 0 40px rgba(236, 72, 153, 0.3);
+        }
+
+        /* External Link Arrow Indicators */
         .spec-card .ext-icon {
             position: absolute;
             top: 12px;
@@ -43,13 +61,12 @@
             transition: all 0.2s ease;
         }
 
-        .spec-card:hover .ext-icon {
-            opacity: 1;
-            color: #f97316;
-            transform: translate(0, 0);
-        }
+        .card-system:hover .ext-icon { opacity: 1; color: #ef4444; transform: translate(0, 0); }
+        .card-audio:hover .ext-icon  { opacity: 1; color: #eab308; transform: translate(0, 0); }
+        .card-periph:hover .ext-icon { opacity: 1; color: #22c55e; transform: translate(0, 0); }
+        .card-desk:hover .ext-icon   { opacity: 1; color: #ec4899; transform: translate(0, 0); }
 
-        /* Layout Container to align heights */
+        /* Layout Container */
         .specs-container {
             display: flex;
             flex-wrap: wrap;
@@ -82,7 +99,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Image Highlight Color - Orange (#f97316) */
+        /* Image Hover Effect */
         .img-container:hover {
             transform: translateY(-3px);
             border-color: #f97316;
@@ -135,7 +152,7 @@
             background: linear-gradient(90deg, rgba(56, 189, 248, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);
         }
 
-        /* Section Specific Icon Colors */
+        /* Section Icon Colors */
         .system-icon { color: #ef4444 !important; }  /* RED */
         .audio-icon  { color: #eab308 !important; }  /* YELLOW */
         .periph-icon { color: #22c55e !important; }  /* GREEN */
@@ -257,7 +274,7 @@
                             <div class="category-header">System Specs</div>
 
                             <!-- CPU -->
-                            <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-microchip"></i>
@@ -271,7 +288,7 @@
                             </a>
 
                             <!-- GPU -->
-                            <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-desktop"></i>
@@ -285,7 +302,7 @@
                             </a>
 
                             <!-- RAM -->
-                            <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-memory"></i>
@@ -299,7 +316,7 @@
                             </a>
 
                             <!-- Motherboard -->
-                            <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-hard-drive"></i>
@@ -316,7 +333,7 @@
                             <div class="category-header">Audio & Streaming</div>
 
                             <!-- Microphone -->
-                            <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-microphone"></i>
@@ -330,7 +347,7 @@
                             </a>
 
                             <!-- Audio Mixer -->
-                            <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-sliders"></i>
@@ -344,7 +361,7 @@
                             </a>
 
                             <!-- Camera -->
-                            <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-camera"></i>
@@ -358,7 +375,7 @@
                             </a>
 
                             <!-- Capture Card -->
-                            <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-video"></i>
@@ -375,7 +392,7 @@
                             <div class="category-header">Peripherals & Display</div>
 
                             <!-- Mouse -->
-                            <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-computer-mouse"></i>
@@ -389,7 +406,7 @@
                             </a>
 
                             <!-- Keyboard -->
-                            <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-keyboard"></i>
@@ -403,7 +420,7 @@
                             </a>
 
                             <!-- Monitor -->
-                            <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-tv"></i>
@@ -417,7 +434,7 @@
                             </a>
 
                             <!-- Headphones -->
-                            <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-headphones"></i>
@@ -434,7 +451,7 @@
                             <div class="category-header">Desk & Environment</div>
 
                             <!-- Desk -->
-                            <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-table"></i>
@@ -448,7 +465,7 @@
                             </a>
 
                             <!-- Chair -->
-                            <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-chair"></i>
@@ -462,7 +479,7 @@
                             </a>
 
                             <!-- Lights -->
-                            <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-lightbulb"></i>
@@ -476,7 +493,7 @@
                             </a>
 
                             <!-- Stream Deck -->
-                            <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="spec-card">
+                            <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-gamepad"></i>
