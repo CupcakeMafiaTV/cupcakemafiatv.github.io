@@ -1,751 +1,418 @@
-<!DOCTYPE html>
-
-<html lang="zxx" class="h-full overflow-x-hidden dark">
-
-
-    {{- partial "head.html" . -}}
-
-
-    <!-- Font Awesome -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-
-    <style>
-
-        /* Pulse Animation for LIVE Badge */
-
-        @keyframes livePulse {
-
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-
-            70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-
-        }
-
-
-        .live-badge {
-
-            background-color: #ef4444;
-
-            color: white;
-
-            font-size: 10px;
-
-            font-weight: 800;
-
-            padding: 4px 8px;
-
-            border-radius: 6px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 0.5px;
-
-            animation: livePulse 2s infinite;
-
-            display: inline-block;
-
-        }
-
-
-        /* Card Hover Animations & Scale */
-
-        .social-card {
-
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
-
-            cursor: pointer;
-
-            text-decoration: none !important;
-
-        }
-
-        .social-card:hover {
-
-            transform: translateY(-4px);
-
-        }
-
-       
-
-        /* Individual Glow Effects on Hover */
-
-        .card-twitch:hover { border-color: rgba(168, 85, 247, 0.8) !important; box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3) !important; }
-
-        .card-youtube:hover { border-color: rgba(239, 68, 68, 0.8) !important; box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3) !important; }
-
-        .card-instagram:hover { border-color: rgba(236, 72, 153, 0.8) !important; box-shadow: 0 8px 25px rgba(236, 72, 153, 0.3) !important; }
-
-        .card-x:hover { border-color: rgba(148, 163, 184, 0.8) !important; box-shadow: 0 8px 25px rgba(148, 163, 184, 0.3) !important; }
-
-        .card-tiktok:hover { border-color: rgba(20, 184, 166, 0.8) !important; box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3) !important; }
-
-        .card-merch:hover { border-color: rgba(249, 115, 22, 0.8) !important; box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3) !important; }
-
-        .card-discord:hover { border-color: rgba(99, 102, 241, 0.8) !important; box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important; }
-
-        .card-spotify:hover { border-color: rgba(34, 197, 94, 0.8) !important; box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3) !important; }
-
-        .card-reddit:hover { border-color: rgba(249, 115, 22, 0.8) !important; box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3) !important; }
-
-        .card-opgg:hover { border-color: rgba(59, 130, 246, 0.8) !important; box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3) !important; }
-
-        .card-log:hover { border-color: rgba(34, 211, 238, 0.8) !important; box-shadow: 0 8px 25px rgba(34, 211, 238, 0.3) !important; }
-
-
-        /* Image Box Interactivity */
-
-        .img-container {
-
-            position: relative;
-
-            overflow: hidden;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-
-        }
-
-        .img-container img {
-
-            transition: transform 0.3s ease, filter 0.3s ease;
-
-        }
-
-        .img-container:hover img {
-
-            transform: scale(1.03);
-
-            filter: brightness(1.1);
-
-        }
-
-
-        /* Responsive Mobile Layout Adjustments */
-
-        @media (max-width: 768px) {
-
-            .social-grid {
-
-                grid-template-columns: 1fr !important;
-
-            }
-
-            .image-col {
-
-                width: 100% !important;
-
-            }
-
-        }
-
-
-        /* Modal Dialog Styling */
-
-        #img-modal {
-
-            border: none;
-
-            background: transparent;
-
-            padding: 0;
-
-            max-width: 90vw;
-
-            max-height: 90vh;
-
-            outline: none;
-
-        }
-
-        #img-modal::backdrop {
-
-            background: rgba(0, 0, 0, 0.85);
-
-            backdrop-filter: blur(6px);
-
-        }
-
-        #img-modal-img {
-
-            max-width: 90vw;
-
-            max-height: 85vh;
-
-            border-radius: 8px;
-
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
-
-            object-fit: contain;
-
-            display: block;
-
-        }
-
-    </style>
-
-
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
-
-
-        <!-- Sticky Footer Wrapper Container -->
-
-        <div id="site-wrapper" class="flex flex-col min-h-screen js-site-wrapper" style="background-color: #0f172a;">        
-
-       
-
-            <div class="header-wrapper text-white" style="background-color: #0f172a;">
-
-
-                <header id="site-header" class="text-white">
-
-                    <div class="max-w-[1400px] mx-auto px-5">
-
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-
-                            <!-- Logo -->
-
-                            {{- partial "logo.html" . -}}
-
-
-                            <!-- Navigation (Desktop) -->
-
-                            {{- partial "navigation.html" . -}}
-
-
-                            <!-- Header Controls -->
-
-                            <div class="flex ml-auto -mr-3">
-
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-
-                                        <use xlink:href="/img/sprites2.svg#menu"></use>
-
-                                    </svg>
-
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-
-                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
-
-                                    </svg>
-
-                                </button>
-
-                            </div>
-
-
-                        </nav>
-
-                    </div>
-
-                </header>
-
-
-            </div>
-
-
-            <!-- Mobile Menu -->
-
-            {{- partial "mobile_menu.html" . -}}
-
-
-            <!-- Main Content Area with flex-grow -->
-
-            <main id="main-content" class="flex-grow" style="padding: 24px 24px 40px 24px; background-color: #0f172a;">
-
-                <div style="max-width: 1400px; margin: 0 auto; font-family: sans-serif;">
-
-                   
-
-                    <!-- Title Banner -->
-
-                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
-
-                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
-
-                            Socials
-
-                        </h1>
-
-                    </div>
-
-
-                    <!-- Container Layout -->
-
-                    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
-
-                       
-
-                        <!-- Stacked Images Column -->
-
-                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
-
-                           
-
-                            <!-- Image 1 -->
-
-                            <div class="img-container" style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;" onclick="openModal(this.querySelector('img').src)">
-
-                                <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
-
-                            </div>
-
-
-                            <!-- Image 2 -->
-
-                            <div class="img-container" style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;" onclick="openModal(this.querySelector('img').src)">
-
-                                <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
-
-                            </div>
-
-
-                        </div>
-
-
-                        <!-- Social Cards Grid -->
-
-                        <div class="social-grid" style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: start;">
-
-                           
-
-                            <!-- Twitch -->
-
-                            <a href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitch" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 0 16px rgba(168, 85, 247, 0.15);">
-
-                                <div style="display: flex; align-items: center; gap: 18px; overflow: hidden;">
-
-                                    <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(168, 85, 247, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #a855f7; flex-shrink: 0;">
-
-                                        <i class="fa-brands fa-twitch"></i>
-
-                                    </div>
-
-                                    <div style="overflow: hidden;">
-
-                                        <div style="font-size: 11px; text-transform: uppercase; color: #a855f7; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">Twitch</div>
-
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                            Live ↗
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <span id="twitch-live-badge" class="live-badge" style="display: none;">
-
-                                    LIVE
-
-                                </span>
-
-                            </a>
-
-
-                            <!-- YouTube Main -->
-
-                            <a href="https://www.youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-youtube" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 0 16px rgba(239, 68, 68, 0.15);">
-
-                                <div style="display: flex; align-items: center; gap: 18px; overflow: hidden;">
-
-                                    <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(239, 68, 68, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #ef4444; flex-shrink: 0;">
-
-                                        <i class="fa-brands fa-youtube"></i>
-
-                                    </div>
-
-                                    <div style="overflow: hidden;">
-
-                                        <div style="font-size: 11px; text-transform: uppercase; color: #ef4444; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">YouTube</div>
-
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                            Main ↗
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <span id="youtube-live-badge" class="live-badge" style="display: none;">
-
-                                    LIVE
-
-                                </span>
-
-                            </a>
-
-
-                            <!-- Instagram -->
-
-                            <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card card-instagram" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(236, 72, 153, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(236, 72, 153, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #ec4899; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-instagram"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #ec4899; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">Instagram</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Follow ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- YouTube VODs -->
-
-                            <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card card-youtube" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(239, 68, 68, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(239, 68, 68, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #ef4444; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-youtube"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #ef4444; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">YouTube</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        VODs ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- X -->
-
-                            <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-x" style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(148, 163, 184, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(148, 163, 184, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(148, 163, 184, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #94a3b8; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-x-twitter"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #94a3b8; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">X</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Follow ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- TikTok -->
-
-                            <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-tiktok" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(20, 184, 166, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(20, 184, 166, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(20, 184, 166, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #14b8a6; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-tiktok"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #14b8a6; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">TikTok</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Follow ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- Fourthwall -->
-
-                            <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="social-card card-merch" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(249, 115, 22, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(249, 115, 22, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #f97316; flex-shrink: 0;">
-
-                                    <i class="fa-solid fa-store"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #f97316; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">Fourthwall</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Merch ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- Discord -->
-
-                            <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="social-card card-discord" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(99, 102, 241, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(99, 102, 241, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #6366f1; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-discord"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #6366f1; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">Discord</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Discord ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- Spotify -->
-
-                            <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="social-card card-spotify" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(34, 197, 94, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(34, 197, 94, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #22c55e; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-spotify"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #22c55e; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">Spotify</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Playlist ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- Reddit -->
-
-                            <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" class="social-card card-reddit" style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(249, 115, 22, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(249, 115, 22, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #f97316; flex-shrink: 0;">
-
-                                    <i class="fa-brands fa-reddit-alien"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #f97316; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">Reddit</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Community ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- OP.GG -->
-
-                            <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-opgg" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(59, 130, 246, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(59, 130, 246, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #3b82f6; flex-shrink: 0;">
-
-                                    <i class="fa-solid fa-chart-line"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #3b82f6; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">OP.GG</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Stats ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                            <!-- League of Graphs -->
-
-                            <a href="https://www.leagueofgraphs.com/summoner/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-log" style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(34, 211, 238, 0.15);">
-
-                                <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(34, 211, 238, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #22d3ee; flex-shrink: 0;">
-
-                                    <i class="fa-solid fa-chart-pie"></i>
-
-                                </div>
-
-                                <div style="overflow: hidden;">
-
-                                    <div style="font-size: 11px; text-transform: uppercase; color: #22d3ee; font-weight: 700; line-height: 1.2; margin-bottom: 2px;">League of Graphs</div>
-
-                                    <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2;">
-
-                                        Stats ↗
-
-                                    </div>
-
-                                </div>
-
-                            </a>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>              
-
-            </main>            
-
-
-            <!-- Footer pinned at page bottom -->
-
-            <footer class="mt-auto">
-
-                {{- partial "footer.html" . -}}
-
-            </footer>
-
-           
-
-            {{- partial "scripts.html" . -}}
-
-
+{{- partial "head.html" . -}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  /* Custom Page Overrides */
+  body {
+    background-color: #0f172a !important; /* Tailwind slate-900 */
+    color: #f8fafc !important; /* Tailwind slate-50 */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Responsive Two-Column Layout */
+  .socials-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    align-items: flex-start;
+  }
+
+  .left-column {
+    width: 380px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .right-column {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  /* Responsive Grid Adjustments */
+  @media (max-width: 900px) {
+    .socials-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .left-column {
+      width: 100%;
+      max-width: 500px;
+      position: static;
+    }
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  /* Card Styles & Dynamic Hover Effects */
+  .social-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none !important;
+    color: #f8fafc !important;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .social-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--brand-color, #38bdf8);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px -3px var(--brand-color-glow, rgba(56, 189, 248, 0.3));
+  }
+
+  .card-icon {
+    font-size: 1.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-color, #38bdf8);
+  }
+
+  .card-content h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .card-content p {
+    margin: 0.25rem 0 0 0;
+    font-size: 0.85rem;
+    color: #94a3b8;
+  }
+
+  /* Platform Brand Variables */
+  .card-twitch { --brand-color: #a855f7; --brand-color-glow: rgba(168, 85, 247, 0.4); }
+  .card-youtube { --brand-color: #ef4444; --brand-color-glow: rgba(239, 68, 68, 0.4); }
+  .card-instagram { --brand-color: #ec4899; --brand-color-glow: rgba(236, 72, 153, 0.4); }
+  .card-twitter { --brand-color: #38bdf8; --brand-color-glow: rgba(56, 189, 248, 0.4); }
+  .card-tiktok { --brand-color: #2dd4bf; --brand-color-glow: rgba(45, 212, 191, 0.4); }
+  .card-discord { --brand-color: #6366f1; --brand-color-glow: rgba(99, 102, 241, 0.4); }
+  .card-spotify { --brand-color: #22c55e; --brand-color-glow: rgba(34, 197, 94, 0.4); }
+  .card-reddit { --brand-color: #f97316; --brand-color-glow: rgba(249, 115, 22, 0.4); }
+  .card-fourthwall { --brand-color: #eab308; --brand-color-glow: rgba(234, 179, 8, 0.4); }
+  .card-league { --brand-color: #0ea5e9; --brand-color-glow: rgba(14, 165, 233, 0.4); }
+
+  /* Live Badge Formatting */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background-color: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  /* Gallery Styling */
+  .gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    border: 1px solid #334155;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .gallery-img:hover {
+    transform: scale(1.02);
+    border-color: #38bdf8;
+  }
+
+  /* Lightbox Dialog */
+  dialog.lightbox-modal {
+    padding: 0;
+    border: none;
+    border-radius: 0.75rem;
+    background: transparent;
+    max-width: 90vw;
+    max-height: 90vh;
+  }
+
+  dialog.lightbox-modal::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+  }
+
+  .lightbox-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox-content img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 0.5rem;
+    object-fit: contain;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+</style>
+
+<div class="socials-container">
+  <!-- Left Column: Gallery -->
+  <aside class="left-column">
+    <div class="gallery-container" style="display: flex; flex-direction: column; gap: 1rem;">
+      <img 
+        src="/img/social-photo-1.jpg" 
+        alt="CupcakeMafiaTV Image 1" 
+        class="gallery-img" 
+        loading="lazy"
+        onclick="openModal(this.src)" 
+        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80';"
+      />
+      <img 
+        src="/img/social-photo-2.jpg" 
+        alt="CupcakeMafiaTV Image 2" 
+        class="gallery-img" 
+        loading="lazy"
+        onclick="openModal(this.src)" 
+        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80';"
+      />
+    </div>
+  </aside>
+
+  <!-- Right Column: Links Grid -->
+  <main class="right-column">
+    <div class="links-grid">
+      
+      <!-- Twitch -->
+      <a href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitch">
+        <div class="card-icon"><i class="fa-brands fa-twitch"></i></div>
+        <div class="card-content">
+          <h3>
+            Twitch
+            <span id="twitch-live-badge" class="live-badge" style="display: none;">
+              <span class="live-dot"></span> LIVE
+            </span>
+          </h3>
+          <p>Catch stream live broadcasts</p>
         </div>
+      </a>
 
+      <!-- YouTube Main -->
+      <a href="https://www.youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-youtube">
+        <div class="card-icon"><i class="fa-brands fa-youtube"></i></div>
+        <div class="card-content">
+          <h3>YouTube</h3>
+          <p>Main channel uploads & edits</p>
+        </div>
+      </a>
 
-        {{- partial "socials.html" . -}}
+      <!-- YouTube VODs -->
+      <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card card-youtube">
+        <div class="card-icon"><i class="fa-solid fa-video"></i></div>
+        <div class="card-content">
+          <h3>YouTube VODs</h3>
+          <p>Full stream archives</p>
+        </div>
+      </a>
 
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card card-instagram">
+        <div class="card-icon"><i class="fa-brands fa-instagram"></i></div>
+        <div class="card-content">
+          <h3>Instagram</h3>
+          <p>Photos, stories & life updates</p>
+        </div>
+      </a>
 
-        <!-- Image Lightbox Modal -->
+      <!-- X / Twitter -->
+      <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-twitter">
+        <div class="card-icon"><i class="fa-brands fa-x-twitter"></i></div>
+        <div class="card-content">
+          <h3>X / Twitter</h3>
+          <p>Announcements & daily thoughts</p>
+        </div>
+      </a>
 
-        <dialog id="img-modal" onclick="closeModal()">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card card-tiktok">
+        <div class="card-icon"><i class="fa-brands fa-tiktok"></i></div>
+        <div class="card-content">
+          <h3>TikTok</h3>
+          <p>Short clips & highlights</p>
+        </div>
+      </a>
 
-            <img id="img-modal-img" src="" alt="Enlarged setup view">
+      <!-- Fourthwall Merch -->
+      <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="social-card card-fourthwall">
+        <div class="card-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+        <div class="card-content">
+          <h3>Merch Shop</h3>
+          <p>Official Fourthwall apparel & gear</p>
+        </div>
+      </a>
 
-        </dialog>
+      <!-- Discord -->
+      <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="social-card card-discord">
+        <div class="card-icon"><i class="fa-brands fa-discord"></i></div>
+        <div class="card-content">
+          <h3>Discord</h3>
+          <p>Join our community server</p>
+        </div>
+      </a>
 
+      <!-- Spotify -->
+      <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="social-card card-spotify">
+        <div class="card-icon"><i class="fa-brands fa-spotify"></i></div>
+        <div class="card-content">
+          <h3>Spotify</h3>
+          <p>Stream playlists & music</p>
+        </div>
+      </a>
 
-        <script>
+      <!-- Reddit -->
+      <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" class="social-card card-reddit">
+        <div class="card-icon"><i class="fa-brands fa-reddit-alien"></i></div>
+        <div class="card-content">
+          <h3>Reddit</h3>
+          <p>Community subreddit</p>
+        </div>
+      </a>
 
-            // Modal JS
+      <!-- OP.GG -->
+      <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-league">
+        <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+        <div class="card-content">
+          <h3>OP.GG</h3>
+          <p>League of Legends stats</p>
+        </div>
+      </a>
 
-            const modal = document.getElementById('img-modal');
+      <!-- League of Graphs -->
+      <a href="https://www.leagueofgraphs.com/summoner/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card card-league">
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div class="card-content">
+          <h3>League of Graphs</h3>
+          <p>Detailed gameplay analytics</p>
+        </div>
+      </a>
 
-            const modalImg = document.getElementById('img-modal-img');
+    </div>
+  </main>
+</div>
 
+<!-- Modal Lightbox Dialog -->
+<dialog id="lightboxModal" class="lightbox-modal" onclick="closeModalOnBackdrop(event)">
+  <div class="lightbox-content">
+    <button class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightboxImg" src="" alt="Enlarged gallery view">
+  </div>
+</dialog>
 
-            function openModal(src) {
+<script>
+  // Lightbox Modal Handler
+  const modal = document.getElementById('lightboxModal');
+  const modalImg = document.getElementById('lightboxImg');
 
-                modalImg.src = src;
+  function openModal(src) {
+    modalImg.src = src;
+    modal.showModal();
+  }
 
-                modal.showModal();
+  function closeModal() {
+    modal.close();
+  }
 
+  function closeModalOnBackdrop(event) {
+    if (event.target === modal) {
+      modal.close();
+    }
+  }
+
+  // Twitch GQL Live Status Checker
+  async function checkTwitchLiveStatus(channelName) {
+    const CLIENT_ID = 'kimne78kx3ncx6brogo42026101d55'; // Public Twitch web client ID
+    const gqlQuery = {
+      query: `
+        query GetStreamStatus($login: String!) {
+          user(login: $login) {
+            stream {
+              type
             }
+          }
+        }
+      `,
+      variables: { login: channelName }
+    };
 
+    try {
+      const response = await fetch('https://gql.twitch.tv/gql', {
+        method: 'POST',
+        headers: {
+          'Client-ID': CLIENT_ID,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(gqlQuery)
+      });
 
-            function closeModal() {
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      
+      const result = await response.json();
+      const stream = result?.data?.user?.stream;
 
-                modal.close();
+      if (stream && stream.type === 'live') {
+        const liveBadge = document.getElementById('twitch-live-badge');
+        if (liveBadge) liveBadge.style.display = 'inline-flex';
+      }
+    } catch (err) {
+      console.warn('Unable to check Twitch live status:', err);
+    }
+  }
 
-            }
+  // Execute on load
+  document.addEventListener('DOMContentLoaded', () => {
+    checkTwitchLiveStatus('cupcakemafiatv');
+  });
+</script>
 
-
-            // Dynamic Twitch Live Check
-
-            async function checkTwitchLiveStatus(channelName) {
-
-                try {
-
-                    const response = await fetch('https://gql.twitch.tv/gql', {
-
-                        method: 'POST',
-
-                        headers: {
-
-                            'Client-ID': 'kimne78kx3ncx6brogo4mv6wki5h11' // Public Twitch GQL client ID
-
-                        },
-
-                        body: JSON.stringify({
-
-                            query: `query { user(login: "${channelName}") { stream { type } } }`
-
-                        })
-
-                    });
-
-                    const data = await response.json();
-
-                    if (data?.data?.user?.stream?.type === 'live') {
-
-                        document.getElementById('twitch-live-badge').style.display = 'inline-block';
-
-                    }
-
-                } catch (e) {
-
-                    console.log('Unable to check Twitch live status', e);
-
-                }
-
-            }
-
-
-            checkTwitchLiveStatus('cupcakemafiatv');
-
-        </script>
-
-
-    </body>
-
-</html> 
+{{- partial "footer.html" . -}}
