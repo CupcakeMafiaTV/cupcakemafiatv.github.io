@@ -49,27 +49,22 @@
           transition: color 0.2s ease-in-out;
       }
 
-      /* Recolor original Theme Arrow Marker to Orange without duplicating elements */
+      /* Recolor theme SVG arrow mask to orange */
       #site-header nav a::after,
       .main-nav a::after,
       ul li a::after {
           background-color: #f97316 !important;
+          background-image: none !important;
+          -webkit-mask-repeat: no-repeat !important;
+          mask-repeat: no-repeat !important;
       }
 
-      /* Hide duplicate pseudo-elements to avoid double arrows */
+      /* Clean up any secondary pseudo-elements or cyan boxes */
       #site-header nav a::before,
       .main-nav a::before,
       ul li a::before {
           display: none !important;
-      }
-
-      /* Target SVG or Arrow class fallbacks */
-      #site-header nav .arrow,
-      .main-nav .arrow,
-      #site-header nav svg,
-      .main-nav svg {
-          color: #f97316 !important;
-          fill: #f97316 !important;
+          content: none !important;
       }
 
       /* Hover Glow Effect for Links */
