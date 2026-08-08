@@ -294,16 +294,14 @@
                         <!-- Stacked Media Column -->
                         <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
 
-                            <!-- YouTube Video 1 -->
-                            <div class="video-container" style="flex: 1; display: flex; min-height: 270px;">
-                                <iframe 
-                                    src="https://www.youtube.com/embed/x-nnoa7h-uE?rel=0&modestbranding=1" 
-                                    title="YouTube video player" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                                </iframe>
+                            <!-- YouTube Video with Custom Thumbnail -->
+                            <div class="video-container" style="flex: 1; display: flex; min-height: 270px; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
+                                <img src="/img/Masters.png" alt="Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;">
+                                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: background 0.2s;">
+                                    <div style="width: 68px; height: 48px; background: rgba(23,23,23,0.85); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+                                        <i class="fa-solid fa-play" style="color: #ffffff; font-size: 20px; margin-left: 3px;"></i>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Image 2 -->
@@ -508,6 +506,25 @@
         </dialog>
 
         <script>
+            // YouTube Lazy Loader Function
+            function loadYouTubeVideo(container) {
+                const iframe = document.createElement('iframe');
+                iframe.setAttribute('src', 'https://www.youtube.com/embed/x-nnoa7h-uE?autoplay=1&rel=0');
+                iframe.setAttribute('title', 'YouTube video player');
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+                iframe.setAttribute('allowfullscreen', '');
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.borderRadius = '8px';
+                iframe.style.display = 'block';
+                
+                container.innerHTML = '';
+                container.appendChild(iframe);
+                container.style.cursor = 'default';
+                container.removeAttribute('onclick');
+            }
+
             // Modal JS
             const modal = document.getElementById('img-modal');
             const modalImg = document.getElementById('img-modal-img');
