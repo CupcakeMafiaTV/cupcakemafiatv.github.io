@@ -8,9 +8,9 @@
   <title>{{ $title }}</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community.">
+  <meta name="author" content="CupcakeMafiaTV">
+  <meta name="keywords" content="CupcakeMafiaTV, Twitch, Gaming, Streamer, Content Creator">
 
   <!-- Favicons
   ================================================== -->
@@ -35,5 +35,32 @@
 
   <!-- Template CSS-->
   <link href="/css/style.css" rel="stylesheet">
+
+  <!-- Custom Header & Navigation Overrides -->
+  <style>
+      /* Match Header Font Size to Footer (20px) */
+      #site-header nav a,
+      .main-nav a {
+          font-size: 20px !important;
+          font-weight: 700 !important;
+      }
+
+      /* Recolor Navigation Arrows to Orange */
+      #site-header nav a::before,
+      .main-nav a::before,
+      #site-header nav .arrow,
+      .main-nav .arrow,
+      #site-header nav svg,
+      .main-nav svg {
+          color: #f97316 !important;  /* Bright brand orange */
+          fill: #f97316 !important;
+      }
+
+      /* Hover Glow Effect for Links */
+      #site-header nav a:hover {
+          color: #f97316 !important;
+          transition: color 0.2s ease-in-out;
+      }
+  </style>
 
 </head>
