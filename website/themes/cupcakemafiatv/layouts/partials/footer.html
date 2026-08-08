@@ -7,7 +7,7 @@
         <!-- Footer Row -->
         <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
             
-            <!-- Left: Larger Navigation Links (20px) -->
+            <!-- Left: Navigation Links (20px) -->
             <nav style="display: flex; gap: 28px; align-items: center;">
                 <a href="/" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">Home</a>
                 <a href="/about" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">About</a>
@@ -20,7 +20,7 @@
                 &copy;&nbsp;<span id="copyright-year"></span>&nbsp;CupcakeMafiaTV. All rights reserved.
             </div>
 
-            <!-- Right: Refined Contact Button -->
+            <!-- Right: Contact Button with White Outline & Cyan Hover -->
             <div>
                 <a href="mailto:contact@cupcakemafiatv.com" class="footer-contact-btn">
                     <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
@@ -33,12 +33,12 @@
 </footer>
 
 <style>
-    /* Sleek Elevated Contact Button */
+    /* White Outline Button Base Styling */
     .footer-contact-btn {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        background-color: #1e293b;
+        background-color: #1e293b; /* Slate grey base */
         color: #ffffff !important;
         font-size: 14px;
         font-weight: 800;
@@ -46,16 +46,17 @@
         padding: 12px 24px;
         border-radius: 8px;
         text-decoration: none !important;
-        border: 1.5px solid #a855f7;
+        border: 1.5px solid #ffffff; /* Clean white outline */
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* Cyan/Sky-Blue Fill & Glow on Hover */
     .footer-contact-btn:hover {
-        background-color: #a855f7;
+        background-color: #0284c7; /* Vibrant cyan/blue fill */
+        border-color: #38bdf8;       /* Bright cyan border */
         transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-        border-color: #c084fc;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.7); /* Matching neon glow */
     }
 
     /* Responsive Mobile Layout */
@@ -73,6 +74,5 @@
 </style>
 
 <script>
-    // Automatically sets the copyright span to the current year on page load
     document.getElementById("copyright-year").textContent = new Date().getFullYear();
 </script>
