@@ -49,19 +49,18 @@
           transition: color 0.2s ease-in-out;
       }
 
-      /* Fix Arrow Marker Colors to Solid Orange */
+      /* Recolor original Theme Arrow Marker to Orange without duplicating elements */
       #site-header nav a::after,
-      #site-header nav a::before,
       .main-nav a::after,
+      ul li a::after {
+          background-color: #f97316 !important;
+      }
+
+      /* Hide duplicate pseudo-elements to avoid double arrows */
+      #site-header nav a::before,
       .main-nav a::before,
-      ul li a::after,
       ul li a::before {
-          color: #f97316 !important;
-          background-color: transparent !important;
-          background-image: none !important;
-          content: ">" !important; /* Forces standard clean arrow marker */
-          font-weight: 900 !important;
-          margin-right: 6px !important;
+          display: none !important;
       }
 
       /* Target SVG or Arrow class fallbacks */
