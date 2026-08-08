@@ -9,10 +9,10 @@
             
             <!-- Left: Navigation Links (20px) -->
             <nav style="display: flex; gap: 28px; align-items: center;">
-                <a href="/" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">Home</a>
-                <a href="/about" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">About</a>
-                <a href="/pc-specs" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">PC Specs</a>
-                <a href="/socials" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">Socials</a>
+                <a href="/" class="footer-nav-link">Home</a>
+                <a href="/about" class="footer-nav-link">About</a>
+                <a href="/pc-specs" class="footer-nav-link">PC Specs</a>
+                <a href="/socials" class="footer-nav-link">Socials</a>
             </nav>
 
             <!-- Center: Auto-Updating Copyright Text -->
@@ -33,6 +33,21 @@
 </footer>
 
 <style>
+    /* Footer Navigation Link Styling */
+    .footer-nav-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 20px;
+        transition: color 0.2s ease-in-out, text-shadow 0.2s ease-in-out;
+    }
+
+    /* Orange Highlight on Hover */
+    .footer-nav-link:hover {
+        color: #f97316 !important;
+        text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
+    }
+
     /* White Outline Button Base Styling */
     .footer-contact-btn {
         display: inline-flex;
