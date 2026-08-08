@@ -3,13 +3,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-  /* Custom Page Overrides */
-  body {
-    background-color: #0f172a !important; /* Tailwind slate-900 */
-    color: #f8fafc !important; /* Tailwind slate-50 */
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
-
   /* Responsive Two-Column Layout */
   .socials-container {
     display: flex;
@@ -19,9 +12,11 @@
     margin: 0 auto;
     padding: 2rem 1rem;
     align-items: flex-start;
+    color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
-  .left-column {
+  .socials-container .left-column {
     width: 380px;
     flex-shrink: 0;
     display: flex;
@@ -31,7 +26,7 @@
     top: 2rem;
   }
 
-  .right-column {
+  .socials-container .right-column {
     flex-grow: 1;
     width: 100%;
   }
@@ -42,21 +37,21 @@
       flex-direction: column;
       align-items: center;
     }
-    .left-column {
+    .socials-container .left-column {
       width: 100%;
       max-width: 500px;
       position: static;
     }
   }
 
-  .links-grid {
+  .socials-container .links-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.25rem;
   }
 
   /* Card Styles & Dynamic Hover Effects */
-  .social-card {
+  .socials-container .social-card {
     background-color: #1e293b;
     border: 1px solid #334155;
     border-radius: 0.75rem;
@@ -71,13 +66,13 @@
     overflow: hidden;
   }
 
-  .social-card:hover {
+  .socials-container .social-card:hover {
     transform: translateY(-3px);
     border-color: var(--brand-color, #38bdf8);
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 0 15px -3px var(--brand-color-glow, rgba(56, 189, 248, 0.3));
   }
 
-  .card-icon {
+  .socials-container .card-icon {
     font-size: 1.75rem;
     width: 2.5rem;
     height: 2.5rem;
@@ -87,32 +82,33 @@
     color: var(--brand-color, #38bdf8);
   }
 
-  .card-content h3 {
+  .socials-container .card-content h3 {
     margin: 0;
     font-size: 1.1rem;
     font-weight: 600;
+    color: #f8fafc;
   }
 
-  .card-content p {
+  .socials-container .card-content p {
     margin: 0.25rem 0 0 0;
     font-size: 0.85rem;
     color: #94a3b8;
   }
 
   /* Platform Brand Variables */
-  .card-twitch { --brand-color: #a855f7; --brand-color-glow: rgba(168, 85, 247, 0.4); }
-  .card-youtube { --brand-color: #ef4444; --brand-color-glow: rgba(239, 68, 68, 0.4); }
-  .card-instagram { --brand-color: #ec4899; --brand-color-glow: rgba(236, 72, 153, 0.4); }
-  .card-twitter { --brand-color: #38bdf8; --brand-color-glow: rgba(56, 189, 248, 0.4); }
-  .card-tiktok { --brand-color: #2dd4bf; --brand-color-glow: rgba(45, 212, 191, 0.4); }
-  .card-discord { --brand-color: #6366f1; --brand-color-glow: rgba(99, 102, 241, 0.4); }
-  .card-spotify { --brand-color: #22c55e; --brand-color-glow: rgba(34, 197, 94, 0.4); }
-  .card-reddit { --brand-color: #f97316; --brand-color-glow: rgba(249, 115, 22, 0.4); }
-  .card-fourthwall { --brand-color: #eab308; --brand-color-glow: rgba(234, 179, 8, 0.4); }
-  .card-league { --brand-color: #0ea5e9; --brand-color-glow: rgba(14, 165, 233, 0.4); }
+  .socials-container .card-twitch { --brand-color: #a855f7; --brand-color-glow: rgba(168, 85, 247, 0.4); }
+  .socials-container .card-youtube { --brand-color: #ef4444; --brand-color-glow: rgba(239, 68, 68, 0.4); }
+  .socials-container .card-instagram { --brand-color: #ec4899; --brand-color-glow: rgba(236, 72, 153, 0.4); }
+  .socials-container .card-twitter { --brand-color: #38bdf8; --brand-color-glow: rgba(56, 189, 248, 0.4); }
+  .socials-container .card-tiktok { --brand-color: #2dd4bf; --brand-color-glow: rgba(45, 212, 191, 0.4); }
+  .socials-container .card-discord { --brand-color: #6366f1; --brand-color-glow: rgba(99, 102, 241, 0.4); }
+  .socials-container .card-spotify { --brand-color: #22c55e; --brand-color-glow: rgba(34, 197, 94, 0.4); }
+  .socials-container .card-reddit { --brand-color: #f97316; --brand-color-glow: rgba(249, 115, 22, 0.4); }
+  .socials-container .card-fourthwall { --brand-color: #eab308; --brand-color-glow: rgba(234, 179, 8, 0.4); }
+  .socials-container .card-league { --brand-color: #0ea5e9; --brand-color-glow: rgba(14, 165, 233, 0.4); }
 
   /* Live Badge Formatting */
-  .live-badge {
+  .socials-container .live-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -127,7 +123,7 @@
     margin-left: 0.5rem;
   }
 
-  .live-dot {
+  .socials-container .live-dot {
     width: 6px;
     height: 6px;
     background-color: white;
@@ -141,7 +137,7 @@
   }
 
   /* Gallery Styling */
-  .gallery-img {
+  .socials-container .gallery-img {
     width: 100%;
     height: 220px;
     object-fit: cover;
@@ -151,7 +147,7 @@
     transition: transform 0.2s ease, border-color 0.2s ease;
   }
 
-  .gallery-img:hover {
+  .socials-container .gallery-img:hover {
     transform: scale(1.02);
     border-color: #38bdf8;
   }
@@ -185,7 +181,7 @@
     object-fit: contain;
   }
 
-  .close-btn {
+  .lightbox-content .close-btn {
     position: absolute;
     top: -2.5rem;
     right: 0;
@@ -371,7 +367,7 @@
 
   // Twitch GQL Live Status Checker
   async function checkTwitchLiveStatus(channelName) {
-    const CLIENT_ID = 'kimne78kx3ncx6brogo42026101d55'; // Public Twitch web client ID
+    const CLIENT_ID = 'kimne78kx3ncx6brogo42026101d55';
     const gqlQuery = {
       query: `
         query GetStreamStatus($login: String!) {
