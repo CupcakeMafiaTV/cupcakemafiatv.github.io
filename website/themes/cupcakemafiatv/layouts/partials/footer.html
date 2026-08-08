@@ -7,7 +7,7 @@
         <!-- Footer Row -->
         <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
             
-            <!-- Left: Larger Navigation Links (Increased to 20px) -->
+            <!-- Left: Larger Navigation Links (20px) -->
             <nav style="display: flex; gap: 28px; align-items: center;">
                 <a href="/" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">Home</a>
                 <a href="/about" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">About</a>
@@ -15,12 +15,12 @@
                 <a href="/socials" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 20px; transition: color 0.2s;">Socials</a>
             </nav>
 
-            <!-- Center: Fixed Copyright Text with Explicit HTML Spaces (16px) -->
+            <!-- Center: Auto-Updating Copyright Text -->
             <div style="color: #cbd5e1; font-size: 16px; font-weight: 500; text-align: center; letter-spacing: 0.3px;">
-                &copy;&nbsp;2026&nbsp;CupcakeMafiaTV. All rights reserved.
+                &copy;&nbsp;<span id="copyright-year"></span>&nbsp;CupcakeMafiaTV. All rights reserved.
             </div>
 
-            <!-- Right: Contact Button -->
+            <!-- Right: Refined Contact Button -->
             <div>
                 <a href="mailto:contact@cupcakemafiatv.com" class="footer-contact-btn">
                     <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
@@ -71,3 +71,8 @@
         }
     }
 </style>
+
+<script>
+    // Automatically sets the copyright span to the current year on page load
+    document.getElementById("copyright-year").textContent = new Date().getFullYear();
+</script>
