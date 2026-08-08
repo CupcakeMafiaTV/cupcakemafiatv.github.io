@@ -58,27 +58,27 @@
                     <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
                         
                         <!-- Stacked Images Column -->
-                        <div style="width: 310px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; height: 945px;">
+                        <div style="width: 310px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
                             
                             <!-- Image 1 Container -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
-                                <img src="/img/pc-setup-1.jpg" alt="Setup Image 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; display: flex; flex: 1;">
+                                <img src="/img/pc-setup-1.jpg" alt="Setup Image 1" style="width: 100%; height: 100%; min-height: 200px; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Image 2 Container -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
-                                <img src="/img/pc-setup-2.jpg" alt="Setup Image 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=800&auto=format&fit=crop';">
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; display: flex; flex: 1;">
+                                <img src="/img/pc-setup-2.jpg" alt="Setup Image 2" style="width: 100%; height: 100%; min-height: 200px; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Image 3 Container -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
-                                <img src="/img/pc-setup-3.jpg" alt="Setup Image 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=800&auto=format&fit=crop';">
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; display: flex; flex: 1;">
+                                <img src="/img/pc-setup-3.jpg" alt="Setup Image 3" style="width: 100%; height: 100%; min-height: 200px; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                         </div>
 
                         <!-- Specs Cards Grid -->
-                        <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; height: 945px;">
+                        <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; align-content: start;">
                             
                             <!-- CPU -->
                             <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
@@ -301,11 +301,27 @@
                                 </div>
                             </div>
 
+                            <!-- Elgato Prompter -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ec4899; flex-shrink: 0;">
+                                    <i class="fa-solid fa-display"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Elgato Prompter
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Teleprompter & Monitor</div>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
                 </div>
             </main>
+
+            <!-- Footer Partial -->
+            {{- partial "footer.html" . -}}
 
         </div>
 
