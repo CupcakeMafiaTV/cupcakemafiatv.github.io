@@ -35,7 +35,7 @@
             background-color: #1e293b;
             border: 1px solid #334155;
             border-radius: 12px;
-            padding: 22px 24px;
+            padding: 18px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -100,6 +100,7 @@
             background: rgba(31, 41, 55, 0.5);
             padding: 8px;
             box-sizing: border-box;
+            height: 250px;
         }
 
         .img-container img {
@@ -133,10 +134,9 @@
             }
             .image-col {
                 width: 100% !important;
-                height: auto !important;
             }
             .img-container {
-                height: 240px !important;
+                height: 220px !important;
             }
         }
 
@@ -213,25 +213,25 @@
                     </div>
 
                     <!-- Container Layout -->
-                    <div class="main-specs-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+                    <div class="main-specs-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
 
                         <!-- Stacked Images Column -->
-                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+                        <div class="image-col" style="width: 380px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
 
                             <!-- Setup Photo 1 -->
-                            <div class="img-container" style="flex: 1; display: flex; min-height: 270px;" onclick="openModal(this.querySelector('img').src)">
+                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                                 <img src="/img/pc-setup-1.jpg" alt="PC Rig Setup 1" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Setup Photo 2 -->
-                            <div class="img-container" style="flex: 1; display: flex; min-height: 270px;" onclick="openModal(this.querySelector('img').src)">
+                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                                 <img src="/img/pc-setup-2.jpg" alt="PC Rig Setup 2" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1603481588273-2f908a9a7a1b?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                         </div>
 
                         <!-- Specs Cards Grid -->
-                        <div class="specs-grid" style="flex: 1; max-width: 880px; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: space-between;">
+                        <div class="specs-grid" style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: start;">
 
                             <!-- GPU -->
                             <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/40-series/rtx-4090/" target="_blank" rel="noopener noreferrer" class="spec-card gpu">
