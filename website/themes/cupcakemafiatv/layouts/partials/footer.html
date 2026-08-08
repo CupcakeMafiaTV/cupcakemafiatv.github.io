@@ -1,29 +1,29 @@
-<footer style="flex-shrink: 0; width: 100%; padding: 24px 0 32px 0;">
+<footer style="flex-shrink: 0; width: 100%; padding: 28px 0 36px 0;">
     <div style="max-width: 1400px; margin: 0 auto; padding: 0 24px;">
         
         <!-- Divider Line -->
-        <div style="border-top: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 24px;"></div>
+        <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); margin-bottom: 28px;"></div>
 
-        <!-- Footer Grid/Flex Container -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+        <!-- Footer Row -->
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
             
-            <!-- Left: Navigation Links (Font size increased from ~14px to 16px) -->
-            <nav style="display: flex; gap: 24px; align-items: center;">
-                <a href="/" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 16px; transition: color 0.2s;">Home</a>
-                <a href="/about" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 16px; transition: color 0.2s;">About</a>
-                <a href="/pc-specs" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 16px; transition: color 0.2s;">PC Specs</a>
-                <a href="/socials" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 16px; transition: color 0.2s;">Socials</a>
+            <!-- Left: Larger Navigation Links -->
+            <nav style="display: flex; gap: 28px; align-items: center;">
+                <a href="/" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 18px; transition: color 0.2s;">Home</a>
+                <a href="/about" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 18px; transition: color 0.2s;">About</a>
+                <a href="/pc-specs" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 18px; transition: color 0.2s;">PC Specs</a>
+                <a href="/socials" style="color: #ffffff; text-decoration: none; font-weight: 700; font-size: 18px; transition: color 0.2s;">Socials</a>
             </nav>
 
-            <!-- Center: Copyright Text -->
-            <div style="color: #94a3b8; font-size: 14px; font-weight: 500; text-align: center;">
+            <!-- Center: Cleaned Up Copyright Text -->
+            <div style="color: #cbd5e1; font-size: 15px; font-weight: 500; text-align: center; letter-spacing: 0.3px;">
                 © <script>document.write(new Date().getFullYear())</script> CupcakeMafiaTV. All rights reserved.
             </div>
 
-            <!-- Right: Contact Me Button (Pop styling with solid fill, rounded corners & subtle glow) -->
+            <!-- Right: Refined, Slightly Larger Contact Button -->
             <div>
                 <a href="mailto:contact@cupcakemafiatv.com" class="footer-contact-btn">
-                    <i class="fa-solid fa-envelope" style="font-size: 14px;"></i>
+                    <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
                     <span>CONTACT ME</span>
                 </a>
             </div>
@@ -32,33 +32,33 @@
     </div>
 </footer>
 
-<!-- Footer Button CSS Styling -->
 <style>
+    /* Sleek Elevated Contact Button */
     .footer-contact-btn {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        background-color: #a855f7; /* High-visibility brand purple */
+        gap: 10px;
+        background-color: #1e293b; /* Dark slate background matching cards */
         color: #ffffff !important;
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 800;
-        letter-spacing: 0.5px;
-        padding: 10px 20px;
+        letter-spacing: 0.8px;
+        padding: 12px 24px; /* Slightly larger dimension */
         border-radius: 8px;
         text-decoration: none !important;
-        border: 1px solid #c084fc;
-        box-shadow: 0 4px 14px rgba(168, 85, 247, 0.4);
+        border: 1.5px solid #a855f7; /* Crisp purple accent outline */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .footer-contact-btn:hover {
-        background-color: #9333ea;
+        background-color: #a855f7; /* Fills with purple on hover */
         transform: translateY(-2px);
-        box-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
-        border-color: #e9d5ff;
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+        border-color: #c084fc;
     }
 
-    /* Mobile Responsive Adjustments */
+    /* Responsive Mobile Layout */
     @media (max-width: 768px) {
         footer div[style*="justify-content: space-between"] {
             flex-direction: column !important;
