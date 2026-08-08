@@ -52,8 +52,8 @@
 
         /* High-Contrast Elevated Social Card Styling */
         .social-card {
-            background-color: #1e293b; /* Distinct elevated slate grey */
-            border: 1px solid #334155;  /* Defined, crisp light-grey border */
+            background-color: #1e293b;
+            border: 1px solid #334155;
             border-radius: 12px;
             padding: 22px 24px;
             display: flex;
@@ -63,18 +63,18 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Subtle drop shadow for depth */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* Subtitle Text Brightness Boost */
         .social-card div div:last-child {
-            color: #cbd5e1 !important; /* Brighter grey for high legibility */
+            color: #cbd5e1 !important;
         }
 
         /* Hover Elevation & Brand Glow Effects */
         .social-card:hover {
             transform: translateY(-3px);
-            background-color: #273549; /* Brightens up even more on hover */
+            background-color: #273549;
         }
 
         .social-card[href*="twitch.tv"]:hover {
@@ -445,8 +445,6 @@
             {{- partial "scripts.html" . -}}
 
         </div>
-
-        {{- partial "socials.html" . -}}
 
         <!-- Image Lightbox Modal -->
         <dialog id="img-modal" onclick="closeModal()">
