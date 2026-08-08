@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        /* Body with Ambient Background Glows */
+        body {
+            background-color: #0f172a;
+            color: #ffffff;
+            background-image: 
+                radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%),
+                radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%),
+                radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%);
+            background-attachment: fixed;
+        }
+
         /* Sticky Footer Setup */
         html, body {
             height: 100%;
@@ -39,9 +50,10 @@
             display: inline-block;
         }
 
-        /* Social Card Base Styling - Height tuned to align flush with images */
+        /* Social Card Base Styling with Glassmorphic Transparency */
         .social-card {
-            background-color: #172033;
+            background-color: rgba(23, 32, 51, 0.85);
+            backdrop-filter: blur(8px);
             border: 1px solid #233047;
             border-radius: 12px;
             padding: 22px 24px;
@@ -185,12 +197,12 @@
         }
     </style>
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray">
 
         <!-- Sticky Footer Wrapper Container -->
-        <div id="site-wrapper" class="js-site-wrapper" style="background-color: #0f172a;">        
+        <div id="site-wrapper" class="js-site-wrapper">        
 
-            <div class="header-wrapper text-white" style="background-color: #0f172a;">
+            <div class="header-wrapper text-white">
 
                 <header id="site-header" class="text-white">
                     <div class="max-w-[1400px] mx-auto px-5">
@@ -224,7 +236,7 @@
             {{- partial "mobile_menu.html" . -}}
 
             <!-- Main Content Area with flex-grow -->
-            <main id="main-content" style="flex: 1 0 auto; padding: 24px 24px 40px 24px; background-color: #0f172a;">
+            <main id="main-content" style="flex: 1 0 auto; padding: 24px 24px 40px 24px;">
                 <div style="max-width: 1400px; margin: 0 auto; font-family: sans-serif;">
 
                     <!-- Title Banner -->
@@ -456,7 +468,7 @@
                     const response = await fetch('https://gql.twitch.tv/gql', {
                         method: 'POST',
                         headers: {
-                            'Client-ID': 'kimne78kx3ncx6brogo4mv6wki5h11' // Public Twitch GQL client ID
+                            'Client-ID': 'kimne78kx3ncx6brogo4mv6wki5h11'
                         },
                         body: JSON.stringify({
                             query: `query { user(login: "${channelName}") { stream { type } } }`
