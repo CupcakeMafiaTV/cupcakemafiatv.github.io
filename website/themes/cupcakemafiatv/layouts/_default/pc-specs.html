@@ -1,329 +1,313 @@
 <!DOCTYPE html>
 <html lang="zxx" class="h-full overflow-x-hidden dark">
 
-    {{- partial "head.html" . -}}
+    {{- partial "head.html" . -}}
 
-    <!-- Font Awesome for Setup Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome for Setup Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background: radial-gradient(ellipse at top left, #1e1b4b 0%, #0f172a 50%, #090d16 100%); color: #ffffff; min-height: 100vh;">
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background: radial-gradient(ellipse at top left, #1e1b4b 0%, #0f172a 50%, #090d16 100%); color: #ffffff; min-height: 100vh;">
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
-        
-            <div class="header-wrapper text-white" style="background: transparent;">
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
+        
+            <div class="header-wrapper text-white" style="background: transparent;">
 
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+                <header id="site-header" class="text-white">
+                    <div class="max-w-[1360px] mx-auto px-5">
+                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
 
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
 
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
+                            <!-- Navigation (Desktop) -->
+                            {{- partial "navigation.html" . -}}
 
-                            <!-- Header Controls -->
-                            <div class="flex ml-auto -mr-3">
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu"></use>
-                                    </svg>
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
-                                    </svg>
-                                </button>
-                            </div>
+                            <!-- Header Controls -->
+                            <div class="flex ml-auto -mr-3">
+                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
+                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                        <use xlink:href="/img/sprites2.svg#menu"></use>
+                                    </svg>
+                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                    </svg>
+                                </button>
+                            </div>
 
-                        </nav>
-                    </div>
-                </header>
+                        </nav>
+                    </div>
+                </header>
 
-            </div>
+            </div>
 
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
+            <!-- Mobile Menu -->
+            {{- partial "mobile_menu.html" . -}}
 
-            <!-- Main Content Area -->
-            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
-                <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
-                    
-                    <!-- Title Banner -->
-                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 12px; margin-bottom: 24px;">
-                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
-                            PC Specs
-                        </h1>
-                    </div>
+            <!-- Main Content Area -->
+            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
+                <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
+                    
+                    <!-- Title Banner -->
+                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 12px; margin-bottom: 24px;">
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
+                            PC Specs
+                        </h1>
+                    </div>
 
-                    <!-- Container Layout -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
-                        
-                        <!-- Stacked Images Column -->
-                        <div style="width: 310px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; height: 945px;">
-                            
-                            <!-- Image 1 Container -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
-                                <img src="/img/pc-setup-1.jpg" alt="Setup Image 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
-                            </div>
+                    <!-- Container Layout -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+                        
+                        <!-- Stacked Images Column -->
+                        <div style="width: 310px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; height: 945px;">
+                            
+                            <!-- Image 1 Container -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
+                                <img src="/img/pc-setup-1.jpg" alt="Setup Image 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
+                            </div>
 
-                            <!-- Image 2 Container -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
-                                <img src="/img/pc-setup-2.jpg" alt="Setup Image 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=800&auto=format&fit=crop';">
-                            </div>
+                            <!-- Image 2 Container -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
+                                <img src="/img/pc-setup-2.jpg" alt="Setup Image 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=800&auto=format&fit=crop';">
+                            </div>
 
-                            <!-- Image 3 Container -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
-                                <img src="/img/pc-setup-3.jpg" alt="Setup Image 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=800&auto=format&fit=crop';">
-                            </div>
+                            <!-- Image 3 Container -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 10px; height: calc((945px - 32px) / 3); display: flex;">
+                                <img src="/img/pc-setup-3.jpg" alt="Setup Image 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=800&auto=format&fit=crop';">
+                            </div>
 
-                        </div>
+                        </div>
 
-                        <!-- Specs Cards Grid -->
-                        <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; height: 945px;">
-                            
-                            <!-- CPU -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ef4444; flex-shrink: 0;">
-                                    <i class="fa-solid fa-microchip"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        AMD Ryzen 7 9800X3D
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">CPU</div>
-                                </div>
-                            </div>
+                        <!-- Specs Cards Grid -->
+                        <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; height: 945px;">
+                            
+                            <!-- CPU -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ef4444; flex-shrink: 0;">
+                                    <i class="fa-solid fa-microchip"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        AMD Ryzen 7 9800X3D
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">CPU</div>
+                                </div>
+                            </div>
 
-                            <!-- GPU -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ef4444; flex-shrink: 0;">
-                                    <i class="fa-solid fa-desktop"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        MSI GeForce RTX 5080
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">GPU</div>
-                                </div>
-                            </div>
+                            <!-- GPU -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ef4444; flex-shrink: 0;">
+                                    <i class="fa-solid fa-desktop"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        MSI GeForce RTX 5080
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">GPU</div>
+                                </div>
+                            </div>
 
-                            <!-- RAM -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #f97316; flex-shrink: 0;">
-                                    <i class="fa-solid fa-memory"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Kingston Fury 64GB DDR5
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">RAM</div>
-                                </div>
-                            </div>
+                            <!-- RAM -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #f97316; flex-shrink: 0;">
+                                    <i class="fa-solid fa-memory"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Kingston Fury 64GB DDR5
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">RAM</div>
+                                </div>
+                            </div>
 
-                            <!-- Motherboard -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #f97316; flex-shrink: 0;">
-                                    <i class="fa-solid fa-hard-drive"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        X870E AORUS ELITE
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Motherboard</div>
-                                </div>
-                            </div>
+                            <!-- Motherboard -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #f97316; flex-shrink: 0;">
+                                    <i class="fa-solid fa-hard-drive"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        X870E AORUS ELITE
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Motherboard</div>
+                                </div>
+                            </div>
 
-                            <!-- Microphone -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #eab308; flex-shrink: 0;">
-                                    <i class="fa-solid fa-microphone"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Shure SM7B
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Microphone</div>
-                                </div>
-                            </div>
+                            <!-- Microphone -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #eab308; flex-shrink: 0;">
+                                    <i class="fa-solid fa-microphone"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Shure SM7B
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Microphone</div>
+                                </div>
+                            </div>
 
-                            <!-- Audio Mixer -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #eab308; flex-shrink: 0;">
-                                    <i class="fa-solid fa-sliders"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        RodeCaster Duo
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Audio Mixer</div>
-                                </div>
-                            </div>
+                            <!-- Audio Mixer -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #eab308; flex-shrink: 0;">
+                                    <i class="fa-solid fa-sliders"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        RodeCaster Duo
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Audio Mixer</div>
+                                </div>
+                            </div>
 
-                            <!-- Mouse -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22c55e; flex-shrink: 0;">
-                                    <i class="fa-solid fa-computer-mouse"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Razer Naga V2 HyperSpeed
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Mouse</div>
-                                </div>
-                            </div>
+                            <!-- Mouse -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22c55e; flex-shrink: 0;">
+                                    <i class="fa-solid fa-computer-mouse"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Razer Naga V2 HyperSpeed
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Mouse</div>
+                                </div>
+                            </div>
 
-                            <!-- Keyboard -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22c55e; flex-shrink: 0;">
-                                    <i class="fa-solid fa-keyboard"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Razer Huntsman V3 Pro
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Keyboard</div>
-                                </div>
-                            </div>
+                            <!-- Keyboard -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22c55e; flex-shrink: 0;">
+                                    <i class="fa-solid fa-keyboard"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Razer Huntsman V3 Pro
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Keyboard</div>
+                                </div>
+                            </div>
 
-                            <!-- Camera -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #14b8a6; flex-shrink: 0;">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Canon EOS M200
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Camera</div>
-                                </div>
-                            </div>
+                            <!-- Camera -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #14b8a6; flex-shrink: 0;">
+                                    <i class="fa-solid fa-camera"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Canon EOS M200
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Camera</div>
+                                </div>
+                            </div>
 
-                            <!-- Capture Card -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #14b8a6; flex-shrink: 0;">
-                                    <i class="fa-solid fa-video"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        AVerMedia GC573
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Capture Card</div>
-                                </div>
-                            </div>
+                            <!-- Capture Card -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #14b8a6; flex-shrink: 0;">
+                                    <i class="fa-solid fa-video"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        AVerMedia GC573
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Capture Card</div>
+                                </div>
+                            </div>
 
-                            <!-- Monitor -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22d3ee; flex-shrink: 0;">
-                                    <i class="fa-solid fa-tv"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        HP Omen 27" QHD 280Hz (x3)
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Monitor</div>
-                                </div>
-                            </div>
+                            <!-- Monitor -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-tv"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        HP Omen 27" QHD 280Hz (x3)
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Monitor</div>
+                                </div>
+                            </div>
 
-                            <!-- Headphones -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22d3ee; flex-shrink: 0;">
-                                    <i class="fa-solid fa-headphones"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        HyperX Cloud III Wired
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Headphones</div>
-                                </div>
-                            </div>
+                            <!-- Headphones -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #22d3ee; flex-shrink: 0;">
+                                    <i class="fa-solid fa-headphones"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        HyperX Cloud III Wired
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Headphones</div>
+                                </div>
+                            </div>
 
-                            <!-- Desk -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #3b82f6; flex-shrink: 0;">
-                                    <i class="fa-solid fa-table"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://secretlabchairs.ca/products/magnus-pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Secretlab MAGNUS Pro
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Desk</div>
-                                </div>
-                            </div>
+                            <!-- Desk -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #3b82f6; flex-shrink: 0;">
+                                    <i class="fa-solid fa-table"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://secretlabchairs.ca/products/magnus-pro" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Secretlab MAGNUS Pro
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Desk</div>
+                                </div>
+                            </div>
 
-                            <!-- Chair -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #3b82f6; flex-shrink: 0;">
-                                    <i class="fa-solid fa-chair"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://secretlabchairs.ca/products/skins" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Secretlab TITAN Evo Jinx
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Chair</div>
-                                </div>
-                            </div>
+                            <!-- Chair -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #3b82f6; flex-shrink: 0;">
+                                    <i class="fa-solid fa-chair"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://secretlabchairs.ca/products/skins" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Secretlab TITAN Evo Jinx
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Chair</div>
+                                </div>
+                            </div>
 
-                            <!-- Lights -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #a855f7; flex-shrink: 0;">
-                                    <i class="fa-solid fa-lightbulb"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Elgato Key Light (x2)
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Lights</div>
-                                </div>
-                            </div>
+                            <!-- Lights -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #a855f7; flex-shrink: 0;">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Elgato Key Light (x2)
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Lights</div>
+                                </div>
+                            </div>
 
-                            <!-- Green Screen -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #a855f7; flex-shrink: 0;">
-                                    <i class="fa-solid fa-film"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.elgato.com/ca/en/p/green-screen-xl" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Elgato Green Screen XL
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Green Screen</div>
-                                </div>
-                            </div>
+                            <!-- Green Screen -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #a855f7; flex-shrink: 0;">
+                                    <i class="fa-solid fa-film"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.elgato.com/ca/en/p/green-screen-xl" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Elgato Green Screen XL
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Green Screen</div>
+                                </div>
+                            </div>
 
-                            <!-- Stream Deck -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ec4899; flex-shrink: 0;">
-                                    <i class="fa-solid fa-gamepad"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Elgato Stream Deck XL
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Stream Deck</div>
-                                </div>
-                            </div>
+                            <!-- Stream Deck -->
+                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ec4899; flex-shrink: 0;">
+                                    <i class="fa-solid fa-gamepad"></i>
+                                </div>
+                                <div style="overflow: hidden;">
+                                    <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
+                                        Elgato Stream Deck XL
+                                    </a>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Stream Deck</div>
+                                </div>
+                            </div>
 
-                            <!-- Prompter -->
-                            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; color: #ec4899; flex-shrink: 0;">
-                                    <i class="fa-solid fa-display"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" style="color: #ffffff; font-weight: 700; font-size: 15px; text-decoration: none; display: block; line-height: 1.2;">
-                                        Elgato Prompter
-                                    </a>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Teleprompter</div>
-                                </div>
-                            </div>
+                        </div>
 
-                        </div>
+                    </div>
+                </div>
+            </main>
 
-                    </div>
-                </div>
-            </main>
+        </div>
 
-            <!-- Footer Partial -->
-            {{- partial "footer.html" . -}}
-
-        </div>
-
-    </body>
+    </body>
 </html>
