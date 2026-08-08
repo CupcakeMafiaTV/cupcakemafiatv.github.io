@@ -31,7 +31,7 @@
 
   <!-- Custom Header & Navigation Overrides -->
   <style>
-      /* Force header container width & centering across all pages (Fixes Socials layout) */
+      /* Force header container width & centering across all pages */
       #site-header,
       header {
           max-width: 1400px !important;
@@ -47,21 +47,15 @@
           font-size: 20px !important;
           font-weight: 700 !important;
           transition: color 0.2s ease-in-out;
+          padding-left: 0 !important;
       }
 
-      /* Recolor theme SVG arrow mask to orange */
+      /* Hide all pseudo-element markers/boxes completely */
       #site-header nav a::after,
-      .main-nav a::after,
-      ul li a::after {
-          background-color: #f97316 !important;
-          background-image: none !important;
-          -webkit-mask-repeat: no-repeat !important;
-          mask-repeat: no-repeat !important;
-      }
-
-      /* Clean up any secondary pseudo-elements or cyan boxes */
       #site-header nav a::before,
+      .main-nav a::after,
       .main-nav a::before,
+      ul li a::after,
       ul li a::before {
           display: none !important;
           content: none !important;
