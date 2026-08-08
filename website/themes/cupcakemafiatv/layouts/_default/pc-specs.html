@@ -7,12 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* Interactive Spec Cards & Image Hover Styles */
+        /* Interactive Spec Cards & Hover Glow Styles */
         .spec-card {
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                        box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
-                        border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                        background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none;
             display: flex;
@@ -22,21 +19,23 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
             padding: 18px 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .spec-card:hover {
-            transform: translateY(-3px) scale(1.02);
-            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-3px);
             background: rgba(30, 41, 59, 0.9);
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3), 0 0 15px 2px rgba(129, 140, 248, 0.2);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 40px rgba(56, 189, 248, 0.4);
         }
 
         .spec-card:hover .spec-title {
-            color: #818cf8 !important;
+            color: #38bdf8 !important;
         }
 
         /* Hover Zoom & Glow for Images */
         .img-container {
+            position: relative;
             background: rgba(30, 41, 59, 0.7);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
@@ -44,12 +43,14 @@
             display: flex;
             flex: 1;
             overflow: hidden;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .img-container:hover {
-            border-color: rgba(99, 102, 241, 0.5);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-3px);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 40px rgba(56, 189, 248, 0.4);
         }
 
         .img-container img {
@@ -59,11 +60,36 @@
             object-fit: cover;
             border-radius: 8px;
             display: block;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .img-container:hover img {
-            transform: scale(1.08);
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* Lightbox Dialog / Zoom Modal Styles */
+        #img-modal {
+            border: none;
+            background: transparent;
+            padding: 0;
+            max-width: 90vw;
+            max-height: 90vh;
+            outline: none;
+        }
+
+        #img-modal::backdrop {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(6px);
+        }
+
+        #img-modal-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+            object-fit: contain;
+            display: block;
         }
     </style>
 
@@ -122,17 +148,17 @@
                         <div style="width: 310px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
                             
                             <!-- Image 1 Container -->
-                            <div class="img-container">
+                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                                 <img src="/img/pc-setup-1.jpg" alt="Setup Image 1" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Image 2 Container -->
-                            <div class="img-container">
+                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                                 <img src="/img/pc-setup-2.jpg" alt="Setup Image 2" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Image 3 Container -->
-                            <div class="img-container">
+                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                                 <img src="/img/pc-setup-3.jpg" alt="Setup Image 3" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
@@ -381,10 +407,29 @@
                 </div>
             </main>
 
+            <!-- Lightbox Zoom Modal -->
+            <dialog id="img-modal" onclick="closeModal()">
+                <img id="img-modal-img" src="" alt="Enlarged setup image">
+            </dialog>
+
             <!-- Footer Partial -->
             {{- partial "footer.html" . -}}
 
         </div>
+
+        <script>
+            const modal = document.getElementById('img-modal');
+            const modalImg = document.getElementById('img-modal-img');
+
+            function openModal(src) {
+                modalImg.src = src;
+                modal.showModal();
+            }
+
+            function closeModal() {
+                modal.close();
+            }
+        </script>
 
     </body>
 </html>
