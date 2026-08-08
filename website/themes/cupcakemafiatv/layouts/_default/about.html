@@ -3,80 +3,79 @@
 
     {{- partial "head.html" . -}}
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
 
-        <div id="site-wrapper" class="flex flex-col min-h-full js-site-wrapper" style="background-color: #0f172a;">        
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
         
-            <div class="header-wrapper text-white" style="background-color: #0f172a;">
-              <header id="site-header" class="text-white">
-                  <div class="max-w-[1360px] mx-auto px-5">
-                      <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+            <div class="header-wrapper text-white" style="background: transparent;">
 
-                          <!-- Logo -->
-                          {{- partial "logo.html" . -}}
-                          <!-- Logo / End -->
+                <header id="site-header" class="text-white">
+                    <div class="max-w-[1360px] mx-auto px-5">
+                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
+                            <!-- Logo / End -->
     
-                          <!-- Navigation (Desktop) -->
-                          {{- partial "navigation.html" . -}}
-                          <!-- Navigation (Desktop) / End -->
+                            <!-- Navigation (Desktop) -->
+                            {{- partial "navigation.html" . -}}
+                            <!-- Navigation (Desktop) / End -->
 
-                          <!-- Header Controls -->
-                          <div class="flex ml-auto -mr-3">
-                              <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                              <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                  <use xlink:href="/img/sprites2.svg#menu"></use>
-                              </svg>
-                              <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                  <use xlink:href="/img/sprites2.svg#menu-close"></use>
-                              </svg>
-                              </button>
-                          </div>
-                          <!-- Header Controls / End -->
+                            <!-- Header Controls -->
+                            <div class="flex ml-auto -mr-3">
+                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
+                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu"></use>
+                                </svg>
+                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                </svg>
+                                </button>
+                            </div>
+                            <!-- Header Controls / End -->
 
-                      </nav>
-                  </div>
-              </header>
+                        </nav>
+                    </div>
+                </header>
+
             </div>
 
             <!-- Mobile Menu -->
             {{- partial "mobile_menu.html" . -}}
             <!-- Mobile Menu / End -->
             
-            <main id="main-content" class="grow lg:pt-0" style="background-color: #0f172a;">
-              <div class="pt-6 pb-6 lg:pt-10 lg:pb-8">
-                <div class="container" style="max-width: 1360px; margin: 0 auto; padding: 0 20px;">
-                  
-                  <!-- Exact Match Header Setup & Size to PC Specs -->
-                  <div style="margin-bottom: 35px;">
-                      <h1 style="color: #ffffff; font-size: 32px; font-weight: bold; margin: 0 0 15px 0;">
-                          About Me
-                      </h1>
-                      <div style="width: 100%; height: 1px; background-color: #ffffff; opacity: 0.25;"></div>
-                  </div>
-
-                  <div class="flex flex-col gap-y-12">
+            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
+                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
                     
-                    <!-- Bio Section with Increased Font Size -->
-                    <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
-                      <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
-                        <a href="#">
-                          <div class="hidden dark:block rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
-                            <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
-                          </div>
-                        </a>
-                      </div>
-                      <div class="col-span-full md:col-span-8">
-                        <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
-                          Hello! I'm Cody, a variety live streamer from Canada and the self proclaimed First Try King. In between countlessly quoting The Simpsons and my other favorite TV sitcoms, I'm typically found bouncing between playing several different competitive style games such as League of Legends or Fortnite while continuing to try and obtain 100% completion and achievements within my endlessly large Steam library. By day I'm just your average computer technician but by night I'm your much inferior trashcan teammate that always seems to let you down within competitive games. As someone who enjoys tinkering with technology, combining that skillset with my overall love of gaming has made streaming a perfect match.<br/><br/>
-                          Beyond streaming, I’m a massive collector of nerdy memorabilia, Funko POPs and trading cards and spend a lot of my free time looking for my next sought-after treasure to add to my collection. I’m a big fan of DC Comics and the Batman Universe especially Punchline & Harley Quinn and am most likely the only person that actually enjoyed the game Suicide Squad: Kill the Justice League. Some of my other all time favorite fandoms include Scott Pilgrim vs. The World, WWE/Wrestling, Pokémon, Yu-Gi-Oh & Digimon.
-                        </div>
-                      </div>
+                    <!-- Exact Match Header Setup & Size to PC Specs -->
+                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 12px; margin-bottom: 35px;">
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
+                            About Me
+                        </h1>
                     </div>
 
-                  </div>
+                    <div class="flex flex-col gap-y-12">
+                        
+                        <!-- Bio Section with Increased Font Size -->
+                        <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
+                            <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
+                                <a href="#">
+                                  <div class="hidden dark:block rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
+                                    <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
+                                  </div>
+                                </a>
+                            </div>
+                            <div class="col-span-full md:col-span-8">
+                                <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
+                                  Hello! I'm Cody, a variety live streamer from Canada and the self proclaimed First Try King. In between countlessly quoting The Simpsons and my other favorite TV sitcoms, I'm typically found bouncing between playing several different competitive style games such as League of Legends or Fortnite while continuing to try and obtain 100% completion and achievements within my endlessly large Steam library. By day I'm just your average computer technician but by night I'm your much inferior trashcan teammate that always seems to let you down within competitive games. As someone who enjoys tinkering with technology, combining that skillset with my overall love of gaming has made streaming a perfect match.<br/><br/>
+                                  Beyond streaming, I’m a massive collector of nerdy memorabilia, Funko POPs and trading cards and spend a lot of my free time looking for my next sought-after treasure to add to my collection. I’m a big fan of DC Comics and the Batman Universe especially Punchline & Harley Quinn and am most likely the only person that actually enjoyed the game Suicide Squad: Kill the Justice League. Some of my other all time favorite fandoms include Scott Pilgrim vs. The World, WWE/Wrestling, Pokémon, Yu-Gi-Oh & Digimon.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
-              </div>
             </main>
 
             {{- partial "footer.html" . -}}
