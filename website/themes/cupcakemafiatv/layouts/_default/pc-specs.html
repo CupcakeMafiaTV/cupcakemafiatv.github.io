@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>My Setup</title>
-    <!-- Font Awesome for Playstation/Nintendo Logos -->
+    <!-- Font Awesome for Logos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { background: #121212; color: #fff; font-family: sans-serif; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .grid { display: flex; gap: 20px; flex-wrap: wrap; }
         
         .spec-card {
             background: #1e1e1e;
@@ -16,9 +16,10 @@
             position: relative;
             border: 2px solid transparent;
             transition: all 0.3s ease;
+            width: 220px;
         }
 
-        /* Updated External Link Arrow Indicators */
+        /* External Link Arrow Indicator */
         .spec-card .ext-icon {
             position: absolute;
             top: 12px;
@@ -29,29 +30,39 @@
             transition: all 0.2s ease;
         }
 
-        /* Updated Image Hover Effect */
+        /* Image/Content Container */
+        .img-container {
+            border: 2px solid #444;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            background: #181818;
+        }
+
+        /* Hover Effect */
         .img-container:hover {
             transform: translateY(-3px);
             border-color: #ffffff; 
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
         }
 
-        .img-container {
-            border: 2px solid #444;
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-            transition: all 0.3s ease;
+        .img-container i {
+            font-size: 24px;
         }
 
-        h3 { margin-top: 10px; }
-        i { margin-right: 8px; }
+        h3 { 
+            margin: 0; 
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
 
 <div class="grid">
-    <!-- Example Console Card -->
+    <!-- PlayStation Card -->
     <div class="spec-card">
         <span class="ext-icon">↗</span>
         <div class="img-container">
@@ -60,10 +71,11 @@
         </div>
     </div>
 
+    <!-- Nintendo Switch Card -->
     <div class="spec-card">
         <span class="ext-icon">↗</span>
         <div class="img-container">
-            <i class="fa-brands fa-nintendo-switch"></i>
+            <i class="fa-solid fa-gamepad"></i>
             <h3>Nintendo Switch</h3>
         </div>
     </div>
