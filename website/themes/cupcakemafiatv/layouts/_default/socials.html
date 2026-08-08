@@ -44,7 +44,7 @@
             {{- partial "mobile_menu.html" . -}}
 
             <!-- Main Content Area -->
-            <main id="main-content" style="flex-grow: 1; padding: 20px 20px 10px 20px; background-color: #0f172a;">
+            <main id="main-content" style="padding: 20px 20px 0px 20px; background-color: #0f172a;">
                 <div style="max-width: 1200px; margin: 0 auto; font-family: sans-serif;">
                     
                     <!-- Title Banner -->
@@ -57,16 +57,16 @@
                     <!-- Container Layout -->
                     <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch;">
                         
-                        <!-- Stacked Images Column: Scaled down slightly to fit cards without bottom bleed -->
-                        <div style="width: 300px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; height: 495px;">
+                        <!-- Stacked Images Column -->
+                        <div style="width: 300px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; height: 430px;">
                             
                             <!-- Image 1 -->
-                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 10px; padding: 6px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); height: calc((495px - 12px) / 2); display: flex;">
+                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 10px; padding: 6px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); height: calc((430px - 10px) / 2); display: flex;">
                                 <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Image 2 -->
-                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 10px; padding: 6px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); height: calc((495px - 12px) / 2); display: flex;">
+                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 10px; padding: 6px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); height: calc((430px - 10px) / 2); display: flex;">
                                 <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
@@ -76,7 +76,7 @@
                         <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; align-content: start;">
                             
                             <!-- Row 1 Left: Twitch (with Live Badge) -->
-                            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 0 14px rgba(168, 85, 247, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 0 14px rgba(168, 85, 247, 0.15);">
                                 <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
                                     <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(168, 85, 247, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #a855f7; flex-shrink: 0;">
                                         <i class="fa-brands fa-twitch"></i>
@@ -94,7 +94,7 @@
                             </div>
 
                             <!-- Row 1 Right: YouTube Main (with Live Badge) -->
-                            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 0 14px rgba(239, 68, 68, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; box-shadow: 0 0 14px rgba(239, 68, 68, 0.15);">
                                 <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
                                     <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(239, 68, 68, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #ef4444; flex-shrink: 0;">
                                         <i class="fa-brands fa-youtube"></i>
@@ -112,7 +112,7 @@
                             </div>
 
                             <!-- Row 2 Left: Instagram -->
-                            <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(236, 72, 153, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(236, 72, 153, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(236, 72, 153, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(236, 72, 153, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #ec4899; flex-shrink: 0;">
                                     <i class="fa-brands fa-instagram"></i>
                                 </div>
@@ -125,7 +125,7 @@
                             </div>
 
                             <!-- Row 2 Right: YouTube VODs -->
-                            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(239, 68, 68, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(239, 68, 68, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(239, 68, 68, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #ef4444; flex-shrink: 0;">
                                     <i class="fa-brands fa-youtube"></i>
                                 </div>
@@ -138,7 +138,7 @@
                             </div>
 
                             <!-- Row 3 Left: X (Twitter) -->
-                            <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(148, 163, 184, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(148, 163, 184, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(148, 163, 184, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(148, 163, 184, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(148, 163, 184, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #94a3b8; flex-shrink: 0;">
                                     <i class="fa-brands fa-x-twitter"></i>
                                 </div>
@@ -151,7 +151,7 @@
                             </div>
 
                             <!-- Row 3 Right: TikTok -->
-                            <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(20, 184, 166, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(20, 184, 166, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(20, 184, 166, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(20, 184, 166, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(20, 184, 166, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #14b8a6; flex-shrink: 0;">
                                     <i class="fa-brands fa-tiktok"></i>
                                 </div>
@@ -164,7 +164,7 @@
                             </div>
 
                             <!-- Row 4 Left: Fourthwall / Merch -->
-                            <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(249, 115, 22, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(249, 115, 22, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(249, 115, 22, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #f97316; flex-shrink: 0;">
                                     <i class="fa-solid fa-store"></i>
                                 </div>
@@ -177,7 +177,7 @@
                             </div>
 
                             <!-- Row 4 Right: Discord -->
-                            <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(99, 102, 241, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(99, 102, 241, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(99, 102, 241, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(99, 102, 241, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #6366f1; flex-shrink: 0;">
                                     <i class="fa-brands fa-discord"></i>
                                 </div>
@@ -190,7 +190,7 @@
                             </div>
 
                             <!-- Row 5 Left: Spotify -->
-                            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(34, 197, 94, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(34, 197, 94, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(34, 197, 94, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(34, 197, 94, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(34, 197, 94, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #22c55e; flex-shrink: 0;">
                                     <i class="fa-brands fa-spotify"></i>
                                 </div>
@@ -203,7 +203,7 @@
                             </div>
 
                             <!-- Row 5 Right: Reddit -->
-                            <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(249, 115, 22, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(249, 115, 22, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(249, 115, 22, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #f97316; flex-shrink: 0;">
                                     <i class="fa-brands fa-reddit-alien"></i>
                                 </div>
@@ -216,7 +216,7 @@
                             </div>
 
                             <!-- Row 6 Left: OP.GG -->
-                            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(59, 130, 246, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(59, 130, 246, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #3b82f6; flex-shrink: 0;">
                                     <i class="fa-solid fa-chart-line"></i>
                                 </div>
@@ -229,7 +229,7 @@
                             </div>
 
                             <!-- Row 6 Right: League of Graphs -->
-                            <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(34, 211, 238, 0.15);">
+                            <div style="background: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(34, 211, 238, 0.4); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; box-shadow: 0 0 14px rgba(34, 211, 238, 0.15);">
                                 <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(34, 211, 238, 0.2); display: flex; align-items: center; justify-content: center; font-size: 17px; color: #22d3ee; flex-shrink: 0;">
                                     <i class="fa-solid fa-chart-pie"></i>
                                 </div>
