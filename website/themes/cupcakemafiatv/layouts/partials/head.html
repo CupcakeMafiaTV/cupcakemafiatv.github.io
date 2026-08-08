@@ -31,6 +31,16 @@
 
   <!-- Custom Header & Navigation Overrides -->
   <style>
+      /* Force header container width & centering across all pages (Fixes Socials layout) */
+      #site-header,
+      header {
+          max-width: 1400px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+      }
+
       /* Match Header Font Size to Footer (20px) */
       #site-header nav a,
       .main-nav a {
@@ -39,9 +49,18 @@
           transition: color 0.2s ease-in-out;
       }
 
-      /* Recolor Navigation Arrows to Orange */
+      /* Recolor Navigation Arrow Markers (::after and ::before) to Orange */
+      #site-header nav a::after,
       #site-header nav a::before,
+      .main-nav a::after,
       .main-nav a::before,
+      ul li a::after,
+      ul li a::before {
+          background-color: #f97316 !important; /* Bright orange fill */
+          color: #f97316 !important;
+      }
+
+      /* Target SVG or Arrow class fallbacks */
       #site-header nav .arrow,
       .main-nav .arrow,
       #site-header nav svg,
@@ -51,7 +70,8 @@
       }
 
       /* Hover Glow Effect for Links */
-      #site-header nav a:hover {
+      #site-header nav a:hover,
+      .main-nav a:hover {
           color: #f97316 !important;
       }
   </style>
