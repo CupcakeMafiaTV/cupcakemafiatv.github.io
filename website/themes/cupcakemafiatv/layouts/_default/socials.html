@@ -99,29 +99,54 @@
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4);
         }
 
-        /* Image Box Interactivity */
+        /* Image Box Interactivity & Hover Glow */
         .img-container {
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
+            border: 1px solid #374151;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(31, 41, 55, 0.5);
+            padding: 8px;
+            box-sizing: border-box;
         }
+
         .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
             transition: transform 0.3s ease, filter 0.3s ease;
         }
+
+        .img-container:hover {
+            transform: translateY(-3px);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 40px rgba(56, 189, 248, 0.4);
+        }
+
         .img-container:hover img {
-            transform: scale(1.03);
+            transform: scale(1.02);
             filter: brightness(1.1);
         }
 
         /* Responsive Mobile Layout Adjustments */
         @media (max-width: 768px) {
+            .main-social-container {
+                flex-direction: column !important;
+            }
             .social-grid {
                 grid-template-columns: 1fr !important;
                 max-width: 100% !important;
             }
             .image-col {
                 width: 100% !important;
+                height: auto !important;
+            }
+            .img-container {
+                height: 240px !important;
             }
         }
 
@@ -198,24 +223,24 @@
                     </div>
 
                     <!-- Container Layout -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
+                    <div class="main-social-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch;">
 
-                        <!-- Stacked Images Column -->
-                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
+                        <!-- Stacked Images Column (Stretches exactly to match right-hand grid height) -->
+                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px;">
 
                             <!-- Image 1 -->
-                            <div class="img-container" style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
+                            <div class="img-container" style="flex: 1; display: flex;" onclick="openModal(this.querySelector('img').src)">
+                                <img src="/img/social-photo-1.jpg" alt="Social Photo 1" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                             <!-- Image 2 -->
-                            <div class="img-container" style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
+                            <div class="img-container" style="flex: 1; display: flex;" onclick="openModal(this.querySelector('img').src)">
+                                <img src="/img/social-photo-2.jpg" alt="Social Photo 2" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                         </div>
 
-                        <!-- Social Cards Grid (Shrunk max-width and tighter gap) -->
+                        <!-- Social Cards Grid -->
                         <div class="social-grid" style="flex: 1; max-width: 820px; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; align-content: start;">
 
                             <!-- Twitch -->
@@ -350,7 +375,7 @@
                                 </div>
                             </a>
 
-                            <!-- OP.GG (Updated Icon to chart-simple) -->
+                            <!-- OP.GG -->
                             <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card">
                                 <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
                                     <div style="font-size: 24px; color: #3b82f6; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
