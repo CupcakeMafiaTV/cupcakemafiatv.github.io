@@ -3,9 +3,8 @@
 
     {{- partial "head.html" . -}}
 
-    <!-- Font Awesome & Lightbox2 CDN -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 
     <style>
         /* Card Hover Animations & Scale */
@@ -39,6 +38,28 @@
             .image-col {
                 width: 100% !important;
             }
+        }
+
+        /* Modal Dialog Styling */
+        #img-modal {
+            border: none;
+            background: transparent;
+            padding: 0;
+            max-width: 90vw;
+            max-height: 90vh;
+            outline: none;
+        }
+        #img-modal::backdrop {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+        }
+        #img-modal-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+            object-fit: contain;
+            display: block;
         }
     </style>
 
@@ -97,23 +118,19 @@
                         <!-- Stacked Images Column -->
                         <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 16px;">
                             
-                            <!-- Image 1 with Lightbox Modal -->
-                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;">
-                                <a href="/img/social-photo-1.jpg" data-lightbox="gallery" data-title="Setup Photo 1" style="width: 100%; height: 100%; display: block; cursor: zoom-in;" onerror="this.href='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop'">
-                                    <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
-                                </a>
+                            <!-- Image 1 -->
+                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex; cursor: zoom-in;" onclick="openModal(this.querySelector('img').src)">
+                                <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
-                            <!-- Image 2 with Lightbox Modal -->
-                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;">
-                                <a href="/img/social-photo-2.jpg" data-lightbox="gallery" data-title="Setup Photo 2" style="width: 100%; height: 100%; display: block; cursor: zoom-in;" onerror="this.href='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop'">
-                                    <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
-                                </a>
+                            <!-- Image 2 -->
+                            <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex; cursor: zoom-in;" onclick="openModal(this.querySelector('img').src)">
+                                <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
                             </div>
 
                         </div>
 
-                        <!-- Social Cards Grid (Fully Clickable & Responsive) -->
+                        <!-- Social Cards Grid -->
                         <div class="social-grid" style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: start;">
                             
                             <!-- Twitch -->
@@ -300,8 +317,24 @@
 
         {{- partial "socials.html" . -}}
 
-        <!-- Lightbox JS for Modal Image Zooming -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"></script>
+        <!-- Image Lightbox Modal -->
+        <dialog id="img-modal" onclick="closeModal()">
+            <img id="img-modal-img" src="" alt="Enlarged setup view">
+        </dialog>
+
+        <script>
+            const modal = document.getElementById('img-modal');
+            const modalImg = document.getElementById('img-modal-img');
+
+            function openModal(src) {
+                modalImg.src = src;
+                modal.showModal();
+            }
+
+            function closeModal() {
+                modal.close();
+            }
+        </script>
 
     </body>
 </html>
