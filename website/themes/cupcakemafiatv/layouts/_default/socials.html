@@ -27,7 +27,7 @@
             display: inline-block;
         }
 
-        /* New Button Styling based on Provided Image */
+        /* Social Card Base Styling */
         .social-card {
             background-color: #172033;
             border: 1px solid #233047;
@@ -37,16 +37,66 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none !important;
         }
 
+        /* Strong Brand-Colored Glow Hover Effects */
         .social-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             background-color: #1c273e;
-            border-color: #334361;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-card[href*="twitch.tv"]:hover {
+            border-color: #a855f7;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
+        }
+
+        .social-card[href*="youtube.com"]:hover {
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 40px rgba(239, 68, 68, 0.4);
+        }
+
+        .social-card[href*="instagram.com"]:hover {
+            border-color: #ec4899;
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(236, 72, 153, 0.4);
+        }
+
+        .social-card[href*="x.com"]:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 40px rgba(56, 189, 248, 0.4);
+        }
+
+        .social-card[href*="tiktok.com"]:hover {
+            border-color: #2dd4bf;
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.8), 0 0 40px rgba(45, 212, 191, 0.4);
+        }
+
+        .social-card[href*="fourthwall.com"]:hover {
+            border-color: #eab308;
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.8), 0 0 40px rgba(234, 179, 8, 0.4);
+        }
+
+        .social-card[href*="discord.com"]:hover {
+            border-color: #818cf8;
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.8), 0 0 40px rgba(129, 140, 248, 0.4);
+        }
+
+        .social-card[href*="spotify.com"]:hover {
+            border-color: #22c55e;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.8), 0 0 40px rgba(34, 197, 94, 0.4);
+        }
+
+        .social-card[href*="reddit.com"]:hover {
+            border-color: #f97316;
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.8), 0 0 40px rgba(249, 115, 22, 0.4);
+        }
+
+        .social-card[href*="op.gg"]:hover,
+        .social-card[href*="leagueofgraphs.com"]:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4);
         }
 
         /* Image Box Interactivity */
@@ -195,20 +245,7 @@
                                 <span id="youtube-live-badge" class="live-badge" style="display: none;">LIVE</span>
                             </a>
 
-                            <!-- YouTube VODs -->
-                            <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
-                                        <i class="fa-solid fa-video"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">YouTube VODs</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Full stream archives</div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- Instagram -->
+                            <!-- Instagram (Swapped to position 3) -->
                             <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card">
                                 <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
                                     <div style="font-size: 26px; color: #ec4899; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
@@ -217,6 +254,19 @@
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Instagram</div>
                                         <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Photos, stories & life updates</div>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- YouTube VODs (Swapped to position 4 & updated icon) -->
+                            <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card">
+                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
+                                    <div style="font-size: 26px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </div>
+                                    <div style="overflow: hidden;">
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">YouTube VODs</div>
+                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Full stream archives</div>
                                     </div>
                                 </div>
                             </a>
