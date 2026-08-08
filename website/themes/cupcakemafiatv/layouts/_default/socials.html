@@ -8,7 +8,8 @@
 
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full bg-gray-900 overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff;">
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background-color: #0f172a;">        
+        <!-- Sticky Footer Layout: flex-col with min-h-screen -->
+        <div id="site-wrapper" class="flex flex-col min-h-screen js-site-wrapper" style="background-color: #0f172a;">        
         
             <div class="header-wrapper text-white" style="background-color: #0f172a;">
 
@@ -43,8 +44,8 @@
             <!-- Mobile Menu -->
             {{- partial "mobile_menu.html" . -}}
 
-            <!-- Main Content Area -->
-            <main id="main-content" style="padding: 24px 24px 0px 24px; background-color: #0f172a;">
+            <!-- Main Content Area: flex-grow pushes footer to bottom -->
+            <main id="main-content" class="flex-grow" style="padding: 24px 24px 40px 24px; background-color: #0f172a;">
                 <div style="max-width: 1400px; margin: 0 auto; font-family: sans-serif;">
                     
                     <!-- Title Banner -->
@@ -62,12 +63,16 @@
                             
                             <!-- Image 1 -->
                             <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;">
-                                <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop';">
+                                <a href="/img/social-photo-1.jpg" target="_blank" style="width: 100%; height: 100%; display: block; cursor: pointer; text-decoration: none;" title="Click to view full size">
+                                    <img src="/img/social-photo-1.jpg" alt="Social Photo 1" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop'; this.parentElement.href=this.src;">
+                                </a>
                             </div>
 
                             <!-- Image 2 -->
                             <div style="background: rgba(31, 41, 55, 0.5); border: 1px solid #374151; border-radius: 12px; padding: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); flex: 1; min-height: 260px; display: flex;">
-                                <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712;" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop';">
+                                <a href="/img/social-photo-2.jpg" target="_blank" style="width: 100%; height: 100%; display: block; cursor: pointer; text-decoration: none;" title="Click to view full size">
+                                    <img src="/img/social-photo-2.jpg" alt="Social Photo 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; background-color: #030712; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop'; this.parentElement.href=this.src;">
+                                </a>
                             </div>
 
                         </div>
@@ -75,7 +80,7 @@
                         <!-- Social Cards Grid -->
                         <div style="flex: 1; min-width: 320px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: start;">
                             
-                            <!-- Row 1 Left: Twitch (with Live Badge) -->
+                            <!-- Row 1 Left: Twitch -->
                             <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 0 16px rgba(168, 85, 247, 0.15);">
                                 <div style="display: flex; align-items: center; gap: 18px; overflow: hidden;">
                                     <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(168, 85, 247, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #a855f7; flex-shrink: 0;">
@@ -93,7 +98,7 @@
                                 </span>
                             </div>
 
-                            <!-- Row 1 Right: YouTube Main (with Live Badge) -->
+                            <!-- Row 1 Right: YouTube Main -->
                             <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 0 16px rgba(239, 68, 68, 0.15);">
                                 <div style="display: flex; align-items: center; gap: 18px; overflow: hidden;">
                                     <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(239, 68, 68, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #ef4444; flex-shrink: 0;">
@@ -137,7 +142,7 @@
                                 </div>
                             </div>
 
-                            <!-- Row 3 Left: X (Twitter) -->
+                            <!-- Row 3 Left: X -->
                             <div style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(148, 163, 184, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(148, 163, 184, 0.15);">
                                 <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(148, 163, 184, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #94a3b8; flex-shrink: 0;">
                                     <i class="fa-brands fa-x-twitter"></i>
@@ -163,7 +168,7 @@
                                 </div>
                             </div>
 
-                            <!-- Row 4 Left: Fourthwall / Merch -->
+                            <!-- Row 4 Left: Fourthwall -->
                             <div style="background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(30, 41, 59, 0.9) 70%), #1e293b; border: 1px solid rgba(249, 115, 22, 0.4); border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px; box-shadow: 0 0 16px rgba(249, 115, 22, 0.15);">
                                 <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(249, 115, 22, 0.2); display: flex; align-items: center; justify-content: center; font-size: 22px; color: #f97316; flex-shrink: 0;">
                                     <i class="fa-solid fa-store"></i>
@@ -248,7 +253,11 @@
                 </div>               
             </main>            
 
-            {{- partial "footer.html" . -}}
+            <!-- Footer anchored at the bottom -->
+            <footer class="mt-auto">
+                {{- partial "footer.html" . -}}
+            </footer>
+            
             {{- partial "scripts.html" . -}}
 
         </div>
