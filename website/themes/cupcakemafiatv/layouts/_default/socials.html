@@ -32,11 +32,11 @@
             background-color: #172033;
             border: 1px solid #233047;
             border-radius: 12px;
-            padding: 20px 24px;
+            padding: 16px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
+            gap: 14px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none !important;
@@ -118,6 +118,7 @@
         @media (max-width: 768px) {
             .social-grid {
                 grid-template-columns: 1fr !important;
+                max-width: 100% !important;
             }
             .image-col {
                 width: 100% !important;
@@ -214,18 +215,18 @@
 
                         </div>
 
-                        <!-- Social Cards Grid -->
-                        <div class="social-grid" style="flex: 1; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-content: start;">
+                        <!-- Social Cards Grid (Shrunk max-width and tighter gap) -->
+                        <div class="social-grid" style="flex: 1; max-width: 820px; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; align-content: start;">
 
                             <!-- Twitch -->
                             <a href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #a855f7; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #a855f7; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-twitch"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Twitch</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Catch stream live broadcasts</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Twitch</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Catch stream live broadcasts</div>
                                     </div>
                                 </div>
                                 <span id="twitch-live-badge" class="live-badge" style="display: none;">LIVE</span>
@@ -233,144 +234,144 @@
 
                             <!-- YouTube Main -->
                             <a href="https://www.youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-youtube"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">YouTube</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Main channel uploads & edits</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">YouTube</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Main channel uploads & edits</div>
                                     </div>
                                 </div>
                                 <span id="youtube-live-badge" class="live-badge" style="display: none;">LIVE</span>
                             </a>
 
-                            <!-- Instagram (Swapped to position 3) -->
+                            <!-- Instagram -->
                             <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #ec4899; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #ec4899; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-instagram"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Instagram</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Photos, stories & life updates</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Instagram</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Photos, stories & life updates</div>
                                     </div>
                                 </div>
                             </a>
 
-                            <!-- YouTube VODs (Swapped to position 4 & updated icon) -->
+                            <!-- YouTube VODs -->
                             <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-youtube"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">YouTube VODs</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Full stream archives</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">YouTube VODs</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Full stream archives</div>
                                     </div>
                                 </div>
                             </a>
 
-                            <!-- X / Twitter -->
+                            <!-- X -->
                             <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #38bdf8; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #38bdf8; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-x-twitter"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">X / Twitter</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Announcements & daily thoughts</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">X</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Announcements & daily thoughts</div>
                                     </div>
                                 </div>
                             </a>
 
                             <!-- TikTok -->
                             <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #2dd4bf; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #2dd4bf; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-tiktok"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">TikTok</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Short clips & highlights</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">TikTok</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Short clips & highlights</div>
                                     </div>
                                 </div>
                             </a>
 
                             <!-- Merch Shop -->
                             <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #eab308; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #eab308; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-solid fa-bag-shopping"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Merch Shop</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Official Fourthwall apparel & gear</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Merch Shop</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Official Fourthwall apparel & gear</div>
                                     </div>
                                 </div>
                             </a>
 
                             <!-- Discord -->
                             <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #818cf8; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #818cf8; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-discord"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Discord</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Join our community server</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Discord</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Join our community server</div>
                                     </div>
                                 </div>
                             </a>
 
                             <!-- Spotify -->
                             <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #22c55e; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #22c55e; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-spotify"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Spotify</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Stream playlists & music</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Spotify</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Stream playlists & music</div>
                                     </div>
                                 </div>
                             </a>
 
                             <!-- Reddit -->
                             <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #f97316; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #f97316; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-brands fa-reddit-alien"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">Reddit</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Community subreddit</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Reddit</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Community subreddit</div>
                                     </div>
                                 </div>
                             </a>
 
-                            <!-- OP.GG -->
+                            <!-- OP.GG (Updated Icon to chart-simple) -->
                             <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #3b82f6; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
-                                        <i class="fa-solid fa-gamepad"></i>
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #3b82f6; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
+                                        <i class="fa-solid fa-chart-simple"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">OP.GG</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">League of Legends stats</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">OP.GG</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">League of Legends stats</div>
                                     </div>
                                 </div>
                             </a>
 
                             <!-- League of Graphs -->
                             <a href="https://www.leagueofgraphs.com/summoner/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <div style="display: flex; align-items: center; gap: 16px; overflow: hidden;">
-                                    <div style="font-size: 26px; color: #0EA5E9; display: flex; align-items: center; justify-content: center; width: 32px; flex-shrink: 0;">
+                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
+                                    <div style="font-size: 24px; color: #0EA5E9; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
                                         <i class="fa-solid fa-chart-line"></i>
                                     </div>
                                     <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 16px; line-height: 1.2; margin-bottom: 4px;">League of Graphs</div>
-                                        <div style="font-size: 13px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Detailed gameplay analytics</div>
+                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">League of Graphs</div>
+                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Detailed gameplay analytics</div>
                                     </div>
                                 </div>
                             </a>
