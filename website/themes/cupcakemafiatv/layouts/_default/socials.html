@@ -50,11 +50,10 @@
             display: inline-block;
         }
 
-        /* Social Card Base Styling with Glassmorphic Transparency */
+        /* High-Contrast Elevated Social Card Styling */
         .social-card {
-            background-color: rgba(23, 32, 51, 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid #233047;
+            background-color: #1e293b; /* Distinct elevated slate grey */
+            border: 1px solid #334155;  /* Defined, crisp light-grey border */
             border-radius: 12px;
             padding: 22px 24px;
             display: flex;
@@ -64,12 +63,18 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Subtle drop shadow for depth */
         }
 
-        /* Strong Brand-Colored Glow Hover Effects */
+        /* Subtitle Text Brightness Boost */
+        .social-card div div:last-child {
+            color: #cbd5e1 !important; /* Brighter grey for high legibility */
+        }
+
+        /* Hover Elevation & Brand Glow Effects */
         .social-card:hover {
             transform: translateY(-3px);
-            background-color: #1c273e;
+            background-color: #273549; /* Brightens up even more on hover */
         }
 
         .social-card[href*="twitch.tv"]:hover {
@@ -275,7 +280,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Twitch</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Catch stream live broadcasts</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Catch stream live broadcasts</div>
                                     </div>
                                 </div>
                                 <span id="twitch-live-badge" class="live-badge" style="display: none;">LIVE</span>
@@ -289,7 +294,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">YouTube</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Main channel uploads & edits</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Main channel uploads & edits</div>
                                     </div>
                                 </div>
                                 <span id="youtube-live-badge" class="live-badge" style="display: none;">LIVE</span>
@@ -303,7 +308,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Instagram</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Photos, stories & life updates</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Photos, stories & life updates</div>
                                     </div>
                                 </div>
                             </a>
@@ -316,7 +321,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">YouTube VODs</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Full stream archives</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Full stream archives</div>
                                     </div>
                                 </div>
                             </a>
@@ -329,7 +334,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">X</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Announcements & daily thoughts</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Announcements & daily thoughts</div>
                                     </div>
                                 </div>
                             </a>
@@ -342,7 +347,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">TikTok</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Short clips & highlights</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Short clips & highlights</div>
                                     </div>
                                 </div>
                             </a>
@@ -355,7 +360,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Merch Shop</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Official Fourthwall apparel & gear</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Official Fourthwall apparel & gear</div>
                                     </div>
                                 </div>
                             </a>
@@ -368,7 +373,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Discord</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Join our community server</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Join our community server</div>
                                     </div>
                                 </div>
                             </a>
@@ -381,7 +386,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Spotify</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Stream playlists & music</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Stream playlists & music</div>
                                     </div>
                                 </div>
                             </a>
@@ -394,7 +399,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Reddit</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Community subreddit</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Community subreddit</div>
                                     </div>
                                 </div>
                             </a>
@@ -407,7 +412,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">OP.GG</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">League of Legends stats</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">League of Legends stats</div>
                                     </div>
                                 </div>
                             </a>
@@ -420,7 +425,7 @@
                                     </div>
                                     <div style="overflow: hidden;">
                                         <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">League of Graphs</div>
-                                        <div style="font-size: 12px; color: #94a3b8; line-height: 1.2; font-weight: 400;">Detailed gameplay analytics</div>
+                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Detailed gameplay analytics</div>
                                     </div>
                                 </div>
                             </a>
