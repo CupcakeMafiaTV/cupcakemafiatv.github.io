@@ -49,15 +49,19 @@
           transition: color 0.2s ease-in-out;
       }
 
-      /* Recolor Navigation Arrow Markers (::after and ::before) to Orange */
+      /* Fix Arrow Marker Colors to Solid Orange */
       #site-header nav a::after,
       #site-header nav a::before,
       .main-nav a::after,
       .main-nav a::before,
       ul li a::after,
       ul li a::before {
-          background-color: #f97316 !important; /* Bright orange fill */
           color: #f97316 !important;
+          background-color: transparent !important;
+          background-image: none !important;
+          content: ">" !important; /* Forces standard clean arrow marker */
+          font-weight: 900 !important;
+          margin-right: 6px !important;
       }
 
       /* Target SVG or Arrow class fallbacks */
