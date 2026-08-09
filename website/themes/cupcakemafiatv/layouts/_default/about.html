@@ -162,7 +162,7 @@
                 </div>
             </main>
 
-            <!-- Custom Poster Card Styles (Single Line Title Centered in Overlay) -->
+            <!-- Custom Poster Card Styles (With Glow Effect) -->
             <style>
                 .poster-grid {
                     display: grid;
@@ -195,7 +195,6 @@
                     bottom: 0;
                     left: 0;
                     right: 0;
-                    /* Balanced gradient height to position the single title nicely near the bottom */
                     height: 55px;
                     padding: 0 10px;
                     background: linear-gradient(to top, rgba(9, 14, 23, 0.98) 0%, rgba(9, 14, 23, 0.85) 60%, transparent 100%);
@@ -229,10 +228,11 @@
                     transition: opacity 0.2s ease, transform 0.2s ease;
                 }
 
+                /* Hover Glow & Lift Effect */
                 .poster-card:hover {
-                    transform: translateY(-4px);
-                    border-color: rgba(255, 255, 255, 0.3);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.2);
+                    transform: translateY(-5px);
+                    border-color: rgba(56, 189, 248, 0.6);
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.35);
                 }
 
                 .poster-card:hover img {
