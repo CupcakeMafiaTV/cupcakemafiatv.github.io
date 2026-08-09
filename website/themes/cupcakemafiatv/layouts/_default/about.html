@@ -88,7 +88,6 @@
                                     <img src="/img/League of Legends.jpg" alt="League of Legends">
                                     <div class="poster-overlay">
                                         <div class="poster-title">League of Legends</div>
-                                        <div class="poster-sub">Competitive / MOBA</div>
                                     </div>
                                 </a>
 
@@ -98,7 +97,6 @@
                                     <img src="/img/ScottPilgrim.jpg" alt="Scott Pilgrim vs The World">
                                     <div class="poster-overlay">
                                         <div class="poster-title">Scott Pilgrim vs. The World</div>
-                                        <div class="poster-sub">Beat 'em Up</div>
                                     </div>
                                 </a>
 
@@ -108,7 +106,6 @@
                                     <img src="/img/Shantae7.jpg" alt="Shantae and the Seven Sirens">
                                     <div class="poster-overlay">
                                         <div class="poster-title">Shantae: 7 Sirens</div>
-                                        <div class="poster-sub">Action Platformer</div>
                                     </div>
                                 </a>
 
@@ -118,7 +115,6 @@
                                     <img src="/img/Pokemon Go.jpg" alt="Pokémon GO">
                                     <div class="poster-overlay">
                                         <div class="poster-title">Pokémon GO</div>
-                                        <div class="poster-sub">Mobile / Collection</div>
                                     </div>
                                 </a>
 
@@ -128,7 +124,6 @@
                                     <img src="/img/Grounded.jpg" alt="Grounded">
                                     <div class="poster-overlay">
                                         <div class="poster-title">Grounded</div>
-                                        <div class="poster-sub">Survival Adventure</div>
                                     </div>
                                 </a>
 
@@ -138,7 +133,6 @@
                                     <img src="/img/River City Girls.jpg" alt="River City Girls">
                                     <div class="poster-overlay">
                                         <div class="poster-title">River City Girls</div>
-                                        <div class="poster-sub">Beat 'em Up</div>
                                     </div>
                                 </a>
 
@@ -148,7 +142,6 @@
                                     <img src="/img/Mouse PI.jpg" alt="MOUSE: P.I. For Hire">
                                     <div class="poster-overlay">
                                         <div class="poster-title">MOUSE: P.I. For Hire</div>
-                                        <div class="poster-sub">FPS / Noir</div>
                                     </div>
                                 </a>
 
@@ -158,7 +151,6 @@
                                     <img src="/img/WoW.jpg" alt="World of Warcraft">
                                     <div class="poster-overlay">
                                         <div class="poster-title">World of Warcraft</div>
-                                        <div class="poster-sub">MMORPG</div>
                                     </div>
                                 </a>
 
@@ -170,7 +162,7 @@
                 </div>
             </main>
 
-            <!-- Custom Poster Card Styles (Enhanced Text Contrast & Single-Line Ellipsis) -->
+            <!-- Custom Poster Card Styles (Single Line Title Centered in Overlay) -->
             <style>
                 .poster-grid {
                     display: grid;
@@ -203,35 +195,23 @@
                     bottom: 0;
                     left: 0;
                     right: 0;
-                    /* Stronger gradient overlay to cleanly separate text from box art */
-                    padding: 24px 10px 10px 10px;
-                    background: linear-gradient(to top, rgba(9, 14, 23, 0.98) 0%, rgba(9, 14, 23, 0.85) 60%, rgba(9, 14, 23, 0.4) 85%, transparent 100%);
+                    /* Balanced gradient height to position the single title nicely near the bottom */
+                    height: 55px;
+                    padding: 0 10px;
+                    background: linear-gradient(to top, rgba(9, 14, 23, 0.98) 0%, rgba(9, 14, 23, 0.85) 60%, transparent 100%);
                     display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
+                    align-items: center;
                 }
 
                 .poster-title {
                     color: #ffffff;
                     font-weight: 700;
                     font-size: 12px;
-                    line-height: 1.2;
-                    margin-bottom: 2px;
-                    /* Prevent ugly wrapping and truncate cleanly with ellipsis */
+                    width: 100%;
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-                }
-
-                .poster-sub {
-                    font-size: 10px;
-                    color: #cbd5e1;
-                    font-weight: 600;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
                 }
 
                 .poster-ext {
