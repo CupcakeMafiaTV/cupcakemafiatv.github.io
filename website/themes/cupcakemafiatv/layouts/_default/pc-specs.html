@@ -3,214 +3,10 @@
 
     {{- partial "head.html" . -}}
 
-    <!-- Font Awesome for Setup Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Font Awesome Brands for PlayStation Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css">
-
-    <style>
-        /* Base Spec Card Styles */
-        .spec-card {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            text-decoration: none;
-            display: grid;
-            grid-template-columns: 44px 1fr;
-            align-items: center;
-            gap: 16px;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            padding: 16px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .spec-card:hover {
-            transform: translateY(-3px);
-            background: rgba(30, 41, 59, 0.9);
-        }
-
-        /* Section Hover Colors (Borders & Glows) */
-        .card-system:hover {
-            border-color: #ef4444; /* Red */
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 40px rgba(239, 68, 68, 0.3);
-        }
-
-        .card-audio:hover {
-            border-color: #eab308; /* Yellow */
-            box-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 0 0 40px rgba(234, 179, 8, 0.3);
-        }
-
-        .card-camera:hover {
-            border-color: #f97316; /* Orange */
-            box-shadow: 0 0 20px rgba(249, 115, 22, 0.6), 0 0 40px rgba(249, 115, 22, 0.3);
-        }
-
-        .card-periph:hover {
-            border-color: #22c55e; /* Green */
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(34, 197, 94, 0.3);
-        }
-
-        .card-desk:hover {
-            border-color: #ec4899; /* Pink */
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6), 0 0 40px rgba(236, 72, 153, 0.3);
-        }
-
-        .card-console:hover {
-            border-color: #a855f7; /* Purple */
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
-        }
-
-        /* External Link Arrow Indicators (Always visible and white) */
-        .spec-card .ext-icon {
-            position: absolute;
-            top: 12px;
-            right: 14px;
-            font-size: 11px;
-            color: #ffffff;
-            opacity: 1;
-            transform: translate(0, 0);
-            transition: all 0.2s ease;
-        }
-
-        /* Layout Container */
-        .specs-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            align-items: stretch;
-        }
-
-        /* Image Column Sizing */
-        .img-column {
-            width: 320px;
-            max-width: 100%;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .img-container {
-            position: relative;
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
-            padding: 8px;
-            display: flex;
-            flex: 1;
-            min-height: 180px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Image Hover Effect (Glowing white only on hover) */
-        .img-container:hover {
-            transform: translateY(-3px);
-            border-color: #ffffff;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.4);
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .img-container:hover img {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
-
-        /* Grid Layout */
-        .specs-grid {
-            flex: 1;
-            min-width: 300px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            align-content: start;
-        }
-
-        /* Category Headers */
-        .category-header {
-            grid-column: 1 / -1;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: #ffffff;
-            margin-top: 10px;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .category-header::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);
-        }
-
-        /* Section Icon Colors */
-        .system-icon  { color: #ef4444 !important; }  /* RED */
-        .audio-icon   { color: #eab308 !important; }  /* YELLOW */
-        .camera-icon  { color: #f97316 !important; }  /* ORANGE */
-        .periph-icon  { color: #22c55e !important; }  /* GREEN */
-        .desk-icon    { color: #ec4899 !important; }  /* PINK */
-        .console-icon { color: #a855f7 !important; }  /* PURPLE */
-
-        /* Lightbox Dialog */
-        #img-modal {
-            border: none;
-            background: transparent;
-            padding: 0;
-            max-width: 90vw;
-            max-height: 90vh;
-            outline: none;
-        }
-
-        #img-modal::backdrop {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(6px);
-        }
-
-        #img-modal-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
-            object-fit: contain;
-            display: block;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .specs-grid {
-                grid-template-columns: 1fr;
-            }
-            .img-column {
-                width: 100%;
-            }
-            .img-container {
-                height: 200px;
-            }
-        }
-    </style>
-
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
-            
+        
             <div class="header-wrapper text-white" style="background: transparent;">
 
                 <header id="site-header" class="text-white">
@@ -219,21 +15,24 @@
 
                             <!-- Logo -->
                             {{- partial "logo.html" . -}}
-
+                            <!-- Logo / End -->
+    
                             <!-- Navigation (Desktop) -->
                             {{- partial "navigation.html" . -}}
+                            <!-- Navigation (Desktop) / End -->
 
                             <!-- Header Controls -->
                             <div class="flex ml-auto -mr-3">
                                 <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu"></use>
-                                    </svg>
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprites2.svg#menu-close"></use>
-                                    </svg>
+                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu"></use>
+                                </svg>
+                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                </svg>
                                 </button>
                             </div>
+                            <!-- Header Controls / End -->
 
                         </nav>
                     </div>
@@ -243,449 +42,187 @@
 
             <!-- Mobile Menu -->
             {{- partial "mobile_menu.html" . -}}
-
-            <!-- Main Content Area -->
+            <!-- Mobile Menu / End -->
+            
             <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
-                <div style="max-width: 1100px; margin: 0 auto; font-family: sans-serif;">
+                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
                     
-                    <!-- Title Banner -->
-                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 12px; margin-bottom: 24px;">
+                    <!-- Exact Match Header Setup & Size to PC Specs -->
+                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 12px; margin-bottom: 35px;">
                         <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
-                            Streaming Gear
+                            About Me
                         </h1>
                     </div>
 
-                    <!-- Container Layout -->
-                    <div class="specs-container">
+                    <div class="flex flex-col gap-y-12">
                         
-                        <!-- Stacked Images Column -->
-                        <div class="img-column">
-                            
-                            <!-- Image 1 Container -->
-                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/pc-setup-1.jpg" alt="Setup Image 1" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=800&auto=format&fit=crop';">
+                        <!-- Bio Section with Increased Font Size -->
+                        <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
+                            <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
+                                <a href="#">
+                                 <div class="hidden dark:block rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
+                                    <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
+                                 </div>
+                                </a>
                             </div>
-
-                            <!-- Image 2 Container -->
-                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/pc-setup-2.jpg" alt="Setup Image 2" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616469829941-c7200edec809?q=80&w=800&auto=format&fit=crop';">
+                            <div class="col-span-full md:col-span-8">
+                                <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
+                                 Hello! I'm Cody, a variety live streamer from Canada and the self proclaimed First Try King. In between countlessly quoting The Simpsons and my other favorite TV sitcoms, I'm typically found bouncing between playing several different competitive style games such as League of Legends or Fortnite while continuing to try and obtain 100% completion and achievements within my endlessly large Steam library. By day I'm just your average computer technician but by night I'm your much inferior trashcan teammate that always seems to let you down within competitive games. As someone who enjoys tinkering with technology, combining that skillset with my overall love of gaming has made streaming a perfect match.<br/><br/>
+                                 Beyond streaming, I’m a massive collector of nerdy memorabilia, Funko POPs and trading cards and spend a lot of my free time looking for my next sought-after treasure to add to my collection. I’m a big fan of DC Comics and the Batman Universe especially Punchline & Harley Quinn and am most likely the only person that actually enjoyed the game Suicide Squad: Kill the Justice League. Some of my other all time favorite fandoms include Scott Pilgrim vs. The World, WWE/Wrestling, Pokémon, Yu-Gi-Oh & Digimon.
+                                </div>
                             </div>
-
-                            <!-- Image 3 Container -->
-                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/pc-setup-3.jpg" alt="Setup Image 3" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?q=80&w=800&auto=format&fit=crop';">
-                            </div>
-
                         </div>
 
-                        <!-- Specs Cards Grid -->
-                        <div class="specs-grid">
-                            
-                            <!-- Category: Core Components -->
-                            <div class="category-header">System Specs</div>
+                        <!-- Favorite Games Poster Grid Section -->
+                        <div style="margin-top: 10px;">
+                            <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                                Favorite Games & Obsessions
+                                <span style="flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);"></span>
+                            </div>
 
-                            <!-- CPU -->
-                            <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-microchip"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        AMD Ryzen 7 9800X3D
+                            <div class="poster-grid">
+                                
+                                <!-- Poster 1: League of Legends -->
+                                <a href="https://www.leagueoflegends.com" target="_blank" rel="noopener noreferrer" class="poster-card">
+                                    <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                                    <img src="https://static-cdn.jtvnw.net/ttv-boxart/21779_IGDB-285x380.jpg" alt="League of Legends">
+                                    <div class="poster-overlay">
+                                        <div class="poster-title">League of Legends</div>
+                                        <div class="poster-sub">Competitive / MOBA</div>
                                     </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">CPU</div>
-                                </div>
-                            </a>
+                                </a>
 
-                            <!-- GPU -->
-                            <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-desktop"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        MSI GeForce RTX 5080
+                                <!-- Poster 2: Fortnite -->
+                                <a href="https://www.fortnite.com" target="_blank" rel="noopener noreferrer" class="poster-card">
+                                    <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                                    <img src="https://static-cdn.jtvnw.net/ttv-boxart/33214-285x380.jpg" alt="Fortnite">
+                                    <div class="poster-overlay">
+                                        <div class="poster-title">Fortnite</div>
+                                        <div class="poster-sub">Battle Royale</div>
                                     </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">GPU</div>
-                                </div>
-                            </a>
+                                </a>
 
-                            <!-- RAM -->
-                            <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory?speed=6000mt%2Fs&total%20(kit)%20capacity=64gb&kit=kit%20of%202&cas%20latency=30&dram%20density=16gbit&profile%20type=amd%20expo%20%2F%20intel%20xmp&color=black" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-memory"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Kingston 6000MHz DDR5 (64GB)
+                                <!-- Poster 3: Scott Pilgrim -->
+                                <a href="https://www.ubisoft.com" target="_blank" rel="noopener noreferrer" class="poster-card">
+                                    <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                                    <img src="https://static-cdn.jtvnw.net/ttv-boxart/511598-285x380.jpg" alt="Scott Pilgrim">
+                                    <div class="poster-overlay">
+                                        <div class="poster-title">Scott Pilgrim</div>
+                                        <div class="poster-sub">All-Time Favorite Fandom</div>
                                     </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">RAM</div>
-                                </div>
-                            </a>
+                                </a>
 
-                            <!-- Motherboard -->
-                            <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-hard-drive"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        X870E AORUS ELITE
+                                <!-- Poster 4: Pokémon & Yu-Gi-Oh -->
+                                <a href="https://www.pokemon.com" target="_blank" rel="noopener noreferrer" class="poster-card">
+                                    <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                                    <img src="https://static-cdn.jtvnw.net/ttv-boxart/513181-285x380.jpg" alt="Pokémon & Yu-Gi-Oh">
+                                    <div class="poster-overlay">
+                                        <div class="poster-title">Pokémon & Trading Cards</div>
+                                        <div class="poster-sub">Collection & Obsession</div>
                                     </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Motherboard</div>
-                                </div>
-                            </a>
+                                </a>
 
-                              <!-- SSD 1 -->
-                            <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd?sku=WDS200T2X0E-00BCA0" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-hard-drive"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        WD Black NVMe 2TB
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">SSD #1</div>
-                                </div>
-                            </a>
-
-                            <!-- SSD 2 -->
-                            <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn7100-nvme-internal-ssd?sku=WDS400T4X0E-00CJA0" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-hard-drive"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        WD Black NVMe 4TB
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">SSD #2</div>
-                                </div>
-                            </a>
-
-                            <!-- Capture Card -->
-                            <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-video"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        AVerMedia GC573
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Capture Card</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Streaming & Audio -->
-                            <div class="category-header">Audio</div>
-
-                            <!-- Microphone -->
-                            <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-microphone"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Shure SM7B
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Microphone</div>
-                                </div>
-                            </a>
-
-                             <!-- Mic Arm -->
-                            <a href="https://rode.com/en-ca/products/psa1-plus" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-sliders"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        RODE PSA1 + Studio Arm
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Mic Arm</div>
-                                </div>
-                            </a>
-
-                            <!-- Audio Mixer -->
-                            <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-sliders"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        RodeCaster Duo
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Audio Mixer</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Camera -->
-                            <div class="category-header">Camera</div>
-
-                            <!-- Camera -->
-                            <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="spec-card card-camera">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="camera-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Canon EOS M200
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Camera</div>
-                                </div>
-                            </a>
-
-                            <!-- Elgato CAM Link 4K -->
-                            <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer" class="spec-card card-camera">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="camera-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Elgato CAM Link 4K
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">CAM Link</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Peripherals -->
-                            <div class="category-header">Peripherals</div>
-
-                            <!-- Mouse -->
-                            <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-computer-mouse"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Razer Naga V2 HyperSpeed
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Mouse</div>
-                                </div>
-                            </a>
-
-                            <!-- Keyboard -->
-                            <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-keyboard"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Razer Huntsman V3 Pro
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Keyboard</div>
-                                </div>
-                            </a>
-
-                            <!-- Monitor -->
-                            <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-tv"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        HP Omen 27" QHD 280Hz (x3)
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Monitor</div>
-                                </div>
-                            </a>
-
-                            <!-- Headphones -->
-                            <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer" class="spec-card card-periph">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="periph-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-headphones"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        HyperX Cloud III Wired
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Headphones</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Miscellaneous -->
-                            <div class="category-header">Miscellaneous</div>
-
-                            <!-- Desk -->
-                            <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-table"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Secretlab MAGNUS Pro XL
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Desk</div>
-                                </div>
-                            </a>
-
-                            <!-- Chair -->
-                            <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-chair"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Secretlab TITAN Evo XL
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Chair</div>
-                                </div>
-                            </a>
-
-                            <!-- Green Screen -->
-                            <a href="https://www.elgato.com/ca/en/p/green-screen" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-image"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Elgato Green Screen XL
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Green Screen</div>
-                                </div>
-                            </a>
-
-                            <!-- Stream Deck XL -->
-                            <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-gamepad"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Elgato Stream Deck XL
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Stream Deck</div>
-                                </div>
-                            </a>
-
-                            <!-- Elgato Prompter -->
-                            <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-display"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Elgato Prompter
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Teleprompter</div>
-                                </div>
-                            </a>
-
-                            <!-- Elgato Key Light -->
-                            <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-lightbulb"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Elgato Key Light (x2)
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Lights</div>
-                                </div>
-                            </a>
-
-                            <!-- Divoom Pixoo-64 (x2) -->
-                            <a href="https://www.amazon.com/Divoom-Pixoo-64-Digital-Control-Decoration/dp/B09H3YWPCH/ref=sr_1_1?crid=GXCFVM60MELD&dib=eyJ2IjoiMSJ9.GD2pPRSX8qQaFeA5SrKNmNbqYJ1xaM0giWtDLzeRiJnmIc-IM1Jid0EZKBfLY8f_V6dzEJWSvTMkg-duMcokm6IZeDAkmNC6fzG7Wl4KHRrwIQOPVrtoWaMAFcUFZ4E0cI2tn0wNG6HVksarUxBY-Frfkjs5FQig0VKfBhHHDivhZz3636NOU17fhooc7HyfZq-KQOJ6PNZUmBGeoIk7Uly4vrQJ9-QyjTKFouYUS8Y.Isk1vBXAIj07l49keeiCSAcGuJ8E3bb_RJSxcaRkHC0&dib_tag=se&keywords=divoom%2Bpixel%2B64&qid=1786287192&sprefix=divoom%2Bpixel%2B64%2Caps%2C131&sr=8-1&th=1" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-image"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Divoom Pixoo-64 (x2)
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Green Screen</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Gaming Consoles -->
-                            <div class="category-header">Gaming Consoles</div>
-
-                            <!-- Switch 2 -->
-                            <a href="https://www.nintendo.com/en-ca/gaming-systems/switch-2/features/" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-gamepad"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Nintendo Switch 2
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Console</div>
-                                </div>
-                            </a>
-
-                            <!-- 3DS XL -->
-                            <a href="https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS-XL/Nintendo-3DS-XL-727629.html" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-gamepad"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Nintendo 3DS XL
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Handheld</div>
-                                </div>
-                            </a>
-
-                             <!-- PS5 -->
-                            <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-brands fa-playstation"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        PlayStation 5
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Console</div>
-                                </div>
-                            </a>
-
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
             </main>
 
-            <!-- Footer Partial -->
+            <!-- Custom Poster Card Styles -->
+            <style>
+                .poster-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    gap: 16px;
+                }
+
+                .poster-card {
+                    position: relative;
+                    height: 280px;
+                    border-radius: 14px;
+                    overflow: hidden;
+                    background: rgba(30, 41, 59, 0.7);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    text-decoration: none;
+                    display: block;
+                }
+
+                .poster-card img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.4s ease, filter 0.4s ease;
+                }
+
+                .poster-overlay {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    padding: 20px 14px 14px 14px;
+                    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 60%, transparent 100%);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    transition: background 0.3s ease;
+                }
+
+                .poster-title {
+                    color: #ffffff;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 1.2;
+                    margin-bottom: 3px;
+                }
+
+                .poster-sub {
+                    font-size: 11px;
+                    color: #94a3b8;
+                    font-weight: 500;
+                }
+
+                .poster-ext {
+                    position: absolute;
+                    top: 12px;
+                    right: 12px;
+                    font-size: 11px;
+                    color: #ffffff;
+                    background: rgba(15, 23, 42, 0.6);
+                    backdrop-filter: blur(4px);
+                    padding: 6px;
+                    border-radius: 50%;
+                    z-index: 2;
+                    opacity: 0.8;
+                    transition: opacity 0.2s ease, transform 0.2s ease;
+                }
+
+                .poster-card:hover {
+                    transform: translateY(-5px);
+                    border-color: rgba(255, 255, 255, 0.3);
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.2);
+                }
+
+                .poster-card:hover img {
+                    transform: scale(1.08);
+                    filter: brightness(1.1);
+                }
+
+                .poster-card:hover .poster-ext {
+                    opacity: 1;
+                    transform: scale(1.1);
+                }
+            </style>
+
             {{- partial "footer.html" . -}}
+            {{- partial "scripts.html" . -}}
 
         </div>
 
-        <!-- Lightbox Modal Dialog -->
-        <dialog id="img-modal" onclick="this.close()">
-            <img id="img-modal-img" src="" alt="Enlarged setup view">
-        </dialog>
+        {{- partial "socials.html" . -}}
 
-        <!-- Script for Lightbox -->
-        <script>
-            function openModal(imgSrc) {
-                const modal = document.getElementById('img-modal');
-                const modalImg = document.getElementById('img-modal-img');
-                modalImg.src = imgSrc;
-                modal.showModal();
-            }
-        </script>
-    </body>
+    </body> 
 </html>
