@@ -33,16 +33,6 @@
             height: 100%;
             object-fit: cover;
         }
-        .badge {
-            display: none;
-            background-color: #ff0000;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-left: 10px;
-        }
         dialog {
             background: #222;
             color: #fff;
@@ -58,11 +48,10 @@
 <body>
 
     <div class="container">
-        <h1>Welcome to the Stream <span id="twitch-live-badge" class="badge">LIVE</span></h1>
+        <h1>Welcome to the Stream</h1>
         
         <!-- YouTube Lazy Load Container -->
         <div class="video-container" id="video-box" onclick="loadYouTubeVideo(this)">
-            <!-- Thumbnail preview image matching the Jinx video -->
             <img src="https://img.youtube.com/vi/KN3OYwP8nHE/hqdefault.jpg" alt="Jinx Video Thumbnail">
         </div>
     </div>
@@ -79,7 +68,6 @@
         // YouTube Lazy Loader Function
         function loadYouTubeVideo(container) {
             const iframe = document.createElement('iframe');
-            // Updated with Jinx: Champion Spotlight video ID: KN3OYwP8nHE
             iframe.setAttribute('src', 'https://www.youtube.com/embed/KN3OYwP8nHE?autoplay=1&rel=0');
             iframe.setAttribute('title', 'YouTube video player');
             iframe.setAttribute('frameborder', '0');
@@ -108,29 +96,6 @@
         function closeModal() {
             modal.close();
         }
-
-        // Dynamic Twitch Live Check
-        async function checkTwitchLiveStatus(channelName) {
-            try {
-                const response = await fetch('https://gql.twitch.tv/gql', {
-                    method: 'POST',
-                    headers: {
-                        'Client-ID': 'kimne78kx3ncx6brogo4mv6wki5h11'
-                    },
-                    body: JSON.stringify({
-                        query: `query { user(login: "${channelName}") { stream { type } } }`
-                    })
-                });
-                const data = await response.json();
-                if (data?.data?.user?.stream?.type === 'live') {
-                    document.getElementById('twitch-live-badge').style.display = 'inline-block';
-                }
-            } catch (e) {
-                console.log('Unable to check Twitch live status', e);
-            }
-        }
-
-        checkTwitchLiveStatus('cupcakemafiatv');
     </script>
 </body>
 </html>
