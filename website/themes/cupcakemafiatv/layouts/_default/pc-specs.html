@@ -1,3 +1,8 @@
+To ensure each section has distinct colors and highlights that specific color on hover, we need to introduce unique card classes and corresponding CSS styling rules for each category (e.g., Audio, Camera, Peripherals, Desk, Consoles, etc.).
+
+Here is the updated code with distinct, vibrant color palettes mapped to every individual section:
+
+```html[cite: 1]
 <!DOCTYPE html>
 <html lang="zxx" class="h-full overflow-x-hidden dark">
 
@@ -41,9 +46,19 @@
             box-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 0 0 40px rgba(234, 179, 8, 0.3);
         }
 
+        .card-camera:hover {
+            border-color: #06b6d4;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.6), 0 0 40px rgba(6, 182, 212, 0.3);
+        }
+
         .card-periph:hover {
             border-color: #22c55e;
             box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), 0 0 40px rgba(34, 197, 94, 0.3);
+        }
+
+        .card-stream:hover {
+            border-color: #a855f7;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(168, 85, 247, 0.3);
         }
 
         .card-desk:hover {
@@ -133,7 +148,7 @@
             align-content: start;
         }
 
-        /* Category Headers (Changed to White Theme) */
+        /* Category Headers */
         .category-header {
             grid-column: 1 / -1;
             font-size: 13px;
@@ -158,7 +173,9 @@
         /* Section Icon Colors */
         .system-icon  { color: #ef4444 !important; }  /* RED */
         .audio-icon   { color: #eab308 !important; }  /* YELLOW */
+        .camera-icon  { color: #06b6d4 !important; }  /* CYAN */
         .periph-icon  { color: #22c55e !important; }  /* GREEN */
+        .stream-icon  { color: #a855f7 !important; }  /* PURPLE */
         .desk-icon    { color: #ec4899 !important; }  /* PINK */
         .console-icon { color: #38bdf8 !important; }  /* BLUE */
 
@@ -333,10 +350,10 @@
                                 </div>
                             </a>
 
-                                                        <!-- Capture Card -->
-                            <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
+                            <!-- Capture Card -->
+                            <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="spec-card card-system">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
+                                <div class="system-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-video"></i>
                                 </div>
                                 <div style="overflow: hidden;">
@@ -347,7 +364,7 @@
                                 </div>
                             </a>
 
-                            <!-- Category: Streaming & Audio -->
+                            <!-- Category: Audio -->
                             <div class="category-header">Audio</div>
 
                             <!-- Microphone -->
@@ -378,14 +395,13 @@
                                 </div>
                             </a>
 
-
-                                <!-- Category: Camera -->
+                            <!-- Category: Camera -->
                             <div class="category-header">Camera</div>
 
-                                                        <!-- Camera -->
-                            <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
+                            <!-- Camera -->
+                            <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="spec-card card-camera">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
+                                <div class="camera-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-camera"></i>
                                 </div>
                                 <div style="overflow: hidden;">
@@ -397,9 +413,9 @@
                             </a>
 
                             <!-- Elgato CAM Link 4K -->
-                            <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer" class="spec-card card-audio">
+                            <a href="https://www.elgato.com/ca/en/p/cam-link-4k" target="_blank" rel="noopener noreferrer" class="spec-card card-camera">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="audio-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
+                                <div class="camera-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-camera"></i>
                                 </div>
                                 <div style="overflow: hidden;">
@@ -469,10 +485,13 @@
                                 </div>
                             </a>
 
-                             <!-- Stream Deck -->
-                            <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
+                            <!-- Category: Streaming Gear -->
+                            <div class="category-header">Streaming Gear</div>
+
+                            <!-- Stream Deck -->
+                            <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="spec-card card-stream">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
+                                <div class="stream-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-gamepad"></i>
                                 </div>
                                 <div style="overflow: hidden;">
@@ -484,9 +503,9 @@
                             </a>
 
                             <!-- Teleprompter -->
-                            <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
+                            <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" class="spec-card card-stream">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
+                                <div class="stream-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-display"></i>
                                 </div>
                                 <div style="overflow: hidden;">
@@ -497,10 +516,10 @@
                                 </div>
                             </a>
 
-                           <!-- Lights -->
-                            <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
+                            <!-- Lights -->
+                            <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="spec-card card-stream">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
+                                <div class="stream-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-lightbulb"></i>
                                 </div>
                                 <div style="overflow: hidden;">
@@ -542,7 +561,6 @@
                                 </div>
                             </a>
 
-
                             <!-- Green Screen -->
                             <a href="https://www.elgato.com/ca/en/p/green-screen" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
@@ -557,8 +575,8 @@
                                 </div>
                             </a>
 
-                             <!-- Divoom Pixoo-64 (x2) -->
-                            <a href="https://www.amazon.com/Divoom-Pixoo-64-Digital-Control-Decoration/dp/B09H3YWPCH/ref=sr_1_1?crid=GXCFVM60MELD&dib=eyJ2IjoiMSJ9.GD2pPRSX8qQaFeA5SrKNmNbqYJ1xaM0giWtDLzeRiJnmIc-IM1Jid0EZKBfLY8f_V6dzEJWSvTMkg-duMcokm6IZeDAkmNC6fzG7Wl4KHRrwIQOPVrtoWaMAFcUFZ4E0cI2tn0wNG6HVksarUxBY-Frfkjs5FQig0VKfBhHHDivhZz3636NOU17fhooc7HyfZq-KQOJ6PNZUmBGeoIk7Uly4vrQJ9-QyjTKFouYUS8Y.Isk1vBXAIj07l49keeiCSAcGuJ8E3bb_RJSxcaRkHC0&dib_tag=se&keywords=divoom%2Bpixel%2B64&qid=1786287192&sprefix=divoom%2Bpixel%2B64%2Caps%2C131&sr=8-1&th=1" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
+                            <!-- Divoom Pixoo-64 (x2) -->
+                            <a href="https://www.amazon.com/Divoom-Pixoo-64-Digital-Control-Decoration/dp/B09H3YWPCH" target="_blank" rel="noopener noreferrer" class="spec-card card-desk">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="desk-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
                                     <i class="fa-solid fa-image"></i>
@@ -567,7 +585,7 @@
                                     <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
                                         Divoom Pixoo-64 (x2)
                                     </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Green Screen</div>
+                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Display</div>
                                 </div>
                             </a>
 
@@ -602,7 +620,7 @@
                                 </div>
                             </a>
 
-                             <!-- PS5 -->
+                            <!-- PS5 -->
                             <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
                                 <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
                                 <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
@@ -642,3 +660,5 @@
         </script>
     </body>
 </html>
+
+```
