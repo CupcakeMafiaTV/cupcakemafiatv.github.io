@@ -171,7 +171,7 @@
 
 <!-- Twitch Live Section -->
     <div class="py-8 md:py-12">
-      <div class="container max-w-6xl mx-auto px-4">
+      <div class="container max-w-5xl mx-auto px-4">
         
         <!-- Section Header -->
         <div class="mb-6 flex items-center justify-between">
@@ -180,15 +180,15 @@
           </h2>
         </div>
 
-        <!-- Main Wrapper Box (Slightly more compact with a nice purple border glow) -->
-        <div class="bg-gray-950/70 border border-purple-500/40 p-3 md:p-5 rounded-2xl shadow-xl shadow-purple-950/30 backdrop-blur-md">
+        <!-- Main Wrapper Box -->
+        <div class="bg-gray-950/70 border border-purple-500/40 p-3 md:p-4 rounded-2xl shadow-xl shadow-purple-950/30 backdrop-blur-md">
           
-          <!-- Grid Layout -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5 items-start">
+          <!-- Side-by-Side Grid Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
             
-            <!-- Video Player Column (Compacted size) -->
-            <div class="lg:col-span-8">
-              <div class="relative w-full overflow-hidden rounded-xl bg-black shadow-inner border border-gray-800/50" style="padding-bottom: 56.25%;">
+            <!-- Video Player Column (7 cols) -->
+            <div class="lg:col-span-7 flex flex-col">
+              <div class="relative w-full h-full overflow-hidden rounded-xl bg-black shadow-inner border border-gray-800/50" style="min-height: 340px; padding-bottom: 56.25%;">
                 <iframe 
                   src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" 
                   title="Twitch Live Stream"
@@ -200,13 +200,13 @@
               </div>
             </div>
 
-            <!-- Chat Column (Matched to a cleaner height) -->
-            <div class="lg:col-span-4 h-[380px] lg:h-auto lg:self-stretch">
-              <div class="w-full h-full overflow-hidden rounded-xl bg-black shadow-inner border border-gray-800/50 flex flex-col">
+            <!-- Chat Column (5 cols) - Gives it proper height -->
+            <div class="lg:col-span-5 flex flex-col">
+              <div class="w-full h-full overflow-hidden rounded-xl bg-black shadow-inner border border-gray-800/50 flex flex-col" style="min-height: 340px;">
                 <iframe 
                   src="https://www.twitch.tv/embed/cupcakemafiatv/chat?darkpopout&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" 
                   title="Twitch Chat"
-                  class="w-full h-full flex-grow min-h-[380px]">
+                  class="w-full h-full flex-grow">
                 </iframe>
               </div>
             </div>
