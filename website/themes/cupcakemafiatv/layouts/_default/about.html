@@ -170,7 +170,7 @@
                 </div>
             </main>
 
-            <!-- Custom Poster Card Styles (Shrunk) -->
+            <!-- Custom Poster Card Styles (Enhanced Text Contrast & Single-Line Ellipsis) -->
             <style>
                 .poster-grid {
                     display: grid;
@@ -203,12 +203,12 @@
                     bottom: 0;
                     left: 0;
                     right: 0;
-                    padding: 16px 10px 10px 10px;
-                    background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 60%, transparent 100%);
+                    /* Stronger gradient overlay to cleanly separate text from box art */
+                    padding: 24px 10px 10px 10px;
+                    background: linear-gradient(to top, rgba(9, 14, 23, 0.98) 0%, rgba(9, 14, 23, 0.85) 60%, rgba(9, 14, 23, 0.4) 85%, transparent 100%);
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-end;
-                    transition: background 0.3s ease;
                 }
 
                 .poster-title {
@@ -217,12 +217,21 @@
                     font-size: 12px;
                     line-height: 1.2;
                     margin-bottom: 2px;
+                    /* Prevent ugly wrapping and truncate cleanly with ellipsis */
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
                 }
 
                 .poster-sub {
                     font-size: 10px;
-                    color: #94a3b8;
-                    font-weight: 500;
+                    color: #cbd5e1;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
                 }
 
                 .poster-ext {
@@ -231,7 +240,7 @@
                     right: 8px;
                     font-size: 10px;
                     color: #ffffff;
-                    background: rgba(15, 23, 42, 0.6);
+                    background: rgba(15, 23, 42, 0.7);
                     backdrop-filter: blur(4px);
                     padding: 5px;
                     border-radius: 50%;
