@@ -133,14 +133,14 @@
             align-content: start;
         }
 
-        /* Category Headers (Changed to Orange Theme) */
+        /* Category Headers (Changed to White Theme) */
         .category-header {
             grid-column: 1 / -1;
             font-size: 13px;
             font-weight: 800;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: #f97316;
+            color: #ffffff;
             margin-top: 10px;
             margin-bottom: 2px;
             display: flex;
@@ -152,7 +152,7 @@
             content: "";
             flex: 1;
             height: 1px;
-            background: linear-gradient(90deg, rgba(249, 115, 22, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);
         }
 
         /* Section Icon Colors */
@@ -204,6 +204,7 @@
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
         
+            
             <div class="header-wrapper text-white" style="background: transparent;">
 
                 <header id="site-header" class="text-white">
@@ -538,73 +539,4 @@
                                 </div>
                             </a>
 
-                            <!-- Category: Consoles -->
-                            <div class="category-header">Consoles & Gaming</div>
-                            
-                            <!-- PlayStation 5 Pro -->
-                            <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-brands fa-playstation"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        PlayStation 5 Pro
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Console</div>
-                                </div>
-                            </a>
-
-                            <!-- Nintendo Switch OLED (Using direct inline SVG icon to bypass Font Awesome restriction) -->
-                            <a href="https://www.nintendo.com/en-ca/switch/" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17.5 4h-11C4.57 4 3 5.57 3 7.5v9C3 18.43 4.57 20 6.5 20h11c1.93 0 3.5-1.57 3.5-3.5v-9C21 5.57 19.43 4 17.5 4zM6.5 6h2c.28 0 .5.22.5.5v11c0 .28-.22.5-.5.5h-2c-.83 0-1.5-.67-1.5-1.5v-9c0-.83.67-1.5 1.5-1.5zm11 13h-2c-.28 0-.5-.22-.5-.5v-11c0-.28.22-.5.5-.5h2c.83 0 1.5.67 1.5 1.5v9c0 .83-.67 1.5-1.5 1.5z"/>
-                                    </svg>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Nintendo Switch OLED
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Handheld Console</div>
-                                </div>
-                            </a>
-
-                            <!-- Nintendo 3DS XL -->
-                            <a href="https://www.nintendo.com/" target="_blank" rel="noopener noreferrer" class="spec-card card-console">
-                                <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
-                                <div class="console-icon" style="width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0;">
-                                    <i class="fa-solid fa-gamepad"></i>
-                                </div>
-                                <div style="overflow: hidden;">
-                                    <div class="spec-title" style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2;">
-                                        Nintendo 3DS XL
-                                    </div>
-                                    <div style="font-size: 12px; color: #94a3b8; font-weight: 500; margin-top: 3px;">Handheld Console</div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-
-            <!-- Lightbox Dialog Modal -->
-            <dialog id="img-modal" onclick="this.close()">
-                <img id="img-modal-img" src="" alt="Zoomed Setup Image">
-            </dialog>
-
-            <script>
-                function openModal(src) {
-                    const modal = document.getElementById('img-modal');
-                    const modalImg = document.getElementById('img-modal-img');
-                    modalImg.src = src;
-                    modal.showModal();
-                }
-            </script>
-
-        </div>
-    </body>
-</html>
+                            <!-- Category: Consoles -
