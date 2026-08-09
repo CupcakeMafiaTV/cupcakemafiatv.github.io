@@ -169,51 +169,51 @@
       </div>
     </div>
 
-<!-- Twitch Live Section -->
-    <div class="py-8 md:py-12">
-      <div class="container max-w-5xl mx-auto px-4">
+<!-- Watch Live Section (Twitch Stream & Chat) -->
+    <div class="py-10 md:py-16">
+      <div class="container">
         
         <!-- Section Header -->
-        <div class="mb-6 flex items-center justify-between">
-          <h2 class="text-2xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3xl md:text-4xl">
+        <div class="mb-8 md:mb-10 flex items-center justify-between">
+          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">
             Watch Live
           </h2>
-        </div>
-
-        <!-- Main Wrapper Box -->
-        <div class="bg-gray-950/70 border border-purple-500/40 p-3 md:p-4 rounded-2xl shadow-xl shadow-purple-950/30 backdrop-blur-md">
-          
-          <!-- Side-by-Side Grid Layout -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch">
-            
-            <!-- Video Player Column (7 cols) -->
-            <div class="lg:col-span-7 flex flex-col">
-              <div class="relative w-full h-full overflow-hidden rounded-xl bg-black shadow-inner border border-gray-800/50" style="min-height: 340px; padding-bottom: 56.25%;">
-                <iframe 
-                  src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" 
-                  title="Twitch Live Stream"
-                  frameborder="0" 
-                  allowfullscreen="true" 
-                  scrolling="no"
-                  class="absolute top-0 left-0 w-full h-full">
-                </iframe>
-              </div>
-            </div>
-
-            <!-- Chat Column (5 cols) - Gives it proper height -->
-            <div class="lg:col-span-5 flex flex-col">
-              <div class="w-full h-full overflow-hidden rounded-xl bg-black shadow-inner border border-gray-800/50 flex flex-col" style="min-height: 340px;">
-                <iframe 
-                  src="https://www.twitch.tv/embed/cupcakemafiatv/chat?darkpopout&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" 
-                  title="Twitch Chat"
-                  class="w-full h-full flex-grow">
-                </iframe>
-              </div>
-            </div>
-
+          <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 border border-gray-800 text-xs font-semibold text-gray-400">
+            <span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline
           </div>
         </div>
 
+        <!-- Main Wrapper Box -->
+        <div class="bg-gray-900/50 border border-gray-800/80 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm grid grid-cols-12 gap-5 md:gap-6 items-stretch">
+          
+          <!-- Twitch Player Column -->
+          <div class="col-span-full lg:col-span-8 flex flex-col">
+            <div class="relative w-full h-full overflow-hidden rounded-xl bg-black shadow-inner" style="min-height: 400px;">
+              <iframe 
+                src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" 
+                frameborder="0" 
+                allowfullscreen="true" 
+                scrolling="no" 
+                class="absolute top-0 left-0 w-full h-full">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Twitch Chat Column -->
+          <div class="col-span-full lg:col-span-4 flex flex-col">
+            <div class="w-full h-full overflow-hidden rounded-xl bg-gray-950 shadow-inner flex flex-col">
+              <iframe 
+                id="chat_embed"
+                src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost"
+                height="100%"
+                width="100%"
+                class="w-full flex-grow"
+                style="min-height: 400px;">
+              </iframe>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
    
