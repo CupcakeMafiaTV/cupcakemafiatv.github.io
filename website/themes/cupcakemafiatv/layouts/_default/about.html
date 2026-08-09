@@ -60,16 +60,64 @@
                         <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
                             <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
                                 <a href="#">
-                                  <div class="hidden dark:block rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
+                                 <div class="hidden dark:block rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
                                     <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
-                                  </div>
+                                 </div>
                                 </a>
                             </div>
                             <div class="col-span-full md:col-span-8">
                                 <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
-                                  Hello! I'm Cody, a variety live streamer from Canada and the self proclaimed First Try King. In between countlessly quoting The Simpsons and my other favorite TV sitcoms, I'm typically found bouncing between playing several different competitive style games such as League of Legends or Fortnite while continuing to try and obtain 100% completion and achievements within my endlessly large Steam library. By day I'm just your average computer technician but by night I'm your much inferior trashcan teammate that always seems to let you down within competitive games. As someone who enjoys tinkering with technology, combining that skillset with my overall love of gaming has made streaming a perfect match.<br/><br/>
-                                  Beyond streaming, I’m a massive collector of nerdy memorabilia, Funko POPs and trading cards and spend a lot of my free time looking for my next sought-after treasure to add to my collection. I’m a big fan of DC Comics and the Batman Universe especially Punchline & Harley Quinn and am most likely the only person that actually enjoyed the game Suicide Squad: Kill the Justice League. Some of my other all time favorite fandoms include Scott Pilgrim vs. The World, WWE/Wrestling, Pokémon, Yu-Gi-Oh & Digimon.
+                                 Hello! I'm Cody, a variety live streamer from Canada and the self proclaimed First Try King. In between countlessly quoting The Simpsons and my other favorite TV sitcoms, I'm typically found bouncing between playing several different competitive style games such as League of Legends or Fortnite while continuing to try and obtain 100% completion and achievements within my endlessly large Steam library. By day I'm just your average computer technician but by night I'm your much inferior trashcan teammate that always seems to let you down within competitive games. As someone who enjoys tinkering with technology, combining that skillset with my overall love of gaming has made streaming a perfect match.<br/><br/>
+                                 Beyond streaming, I’m a massive collector of nerdy memorabilia, Funko POPs and trading cards and spend a lot of my free time looking for my next sought-after treasure to add to my collection. I’m a big fan of DC Comics and the Batman Universe especially Punchline & Harley Quinn and am most likely the only person that actually enjoyed the game Suicide Squad: Kill the Justice League. Some of my other all time favorite fandoms include Scott Pilgrim vs. The World, WWE/Wrestling, Pokémon, Yu-Gi-Oh & Digimon.
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Favorite Games Section -->
+                        <div style="margin-top: 10px;">
+                            <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                                Favorite Games & Obsessions
+                                <span style="flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 100%);"></span>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+                                
+                                <!-- Game 1 -->
+                                <div class="game-badge">
+                                    <i class="fa-solid fa-gamepad" style="color: #38bdf8; font-size: 18px;"></i>
+                                    <span style="color: #ffffff; font-weight: 600; font-size: 13px;">League of Legends</span>
+                                </div>
+
+                                <!-- Game 2 -->
+                                <div class="game-badge">
+                                    <i class="fa-solid fa-shield-halved" style="color: #a855f7; font-size: 18px;"></i>
+                                    <span style="color: #ffffff; font-weight: 600; font-size: 13px;">Fortnite</span>
+                                </div>
+
+                                <!-- Game 3 -->
+                                <div class="game-badge">
+                                    <i class="fa-solid fa-skull" style="color: #ef4444; font-size: 18px;"></i>
+                                    <span style="color: #ffffff; font-weight: 600; font-size: 13px;">Suicide Squad</span>
+                                </div>
+
+                                <!-- Game 4 -->
+                                <div class="game-badge">
+                                    <i class="fa-solid fa-compact-disc" style="color: #eab308; font-size: 18px;"></i>
+                                    <span style="color: #ffffff; font-weight: 600; font-size: 13px;">Steam Library</span>
+                                </div>
+
+                                <!-- Game 5 -->
+                                <div class="game-badge">
+                                    <i class="fa-solid fa-masks-theater" style="color: #ec4899; font-size: 18px;"></i>
+                                    <span style="color: #ffffff; font-weight: 600; font-size: 13px;">Scott Pilgrim</span>
+                                </div>
+
+                                <!-- Game 6 -->
+                                <div class="game-badge">
+                                    <i class="fa-solid fa-bolt" style="color: #22c55e; font-size: 18px;"></i>
+                                    <span style="color: #ffffff; font-weight: 600; font-size: 13px;">Pokémon & Yu-Gi-Oh</span>
+                                </div>
+
                             </div>
                         </div>
 
@@ -77,6 +125,28 @@
 
                 </div>
             </main>
+
+            <!-- Custom Badge Styles -->
+            <style>
+                .game-badge {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    background: rgba(30, 41, 59, 0.7);
+                    border: 1px solid rgba(255, 255, 255, 0.08);
+                    padding: 14px 16px;
+                    border-radius: 12px;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    cursor: default;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                }
+                .game-badge:hover {
+                    transform: translateY(-2px);
+                    border-color: rgba(255, 255, 255, 0.3);
+                    background: rgba(30, 41, 59, 0.95);
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+                }
+            </style>
 
             {{- partial "footer.html" . -}}
             {{- partial "scripts.html" . -}}
