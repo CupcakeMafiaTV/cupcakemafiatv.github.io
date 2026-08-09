@@ -3,98 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Page</title>
+    <title>Socials | Stream Page</title>
+    <!-- Add FontAwesome CSS here if not already in your partials -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            background-color: #000;
-            cursor: pointer;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .video-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        dialog {
-            background: #222;
-            color: #fff;
-            border: 1px solid #444;
-            border-radius: 8px;
-            padding: 20px;
-        }
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.7);
-        }
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #ffffff; margin: 0; }
+        .video-container { position: relative; width: 100%; height: 270px; background-color: #000; cursor: pointer; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .video-container img { width: 100%; height: 100%; object-fit: cover; }
+        .social-card { display: block; background: #1e1e1e; padding: 16px; border-radius: 8px; text-decoration: none; color: white; transition: background 0.2s; position: relative; }
+        .social-card:hover { background: #2a2a2a; }
+        .external-link-icon { position: absolute; top: 10px; right: 10px; font-size: 12px; color: #666; }
+        dialog { background: #222; color: #fff; border: 1px solid #444; border-radius: 8px; padding: 20px; }
+        dialog::backdrop { background: rgba(0, 0, 0, 0.7); }
     </style>
 </head>
-<body>
+<body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium h-full">
 
-    <div class="container">
-        <h1>Welcome to the Stream</h1>
-        
-        <!-- YouTube Lazy Load Container -->
-        <div class="video-container" id="video-box" onclick="loadYouTubeVideo(this)">
-            <img src="https://img.youtube.com/vi/KN3OYwP8nHE/hqdefault.jpg" alt="Jinx Video Thumbnail">
+    <div id="site-wrapper" class="js-site-wrapper">
+        <div class="header-wrapper text-white">
+            <header id="site-header">
+                <div class="max-w-[1400px] mx-auto px-5">
+                    <nav class="flex min-h-[64px] items-center gap-x-6">
+                        {{- partial "logo.html" . -}}
+                        {{- partial "navigation.html" . -}}
+                    </nav>
+                </div>
+            </header>
         </div>
+
+        <main id="main-content" style="padding: 24px;">
+            <div style="max-width: 1400px; margin: 0 auto;">
+                <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; border-bottom: 1px solid #ffffff; padding-bottom: 10px;">Socials</h1>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 20px;">
+                    <!-- Column 1: Media -->
+                    <div style="width: 420px; display: flex; flex-direction: column; gap: 16px;">
+                        <div class="img-container" style="cursor: pointer;" onclick="openModal(this.querySelector('img').src)">
+                            <img src="/img/social-photo-2.jpg" alt="Social Photo" style="width: 100%; border-radius: 8px;">
+                        </div>
+                        <div class="video-container" onclick="loadYouTubeVideo(this)">
+                            <img src="/img/Masters.png" alt="Video Thumbnail">
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Social Grid -->
+                    <div style="flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px;">
+                        <!-- You can place your social card links here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            {{- partial "footer.html" . -}}
+        </footer>
     </div>
 
-    <!-- Modal for images -->
     <dialog id="img-modal">
-        <form method="dialog">
-            <button onclick="closeModal()" style="float: right;">Close</button>
-        </form>
-        <img id="img-modal-img" src="" alt="Modal Image" style="max-width: 100%; margin-top: 10px;">
+        <form method="dialog"><button>Close</button></form>
+        <img id="img-modal-img" src="" alt="View" style="max-width: 100%; margin-top: 10px;">
     </dialog>
 
     <script>
-        // YouTube Lazy Loader Function
         function loadYouTubeVideo(container) {
             const iframe = document.createElement('iframe');
-            iframe.setAttribute('src', 'https://www.youtube.com/embed/KN3OYwP8nHE?autoplay=1&rel=0');
-            iframe.setAttribute('title', 'YouTube video player');
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-            iframe.setAttribute('allowfullscreen', '');
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.borderRadius = '8px';
-            iframe.style.display = 'block';
-            
+            iframe.src = 'https://www.youtube.com/embed/KN3OYwP8nHE?autoplay=1';
+            iframe.style.width = '100%'; iframe.style.height = '100%';
+            iframe.allowFullscreen = true;
             container.innerHTML = '';
             container.appendChild(iframe);
-            container.style.cursor = 'default';
-            container.removeAttribute('onclick');
         }
-
-        // Modal JS
-        const modal = document.getElementById('img-modal');
-        const modalImg = document.getElementById('img-modal-img');
-
         function openModal(src) {
-            modalImg.src = src;
-            modal.showModal();
-        }
-
-        function closeModal() {
-            modal.close();
+            document.getElementById('img-modal-img').src = src;
+            document.getElementById('img-modal').showModal();
         }
     </script>
 </body>
