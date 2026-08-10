@@ -1,4 +1,12 @@
 export default async function handler(req, res) {
+  // Allow requests from your website domain
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Or replace '*' with 'https://cupcakemafiatv.github.io' or your custom domain
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   const API_KEY = process.env.YouTube_Live_Checker;
   const CHANNEL_ID = process.env.CHANNEL_ID;
 
