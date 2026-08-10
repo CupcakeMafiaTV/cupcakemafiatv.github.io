@@ -25,16 +25,15 @@
           </p>
         </div>
 
-        <!-- Generator Wrapper: Flex layout forces the GIF completely outside to the left -->
-        <div class="max-w-4xl mx-auto mt-8 flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-12">
+        <!-- Generator Card Box with Overlapping Hype GIF -->
+        <div class="max-w-xl mx-auto mt-12 relative">
           
-          <!-- Larger Hype GIF on the Left (Completely outside the box) -->
-          <div class="hidden sm:flex shrink-0">
-            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-40 md:h-48 w-auto object-contain drop-shadow-2xl">
+          <!-- Hype GIF Positioned Overlapping the Top-Left Corner of the Box -->
+          <div class="absolute -top-12 -left-12 md:-left-20 z-20 pointer-events-none hidden sm:block">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-32 md:h-40 w-auto object-contain drop-shadow-2xl">
           </div>
 
-          <!-- Generator Card Box -->
-          <div class="w-full max-w-xl rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+          <div class="relative rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
             <div class="flex flex-col sm:flex-row gap-3">
               <input 
                 type="text" 
@@ -55,7 +54,6 @@
               <h3 id="mafiaResultText" class="text-2xl md:text-3xl font-extrabold text-accent tracking-tight"></h3>
             </div>
           </div>
-
         </div>
 
       </div>
