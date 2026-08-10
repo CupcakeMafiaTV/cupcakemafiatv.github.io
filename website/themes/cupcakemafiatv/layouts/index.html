@@ -25,41 +25,39 @@
           </p>
         </div>
 
-        <!-- Centered Main Wrapper Container -->
-        <div class="max-w-xl mx-auto mt-12">
-
-          <!-- Side-by-Side Flex Layout Container -->
-          <div class="flex items-center justify-center gap-5 md:gap-6">
-            
-            <!-- Hype GIF Properly Sized and Centered Vertically -->
-            <div class="shrink-0 hidden sm:block">
-              <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-20 md:h-24 w-auto object-contain drop-shadow-2xl">
-            </div>
-
-            <!-- Generator Card Box -->
-            <div class="w-full rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
-              <div class="flex flex-col sm:flex-row gap-3">
-                <input 
-                  type="text" 
-                  id="userInputName" 
-                  placeholder="Enter your name (e.g., Cody)..." 
-                  class="flex-grow px-5 py-3.5 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors shadow-inner"
-                >
-                <button 
-                  onclick="generateMafiaName()" 
-                  class="px-7 py-3.5 font-black uppercase tracking-wider text-gray-950 bg-accent hover:opacity-90 rounded-xl transition-all duration-300 shadow-lg hover:scale-[1.02]"
-                >
-                  Get Alias
-                </button>
-              </div>
-
-              <div id="mafiaResultContainer" class="mt-6 hidden text-center p-6 bg-gray-900/90 rounded-xl border border-accent/30 shadow-inner transition-all">
-                <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Your Underworld Alias</span>
-                <h3 id="mafiaResultText" class="text-2xl md:text-3xl font-extrabold text-accent tracking-tight"></h3>
-              </div>
-            </div>
-
+        <!-- Perfectly Centered Flex Wrapper with Counterbalancing Spacer & Vertical Centering -->
+        <div class="max-w-xl mx-auto mt-12 flex items-center justify-center gap-6">
+          
+          <!-- Hype GIF on the Left (vertically centered with the box) -->
+          <div class="shrink-0 hidden sm:flex items-center justify-center" style="width: 100px;">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-20 md:h-24 w-auto object-contain drop-shadow-2xl">
           </div>
+
+          <!-- Generator Card Box -->
+          <div class="w-full rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <input 
+                type="text" 
+                id="userInputName" 
+                placeholder="Enter your name (e.g., Cody)..." 
+                class="flex-grow px-5 py-3.5 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors shadow-inner"
+              >
+              <button 
+                onclick="generateMafiaName()" 
+                class="px-7 py-3.5 font-black uppercase tracking-wider text-white bg-red-600 hover:bg-red-500 rounded-xl transition-all duration-300 shadow-lg hover:scale-[1.02]"
+              >
+                Get Alias
+              </button>
+            </div>
+
+            <div id="mafiaResultContainer" class="mt-6 hidden text-center p-6 bg-gray-900/90 rounded-xl border border-accent/30 shadow-inner transition-all">
+              <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Your Underworld Alias</span>
+              <h3 id="mafiaResultText" class="text-2xl md:text-3xl font-extrabold text-accent tracking-tight"></h3>
+            </div>
+          </div>
+
+          <!-- Invisible Spacer on the Right matching left fixed width to keep box dead-center -->
+          <div class="shrink-0 hidden sm:block" style="width: 100px;" aria-hidden="true"></div>
 
         </div>
 
