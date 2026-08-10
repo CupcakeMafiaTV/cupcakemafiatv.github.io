@@ -45,6 +45,44 @@
       </div>
     </div>
 
+    <!-- Audience & Reach Section -->
+    <div class="pb-12 md:pb-20 lg:pb-[60px]">
+      <div class="container">
+        <div class="mb-8 md:mb-10 text-center">
+          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">
+            Audience & reach
+          </h2>
+          <p class="text-gray-300 mt-2">Cross-platform reach for sponsored streams, launch campaigns, and community-first publishing beats.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Twitch Box -->
+          <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-lg text-center backdrop-blur-sm">
+            <span class="block text-3xl md:text-4xl font-extrabold text-white mb-1">512,405</span>
+            <span class="text-sm uppercase tracking-widest text-gray-400">Twitch</span>
+          </div>
+
+          <!-- Twitter Box -->
+          <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-lg text-center backdrop-blur-sm">
+            <span class="block text-3xl md:text-4xl font-extrabold text-white mb-1">99,765</span>
+            <span class="text-sm uppercase tracking-widest text-gray-400">Twitter</span>
+          </div>
+
+          <!-- Instagram Box -->
+          <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-lg text-center backdrop-blur-sm">
+            <span class="block text-3xl md:text-4xl font-extrabold text-white mb-1">52,201</span>
+            <span class="text-sm uppercase tracking-widest text-gray-400">Instagram</span>
+          </div>
+
+          <!-- YouTube Box (Live from your API) -->
+          <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-lg text-center backdrop-blur-sm">
+            <span class="block text-3xl md:text-4xl font-extrabold text-accent mb-1" id="youtube-sub-count">...</span>
+            <span class="text-sm uppercase tracking-widest text-gray-400">YouTube</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Next Events Section -->
     <div class="pb-0 md:pb-20 lg:pb-[60px]">
       <div class="container">
@@ -216,7 +254,10 @@
         </div>
       </div>
     </div>
-  
+
+  </main>
+</div>
+
 <script>
   function generateMafiaName() {
     const nameInput = document.getElementById('userInputName').value.trim();
@@ -241,7 +282,7 @@
     }
     const index = Math.abs(hash) % nicknames.length;
     
-    const formattedName = nameItemFormat = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
+    const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
     
     const resultText = `${formattedName} ${nicknames[index]}`;
     
@@ -249,40 +290,7 @@
     document.getElementById('mafiaResultContainer').classList.remove('hidden');
   }
 
-<section class="audience-section">
-  <div class="audience-container">
-    <h2>Audience & reach</h2>
-    <p class="audience-subtitle">Cross-platform reach for sponsored streams, launch campaigns, and community-first publishing beats.</p>
-    
-    <div class="audience-grid">
-      <!-- Twitch Box -->
-      <div class="audience-card">
-        <span class="audience-number">512,405</span>
-        <span class="audience-platform">Twitch</span>
-      </div>
-
-      <!-- Twitter Box -->
-      <div class="audience-card">
-        <span class="audience-number">99,765</span>
-        <span class="audience-platform">Twitter</span>
-      </div>
-
-      <!-- Instagram Box -->
-      <div class="audience-card">
-        <span class="audience-number">52,201</span>
-        <span class="audience-platform">Instagram</span>
-      </div>
-
-      <!-- YouTube Box (Live from your API) -->
-      <div class="audience-card">
-        <span class="audience-number" id="youtube-sub-count">...</span>
-        <span class="audience-platform">YouTube</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
+  // Fetch live YouTube subscriber count from Vercel API
   fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
     .then(response => response.json())
     .then(data => {
@@ -292,6 +300,5 @@
       console.error('Error fetching subscribers:', error);
     });
 </script>
-
 
 {{ end }}
