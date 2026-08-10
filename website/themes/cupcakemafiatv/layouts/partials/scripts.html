@@ -1,19 +1,20 @@
 <!-- Scripts
-  ================================================== -->
+ ================================================== -->
 
-  <!-- Vendors JS -->
-  <script src="/common/glightbox/js/glightbox.min.js"></script>
-  <script src="/common/swiper/js/swiper-bundle.min.js"></script>
+ <!-- Vendors JS -->
+ <script src="/common/glightbox/js/glightbox.min.js"></script>
+ <script src="/common/swiper/js/swiper-bundle.min.js"></script>
 
-  <!-- Template JS -->
-  <script src="/js/common.js"></script>
-  <script src="/js/init.js"></script>
+ <!-- Template JS -->
+ <script src="/js/common.js"></script>
+ <script src="/js/init.js"></script>
 
-  <!-- Template JS -->
+ <!-- Template JS -->
 <script src="/common/js/common.js"></script>
 <script src="/js/init.js"></script>
 
 <script>
+  // Fetch live YouTube subscriber count
   fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
     .then(response => response.json())
     .then(data => {
@@ -24,15 +25,51 @@
     })
     .catch(error => console.error('Error fetching subscriber count:', error));
 
-
-// Fetch live Twitch follower count from Vercel API
+  // Fetch live Twitch follower count from Vercel API
   fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
     .then(response => response.json())
     .then(data => {
-      document.getElementById('twitch-follower-count').innerText = Number(data.followerCount).toLocaleString();
+      const twitchCountEl = document.getElementById('twitch-follower-count');
+      if (twitchCountEl && data.followerCount) {
+        twitchCountEl.innerText = Number(data.followerCount).toLocaleString();
+      }
     })
     .catch(error => {
       console.error('Error fetching Twitch followers:', error);
     });
 
-    </script>
+  // Fetch and Toggle Live Status Badges
+  async function checkLiveStatuses() {
+    // 1. Check Twitch Live Status
+    try {
+      const twitchRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status');
+      const twitchData = await twitchRes.json();
+      const twitchBadge = document.getElementById('twitch-live-badge');
+      
+      if (twitchBadge) {
+        twitchBadge.style.display = twitchData.isLive ? 'inline-block' : 'none';
+      }
+    } catch (e) {
+      console.log('Error checking Twitch status:', e);
+    }
+
+    // 2. Check YouTube Live Status (Optional)
+    try {
+      const ytRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/youtube-status');
+      const ytData = await ytRes.json();
+      const ytBadge = document.getElementById('youtube-live-badge');
+      
+      if (ytBadge) {
+        ytBadge.style.display = ytData.isLive ? 'inline-block' : 'none';
+      }
+    } catch (e) {
+      // Silently fail if not configured yet
+    }
+  }
+
+  // Run live check immediately on page load
+  checkLiveStatuses();
+
+  // Re-check live status every 2 minutes (120,000 milliseconds)
+  setInterval(checkLiveStatuses, 120000);
+</script>
