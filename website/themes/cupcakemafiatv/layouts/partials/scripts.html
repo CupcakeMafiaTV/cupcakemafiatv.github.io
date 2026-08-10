@@ -23,4 +23,16 @@
       }
     })
     .catch(error => console.error('Error fetching subscriber count:', error));
-</script>
+
+
+// Fetch live Twitch follower count from Vercel API
+  fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('twitch-follower-count').innerText = Number(data.followerCount).toLocaleString();
+    })
+    .catch(error => {
+      console.error('Error fetching Twitch followers:', error);
+    });
+
+    </script>

@@ -57,12 +57,12 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <!-- Twitch Box -->
+          <!-- Twitch Box (Updated with ID for Live API) -->
           <div class="group relative bg-gray-900/50 border border-gray-800 hover:border-accent/50 p-6 rounded-xl text-center backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,0,0,0.5)]">
             <div class="inline-flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gray-900/80 text-accent group-hover:scale-110 transition-transform">
               <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M11.64 5.93h1.43v4.28h-1.43m3.93-4.28h1.43v4.28h-1.43M3.43 2L1 5.71v14.28h5.71V23l3.57-3.57h2.86L23 11.43V2H3.43m18.07 9.28l-3.57 3.57h-2.86l-2.5 2.5v-2.5H7.71V3.43h13.79v7.85z"/></svg>
             </div>
-            <span class="block text-3xl md:text-4xl font-extrabold text-white mb-1 tracking-tight">512,405</span>
+            <span class="block text-3xl md:text-4xl font-extrabold text-white mb-1 tracking-tight" id="twitch-follower-count">...</span>
             <span class="text-xs uppercase tracking-widest text-gray-400 font-semibold">Twitch Followers</span>
           </div>
 
@@ -317,6 +317,16 @@
     })
     .catch(error => {
       console.error('Error fetching subscribers:', error);
+    });
+
+  // Fetch live Twitch follower count from Vercel API
+  fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('twitch-follower-count').innerText = Number(data.followerCount).toLocaleString();
+    })
+    .catch(error => {
+      console.error('Error fetching Twitch followers:', error);
     });
 </script>
 
