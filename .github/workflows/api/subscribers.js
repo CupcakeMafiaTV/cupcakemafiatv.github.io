@@ -1,9 +1,9 @@
 export default async function handler(req, res) {
-  const API_KEY = process.env.YOUTUBE_API_KEY;
+  const API_KEY = process.env.YouTube_Live_Checker;
   const CHANNEL_ID = process.env.CHANNEL_ID;
 
   if (!API_KEY || !CHANNEL_ID) {
-    return res.status(500).json({ error: 'Missing environment variables on Vercel' });
+    return res.status(500).json({ error: 'Missing environment variables' });
   }
 
   try {
