@@ -1,9 +1,16 @@
 export default async function handler(req, res) {
+  // Allow requests from your domain (or use '*' for public access)
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle preflight OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   const BEARER_TOKEN = process.env.X_BEARER_TOKEN;
-  const USERNAME = 'cupcakemafiatv'; // Replace with your X handle if different
+  const USERNAME = 'cupcakemafiatv';
 
   if (!BEARER_TOKEN) {
     return res.status(500).json({ error: 'Missing X Bearer Token environment variable' });
@@ -21,7 +28,10 @@ export default async function handler(req, res) {
     
     const data = await response.json();
     
-    // Extract follower count from public metrics
+    if (!response.ok) {
+      return res.status(response.status).json({ error: data.detail || 'Error fetching from X API' });
+    }
+
     const followerCount = data?.data?.public_metrics?.followers_count || 0;
 
     return res.status(200).json({ followerCount });
