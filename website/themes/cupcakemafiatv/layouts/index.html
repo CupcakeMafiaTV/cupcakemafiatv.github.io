@@ -25,16 +25,16 @@
           </p>
         </div>
 
-        <!-- Balanced Max-Width Wrapper for Box & Counterbalancing Spacer -->
-        <div class="max-w-4xl mx-auto mt-12 flex items-center justify-center gap-6">
+        <!-- Balanced Wrapper for Centered Box and Tucked-in Icon -->
+        <div class="max-w-4xl mx-auto mt-12 flex items-center justify-center gap-4">
           
-          <!-- Hype GIF on the Left (vertically centered) -->
-          <div class="shrink-0 hidden sm:flex items-center justify-center" style="width: 100px;">
+          <!-- Hype GIF on the Left (tucked closer to the box) -->
+          <div class="shrink-0 hidden sm:flex items-center justify-center -mr-2" style="width: 80px;">
             <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-20 md:h-24 w-auto object-contain drop-shadow-2xl">
           </div>
 
           <!-- Generator Card Box -->
-          <div class="w-full max-w-2xl rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60 mx-auto" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+          <div class="w-full max-w-2xl rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
             <div class="flex flex-col sm:flex-row gap-3">
               <input 
                 type="text" 
@@ -55,9 +55,6 @@
               <h3 id="mafiaResultText" class="text-2xl md:text-3xl font-extrabold text-accent tracking-tight"></h3>
             </div>
           </div>
-
-          <!-- Invisible Spacer on the Right matching left fixed width to keep box dead-center -->
-          <div class="shrink-0 hidden sm:block" style="width: 100px;" aria-hidden="true"></div>
 
         </div>
 
