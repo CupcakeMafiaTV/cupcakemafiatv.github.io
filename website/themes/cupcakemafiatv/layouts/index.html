@@ -25,16 +25,21 @@
           </p>
         </div>
 
-        <!-- Generator Container with Perfect Center Alignment -->
-        <div class="max-w-3xl mx-auto mt-12 relative flex items-center justify-center">
+        <!-- Generator Container with Perfect Balance -->
+        <div class="max-w-xl mx-auto mt-12 relative">
           
-          <!-- Hype GIF Positioned Absolute to the Left (Overlapping Corner, Perfectly Centered Box) -->
-          <div class="absolute -top-12 -left-8 md:-left-16 z-20 pointer-events-none hidden sm:block">
+          <!-- Hype GIF Positioned Absolute to the Left (Overlapping Corner) -->
+          <div class="absolute -top-12 -left-12 md:-left-20 z-20 pointer-events-none hidden sm:block">
             <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-32 md:h-40 w-auto object-contain drop-shadow-2xl">
           </div>
 
+          <!-- Invisible Right Spacer to Counterbalance the Left Image width -->
+          <div class="absolute -top-12 -right-12 md:-right-20 z-0 pointer-events-none hidden sm:block opacity-0 aria-hidden">
+            <div class="h-32 md:h-40 w-32 md:w-40"></div>
+          </div>
+
           <!-- Generator Card Box -->
-          <div class="w-full max-w-xl rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+          <div class="relative z-10 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
             <div class="flex flex-col sm:flex-row gap-3">
               <input 
                 type="text" 
