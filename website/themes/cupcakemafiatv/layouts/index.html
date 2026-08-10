@@ -60,46 +60,42 @@
           </p>
         </div>
 
-        <!-- Social Stats (Compact grid with proper platform colors) -->
+        <!-- Social Stats (Solid Platform Color Cards) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
 
-          <!-- Twitch Card -->
-          <div class="group relative overflow-hidden rounded-2xl border-2 border-[#9146FF]/40 bg-[#120d1d]/90 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#9146FF] hover:shadow-[0_10px_30px_rgba(145,70,255,0.25)]">
-            <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#9146FF]/15 blur-2xl"></div>
-
-            <div class="relative flex items-center justify-between">
+          <!-- Twitch Card (Solid Twitch Purple) -->
+          <div class="group relative overflow-hidden rounded-2xl bg-[#9146FF] p-5 shadow-lg shadow-[#9146FF]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#9146FF]/50">
+            <div class="relative flex items-center justify-between text-white">
               <div class="flex items-center gap-3.5">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#9146FF] text-white shadow-md shadow-[#9146FF]/30">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-black/20 text-white">
                   <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                     <path d="M11.64 5.93h1.43v4.28h-1.43m3.93-4.28h1.43v4.28h-1.43M3.43 2 1 5.71v14.28h5.71V23l3.57-3.57h2.86L23 11.43V2H3.43m18.07 9.28-3.57 3.57h-2.86l-2.5 2.5v-2.5H7.71V3.43h13.79v7.85z"/>
                   </svg>
                 </div>
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-[#b894fc] block">Twitch</span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-purple-200 block">Twitch</span>
                   <span id="twitch-follower-count" class="text-2xl md:text-3xl font-black tracking-tight text-white">...</span>
                 </div>
               </div>
-              <span class="text-xs font-semibold text-gray-400">Followers</span>
+              <span class="text-xs font-semibold text-purple-100 uppercase tracking-wider">Followers</span>
             </div>
           </div>
 
-          <!-- YouTube Card -->
-          <div class="group relative overflow-hidden rounded-2xl border-2 border-[#FF0000]/40 bg-[#1d0d0d]/90 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#FF0000] hover:shadow-[0_10px_30px_rgba(255,0,0,0.25)]">
-            <div class="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-[#FF0000]/15 blur-2xl"></div>
-
-            <div class="relative flex items-center justify-between">
+          <!-- YouTube Card (Solid YouTube Red) -->
+          <div class="group relative overflow-hidden rounded-2xl bg-[#FF0000] p-5 shadow-lg shadow-[#FF0000]/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#FF0000]/50">
+            <div class="relative flex items-center justify-between text-white">
               <div class="flex items-center gap-3.5">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#FF0000] text-white shadow-md shadow-[#FF0000]/30">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-black/20 text-white">
                   <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                   </svg>
                 </div>
                 <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-[#ff9999] block">YouTube</span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-red-200 block">YouTube</span>
                   <span id="youtube-sub-count" class="text-2xl md:text-3xl font-black tracking-tight text-white">...</span>
                 </div>
               </div>
-              <span class="text-xs font-semibold text-gray-400">Subscribers</span>
+              <span class="text-xs font-semibold text-red-100 uppercase tracking-wider">Subscribers</span>
             </div>
           </div>
 
