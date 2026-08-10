@@ -25,34 +25,35 @@
           </p>
         </div>
 
-        <!-- Strict Container for Compact Sizing -->
+        <!-- Perfect Width Wrapper -->
         <div class="max-w-xl mx-auto mt-12 flex items-center justify-center gap-4">
           
           <!-- Hype GIF on the Left -->
-          <div class="shrink-0 hidden sm:flex items-center justify-center" style="width: 60px;">
-            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-16 w-auto object-contain drop-shadow-2xl">
+          <div class="shrink-0 hidden sm:flex items-center justify-center" style="width: 70px;">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-20 w-auto object-contain drop-shadow-2xl">
           </div>
 
-          <!-- Generator Card Box with Fixed Max-Width -->
-          <div class="w-full max-w-md rounded-2xl p-4 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
-            <div class="flex items-center gap-2">
+          <!-- Generator Card Box (Slightly wider, perfectly compact height) -->
+          <div class="w-full max-w-lg rounded-2xl p-5 md:p-6 shadow-2xl backdrop-blur-sm border border-gray-800/80 bg-gray-950/60" style="box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+            <div class="flex items-center gap-3">
               <input 
                 type="text" 
                 id="userInputName" 
                 placeholder="Enter your name..." 
-                class="w-full min-w-0 px-3 py-2.5 text-sm rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors shadow-inner"
+                class="w-full min-w-0 px-4 py-3.5 text-base rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors shadow-inner"
               >
+              <!-- Yellow Get Alias Button -->
               <button 
                 onclick="generateMafiaName()" 
-                class="px-4 py-2.5 text-sm font-black uppercase tracking-wider text-black bg-cyan-400 hover:bg-cyan-300 whitespace-nowrap rounded-xl transition-all duration-300 shadow-lg hover:scale-[1.02]"
+                class="px-6 py-3.5 text-base font-black uppercase tracking-wider text-black bg-yellow-400 hover:bg-yellow-300 whitespace-nowrap rounded-xl transition-all duration-300 shadow-lg hover:scale-[1.02]"
               >
                 Get Alias
               </button>
             </div>
 
-            <div id="mafiaResultContainer" class="mt-4 hidden text-center p-4 bg-gray-900/90 rounded-xl border border-accent/30 shadow-inner transition-all">
+            <div id="mafiaResultContainer" class="mt-5 hidden text-center p-4 bg-gray-900/90 rounded-xl border border-accent/30 shadow-inner transition-all">
               <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Your Underworld Alias</span>
-              <h3 id="mafiaResultText" class="text-xl font-extrabold text-accent tracking-tight"></h3>
+              <h3 id="mafiaResultText" class="text-xl md:text-2xl font-extrabold text-accent tracking-tight"></h3>
             </div>
           </div>
 
