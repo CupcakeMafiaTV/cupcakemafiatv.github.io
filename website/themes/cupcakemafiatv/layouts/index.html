@@ -25,10 +25,10 @@
           </p>
         </div>
 
-        <!-- Perfectly Centered Flex Wrapper with Counterbalancing Spacer & Vertical Centering -->
-        <div class="max-w-xl mx-auto mt-12 flex items-center justify-center gap-6">
+        <!-- Increased Max-Width Wrapper for Larger Box & Counterbalancing Spacer -->
+        <div class="max-w-2xl mx-auto mt-12 flex items-center justify-center gap-6">
           
-          <!-- Hype GIF on the Left (vertically centered with the box) -->
+          <!-- Hype GIF on the Left (vertically centered) -->
           <div class="shrink-0 hidden sm:flex items-center justify-center" style="width: 100px;">
             <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-20 md:h-24 w-auto object-contain drop-shadow-2xl">
           </div>
@@ -39,12 +39,12 @@
               <input 
                 type="text" 
                 id="userInputName" 
-                placeholder="Enter your name (e.g., Cody)..." 
+                placeholder="Enter your name (e.g., CupcakeMafiaTV)..." 
                 class="flex-grow px-5 py-3.5 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors shadow-inner"
               >
               <button 
                 onclick="generateMafiaName()" 
-                class="px-7 py-3.5 font-black uppercase tracking-wider text-white bg-red-600 hover:bg-red-500 rounded-xl transition-all duration-300 shadow-lg hover:scale-[1.02]"
+                class="px-7 py-3.5 font-black uppercase tracking-wider text-white bg-purple-600 hover:bg-purple-500 whitespace-nowrap rounded-xl transition-all duration-300 shadow-lg hover:scale-[1.02]"
               >
                 Get Alias
               </button>
