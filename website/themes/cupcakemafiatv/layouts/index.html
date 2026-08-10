@@ -202,7 +202,7 @@
     <a id="home-hero-video-link" href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
         <div style="position: relative; width: 100%; aspect-ratio: 16/9; background: #0f172a; border-radius: 12px; overflow: hidden; border: 1px solid #334155; display: flex; align-items: center; justify-content: center;">
             
-            <!-- Thumbnail Image (Populated via JS API) -->
+            <!-- Thumbnail Image -->
             <img id="home-hero-thumbnail" src="" alt="Latest YouTube Video" style="width: 100%; height: 100%; object-fit: cover; display: none;">
             
             <!-- Loading State Spinner -->
@@ -211,7 +211,7 @@
             </div>
 
             <!-- Play Button Overlay -->
-            <div style="position: absolute; width: 50px; height: 50px; background: rgba(239, 68, 68, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.2s ease;">
+            <div style="position: absolute; width: 50px; height: 50px; background: rgba(239, 68, 68, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
                 <i class="fa-solid fa-play" style="margin-left: 2px;"></i>
             </div>
         </div>
@@ -223,65 +223,27 @@
     </a>
 </div>
 
-<!-- JavaScript to fetch latest non-Short video from YouTube API -->
 <script>
-    async function loadLatestYouTubeVideo() {
-        // REPLACE THESE WITH YOUR ACTUAL DETAILS:
-        const API_KEY = 'YOUR_YOUTUBE_API_KEY';
-        const CHANNEL_ID = 'YOUR_CHANNEL_ID'; // e.g. UCxxxxxx
-
-        if (API_KEY === 'YOUR_YOUTUBE_API_KEY') {
-            document.getElementById('home-hero-title').innerText = 'Connect your YouTube API Key to display latest video';
-            document.getElementById('home-hero-placeholder').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
-            return;
-        }
-
+    async function loadLatestVideo() {
         try {
-            // 1. Get the uploads playlist ID for the channel
-            const channelRes = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${CHANNEL_ID}&key=${API_KEY}`);
-            const channelData = await channelRes.json();
-            const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
+            const response = await fetch('/api/latest-video');
+            const data = await response.json();
 
-            // 2. Fetch the latest videos from that playlist
-            const playlistRes = await fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=10&key=${API_KEY}`);
-            const playlistData = await playlistRes.json();
-            
-            const videoIds = playlistData.items.map(item => item.snippet.resourceId.videoId).join(',');
-
-            // 3. Fetch video details (specifically duration to filter out Shorts)
-            const detailsRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoIds}&key=${API_KEY}`);
-            const detailsData = await detailsRes.json();
-
-            // 4. Find the first video longer than 60 seconds (Long-form)
-            const longFormVideo = detailsData.items.find(video => {
-                const duration = video.contentDetails.duration; // Format: PT#M#S
-                // Basic check: if it has 'M' (minutes) or 'H' (hours), it's long-form.
-                return duration.includes('M') || duration.includes('H');
-            });
-
-            if (longFormVideo) {
-                const title = longFormVideo.snippet.title;
-                const videoId = longFormVideo.id;
-                // Grab high quality thumbnail, fallback to medium/default
-                const thumbnail = longFormVideo.snippet.thumbnails.maxres?.url || longFormVideo.snippet.thumbnails.high?.url;
-
-                // Update the DOM elements
-                document.getElementById('home-hero-thumbnail').src = thumbnail;
+            if (response.ok && data.videoId) {
+                document.getElementById('home-hero-thumbnail').src = data.thumbnail;
                 document.getElementById('home-hero-thumbnail').style.display = 'block';
                 document.getElementById('home-hero-placeholder').style.display = 'none';
-                document.getElementById('home-hero-title').innerText = title;
-                document.getElementById('home-hero-link').href = `https://youtube.com/watch?v=${videoId}`;
+                document.getElementById('home-hero-title').innerText = data.title;
+                document.getElementById('home-hero-video-link').href = `https://youtube.com/watch?v=${data.videoId}`;
             } else {
                 document.getElementById('home-hero-title').innerText = 'Check out my channel for recent uploads!';
             }
         } catch (error) {
-            console.error('Error fetching YouTube data:', error);
             document.getElementById('home-hero-title').innerText = 'Visit YouTube to watch latest videos';
         }
     }
 
-    // Run on page load
-    loadLatestYouTubeVideo();
+    loadLatestVideo();
 </script>
     
 
