@@ -23,36 +23,26 @@
           </p>
         </div>
 
-        <div class="max-w-xl mx-auto mt-12">
-          <div class="relative rounded-3xl p-[1px] bg-gradient-to-r from-accent/20 via-gray-500/40 to-accent/20 shadow-2xl">
-            <div class="relative rounded-3xl overflow-visible border border-white/10 bg-gradient-to-br from-gray-900/95 via-gray-950/95 to-[#111827]/95 backdrop-blur-md" style="box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05);">
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent"></div>
-              <div class="relative p-5 sm:p-6 md:p-8">
-                <div class="flex items-center gap-4 mb-5">
-                  <div class="shrink-0 flex items-center justify-center">
-                    <div class="relative">
-                      <div class="absolute inset-0 rounded-full bg-accent/10 blur-xl"></div>
-                      <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="relative h-16 sm:h-20 md:h-24 w-auto object-contain drop-shadow-2xl">
-                    </div>
-                  </div>
-                  <div class="text-left">
-                    <div class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-1">The Docks</div>
-                    <h3 class="text-lg sm:text-xl md:text-2xl font-extrabold text-white tracking-tight">What's your underworld name?</h3>
-                    <p class="text-sm text-gray-400 mt-1 hidden sm:block">Give us your name and we'll handle the rest.</p>
-                  </div>
-                </div>
-                <label for="userInputName" class="block mb-2 text-xs font-bold uppercase tracking-widest text-gray-400">Enter Your Name</label>
-                <div class="flex flex-col sm:flex-row items-stretch gap-3">
-                  <input type="text" id="userInputName" placeholder="Enter your name..." class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-gray-900 border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300 shadow-inner">
-                  <button onclick="generateMafiaName()" class="group relative px-7 py-4 text-sm md:text-base font-black uppercase tracking-widest text-black bg-yellow-400 hover:bg-yellow-300 whitespace-nowrap rounded-xl transition-all duration-300 shadow-lg shadow-yellow-400/10 hover:shadow-yellow-400/25 hover:-translate-y-0.5">
-                    <span class="relative z-10">Get Alias</span>
-                  </button>
-                </div>
-                <div id="mafiaResultContainer" class="mt-5 hidden text-center p-5 bg-black/25 rounded-xl border border-accent/20 shadow-inner">
-                  <span class="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 block mb-2">Your Underworld Alias</span>
-                  <h3 id="mafiaResultText" class="text-2xl md:text-3xl font-extrabold text-accent tracking-tight"></h3>
-                </div>
-              </div>
+        <div class="max-w-xl mx-auto mt-12 bg-gray-900/50 border border-gray-800/80 rounded-2xl shadow-2xl backdrop-blur-sm p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row items-center sm:items-center gap-3 sm:gap-4 mb-6 text-center sm:text-left">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-14 md:h-16 w-auto object-contain shrink-0">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-1">The Docks</div>
+              <p class="text-sm text-gray-400">They're waiting at the docks…</p>
+            </div>
+          </div>
+          <label for="userInputName" class="block mb-2 text-sm font-semibold text-gray-400">Enter your name</label>
+          <p class="mb-2 text-xs text-gray-500">Example Name (e.g. CupcakeMafiaTV)</p>
+          <div class="flex flex-col sm:flex-row items-stretch gap-3">
+            <input type="text" id="userInputName" placeholder="" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-black border border-gray-900 text-white focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #000000; color: #ffffff;">
+            <button onclick="generateMafiaName()" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90">
+              Get Alias
+            </button>
+          </div>
+          <div id="mafiaResultContainer" class="mt-4 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0">
+            <div id="mafiaResultInner" class="rounded-xl bg-black/20 border border-gray-800/60 border-l-2 border-l-accent px-5 py-4 transition-transform duration-300 scale-[0.98]">
+              <span class="text-xs uppercase tracking-wide text-gray-500">Your Underworld Alias</span>
+              <p id="mafiaResultText" class="mt-1 text-xl md:text-2xl font-bold text-white"></p>
             </div>
           </div>
         </div>
@@ -154,8 +144,14 @@
     for (let i = 0; i < nameInput.length; i++) { hash = nameInput.charCodeAt(i) + ((hash << 5) - hash); }
     const index = Math.abs(hash) % nicknames.length;
     const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
-    document.getElementById('mafiaResultText').innerText = `${formattedName} ${nicknames[index]}`;
-    document.getElementById('mafiaResultContainer').classList.remove('hidden');
+    const nickname = nicknames[index];
+    document.getElementById('mafiaResultText').innerHTML = `${formattedName} <span class="text-accent">${nickname}</span>`;
+    const container = document.getElementById('mafiaResultContainer');
+    const inner = document.getElementById('mafiaResultInner');
+    container.classList.remove('max-h-0', 'opacity-0');
+    container.classList.add('max-h-32', 'opacity-100');
+    inner.classList.remove('scale-[0.98]');
+    inner.classList.add('scale-100');
   }
 
   let latestVideoId = "";
