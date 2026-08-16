@@ -47,11 +47,8 @@
             <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
                 <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
                     
-                    <!-- Exact Match Header Setup & Size to PC Specs -->
-                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding-bottom: 12px; margin-bottom: 35px;">
-                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
-                            About Me
-                        </h1>
+                    <div class="mb-8 md:mb-10 text-center">
+                        <h1 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">About Me</h1>
                     </div>
 
                     <div class="flex flex-col gap-y-12">
@@ -59,11 +56,9 @@
                         <!-- Bio Section with Increased Font Size -->
                         <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
                             <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
-                                <a href="#">
-                                 <div class="hidden dark:block rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
+                                <div class="rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px;">
                                     <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
-                                 </div>
-                                </a>
+                                </div>
                             </div>
                             <div class="col-span-full md:col-span-8">
                                 <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
@@ -176,7 +171,7 @@
                     border-radius: 12px;
                     overflow: hidden;
                     background: rgba(30, 41, 59, 0.7);
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid transparent;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
                     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     text-decoration: none;
