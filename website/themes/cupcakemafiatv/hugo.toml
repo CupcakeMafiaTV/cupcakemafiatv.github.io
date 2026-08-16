@@ -1,12 +1,6 @@
 # Theme config.
 
 [[menu.main]]
-  identifier = "Home"
-  name = 'Home'
-  url = '/'
-  weight = 1
-
-[[menu.main]]
   identifier = "about"
   name = 'About'
   url = '/about'
