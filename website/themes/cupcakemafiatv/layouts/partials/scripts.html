@@ -30,9 +30,14 @@
       const twitchRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status');
       const twitchData = await twitchRes.json();
       const twitchBadge = document.getElementById('twitch-live-badge');
-      
+
       if (twitchBadge) {
         twitchBadge.style.display = twitchData.isLive ? 'inline-block' : 'none';
+      }
+
+      const navBadge = document.getElementById('nav-live-badge');
+      if (navBadge) {
+        navBadge.style.display = twitchData.isLive ? 'inline-flex' : 'none';
       }
     } catch (e) {
       console.log('Error checking Twitch status:', e);

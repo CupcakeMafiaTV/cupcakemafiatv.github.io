@@ -224,7 +224,10 @@
                             {{- partial "navigation.html" . -}}
 
                             <!-- Header Controls -->
-                            <div class="flex ml-auto -mr-3">
+                            <div class="flex items-center ml-auto -mr-3">
+                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
+                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
+                                </a>
                                 <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
                                     <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
                                         <use xlink:href="/img/sprites2.svg#menu"></use>
