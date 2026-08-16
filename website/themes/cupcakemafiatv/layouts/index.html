@@ -72,6 +72,24 @@
       </div>
     </div>
 
+    <!-- League of Legends Rank Section -->
+    <div class="pb-12 md:pb-20 lg:pb-[60px]">
+      <div class="container">
+        <div class="mb-8 md:mb-10 text-center">
+          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Solo Queue Rank</h2>
+          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia#NA1.</p>
+        </div>
+        <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative">
+          <div id="lol-live-badge" class="hidden" style="display: none; align-items: center; justify-content: center; gap: 6px; margin: 0 auto 16px auto; width: fit-content; padding: 4px 12px; border-radius: 9999px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.025em;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 9999px; background: #ef4444; animation: homeLivePulse 2s infinite;"></span> In a Ranked Game
+          </div>
+          <div id="lol-rank-tier" class="text-2xl md:text-3xl font-black text-white">Loading...</div>
+          <div id="lol-rank-lp" class="text-accent font-bold mt-1"></div>
+          <div id="lol-rank-wl" class="text-sm text-gray-400 mt-2"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Stream Schedule Section -->
     <div class="pb-12 md:pb-20 lg:pb-[60px]">
       <div class="container">
@@ -287,6 +305,40 @@
   }
 
   loadTwitchStatus();
+
+  async function loadLoLRank() {
+      try {
+          const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/league-rank');
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || 'Failed to load rank');
+
+          const tierEl = document.getElementById('lol-rank-tier');
+          const lpEl = document.getElementById('lol-rank-lp');
+          const wlEl = document.getElementById('lol-rank-wl');
+          const liveBadge = document.getElementById('lol-live-badge');
+
+          if (data.rank) {
+              const tierName = data.rank.tier.charAt(0) + data.rank.tier.slice(1).toLowerCase();
+              tierEl.innerText = `${tierName} ${data.rank.division}`;
+              lpEl.innerText = `${data.rank.leaguePoints} LP`;
+              wlEl.innerText = `${data.rank.wins}W · ${data.rank.losses}L`;
+          } else {
+              tierEl.innerText = 'Unranked';
+              lpEl.innerText = '';
+              wlEl.innerText = '';
+          }
+
+          if (data.inGame) {
+              liveBadge.classList.remove('hidden');
+              liveBadge.style.display = 'inline-flex';
+          }
+      } catch (error) {
+          console.error('Error loading League rank:', error);
+          document.getElementById('lol-rank-tier').innerText = 'Unavailable';
+      }
+  }
+
+  loadLoLRank();
 
   const todayIndex = new Date().getDay();
   const todayCard = document.querySelector(`.schedule-day[data-day="${todayIndex}"]`);
