@@ -126,7 +126,7 @@
         <div class="max-w-xl mx-auto mt-12 bg-gray-900/60 rounded-3xl shadow-2xl backdrop-blur-sm p-8 md:p-10">
           <div class="flex items-center gap-4 mb-5">
             <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-16 w-16 md:h-20 md:w-20 rounded-xl object-cover shrink-0 shadow-lg">
-            <label for="userInputName" class="text-2xl md:text-3xl font-bold text-white">Enter your name</label>
+            <label for="userInputName" class="text-2xl md:text-3xl font-bold text-white leading-none">What's Your Mafia Name?</label>
           </div>
           <div class="flex flex-col sm:flex-row items-stretch gap-3">
             <input type="text" id="userInputName" placeholder="Example Name (e.g. CupcakeMafiaTV)" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white border border-gray-300 text-gray-900 placeholder-gray-400 shadow-inner focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111;">
@@ -152,11 +152,13 @@
     if (!nameInput) return;
 
     const lower = nameInput.toLowerCase();
+    const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
     let resultHTML;
 
     if (lower === 'daggy' || lower === 'daggy3d') {
+      const displayName = lower === 'daggy3d' ? 'Daggy3D' : 'Daggy';
       const easterEgg = Math.random() < 0.5 ? 'Dirt Bike' : 'Dirt Bag';
-      resultHTML = `<span class="text-accent">${easterEgg}</span>`;
+      resultHTML = `${displayName} <span class="text-accent">"${easterEgg}"</span>`;
     } else {
       const suffixNicknames = [
         "Tightlips", "The Fixer", "Two-Times", "The Brick", "No-Thumbs", "The Cupcake",
@@ -179,7 +181,6 @@
       for (let i = 0; i < nameInput.length; i++) { hash = nameInput.charCodeAt(i) + ((hash << 5) - hash); }
       hash = Math.abs(hash);
 
-      const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
       const usePrefix = hash % 10 < 3;
 
       if (usePrefix) {
