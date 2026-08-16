@@ -171,17 +171,23 @@
 </div>
 
 <script>
+  let lastMafiaResultKey = null;
+
   function generateMafiaName() {
     const nameInput = document.getElementById('userInputName').value.trim();
     if (!nameInput) return;
 
     const lower = nameInput.toLowerCase();
     const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
-    let resultHTML;
+    let resultHTML, resultKey;
 
     if (lower === 'daggy' || lower === 'daggy3d') {
       const displayName = lower === 'daggy3d' ? 'Daggy3D' : 'Daggy';
-      const easterEgg = Math.random() < 0.5 ? 'Dirt Bike' : 'Dirt Bag';
+      let easterEgg;
+      do {
+        easterEgg = Math.random() < 0.5 ? 'Dirt Bike' : 'Dirt Bag';
+      } while (easterEgg === lastMafiaResultKey);
+      resultKey = easterEgg;
       resultHTML = `<span class="text-accent">"${easterEgg}"</span> ${displayName}`;
     } else {
       const suffixNicknames = [
@@ -201,21 +207,21 @@
         "Diamond", "King"
       ];
 
-      let hash = 0;
-      for (let i = 0; i < nameInput.length; i++) { hash = nameInput.charCodeAt(i) + ((hash << 5) - hash); }
-      hash = Math.abs(hash);
+      let usePrefix, pick;
+      do {
+        usePrefix = Math.random() < 0.3;
+        pick = usePrefix
+          ? prefixNicknames[Math.floor(Math.random() * prefixNicknames.length)]
+          : suffixNicknames[Math.floor(Math.random() * suffixNicknames.length)];
+        resultKey = `${usePrefix}:${pick}`;
+      } while (resultKey === lastMafiaResultKey);
 
-      const usePrefix = hash % 10 < 3;
-
-      if (usePrefix) {
-        const prefix = prefixNicknames[Math.floor(hash / 7) % prefixNicknames.length];
-        resultHTML = `<span class="text-accent">${prefix}</span> ${formattedName}`;
-      } else {
-        const suffix = suffixNicknames[hash % suffixNicknames.length];
-        resultHTML = `${formattedName} <span class="text-accent">"${suffix}"</span>`;
-      }
+      resultHTML = usePrefix
+        ? `<span class="text-accent">${pick}</span> ${formattedName}`
+        : `${formattedName} <span class="text-accent">"${pick}"</span>`;
     }
 
+    lastMafiaResultKey = resultKey;
     document.getElementById('mafiaResultText').innerHTML = resultHTML;
     const container = document.getElementById('mafiaResultContainer');
     const inner = document.getElementById('mafiaResultInner');
