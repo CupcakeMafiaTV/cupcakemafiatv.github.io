@@ -124,24 +124,19 @@
         </div>
 
         <div class="max-w-xl mx-auto mt-12 bg-gray-900/60 rounded-3xl shadow-2xl backdrop-blur-sm p-8 md:p-10">
-          <div class="flex flex-col sm:flex-row items-center sm:items-center gap-3 sm:gap-4 mb-8 text-center sm:text-left">
-            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-14 md:h-16 w-auto object-contain shrink-0">
-            <div>
-              <div class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-1">The Docks</div>
-              <p class="text-sm text-gray-400">They're waiting at the docks…</p>
-            </div>
+          <div class="flex items-center gap-4 mb-5">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-16 w-16 md:h-20 md:w-20 rounded-xl object-cover shrink-0 shadow-lg">
+            <label for="userInputName" class="text-2xl md:text-3xl font-bold text-white">Enter your name</label>
           </div>
-          <label for="userInputName" class="block mb-1.5 text-lg md:text-xl font-bold text-white">Enter your name</label>
-          <p class="mb-3 text-sm md:text-base text-gray-400">Example Name (e.g. CupcakeMafiaTV)</p>
           <div class="flex flex-col sm:flex-row items-stretch gap-3">
-            <input type="text" id="userInputName" placeholder="" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white border border-gray-300 text-gray-900 shadow-inner focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111;">
+            <input type="text" id="userInputName" placeholder="Example Name (e.g. CupcakeMafiaTV)" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white border border-gray-300 text-gray-900 placeholder-gray-400 shadow-inner focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111;">
             <button onclick="generateMafiaName()" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90 shadow-lg">
               Get Alias
             </button>
           </div>
           <div id="mafiaResultContainer" class="mt-4 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0">
             <div id="mafiaResultInner" class="rounded-xl bg-black/20 border-l-2 border-l-accent px-5 py-4 transition-transform duration-300 scale-[0.98]">
-              <span class="text-xs uppercase tracking-wide text-gray-500">Your Underworld Alias</span>
+              <span class="text-xs uppercase tracking-wide text-gray-500">Your CupcakeMafia Name</span>
               <p id="mafiaResultText" class="mt-1 text-xl md:text-2xl font-bold text-white"></p>
             </div>
           </div>
@@ -155,13 +150,48 @@
   function generateMafiaName() {
     const nameInput = document.getElementById('userInputName').value.trim();
     if (!nameInput) return;
-    const nicknames = ["\"Tightlips\"", "\"The Fixer\"", "\"Two-Times\"", "\"The Brick\"", "\"No-Thumbs\"", "\"The Cupcake\"", "\"Vinnie the Fish\"", "\"Slick\"", "\"The Needle\"", "\"Bones\""];
-    let hash = 0;
-    for (let i = 0; i < nameInput.length; i++) { hash = nameInput.charCodeAt(i) + ((hash << 5) - hash); }
-    const index = Math.abs(hash) % nicknames.length;
-    const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
-    const nickname = nicknames[index];
-    document.getElementById('mafiaResultText').innerHTML = `${formattedName} <span class="text-accent">${nickname}</span>`;
+
+    const lower = nameInput.toLowerCase();
+    let resultHTML;
+
+    if (lower === 'daggy' || lower === 'daggy3d') {
+      const easterEgg = Math.random() < 0.5 ? 'Dirt Bike' : 'Dirt Bag';
+      resultHTML = `<span class="text-accent">${easterEgg}</span>`;
+    } else {
+      const suffixNicknames = [
+        "Tightlips", "The Fixer", "Two-Times", "The Brick", "No-Thumbs", "The Cupcake",
+        "Vinnie the Fish", "Slick", "The Needle", "Bones", "Legs", "The Ghost", "Lucky",
+        "The Hammer", "Whispers", "The Shadow", "Trigger", "The Butcher", "Ice", "The Anchor",
+        "Knuckles", "The Snake", "Doc", "The Wolf", "Momo", "The Rat", "Cannon", "The Priest",
+        "Sharkskin", "The Undertaker", "Pretty Boy", "The Vulture", "Deuce", "The Hyena",
+        "Rooster", "The Gravedigger", "Chains", "The Weasel", "Big Sal", "The Pigeon",
+        "Toothpick", "The Jackal", "Feathers", "The Bull", "Cufflinks", "The Eel", "Sugar",
+        "The Mortician", "Fast Eddie", "The Choirboy"
+      ];
+      const prefixNicknames = [
+        "The Big Don", "Don", "Big", "Little", "Fat", "Mad Dog", "Uncle", "Cousin", "Sir",
+        "Lord", "Captain", "Boss", "The Notorious", "The Legendary", "The Infamous",
+        "The Honorable", "Godfather", "Crazy", "Wild", "Silky", "The One and Only",
+        "Diamond", "King"
+      ];
+
+      let hash = 0;
+      for (let i = 0; i < nameInput.length; i++) { hash = nameInput.charCodeAt(i) + ((hash << 5) - hash); }
+      hash = Math.abs(hash);
+
+      const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
+      const usePrefix = hash % 10 < 3;
+
+      if (usePrefix) {
+        const prefix = prefixNicknames[Math.floor(hash / 7) % prefixNicknames.length];
+        resultHTML = `<span class="text-accent">${prefix}</span> ${formattedName}`;
+      } else {
+        const suffix = suffixNicknames[hash % suffixNicknames.length];
+        resultHTML = `${formattedName} <span class="text-accent">"${suffix}"</span>`;
+      }
+    }
+
+    document.getElementById('mafiaResultText').innerHTML = resultHTML;
     const container = document.getElementById('mafiaResultContainer');
     const inner = document.getElementById('mafiaResultInner');
     container.classList.remove('max-h-0', 'opacity-0');
