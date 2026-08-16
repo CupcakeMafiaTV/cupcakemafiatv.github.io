@@ -62,27 +62,4 @@
 
   // Re-check live status every 2 minutes (120,000 milliseconds)
   setInterval(checkLiveStatuses, 120000);
-
-  // Fetch and Load Latest YouTube Video
-  async function loadLatestVideo() {
-      try {
-          const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/latest-video');
-          const data = await response.json();
-
-          if (response.ok && data.videoId) {
-              document.getElementById('home-hero-thumbnail').src = data.thumbnail;
-              document.getElementById('home-hero-thumbnail').style.display = 'block';
-              document.getElementById('home-hero-placeholder').style.display = 'none';
-              document.getElementById('home-hero-title').innerText = data.title;
-              document.getElementById('home-hero-video-link').href = `https://youtube.com/watch?v=${data.videoId}`;
-          } else {
-              document.getElementById('home-hero-title').innerText = 'Check out my channel for recent uploads!';
-          }
-      } catch (error) {
-          document.getElementById('home-hero-title').innerText = 'Visit YouTube to watch latest videos';
-      }
-  }
-
-  // Run latest video load on page load
-  loadLatestVideo();
 </script>
