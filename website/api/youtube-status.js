@@ -3,8 +3,8 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'GET');
 
   // Pulling directly from your Vercel Environment Variables
-  const CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
-  const API_KEY = process.env.YOUTUBE_API_KEY;
+  const CHANNEL_ID = process.env.CHANNEL_ID;
+  const API_KEY = process.env.YouTube_Live_Checker;
 
   if (!CHANNEL_ID || !API_KEY) {
     return res.status(500).json({ isLive: false, error: 'Missing YouTube environment variables' });
