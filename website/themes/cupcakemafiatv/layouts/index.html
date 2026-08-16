@@ -36,7 +36,7 @@
           </div>
         </div>
         <p id="twitch-stream-title" class="hidden -mt-6 mb-8 text-gray-300"></p>
-        <div class="bg-gray-900/50 border border-gray-800/80 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm grid grid-cols-12 gap-5 md:gap-6 items-stretch">
+        <div class="bg-gray-900/50 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm grid grid-cols-12 gap-5 md:gap-6 items-stretch">
           <div class="col-span-full lg:col-span-8 flex flex-col">
             <div class="relative w-full aspect-video overflow-hidden rounded-xl bg-black shadow-inner">
               <iframe src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" class="absolute top-0 left-0 w-full h-full"></iframe>
@@ -57,7 +57,7 @@
         <div class="mb-8 text-center">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Latest Upload</h2>
         </div>
-        <div id="video-container-wrapper" class="bg-gray-900/50 border border-gray-800/80 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm">
+        <div id="video-container-wrapper" class="bg-gray-900/50 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm">
           <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
             <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover">
             <div class="absolute inset-0 flex items-center justify-center">
@@ -123,7 +123,7 @@
           </p>
         </div>
 
-        <div class="max-w-xl mx-auto mt-12 bg-gray-900/60 border border-gray-800/80 rounded-3xl shadow-2xl backdrop-blur-sm p-8 md:p-10">
+        <div class="max-w-xl mx-auto mt-12 bg-gray-900/60 rounded-3xl shadow-2xl backdrop-blur-sm p-8 md:p-10">
           <div class="flex flex-col sm:flex-row items-center sm:items-center gap-3 sm:gap-4 mb-8 text-center sm:text-left">
             <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-14 md:h-16 w-auto object-contain shrink-0">
             <div>
@@ -140,7 +140,7 @@
             </button>
           </div>
           <div id="mafiaResultContainer" class="mt-4 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0">
-            <div id="mafiaResultInner" class="rounded-xl bg-black/20 border border-gray-800/60 border-l-2 border-l-accent px-5 py-4 transition-transform duration-300 scale-[0.98]">
+            <div id="mafiaResultInner" class="rounded-xl bg-black/20 border-l-2 border-l-accent px-5 py-4 transition-transform duration-300 scale-[0.98]">
               <span class="text-xs uppercase tracking-wide text-gray-500">Your Underworld Alias</span>
               <p id="mafiaResultText" class="mt-1 text-xl md:text-2xl font-bold text-white"></p>
             </div>
