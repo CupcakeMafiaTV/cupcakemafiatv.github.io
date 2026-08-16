@@ -29,13 +29,13 @@
     <!-- Watch Live Section -->
     <div class="py-10 md:py-16">
       <div class="container">
-        <div class="mb-8 md:mb-10 flex items-center justify-between">
+        <div class="mb-8 md:mb-10 flex items-center justify-center gap-3">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Watch Live</h2>
-          <div id="twitch-live-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 border border-gray-800 text-xs font-semibold text-gray-400">
+          <div id="home-twitch-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 border border-gray-800 text-xs font-semibold text-gray-400">
             <span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline
           </div>
         </div>
-        <p id="twitch-stream-title" class="hidden -mt-6 mb-8 text-gray-300"></p>
+        <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
         <div class="bg-gray-900/50 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm grid grid-cols-12 gap-5 md:gap-6 items-stretch">
           <div class="col-span-full lg:col-span-8 flex flex-col">
             <div class="relative w-full aspect-video overflow-hidden rounded-xl bg-black shadow-inner">
@@ -195,8 +195,8 @@
       try {
           const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status');
           const data = await response.json();
-          const badge = document.getElementById('twitch-live-badge');
-          const titleEl = document.getElementById('twitch-stream-title');
+          const badge = document.getElementById('home-twitch-badge');
+          const titleEl = document.getElementById('home-twitch-title');
           if (!response.ok) return;
 
           badge.classList.remove('hidden');
