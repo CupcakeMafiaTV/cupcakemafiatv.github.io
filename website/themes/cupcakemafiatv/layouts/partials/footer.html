@@ -22,11 +22,11 @@
 
             <!-- Social Icons -->
             <div style="display: flex; align-items: center; gap: 16px;">
-                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
             </div>
 
             <!-- Right: Contact Button with Updated Gmail Address -->
@@ -79,6 +79,19 @@
         transform: translateY(-2px);
         box-shadow: 0 0 7px rgb(var(--color-accent) / 0.3);
     }
+
+    /* Brand-Colored Footer Social Icons */
+    .footer-social-icon.footer-social-twitch { color: #9146FF; }
+    .footer-social-icon.footer-social-youtube { color: #FF0000; }
+    .footer-social-icon.footer-social-x { color: #1D9BF0; }
+    .footer-social-icon.footer-social-instagram { color: #E4405F; }
+    .footer-social-icon.footer-social-tiktok { color: #FE2C55; }
+
+    .footer-social-icon.footer-social-twitch:hover { background-color: #9146FF; border-color: #9146FF; box-shadow: 0 0 7px rgba(145, 70, 255, 0.35); }
+    .footer-social-icon.footer-social-youtube:hover { background-color: #FF0000; border-color: #FF0000; box-shadow: 0 0 7px rgba(255, 0, 0, 0.35); }
+    .footer-social-icon.footer-social-x:hover { background-color: #1D9BF0; border-color: #1D9BF0; box-shadow: 0 0 7px rgba(29, 155, 240, 0.35); }
+    .footer-social-icon.footer-social-instagram:hover { background-color: #E4405F; border-color: #E4405F; box-shadow: 0 0 7px rgba(228, 64, 95, 0.35); }
+    .footer-social-icon.footer-social-tiktok:hover { background-color: #FE2C55; border-color: #FE2C55; box-shadow: 0 0 7px rgba(254, 44, 85, 0.35); }
 
     /* White Outline Button Base Styling */
     .footer-contact-btn {
