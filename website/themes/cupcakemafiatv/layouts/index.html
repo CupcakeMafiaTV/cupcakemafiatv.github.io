@@ -5,6 +5,12 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
   }
+  .hero-btn-twitch { background-color: #9146FF; }
+  .hero-btn-twitch:hover { background-color: #7c3aed; }
+  .hero-btn-youtube { background-color: #FF0000; }
+  .hero-btn-youtube:hover { background-color: #cc0000; }
+  .hero-btn-discord { background-color: #5865F2; }
+  .hero-btn-discord:hover { background-color: #4752c4; }
 </style>
 
 <div style="background-color: #0f172a; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed;">
@@ -21,14 +27,14 @@
       Variety live streamer from Canada, bouncing between League of Legends and Fortnite while chasing 100% completion across an endlessly large Steam library. Self-proclaimed First Try King.
     </p>
     <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90">
-        Watch on Twitch
+      <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-twitch px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
+        <i class="fa-brands fa-twitch"></i> Watch on Twitch
       </a>
-      <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white bg-gray-900/60 hover:border-accent" style="border: 1px solid rgba(255,255,255,0.15);">
-        Subscribe on YouTube
+      <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-youtube px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
+        <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
       </a>
-      <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white bg-gray-900/60 hover:border-accent" style="border: 1px solid rgba(255,255,255,0.15);">
-        Join the Discord
+      <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="hero-btn-discord px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
+        <i class="fa-brands fa-discord"></i> Join the Discord
       </a>
     </div>
     <div class="mt-6 text-xs md:text-sm text-gray-500">
@@ -264,10 +270,10 @@
           const lurkEmote = document.getElementById('lurk-emote');
           if (!response.ok) return;
 
-          badge.classList.remove('hidden');
           if (lurkEmote) lurkEmote.style.display = data.isLive ? 'none' : 'inline-block';
           if (data.isLive) {
-              badge.classList.remove('bg-gray-900', 'text-gray-400');
+              badge.classList.remove('hidden', 'bg-gray-900', 'text-gray-400');
+              badge.style.display = 'flex';
               badge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
               badge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
               badge.style.color = '#f87171';
@@ -277,11 +283,7 @@
                   titleEl.classList.remove('hidden');
               }
           } else {
-              badge.classList.add('bg-gray-900', 'text-gray-400');
-              badge.style.backgroundColor = '';
-              badge.style.borderColor = 'rgba(255,255,255,0.15)';
-              badge.style.color = '';
-              badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline';
+              badge.style.display = 'none';
               titleEl.classList.add('hidden');
           }
       } catch (error) { console.error("Error loading Twitch status", error); }
