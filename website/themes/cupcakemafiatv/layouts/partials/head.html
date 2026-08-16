@@ -11,8 +11,22 @@
   <meta name="author" content="CupcakeMafiaTV">
   <meta name="keywords" content="CupcakeMafiaTV, Twitch, Gaming, Streamer, Content Creator">
 
+  <!-- Open Graph / Social Share -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CupcakeMafiaTV">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community.">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ "img/logo.png" | absURL }}">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community.">
+  <meta name="twitter:image" content="{{ "img/logo.png" | absURL }}">
+
   <!-- Favicons -->
-  <link rel="shortcut icon" href="/img/favicons/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/logo.png">
 
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,13 +38,17 @@
 
   <!-- Vendor CSS -->
   <link href="/common/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/common/swiper/css/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template CSS -->
   <link href="/css/style.css" rel="stylesheet">
 
   <!-- Custom Header & Navigation Overrides -->
   <style>
+      @keyframes navLivePulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+      }
+
       /* Force header container width & centering across all pages */
       #site-header,
       header {
