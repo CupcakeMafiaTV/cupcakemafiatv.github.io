@@ -19,39 +19,39 @@
   @media (min-width: 768px) { .section-band { padding-top: 80px; } }
   @media (min-width: 1024px) { .section-band { padding-top: 60px; } }
 
-  .section-band-1 { background-color: rgba(30, 64, 110, 0.32); }
-  .section-band-2 { background-color: rgba(13, 63, 76, 0.4); }
-  .section-band-3 { background-color: rgba(30, 64, 110, 0.32); }
-  .section-band-4 { background-color: rgba(13, 63, 76, 0.4); }
-  .section-band-5 { background-color: rgba(30, 64, 110, 0.32); }
+  .section-band-blue { background-color: rgba(30, 64, 110, 0.32); }
+  .section-band-teal { background-color: rgba(13, 63, 76, 0.4); }
+  .hero-tint { background-color: rgba(30, 64, 110, 0.32); }
 </style>
 
 <div style="background-color: #0f172a; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed;">
 
   <!-- Hero -->
-  <div class="container pt-16 pb-12 md:pt-24 md:pb-16 text-center">
-    <h1 class="text-4xl font-black tracking-tighter text-white leading-none sm:text-5xl md:text-6xl lg:text-[64px]">
-      CupcakeMafiaTV
-    </h1>
-    <p class="text-gray-300 mt-5 max-w-2xl mx-auto text-base md:text-lg">
-      Variety live streamer from Canada, bouncing between League of Legends and Fortnite while chasing 100% completion across an endlessly large Steam library. Self-proclaimed First Try King.
-    </p>
-    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-twitch px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
-        <i class="fa-brands fa-twitch"></i> Watch on Twitch
-      </a>
-      <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-youtube px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
-        <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
-      </a>
-      <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="hero-btn-discord px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
-        <i class="fa-brands fa-discord"></i> Join the Discord
-      </a>
-    </div>
-    <div class="mt-6 text-xs md:text-sm text-gray-500">
-      League of Legends & Fortnite &nbsp;·&nbsp; Achievement &amp; collectible hunter &nbsp;·&nbsp; Toronto, Canada <img src="/img/flag-canada.svg" alt="Canada" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
-    </div>
-    <div class="mt-4 text-sm md:text-base text-gray-300 font-semibold">
-      <span id="hero-twitch-count">...</span> Twitch Followers &nbsp;·&nbsp; <span id="hero-youtube-count">...</span> YouTube Subscribers
+  <div class="hero-tint">
+    <div class="container pt-16 pb-12 md:pt-24 md:pb-16 text-center">
+      <h1 class="text-4xl font-black tracking-tighter text-white leading-none sm:text-5xl md:text-6xl lg:text-[64px]">
+        CupcakeMafiaTV
+      </h1>
+      <p class="text-gray-300 mt-5 max-w-2xl mx-auto text-base md:text-lg">
+        Variety live streamer from Canada, bouncing between League of Legends and Fortnite while chasing 100% completion across an endlessly large Steam library. Self-proclaimed First Try King.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-twitch px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
+          <i class="fa-brands fa-twitch"></i> Watch on Twitch
+        </a>
+        <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-youtube px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
+          <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
+        </a>
+        <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="hero-btn-discord px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
+          <i class="fa-brands fa-discord"></i> Join the Discord
+        </a>
+      </div>
+      <div class="mt-6 text-xs md:text-sm text-gray-500">
+        League of Legends & Fortnite &nbsp;·&nbsp; Achievement &amp; collectible hunter &nbsp;·&nbsp; Toronto, Canada <img src="/img/flag-canada.svg" alt="Canada" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
+      </div>
+      <div class="mt-4 text-sm md:text-base text-gray-300 font-semibold">
+        <span id="hero-twitch-count">...</span> Twitch Followers &nbsp;·&nbsp; <span id="hero-youtube-count">...</span> YouTube Subscribers
+      </div>
     </div>
   </div>
   <!-- Hero / End -->
@@ -59,7 +59,7 @@
   <main id="main-content" class="grow lg:pt-0 text-white">
 
     <!-- Watch Live Section -->
-    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-1">
+    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-3 flex items-center justify-center gap-3">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Watch Live</h2>
@@ -86,7 +86,7 @@
     </div>
 
     <!-- League of Legends Rank Section -->
-    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-2">
+    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-blue">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Solo Queue Rank</h2>
@@ -104,7 +104,7 @@
     </div>
 
     <!-- Stream Schedule Section -->
-    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-3">
+    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Stream Schedule</h2>
@@ -149,7 +149,7 @@
     </div>
 
     <!-- YouTube Latest Upload Hero Section -->
-    <div class="pb-12 md:pb-20 section-band section-band-4">
+    <div class="pb-12 md:pb-20 section-band section-band-blue">
       <div class="container">
         <div class="max-w-2xl mx-auto">
           <div class="mb-8 text-center">
@@ -172,7 +172,7 @@
     </div>
 
     <!-- Name Generator Section -->
-    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-5">
+    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">
