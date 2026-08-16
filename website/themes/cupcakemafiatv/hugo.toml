@@ -19,7 +19,13 @@
   weight = 3
 
 [[menu.main]]
+  identifier = "work-with-me"
+  name = 'Work With Me'
+  url = '/work-with-me'
+  weight = 4
+
+[[menu.main]]
   identifier = "socials"
   name = 'Socials'
   url = '/socials'
-  weight = 4
+  weight = 5

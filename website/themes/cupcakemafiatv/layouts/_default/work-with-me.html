@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zxx" class="h-full overflow-x-hidden dark">
+
+    {{- partial "head.html" . -}}
+
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
+
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">
+
+            <div class="header-wrapper text-white" style="background: transparent;">
+
+                <header id="site-header" class="text-white">
+                    <div class="max-w-[1360px] mx-auto px-5">
+                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
+                            <!-- Logo / End -->
+
+                            <!-- Navigation (Desktop) -->
+                            {{- partial "navigation.html" . -}}
+                            <!-- Navigation (Desktop) / End -->
+
+                            <!-- Header Controls -->
+                            <div class="flex items-center ml-auto -mr-3">
+                                <div class="hidden md:flex items-center gap-3" style="margin-right: 16px;">
+                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors text-lg" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors text-lg" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors text-lg" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors text-lg" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors text-lg" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                                </div>
+                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
+                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
+                                </a>
+                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
+                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu"></use>
+                                </svg>
+                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                </svg>
+                                </button>
+                            </div>
+                            <!-- Header Controls / End -->
+
+                        </nav>
+                    </div>
+                </header>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            {{- partial "mobile_menu.html" . -}}
+            <!-- Mobile Menu / End -->
+
+            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
+                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+
+                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
+                        <h1 style="color: #ffffff; font-size: 32px; font-weight: 800; margin: 0;">
+                            Work With Me
+                        </h1>
+                    </div>
+
+                    <div class="flex flex-col gap-y-12">
+
+                        <!-- Pitch -->
+                        <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75; max-width: 760px;" class="lg:text-lg">
+                            I partner with brands and publishers on sponsored streams, game launches, and integrated campaigns for a variety-gaming audience across Twitch and YouTube. If you're looking to reach a community that shows up consistently for League of Legends, Fortnite, and whatever weird game I've decided to 100% that week, let's talk.
+                        </div>
+
+                        <!-- Audience & Reach -->
+                        <div style="font-family: 'Rajdhani', sans-serif;">
+                            <div class="mb-6">
+                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Audience &amp; Reach</h2>
+                                <p class="text-gray-300 mt-3 max-w-2xl">Cross-platform reach for sponsored streams, launch campaigns, and community-first publishing beats.</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl">
+                                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #9146FF; box-shadow: 0 10px 30px rgba(145, 70, 255, 0.35);">
+                                    <div class="relative flex items-center justify-between text-white">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform" style="color: #9146FF;">
+                                                <svg class="h-9 w-9 fill-current" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.428l-3 3v-3H6.857V1.714h13.714z"/></svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">Twitch</span>
+                                                <span id="twitch-follower-count" class="text-4xl md:text-5xl font-black tracking-tight text-white">...</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #f3e8ff;">Followers</span>
+                                    </div>
+                                </a>
+                                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #FF0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.35);">
+                                    <div class="relative flex items-center justify-between text-white">
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform" style="color: #FF0000;">
+                                                <svg class="h-9 w-9 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">YouTube</span>
+                                                <span id="youtube-sub-count" class="text-4xl md:text-5xl font-black tracking-tight text-white">...</span>
+                                            </div>
+                                        </div>
+                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #ffe6e6;">Subscribers</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Contact CTA -->
+                        <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;">
+                            <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Let's Talk</h2>
+                            <p class="text-gray-300 mt-3 max-w-2xl mb-6">Interested in a sponsorship, integration, or collab? Send me an email and let's figure out what makes sense.</p>
+                            <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
+                                <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
+                                <span>CONTACT ME</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </main>
+
+            {{- partial "footer.html" . -}}
+            {{- partial "scripts.html" . -}}
+
+            <script>
+                fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
+                    .then(response => response.json())
+                    .then(data => { document.getElementById('youtube-sub-count').innerText = Number(data.subscriberCount).toLocaleString(); })
+                    .catch(error => { console.error('Error fetching subscribers:', error); });
+            </script>
+
+        </div>
+
+        {{- partial "socials.html" . -}}
+
+    </body>
+</html>
