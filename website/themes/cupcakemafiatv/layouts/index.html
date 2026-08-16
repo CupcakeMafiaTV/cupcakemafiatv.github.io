@@ -1,5 +1,12 @@
 {{ define "main" }}
 
+<style>
+  @keyframes homeLivePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+
 <div style="background-color: #0f172a; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed;">
 
   <!-- Hero -->
@@ -14,7 +21,7 @@
       <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90">
         Watch on Twitch
       </a>
-      <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white bg-gray-900/70 border border-gray-800 hover:border-accent">
+      <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white bg-gray-900/60 hover:border-accent" style="border: 1px solid rgba(255,255,255,0.15);">
         Subscribe on YouTube
       </a>
     </div>
@@ -31,21 +38,68 @@
       <div class="container">
         <div class="mb-8 md:mb-10 flex items-center justify-center gap-3">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Watch Live</h2>
-          <div id="home-twitch-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 border border-gray-800 text-xs font-semibold text-gray-400">
+          <div id="home-twitch-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-xs font-semibold text-gray-400" style="border: 1px solid rgba(255,255,255,0.15);">
             <span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline
           </div>
         </div>
         <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
-        <div class="bg-gray-900/50 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm grid grid-cols-12 gap-5 md:gap-6 items-stretch">
+        <div class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl grid grid-cols-12 gap-5 md:gap-6 items-stretch">
           <div class="col-span-full lg:col-span-8 flex flex-col">
-            <div class="relative w-full aspect-video overflow-hidden rounded-xl bg-black shadow-inner">
+            <div class="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
               <iframe src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" class="absolute top-0 left-0 w-full h-full"></iframe>
             </div>
           </div>
           <div class="col-span-full lg:col-span-4 flex flex-col">
-            <div class="w-full h-full overflow-hidden rounded-xl bg-gray-950 shadow-inner flex flex-col">
-              <iframe id="chat_embed" src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" height="100%" width="100%" class="w-full flex-grow min-h-[320px] lg:min-h-0"></iframe>
+            <div class="w-full h-full overflow-hidden rounded-xl bg-black flex flex-col">
+              <iframe id="chat_embed" src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" height="100%" width="100%" class="w-full flex-grow" style="min-height: 320px;"></iframe>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stream Schedule Section -->
+    <div class="pb-12 md:pb-20 lg:pb-[60px]">
+      <div class="container">
+        <div class="mb-8 md:mb-10 text-center">
+          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Stream Schedule</h2>
+          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">All times Eastern (EST). Come hang out.</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="1">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Monday</div>
+            <div class="text-sm font-bold text-white mb-2">Solo Queue<br>League Ranked</div>
+            <div class="text-xs text-accent font-semibold">7PM EST</div>
+          </div>
+          <div class="schedule-day rounded-2xl bg-gray-900/40 shadow-2xl p-4 text-center transition-all duration-300" data-day="2">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-500 mb-2">Tuesday</div>
+            <div class="text-sm font-bold text-gray-500 mb-2">Day Off</div>
+            <div class="text-xs text-gray-600 font-semibold">&nbsp;</div>
+          </div>
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="3">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Wednesday</div>
+            <div class="text-sm font-bold text-white mb-2">Solo Queue<br>League Ranked</div>
+            <div class="text-xs text-accent font-semibold">7PM EST</div>
+          </div>
+          <div class="schedule-day rounded-2xl bg-gray-900/40 shadow-2xl p-4 text-center transition-all duration-300" data-day="4">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-500 mb-2">Thursday</div>
+            <div class="text-sm font-bold text-gray-500 mb-2">Day Off</div>
+            <div class="text-xs text-gray-600 font-semibold">&nbsp;</div>
+          </div>
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="5">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Friday</div>
+            <div class="text-sm font-bold text-white mb-2">Solo Queue<br>League Ranked</div>
+            <div class="text-xs text-accent font-semibold">7PM EST</div>
+          </div>
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="6">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Saturday</div>
+            <div class="text-sm font-bold text-white mb-2">Community<br>Night</div>
+            <div class="text-xs text-accent font-semibold">7PM EST</div>
+          </div>
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="0">
+            <div class="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Sunday</div>
+            <div class="text-sm font-bold text-white mb-2">Community<br>Night</div>
+            <div class="text-xs text-accent font-semibold">7PM EST</div>
           </div>
         </div>
       </div>
@@ -53,15 +107,15 @@
 
     <!-- YouTube Latest Upload Hero Section -->
     <div class="container pb-12 md:pb-20">
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-2xl mx-auto">
         <div class="mb-8 text-center">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Latest Upload</h2>
         </div>
-        <div id="video-container-wrapper" class="bg-gray-900/50 p-4 md:p-6 rounded-2xl shadow-2xl backdrop-blur-sm">
+        <div id="video-container-wrapper" class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl">
           <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
             <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover">
             <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xl">
+              <div class="w-20 h-20 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
                 <i class="fa-solid fa-play text-white text-3xl ml-2"></i>
               </div>
             </div>
@@ -82,7 +136,7 @@
           <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #9146FF; box-shadow: 0 10px 30px rgba(145, 70, 255, 0.35);">
             <div class="relative flex items-center justify-between text-white">
               <div class="flex items-center gap-4">
-                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-xl shrink-0 group-hover:scale-105 transition-transform" style="color: #9146FF;">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform" style="color: #9146FF;">
                   <svg class="h-9 w-9 fill-current" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.428l-3 3v-3H6.857V1.714h13.714z"/></svg>
                 </div>
                 <div>
@@ -96,7 +150,7 @@
           <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #FF0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.35);">
             <div class="relative flex items-center justify-between text-white">
               <div class="flex items-center gap-4">
-                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-xl shrink-0 group-hover:scale-105 transition-transform" style="color: #FF0000;">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform" style="color: #FF0000;">
                   <svg class="h-9 w-9 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </div>
                 <div>
@@ -123,19 +177,19 @@
           </p>
         </div>
 
-        <div class="max-w-xl mx-auto mt-12 bg-gray-900/60 rounded-3xl shadow-2xl backdrop-blur-sm p-8 md:p-10">
+        <div class="max-w-xl mx-auto mt-12 bg-gray-900/60 rounded-2xl shadow-2xl p-8 md:p-10">
           <div class="flex items-center gap-4 mb-5">
-            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-16 w-16 md:h-20 md:w-20 rounded-xl object-cover shrink-0 shadow-lg">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-16 w-16 md:h-20 md:w-20 rounded-xl object-cover shrink-0 shadow-2xl">
             <label for="userInputName" class="text-2xl md:text-3xl font-bold text-white leading-none">What's Your Mafia Name?</label>
           </div>
           <div class="flex flex-col sm:flex-row items-stretch gap-3">
-            <input type="text" id="userInputName" placeholder="Example Name (e.g. CupcakeMafiaTV)" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white border border-gray-300 text-gray-900 placeholder-gray-400 shadow-inner focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111;">
-            <button onclick="generateMafiaName()" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90 shadow-lg">
+            <input type="text" id="userInputName" placeholder="Example Name (e.g. CupcakeMafiaTV)" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white text-gray-900 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111; border: 1px solid #d1d5db;">
+            <button onclick="generateMafiaName()" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90 shadow-2xl">
               Get Alias
             </button>
           </div>
           <div id="mafiaResultContainer" class="mt-4 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0">
-            <div id="mafiaResultInner" class="rounded-xl bg-black/20 border-l-2 border-l-accent px-5 py-4 transition-transform duration-300 scale-[0.98]">
+            <div id="mafiaResultInner" class="rounded-xl px-5 py-4 transition-transform duration-300 scale-[0.98]" style="border-left: 3px solid rgb(var(--color-accent)); background-color: rgba(0,0,0,0.2);">
               <span class="text-xs uppercase tracking-wide text-gray-500">Your CupcakeMafia Name</span>
               <p id="mafiaResultText" class="mt-1 text-xl md:text-2xl font-bold text-white"></p>
             </div>
@@ -232,16 +286,20 @@
 
           badge.classList.remove('hidden');
           if (data.isLive) {
-              badge.classList.remove('bg-gray-900', 'border-gray-800', 'text-gray-400');
-              badge.classList.add('bg-red-500/10', 'border-red-500/30', 'text-red-400');
-              badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Live' + (data.viewerCount ? ` · ${Number(data.viewerCount).toLocaleString()} viewers` : '');
+              badge.classList.remove('bg-gray-900', 'text-gray-400');
+              badge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+              badge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+              badge.style.color = '#f87171';
+              badge.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:9999px;background:#ef4444;animation:homeLivePulse 2s infinite;"></span> Live' + (data.viewerCount ? ` · ${Number(data.viewerCount).toLocaleString()} viewers` : '');
               if (data.title) {
                   titleEl.innerText = data.title;
                   titleEl.classList.remove('hidden');
               }
           } else {
-              badge.classList.add('bg-gray-900', 'border-gray-800', 'text-gray-400');
-              badge.classList.remove('bg-red-500/10', 'border-red-500/30', 'text-red-400');
+              badge.classList.add('bg-gray-900', 'text-gray-400');
+              badge.style.backgroundColor = '';
+              badge.style.borderColor = 'rgba(255,255,255,0.15)';
+              badge.style.color = '';
               badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline';
               titleEl.classList.add('hidden');
           }
@@ -249,6 +307,12 @@
   }
 
   loadTwitchStatus();
+
+  const todayIndex = new Date().getDay();
+  const todayCard = document.querySelector(`.schedule-day[data-day="${todayIndex}"]`);
+  if (todayCard) {
+    todayCard.classList.add('ring-2', 'ring-accent');
+  }
 
   fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
     .then(response => response.json())
