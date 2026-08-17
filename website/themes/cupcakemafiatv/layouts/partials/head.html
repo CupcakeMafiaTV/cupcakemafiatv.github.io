@@ -5,9 +5,12 @@
   <!-- Basic Page Needs -->
   {{ $title := print .Site.Title " | " .Title }}
   {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
-  
+
+  {{ $description := "Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community." }}
+  {{ with .Description }}{{ $description = . }}{{ end }}
+
   <title>{{ $title }}</title>
-  <meta name="description" content="Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community.">
+  <meta name="description" content="{{ $description }}">
   <meta name="author" content="CupcakeMafiaTV">
   <meta name="keywords" content="CupcakeMafiaTV, Twitch, Gaming, Streamer, Content Creator">
 
@@ -15,14 +18,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CupcakeMafiaTV">
   <meta property="og:title" content="{{ $title }}">
-  <meta property="og:description" content="Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community.">
+  <meta property="og:description" content="{{ $description }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:image" content="{{ "img/logo.png" | absURL }}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $title }}">
-  <meta name="twitter:description" content="Official website for CupcakeMafiaTV - Streaming, Content Creation, and Community.">
+  <meta name="twitter:description" content="{{ $description }}">
   <meta name="twitter:image" content="{{ "img/logo.png" | absURL }}">
 
   <!-- Favicons -->

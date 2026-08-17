@@ -33,7 +33,7 @@
         CupcakeMafiaTV
       </h1>
       <p class="text-gray-300 mt-5 max-w-2xl mx-auto text-base md:text-lg">
-        Variety live streamer from Canada, bouncing between League of Legends and Fortnite while chasing 100% completion across an endlessly large Steam library. Self-proclaimed First Try King.
+        Variety live streamer from Canada, mainly grinding League of Legends while chasing 100% completion across an endlessly large Steam library. Self-proclaimed First Try King.
       </p>
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-twitch px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
@@ -47,7 +47,7 @@
         </a>
       </div>
       <div class="mt-6 text-xs md:text-sm text-gray-500">
-        League of Legends & Fortnite &nbsp;·&nbsp; Achievement &amp; collectible hunter &nbsp;·&nbsp; Toronto, Canada <img src="/img/flag-canada.svg" alt="Canada" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
+        League of Legends &nbsp;·&nbsp; Achievement &amp; collectible hunter &nbsp;·&nbsp; Toronto, Canada <img src="/img/flag-canada.svg" alt="Canada" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
       </div>
       <div class="mt-4 text-sm md:text-base text-gray-300 font-semibold">
         <span id="hero-twitch-count">...</span> Twitch Followers &nbsp;·&nbsp; <span id="hero-youtube-count">...</span> YouTube Subscribers
@@ -148,54 +148,51 @@
       </div>
     </div>
 
-    <!-- YouTube Latest Upload Hero Section -->
+    <!-- Latest Content Section (Upload + VOD side by side) -->
     <div class="pb-12 md:pb-20 section-band section-band-blue">
       <div class="container">
-        <div class="max-w-2xl mx-auto">
-          <div class="mb-8 text-center">
-            <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Latest Upload</h2>
-            <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Check out my latest YouTube upload.</p>
-          </div>
+        <div class="mb-8 text-center">
+          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Latest Content</h2>
+          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Fresh upload for the highlights, full VOD if you missed the stream.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           <div id="video-container-wrapper" class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl">
+            <div class="flex items-center gap-2 mb-3">
+              <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 20px;"></i>
+              <span class="text-sm font-black uppercase tracking-wider text-white">Latest Upload</span>
+            </div>
             <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
               <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover">
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-20 h-20 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
-                  <i class="fa-solid fa-play text-white text-3xl ml-2"></i>
+                <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
+                  <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <div id="home-hero-title" class="mt-4 text-center text-lg font-bold text-white">Loading...</div>
+            <div id="home-hero-title" class="mt-4 text-center text-base font-bold text-white">Loading...</div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- YouTube Latest VOD Section -->
-    <div class="pb-12 md:pb-20 section-band section-band-teal">
-      <div class="container">
-        <div class="max-w-2xl mx-auto">
-          <div class="mb-8 text-center">
-            <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Latest VOD</h2>
-            <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Missed the stream? Catch the full VOD.</p>
-          </div>
           <div id="vod-container-wrapper" class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl">
+            <div class="flex items-center gap-2 mb-3">
+              <i class="fa-solid fa-clock-rotate-left text-accent" style="font-size: 18px;"></i>
+              <span class="text-sm font-black uppercase tracking-wider text-white">Latest VOD</span>
+            </div>
             <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
               <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover">
               <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-20 h-20 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
-                  <i class="fa-solid fa-play text-white text-3xl ml-2"></i>
+                <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl bg-accent">
+                  <i class="fa-solid fa-play text-gray-900 text-2xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <div id="home-vod-title" class="mt-4 text-center text-lg font-bold text-white">Loading...</div>
+            <div id="home-vod-title" class="mt-4 text-center text-base font-bold text-white">Loading...</div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Name Generator Section -->
-    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-blue">
+    <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">
