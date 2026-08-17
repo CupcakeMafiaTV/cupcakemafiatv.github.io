@@ -15,9 +15,13 @@ export default async function handler(req, res) {
       `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${CHANNEL_ID}&type=video&eventType=live&key=${API_KEY}`
     );
     const data = await response.json();
-    
+
+    if (!response.ok) {
+      return res.status(200).json({ isLive: false, error: data?.error?.message || 'YouTube API request failed', details: data });
+    }
+
     // If items array has length > 0, a stream is currently live
-    const isLive = data?.items && data.items.length > 0;
+    const isLive = Boolean(data?.items && data.items.length > 0);
 
     return res.status(200).json({ isLive });
   } catch (error) {
