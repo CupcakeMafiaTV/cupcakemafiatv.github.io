@@ -62,7 +62,7 @@
     <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
-          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Stream Schedule</h2>
+          <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Stream Schedule</h2>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">All times Eastern (EST). Come hang out.</p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
@@ -107,7 +107,7 @@
     <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-blue">
       <div class="container">
         <div class="mb-3 flex items-center justify-center gap-3">
-          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Watch Live</h2>
+          <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
           <div id="home-twitch-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-xs font-semibold text-gray-400" style="border: 1px solid rgba(255,255,255,0.15);">
             <span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline
           </div>
@@ -115,7 +115,6 @@
         </div>
         <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch the action live on Twitch — drop in and say hi in chat.</p>
         <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
-        <p id="next-stream-countdown" class="hidden -mt-6 mb-8 text-accent font-bold text-center"></p>
         <div class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl grid grid-cols-12 gap-5 md:gap-6 items-stretch">
           <div class="col-span-full lg:col-span-8 flex flex-col">
             <div id="watch-live-media" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
@@ -135,7 +134,7 @@
     <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
-          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">Solo Queue Rank</h2>
+          <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Solo Queue Rank</h2>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia#NA1.</p>
         </div>
         <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative">
@@ -153,7 +152,7 @@
     <div class="pb-12 md:pb-20 section-band section-band-blue">
       <div class="container">
         <div class="mb-8 text-center">
-          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Latest Content</h2>
+          <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl">Latest Content</h2>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Fresh upload for the highlights, full VOD if you missed the stream.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -196,7 +195,7 @@
     <div class="pb-12 md:pb-20 lg:pb-[60px] section-band section-band-teal">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
-          <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl md:text-4xl lg:text-[52px] lg:leading-none">
+          <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">
             Mafia Name Generator
           </h2>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">
@@ -358,7 +357,6 @@
               badge.style.display = 'none';
               titleEl.classList.add('hidden');
               loadTopClipForOffline();
-              startNextStreamCountdown();
           }
       } catch (error) { console.error("Error loading Twitch status", error); }
   }
@@ -385,50 +383,6 @@
             <div class="absolute top-2 left-2 px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(15, 23, 42, 0.85); color: #e2e8f0; letter-spacing: 0.025em;">Clip While I'm Offline</div>
           `;
       } catch (error) { console.error("Error loading top clip", error); }
-  }
-
-  function getNextStreamDate() {
-      const offDays = new Set();
-      document.querySelectorAll('.schedule-day').forEach(el => {
-          if (el.textContent.includes('Day Off')) offDays.add(Number(el.dataset.day));
-      });
-
-      const now = new Date();
-      for (let i = 0; i < 8; i++) {
-          const check = new Date(now);
-          check.setDate(now.getDate() + i);
-          if (offDays.has(check.getDay())) continue;
-
-          const y = check.getFullYear();
-          const m = String(check.getMonth() + 1).padStart(2, '0');
-          const d = String(check.getDate()).padStart(2, '0');
-          const target = new Date(`${y}-${m}-${d}T19:00:00-05:00`); // 7PM EST, matches the Stream Schedule section
-          if (target > now) return target;
-      }
-      return null;
-  }
-
-  function formatCountdown(target) {
-      const diffMs = target - new Date();
-      if (diffMs <= 0) return 'Live now!';
-      const totalMin = Math.floor(diffMs / 60000);
-      const days = Math.floor(totalMin / 1440);
-      const hours = Math.floor((totalMin % 1440) / 60);
-      const mins = totalMin % 60;
-      if (days > 0) return `Live in ${days}d ${hours}h`;
-      if (hours > 0) return `Live in ${hours}h ${mins}m`;
-      return `Live in ${mins}m`;
-  }
-
-  function startNextStreamCountdown() {
-      const el = document.getElementById('next-stream-countdown');
-      const target = getNextStreamDate();
-      if (!el || !target) return;
-
-      el.classList.remove('hidden');
-      const tick = () => { el.innerText = formatCountdown(target); };
-      tick();
-      setInterval(tick, 60000);
   }
 
   async function loadLoLRank() {
