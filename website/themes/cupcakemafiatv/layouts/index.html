@@ -77,23 +77,11 @@
   }
   @media (min-width: 768px) { .mafia-gen-row { flex-direction: row; align-items: flex-end; gap: 28px; } }
 
-  .cupcake-duo {
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .cupcake-duo .side-cupcake-trigger {
-    margin-left: -12px;
-    position: relative;
-    z-index: 1;
-  }
-  @media (min-width: 768px) { .cupcake-duo .side-cupcake-trigger { margin-left: -18px; } }
-
   .side-cupcake-trigger, .side-cupcake-decor {
-    width: 110px;
+    width: 140px;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
   }
-  @media (min-width: 768px) { .side-cupcake-trigger, .side-cupcake-decor { width: 150px; } }
+  @media (min-width: 768px) { .side-cupcake-trigger, .side-cupcake-decor { width: 190px; } }
 
   .side-cupcake-trigger {
     cursor: pointer;
@@ -357,12 +345,9 @@
         </div>
 
         <div class="mafia-gen-row">
-          <div class="cupcake-duo">
-            <img src="/img/SideCupcake1.png" alt="" class="side-cupcake-decor">
-            <img src="/img/SideCupcake2.png" alt="Open a secret mini-game" class="side-cupcake-trigger" onclick="openMafiaGame()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMafiaGame();}" title="Hmm, what's this guy up to?" role="button" tabindex="0">
-          </div>
+          <img src="/img/SideCupcake1.png" alt="" class="side-cupcake-decor">
 
-          <div class="max-w-xl w-full bg-gray-900/60 rounded-2xl shadow-2xl p-8 md:p-10">
+          <div class="max-w-xl w-full bg-gray-900/60 rounded-2xl shadow-2xl" style="padding: 8px;">
             <div class="flex items-end gap-4 mb-4">
               <img src="{{ "img/hype.gif" | relURL }}" alt="Hype animation" class="h-16 w-16 md:h-20 md:w-20 rounded-xl object-cover shrink-0 shadow-2xl">
               <label for="userInputName" class="text-2xl md:text-3xl font-bold text-white leading-none">What's Your Mafia Name?</label>
@@ -383,6 +368,8 @@
               </div>
             </div>
           </div>
+
+          <img src="/img/SideCupcake2.png" alt="Open a secret mini-game" class="side-cupcake-trigger" onclick="openMafiaGame()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMafiaGame();}" title="Hmm, what's this guy up to?" role="button" tabindex="0">
         </div>
       </div>
     </div>
@@ -404,6 +391,7 @@
 
 <script>
   let lastMafiaResultKey = null;
+  let mafiaJinglePlayed = false;
 
   function generateMafiaName() {
     const nameInput = document.getElementById('userInputName').value.trim();
@@ -421,7 +409,19 @@
       } while (easterEgg === lastMafiaResultKey);
       resultKey = easterEgg;
       resultHTML = `<span class="text-accent">"${easterEgg}"</span> ${displayName}`;
+
+      const daggyClip = easterEgg === 'Dirt Bike' ? '/audio/dirt-bike-daggy.mp3' : '/audio/dirt-bag-daggy.mp3';
+      const daggyAudio = new Audio(daggyClip);
+      daggyAudio.volume = 0.5;
+      daggyAudio.play().catch(() => {});
     } else {
+      if (!mafiaJinglePlayed) {
+        mafiaJinglePlayed = true;
+        const jingle = new Audio('/audio/mamma-mia.mp3');
+        jingle.volume = 0.5;
+        jingle.play().catch(() => {});
+      }
+
       const suffixNicknames = [
         "Tightlips", "The Fixer", "Two-Times", "The Brick", "No-Thumbs", "The Cupcake",
         "Vinnie the Fish", "Slick", "The Needle", "Bones", "Legs", "The Ghost", "Lucky",
