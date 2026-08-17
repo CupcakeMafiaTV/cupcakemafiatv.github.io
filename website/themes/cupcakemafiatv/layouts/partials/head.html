@@ -30,13 +30,13 @@
   <meta property="og:title" content="{{ $title }}">
   <meta property="og:description" content="{{ $description }}">
   <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:image" content="{{ "img/CodyWeirdAl.jpg" | absURL }}">
+  <meta property="og:image" content="{{ "img/logo.png" | absURL }}">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:description" content="{{ $description }}">
-  <meta name="twitter:image" content="{{ "img/CodyWeirdAl.jpg" | absURL }}">
+  <meta name="twitter:image" content="{{ "img/logo.png" | absURL }}">
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="/img/logo.png">
@@ -93,8 +93,8 @@
       }
 
       /* Hover Glow Effect for Links */
-      #site-header nav a:hover,
-      .main-nav a:hover {
+      #site-header nav a:hover:not(.header-social-icon),
+      .main-nav a:hover:not(.header-social-icon) {
           color: rgb(var(--color-accent)) !important;
       }
 
