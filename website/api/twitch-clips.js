@@ -23,11 +23,16 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to authenticate with Twitch API', details: tokenData });
     }
 
-    // All-time clips (no started_at/ended_at filter), max page size, so small
-    // channels with infrequent clips still get a real pool of options instead
-    // of whatever few clips happen to fall in a narrow recent window.
+    // League of Legends' Twitch game ID. The clips endpoint doesn't support
+    // filtering by broadcaster_id and game_id at the same time, so we filter
+    // client-side after fetching.
+    const LEAGUE_OF_LEGENDS_GAME_ID = '21779';
+
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
     const clipsRes = await fetch(
-      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100`,
+      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100&started_at=${oneYearAgo.toISOString()}`,
       {
         headers: {
           'Client-ID': CLIENT_ID,
@@ -44,7 +49,7 @@ export default async function handler(req, res) {
     }
 
     const topClips = clips
-      .slice()
+      .filter(clip => clip.game_id === LEAGUE_OF_LEGENDS_GAME_ID)
       .sort((a, b) => b.view_count - a.view_count)
       .slice(0, 10)
       .map(clip => ({
