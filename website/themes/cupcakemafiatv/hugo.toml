@@ -23,3 +23,9 @@
   name = 'Socials'
   url = '/socials'
   weight = 5
+
+[[menu.main]]
+  identifier = "charity"
+  name = 'Charity'
+  url = '/charity'
+  weight = 6

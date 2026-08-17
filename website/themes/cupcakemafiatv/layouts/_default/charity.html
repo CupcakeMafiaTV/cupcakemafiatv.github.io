@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zxx" class="h-full overflow-x-hidden dark">
+
+    {{- partial "head.html" . -}}
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
+
+        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">
+
+            <div class="header-wrapper text-white" style="background: transparent;">
+
+                <header id="site-header" class="text-white">
+                    <div class="max-w-[1360px] mx-auto px-5">
+                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+
+                            <!-- Logo -->
+                            {{- partial "logo.html" . -}}
+                            <!-- Logo / End -->
+
+                            <!-- Navigation (Desktop) -->
+                            {{- partial "navigation.html" . -}}
+                            <!-- Navigation (Desktop) / End -->
+
+                            <!-- Header Controls -->
+                            <div class="flex items-center ml-auto -mr-3">
+                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
+                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                                </div>
+                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
+                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
+                                </a>
+                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
+                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu"></use>
+                                </svg>
+                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
+                                    <use xlink:href="/img/sprites2.svg#menu-close"></use>
+                                </svg>
+                                </button>
+                            </div>
+                            <!-- Header Controls / End -->
+
+                        </nav>
+                    </div>
+                </header>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            {{- partial "mobile_menu.html" . -}}
+            <!-- Mobile Menu / End -->
+
+            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px; background: transparent;">
+                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+
+                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
+                        <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+                            Charity
+                        </h1>
+                    </div>
+
+                    <div class="flex flex-col gap-y-12">
+
+                        <!-- Pitch -->
+                        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                            <img src="/img/emotes/MainCupcake.png" alt="" style="height: 56px; width: 56px;">
+                            <div>
+                                <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl" style="margin: 0;">Extra Life</h2>
+                                <p style="color: #cbd5e1; font-size: 1rem; margin-top: 4px;">Gaming for a good cause, one marathon stream at a time.</p>
+                            </div>
+                        </div>
+
+                        <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
+                            Every year I run a marathon stream for <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" style="color: rgb(var(--color-accent)); text-decoration: underline;">Extra Life</a>, raising money for [Your Local Children's Hospital]. Extra Life is a nonprofit that turns gaming into fundraising for kids' hospitals across North America &mdash; 100% of what's raised through my page goes straight to their care. If you've ever had fun in my chat, this is the one stream a year where that fun turns into something that actually helps sick and injured kids in our community.
+                        </div>
+
+                        <!-- Stats -->
+                        <div style="font-family: 'Rajdhani', sans-serif;">
+                            <div class="mb-6">
+                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">The Numbers</h2>
+                                <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; thank you to everyone who's chipped in.</p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div class="text-4xl font-black text-white">$[0]</div>
+                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
+                                </div>
+                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div class="text-4xl font-black text-white">[0]</div>
+                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
+                                </div>
+                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div class="text-4xl font-black text-white">[Hospital Name]</div>
+                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Beneficiary</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Donate CTA -->
+                        <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;">
+                            <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Donate</h2>
+                            <p class="text-gray-300 mt-3 max-w-2xl mb-6">Every dollar goes directly to the hospital through Extra Life &mdash; no cut, no fees to me. Even a few dollars makes a difference.</p>
+                            <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
+                                <i class="fa-solid fa-heart" style="font-size: 15px;"></i>
+                                <span>DONATE ON EXTRA LIFE</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </main>
+
+            {{- partial "footer.html" . -}}
+            {{- partial "scripts.html" . -}}
+
+        </div>
+
+        {{- partial "socials.html" . -}}
+
+    </body>
+</html>
