@@ -5,33 +5,32 @@
         <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); margin-bottom: 28px;"></div>
 
         <!-- Footer Row -->
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
-            
-            <!-- Left: Navigation Links (20px) -->
-            <nav style="display: flex; gap: 28px; align-items: center;">
+        <div class="footer-row">
+
+            <!-- Left: Navigation Links -->
+            <nav class="footer-row-left" style="display: flex; gap: 28px; align-items: center;">
                 <a href="/about" class="footer-nav-link">About</a>
                 <a href="/pc-specs" class="footer-nav-link">PC Specs</a>
                 <a href="/work-with-me" class="footer-nav-link">Work With Me</a>
                 <a href="/socials" class="footer-nav-link">Socials</a>
             </nav>
 
-            <!-- Center: Auto-Updating Copyright Text -->
-            <div style="color: #cbd5e1; font-size: 16px; font-weight: 500; text-align: center; letter-spacing: 0.3px;">
+            <!-- Center: Auto-Updating Copyright Text (true-centered regardless of side content width) -->
+            <div class="footer-copyright" style="color: #cbd5e1; font-size: 16px; font-weight: 500; text-align: center; letter-spacing: 0.3px;">
                 &copy;&nbsp;<span id="copyright-year"></span>&nbsp;CupcakeMafiaTV. All rights reserved.
             </div>
 
-            <!-- Social Icons -->
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-            </div>
+            <!-- Right: Social Icons + Contact Button -->
+            <div class="footer-row-right" style="display: flex; align-items: center; justify-content: flex-end; gap: 24px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="footer-social-icon footer-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                </div>
 
-            <!-- Right: Contact Button with Updated Gmail Address -->
-            <div>
                 <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
                     <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
                     <span>CONTACT ME</span>
@@ -43,6 +42,19 @@
 </footer>
 
 <style>
+    /* Footer Row Layout: side columns match width so the center column is truly centered */
+    .footer-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer-copyright {
+        justify-self: center;
+        white-space: nowrap;
+    }
+
     /* Footer Navigation Link Styling */
     .footer-nav-link {
         color: #ffffff;
@@ -121,12 +133,13 @@
 
     /* Responsive Mobile Layout */
     @media (max-width: 768px) {
-        footer div[style*="justify-content: space-between"] {
-            flex-direction: column !important;
-            text-align: center !important;
-            justify-content: center !important;
+        .footer-row {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
         }
-        footer nav {
+        .footer-row-left,
+        .footer-row-right {
             justify-content: center !important;
             flex-wrap: wrap !important;
         }
