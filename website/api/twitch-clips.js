@@ -23,10 +23,11 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to authenticate with Twitch API', details: tokenData });
     }
 
-    // Clips from the last 30 days, most-viewed first out of the returned page.
-    const startedAt = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    // All-time clips (no started_at/ended_at filter), max page size, so small
+    // channels with infrequent clips still get a real pool of options instead
+    // of whatever few clips happen to fall in a narrow recent window.
     const clipsRes = await fetch(
-      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&started_at=${startedAt}&first=20`,
+      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100`,
       {
         headers: {
           'Client-ID': CLIENT_ID,
@@ -39,21 +40,23 @@ export default async function handler(req, res) {
     const clips = clipsData.data || [];
 
     if (!clips.length) {
-      return res.status(200).json({ clip: null });
+      return res.status(200).json({ clips: [] });
     }
 
-    const topClip = clips.reduce((best, clip) => (clip.view_count > best.view_count ? clip : best), clips[0]);
+    const topClips = clips
+      .slice()
+      .sort((a, b) => b.view_count - a.view_count)
+      .slice(0, 10)
+      .map(clip => ({
+        id: clip.id,
+        url: clip.url,
+        embedUrl: clip.embed_url,
+        title: clip.title,
+        thumbnailUrl: clip.thumbnail_url,
+        viewCount: clip.view_count
+      }));
 
-    return res.status(200).json({
-      clip: {
-        id: topClip.id,
-        url: topClip.url,
-        embedUrl: topClip.embed_url,
-        title: topClip.title,
-        thumbnailUrl: topClip.thumbnail_url,
-        viewCount: topClip.view_count
-      }
-    });
+    return res.status(200).json({ clips: topClips });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

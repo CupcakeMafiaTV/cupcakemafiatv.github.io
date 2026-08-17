@@ -369,16 +369,20 @@
       try {
           const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-clips');
           const data = await response.json();
-          if (!response.ok || !data.clip) return;
+          if (!response.ok || !data.clips || !data.clips.length) return;
+
+          // The API caches a top-10 pool at the edge; picking randomly here
+          // means different visitors (and repeat visits) see variety instead
+          // of everyone getting whatever's cached that hour.
+          const clip = data.clips[Math.floor(Math.random() * data.clips.length)];
 
           const media = document.getElementById('watch-live-media');
-          const clip = data.clip;
           // embed_url from the API has no parent param; Twitch requires it to match the embedding domain.
           const embedSrc = `${clip.embedUrl}&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&autoplay=false`;
 
           media.innerHTML = `
             <iframe src="${embedSrc}" frameborder="0" allowfullscreen="true" scrolling="no" class="absolute top-0 left-0 w-full h-full"></iframe>
-            <div class="absolute top-2 left-2 px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(15, 23, 42, 0.85); color: #e2e8f0; letter-spacing: 0.025em;">Top Clip While I'm Offline</div>
+            <div class="absolute top-2 left-2 px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(15, 23, 42, 0.85); color: #e2e8f0; letter-spacing: 0.025em;">Clip While I'm Offline</div>
           `;
       } catch (error) { console.error("Error loading top clip", error); }
   }
