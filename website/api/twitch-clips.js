@@ -28,11 +28,12 @@ export default async function handler(req, res) {
     // client-side after fetching.
     const LEAGUE_OF_LEGENDS_GAME_ID = '21779';
 
+    const now = new Date();
     const oneYearAgo = new Date();
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
     const clipsRes = await fetch(
-      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100&started_at=${oneYearAgo.toISOString()}`,
+      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100&started_at=${oneYearAgo.toISOString()}&ended_at=${now.toISOString()}`,
       {
         headers: {
           'Client-ID': CLIENT_ID,
