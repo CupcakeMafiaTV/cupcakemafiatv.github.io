@@ -57,7 +57,7 @@
         text-shadow: 0 0 12px rgb(var(--color-accent) / 0.4);
     }
 
-    /* Footer Social Icon Styling */
+    /* Footer Social Icon Styling (permanent brand-colored badges, no hover needed) */
     .footer-social-icon {
         display: inline-flex;
         align-items: center;
@@ -65,7 +65,6 @@
         width: 36px;
         height: 36px;
         border-radius: 9999px;
-        background-color: #1e293b;
         color: #ffffff;
         font-size: 15px;
         border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -74,24 +73,21 @@
 
     .footer-social-icon:hover {
         color: #ffffff !important;
-        background-color: rgb(var(--color-accent));
-        border-color: rgb(var(--color-accent));
         transform: translateY(-2px);
-        box-shadow: 0 0 7px rgb(var(--color-accent) / 0.3);
     }
 
     /* Brand-Colored Footer Social Icons */
-    .footer-social-icon.footer-social-twitch { color: #9146FF; }
-    .footer-social-icon.footer-social-youtube { color: #FF0000; }
-    .footer-social-icon.footer-social-x { color: #1D9BF0; }
-    .footer-social-icon.footer-social-instagram { color: #F77737; }
-    .footer-social-icon.footer-social-tiktok { color: #ffffff; }
+    .footer-social-icon.footer-social-twitch { background-color: #9146FF; }
+    .footer-social-icon.footer-social-youtube { background-color: #FF0000; }
+    .footer-social-icon.footer-social-x { background-color: #000000; }
+    .footer-social-icon.footer-social-instagram { background-color: #D62976; }
+    .footer-social-icon.footer-social-tiktok { background-color: #000000; }
 
-    .footer-social-icon.footer-social-twitch:hover { background-color: #9146FF; border-color: #9146FF; box-shadow: 0 0 7px rgba(145, 70, 255, 0.35); }
-    .footer-social-icon.footer-social-youtube:hover { background-color: #FF0000; border-color: #FF0000; box-shadow: 0 0 7px rgba(255, 0, 0, 0.35); }
-    .footer-social-icon.footer-social-x:hover { background-color: #1D9BF0; border-color: #1D9BF0; box-shadow: 0 0 7px rgba(29, 155, 240, 0.35); }
-    .footer-social-icon.footer-social-instagram:hover { background-color: #F77737; border-color: #F77737; box-shadow: 0 0 7px rgba(247, 119, 55, 0.35); }
-    .footer-social-icon.footer-social-tiktok:hover { background-color: #000000; border-color: #000000; box-shadow: 0 0 7px rgba(0, 0, 0, 0.5); }
+    .footer-social-icon.footer-social-twitch:hover { box-shadow: 0 0 7px rgba(145, 70, 255, 0.6); }
+    .footer-social-icon.footer-social-youtube:hover { box-shadow: 0 0 7px rgba(255, 0, 0, 0.6); }
+    .footer-social-icon.footer-social-x:hover { box-shadow: 0 0 7px rgba(255, 255, 255, 0.35); }
+    .footer-social-icon.footer-social-instagram:hover { box-shadow: 0 0 7px rgba(214, 41, 118, 0.6); }
+    .footer-social-icon.footer-social-tiktok:hover { box-shadow: 0 0 7px rgba(255, 255, 255, 0.35); }
 
     /* White Outline Button Base Styling */
     .footer-contact-btn {
