@@ -6,6 +6,16 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <style>
+        .charity-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        @media (min-width: 768px) { .charity-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .charity-stats-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+    </style>
+
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">
@@ -71,7 +81,9 @@
 
                         <!-- Pitch -->
                         <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-                            <img src="/img/emotes/MainCupcake.png" alt="" style="height: 56px; width: 56px;">
+                            <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" style="background-color: #ffffff; border-radius: 12px; padding: 8px 14px; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                                <img src="/img/ExtraLifeLogo.svg" alt="Extra Life" style="height: 40px; width: auto;">
+                            </a>
                             <div>
                                 <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl" style="margin: 0;">Extra Life</h2>
                                 <p style="color: #cbd5e1; font-size: 1rem; margin-top: 4px;">Gaming for a good cause, one marathon stream at a time.</p>
@@ -79,32 +91,55 @@
                         </div>
 
                         <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
-                            Every year I run a marathon stream for <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" style="color: rgb(var(--color-accent)); text-decoration: underline;">Extra Life</a>, raising money for CHEO (Children's Hospital of Eastern Ontario). Extra Life is a nonprofit that turns gaming into fundraising for kids' hospitals across North America &mdash; 100% of what's raised through my page goes straight to their care. If you've ever had fun in my chat, this is the one stream a year where that fun turns into something that actually helps sick and injured kids in our community.
+                            Every year on Extra Life Game Day, I run a 24 hour stream with friends in support of CHEO (Children's Hospital of Eastern Ontario) and IWK Health (the IWK Foundation). Twenty-four hours in, we're making complete fools of ourselves, all for a good cause and to raise donations. 100% of what's raised through my page goes straight to their care. If you've ever had fun in my chat, this is the one stream a year where that fun turns into something that actually helps sick and injured kids in our community.
                         </div>
 
                         <!-- Stats -->
                         <div style="font-family: 'Rajdhani', sans-serif;">
                             <div class="mb-6">
                                 <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">The Numbers</h2>
-                                <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; thank you to everyone who's chipped in.</p>
+                                <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; THANK YOU to everyone who's chipped in or participated.</p>
                             </div>
-                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
-                                    <div class="text-4xl font-black text-white">$1,263.50</div>
-                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
+                            <div class="charity-stats-grid">
+                                <div class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa-solid fa-sack-dollar" style="color: rgb(var(--color-accent)); font-size: 20px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-3xl font-black text-white">$1,263.50 <span class="text-lg font-bold" style="color: #94a3b8;">USD</span></div>
+                                        <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
+                                    </div>
                                 </div>
-                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
-                                    <div class="text-4xl font-black text-white">37</div>
-                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations</div>
+                                <div class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa-solid fa-hand-holding-heart" style="color: rgb(var(--color-accent)); font-size: 20px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-3xl font-black text-white">37</div>
+                                        <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations Received</div>
+                                    </div>
                                 </div>
-                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
-                                    <div class="text-4xl font-black text-white">5</div>
-                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
+                                <div class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
+                                    <div style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa-solid fa-calendar-check" style="color: rgb(var(--color-accent)); font-size: 20px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-3xl font-black text-white">5</div>
+                                        <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
+                                    </div>
                                 </div>
-                                <div class="rounded-2xl p-6 shadow-xl" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1);">
-                                    <div class="text-4xl font-black text-white">CHEO</div>
-                                    <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Beneficiary</div>
-                                </div>
+                                <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                                    <div style="height: 48px; display: flex; align-items: center;">
+                                        <img src="/img/CHEOLogo.png" alt="CHEO Foundation" style="height: 40px; width: auto;">
+                                    </div>
+                                    <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Ottawa</div>
+                                </a>
+                                <a href="https://iwkfoundation.org/" target="_blank" rel="noopener noreferrer" class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                                    <div style="height: 48px; display: flex; align-items: center;">
+                                        <img src="/img/IWKLogo.svg" alt="IWK Foundation" style="height: 38px; width: auto;">
+                                    </div>
+                                    <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Halifax</div>
+                                </a>
                             </div>
                         </div>
 
