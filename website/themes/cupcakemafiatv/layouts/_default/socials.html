@@ -3,9 +3,6 @@
 
     {{- partial "head.html" . -}}
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
     <style>
         /* Body with Ambient Background Glows */
         body {
@@ -30,100 +27,20 @@
             min-height: 100vh;
         }
 
-        /* High-Contrast Elevated Social Card Styling */
-        .social-card {
-            position: relative;
-            background-color: #1e293b;
-            border: 1px solid transparent;
-            border-radius: 12px;
-            padding: 22px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            text-decoration: none !important;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* External Link Notifier Icon Styling - Always Visible & Bright White */
-        .external-link-icon {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            font-size: 13px;
-            opacity: 1;
-            color: #ffffff;
-            pointer-events: none;
-        }
-
-        /* Subtitle Text Brightness Boost */
-        .social-card div div:last-child {
-            color: #cbd5e1 !important;
-        }
-
-        /* Hover Elevation & Brand Glow Effects */
-        .social-card:hover {
-            transform: translateY(-3px);
-            background-color: #273549;
-        }
-
-        .social-card[href*="twitch.tv"]:hover {
-            border-color: #a855f7;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4);
-        }
-
-        .social-card[href*="youtube.com"]:hover {
-            border-color: #ef4444;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 40px rgba(239, 68, 68, 0.4);
-        }
-
-        .social-card[href*="instagram.com"]:hover {
-            border-color: #ec4899;
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(236, 72, 153, 0.4);
-        }
-
-        .social-card[href*="x.com"]:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.8), 0 0 40px rgba(56, 189, 248, 0.4);
-        }
-
-        .social-card[href*="tiktok.com"]:hover {
-            border-color: #2dd4bf;
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.8), 0 0 40px rgba(45, 212, 191, 0.4);
-        }
-
-        .social-card[href*="fourthwall.com"]:hover {
-            border-color: #eab308;
-            box-shadow: 0 0 20px rgba(234, 179, 8, 0.8), 0 0 40px rgba(234, 179, 8, 0.4);
-        }
-
-        .social-card[href*="discord.com"]:hover {
-            border-color: #818cf8;
-            box-shadow: 0 0 20px rgba(129, 140, 248, 0.8), 0 0 40px rgba(129, 140, 248, 0.4);
-        }
-
-        .social-card[href*="spotify.com"]:hover {
-            border-color: #22c55e;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.8), 0 0 40px rgba(34, 197, 94, 0.4);
-        }
-
-        .social-card[href*="op.gg"]:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4);
-        }
+        /* Social links use the shared .brand-card component (see head.html);
+           only grid-specific layout lives here. */
 
         /* Video Box Styling */
         .video-container {
             position: relative;
             overflow: hidden;
             border-radius: 12px;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.35);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: #000;
             padding: 4px;
             box-sizing: border-box;
+            aspect-ratio: 16 / 9;
         }
 
         .video-container iframe {
@@ -136,7 +53,6 @@
         .video-container:hover {
             transform: translateY(-3px);
             border-color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
         }
 
         /* Image Box Interactivity & White Glow Effect */
@@ -145,11 +61,12 @@
             overflow: hidden;
             border-radius: 12px;
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 1px solid rgba(255, 255, 255, 0.35);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(31, 41, 55, 0.5);
             padding: 8px;
             box-sizing: border-box;
+            aspect-ratio: 16 / 9;
         }
 
         .img-container img {
@@ -164,7 +81,6 @@
         .img-container:hover {
             transform: translateY(-3px);
             border-color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.4);
         }
 
         .img-container:hover img {
@@ -184,9 +100,7 @@
             .image-col {
                 width: 100% !important;
                 height: auto !important;
-            }
-            .img-container, .video-container {
-                height: 240px !important;
+                position: static !important;
             }
         }
 
@@ -277,15 +191,15 @@
                     <div class="main-social-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
 
                         <!-- Stacked Media Column -->
-                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px;">
 
                             <!-- Image 2 (Shifted to the right by changing 20% to 80%) -->
-                            <div class="img-container" style="display: flex; height: 220px; min-height: 220px;" onclick="openModal(this.querySelector('img').src)">
+                            <div class="img-container" style="display: flex;" onclick="openModal(this.querySelector('img').src)">
                                 <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
                             </div>
 
                             <!-- YouTube Video with Custom Thumbnail & Adjusted Crop (Moved to Second Position) -->
-                            <div class="video-container" style="display: flex; height: 220px; min-height: 220px; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
+                            <div class="video-container" style="display: flex; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
                                 <img src="/img/Masters.png" alt="Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% center; border-radius: 8px; display: block;">
                                 <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: background 0.2s;">
                                     <div style="width: 68px; height: 48px; background: #ef4444; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
@@ -299,147 +213,105 @@
                         <!-- Social Cards Grid -->
                         <div class="social-grid" style="flex: 1; max-width: 880px; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); align-content: start; gap: 16px;">
 
-<!-- Twitch Social Card (Updated to use .social-card) -->
-<a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-    <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-    <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-        <div style="font-size: 24px; color: #a855f7; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-            <i class="fa-brands fa-twitch"></i>
-        </div>
-        <div style="overflow: hidden;">
-            <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Twitch</div>
-            <div style="font-size: 12px; line-height: 1.2; font-weight: 400; color: #cbd5e1;">Live Broadcasts</div>
-        </div>
+<!-- Twitch -->
+<a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(145, 70, 255, 0.5);">
+    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+    <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #a855f7;"><i class="fa-brands fa-twitch"></i></div>
+    <div class="brand-card-body">
+        <div class="brand-card-title">Twitch</div>
+        <div class="brand-card-subtitle">Live Broadcasts</div>
     </div>
-    <!-- LIVE Badge -->
-    <span id="twitch-live-badge" style="display: none; padding: 2px 6px; font-size: 9px; font-weight: 800; background: #ef4444; color: white; border-radius: 4px; text-transform: uppercase; flex-shrink: 0; margin-right: 18px;">LIVE</span>
+    <span id="twitch-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
 </a>
 
-<!-- YouTube Social Card (Updated to use .social-card) -->
-<a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-    <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-    <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-        <div style="font-size: 24px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-            <i class="fa-brands fa-youtube"></i>
-        </div>
-        <div style="overflow: hidden;">
-            <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">YouTube</div>
-            <div style="font-size: 12px; line-height: 1.2; font-weight: 400; color: #cbd5e1;">Video Uploads</div>
-        </div>
+<!-- YouTube -->
+<a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><i class="fa-brands fa-youtube"></i></div>
+    <div class="brand-card-body">
+        <div class="brand-card-title">YouTube</div>
+        <div class="brand-card-subtitle">Video Uploads</div>
     </div>
-    <!-- LIVE Badge -->
-    <span id="youtube-live-badge" style="display: none; padding: 2px 6px; font-size: 9px; font-weight: 800; background: #ef4444; color: white; border-radius: 4px; text-transform: uppercase; flex-shrink: 0; margin-right: 18px;">LIVE</span>
+    <span id="youtube-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
 </a>
 
                             <!-- Instagram -->
-                            <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #ec4899; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Instagram</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Photos & Life Updates</div>
-                                    </div>
+                            <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(214, 41, 118, 0.5);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #ec4899;"><i class="fa-brands fa-instagram"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">Instagram</div>
+                                    <div class="brand-card-subtitle">Photos &amp; Life Updates</div>
                                 </div>
                             </a>
 
                             <!-- YouTube VODs -->
-                            <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #ef4444; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-brands fa-youtube"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">YouTube VODs</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Full Stream VOD Archive</div>
-                                    </div>
+                            <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><i class="fa-brands fa-youtube"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">YouTube VODs</div>
+                                    <div class="brand-card-subtitle">Full Stream VOD Archive</div>
                                 </div>
                             </a>
 
                             <!-- X -->
-                            <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #38bdf8; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-brands fa-x-twitter"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">X</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Daily Discussions</div>
-                                    </div>
+                            <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">X</div>
+                                    <div class="brand-card-subtitle">Daily Discussions</div>
                                 </div>
                             </a>
 
                             <!-- TikTok -->
-                            <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #2dd4bf; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-brands fa-tiktok"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">TikTok</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Clips & Highlights</div>
-                                    </div>
+                            <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">TikTok</div>
+                                    <div class="brand-card-subtitle">Clips &amp; Highlights</div>
                                 </div>
                             </a>
 
                             <!-- Merch Shop -->
-                            <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #eab308; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-solid fa-bag-shopping"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Merch Shop</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Official Merch</div>
-                                    </div>
+                            <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-bag-shopping"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">Merch Shop</div>
+                                    <div class="brand-card-subtitle">Official Merch</div>
                                 </div>
                             </a>
 
                             <!-- Discord -->
-                            <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #818cf8; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-brands fa-discord"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Discord</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Join Our Community Server</div>
-                                    </div>
+                            <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(88, 101, 242, 0.5);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(88, 101, 242, 0.15); color: #818cf8;"><i class="fa-brands fa-discord"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">Discord</div>
+                                    <div class="brand-card-subtitle">Join Our Community Server</div>
                                 </div>
                             </a>
 
                             <!-- OP.GG -->
-                            <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #3b82f6; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-solid fa-chart-simple"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">OP.GG</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Current Rank</div>
-                                    </div>
+                            <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(59, 130, 246, 0.5);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-chart-simple"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">OP.GG</div>
+                                    <div class="brand-card-subtitle">Current Rank</div>
                                 </div>
                             </a>
 
                             <!-- Spotify -->
-                            <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="social-card">
-                                <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
-                                <div style="display: flex; align-items: center; gap: 14px; overflow: hidden;">
-                                    <div style="font-size: 24px; color: #22c55e; display: flex; align-items: center; justify-content: center; width: 28px; flex-shrink: 0;">
-                                        <i class="fa-brands fa-spotify"></i>
-                                    </div>
-                                    <div style="overflow: hidden;">
-                                        <div style="color: #ffffff; font-weight: 700; font-size: 15px; line-height: 1.2; margin-bottom: 3px;">Spotify</div>
-                                        <div style="font-size: 12px; line-height: 1.2; font-weight: 400;">Stream Playlist</div>
-                                    </div>
+                            <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
+                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                                <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-brands fa-spotify"></i></div>
+                                <div class="brand-card-body">
+                                    <div class="brand-card-title">Spotify</div>
+                                    <div class="brand-card-subtitle">Stream Playlist</div>
                                 </div>
                             </a>
 

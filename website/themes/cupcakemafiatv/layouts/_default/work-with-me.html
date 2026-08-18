@@ -11,6 +11,24 @@
         }
         @media (min-width: 640px) { .wwm-get-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
         @media (min-width: 1024px) { .wwm-get-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+        .social-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+        @media (min-width: 640px) { .social-stat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .social-stat-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; } }
+
+        /* Stat cards use the shared .brand-card component but stack the
+           icon above the number/label instead of sitting beside it. */
+        .social-stat-grid .brand-card {
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 12px;
+        }
+        .social-stat-grid .brand-card-body { flex: none; width: 100%; }
+        .social-stat-grid .brand-card-subtitle { font-size: 14px; }
     </style>
 
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
@@ -78,7 +96,52 @@
 
                         <!-- Pitch -->
                         <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
-                            I partner with brands and publishers on sponsored streams, game launches, and integrated campaigns for a League of Legends audience across Twitch and YouTube. If you're looking to reach a community that shows up consistently for ranked grinding and everything League, let's talk.
+                            I'm eager to team up with brands and vendors who want to connect with a passionate gaming community through sponsored streams, game launches, and integrated campaigns. My focus is League of Legends — ranked grinding and everything in between — but I'm open to other titles and campaigns where it's a good fit. If that sounds like you, let's talk.
+                        </div>
+
+                        <!-- Audience & Reach -->
+                        <div style="font-family: 'Rajdhani', sans-serif;">
+                            <div class="mb-6">
+                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Audience &amp; Reach</h2>
+                                <p class="text-gray-300 mt-3 max-w-2xl">Reach across live streams, VODs, and the clips and updates in between.</p>
+                            </div>
+                            <div class="social-stat-grid">
+                                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(145, 70, 255, 0.5);">
+                                    <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #9146FF;"><i class="fa-brands fa-twitch"></i></div>
+                                    <div class="brand-card-body">
+                                        <div id="twitch-follower-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
+                                        <div class="brand-card-subtitle">Twitch Followers</div>
+                                    </div>
+                                </a>
+                                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                                    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
+                                    <div class="brand-card-body">
+                                        <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
+                                        <div class="brand-card-subtitle">YouTube Subscribers</div>
+                                    </div>
+                                </a>
+                                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
+                                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
+                                    <div class="brand-card-body">
+                                        <div class="brand-card-title brand-card-title-lg static-count-up">54</div>
+                                        <div class="brand-card-subtitle">X Followers</div>
+                                    </div>
+                                </a>
+                                <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(214, 41, 118, 0.5);">
+                                    <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #D62976;"><i class="fa-brands fa-instagram"></i></div>
+                                    <div class="brand-card-body">
+                                        <div class="brand-card-title brand-card-title-lg static-count-up">60</div>
+                                        <div class="brand-card-subtitle">Instagram Followers</div>
+                                    </div>
+                                </a>
+                                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
+                                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
+                                    <div class="brand-card-body">
+                                        <div class="brand-card-title brand-card-title-lg static-count-up">42</div>
+                                        <div class="brand-card-subtitle">TikTok Followers</div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
 
                         <!-- What You Get -->
@@ -96,7 +159,7 @@
                                 <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6">
                                     <i class="fa-solid fa-share-nodes text-accent mb-3" style="font-size: 22px;"></i>
                                     <div class="text-base font-bold text-white mb-1">Multi-Platform Shoutouts</div>
-                                    <p class="text-sm text-gray-400">Mentions across Twitch, YouTube, Instagram, TikTok, and Discord.</p>
+                                    <p class="text-sm text-gray-400">Mentions across Twitch, YouTube, Instagram, TikTok, and X.</p>
                                 </div>
                                 <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6">
                                     <i class="fa-solid fa-clapperboard text-accent mb-3" style="font-size: 22px;"></i>
@@ -111,90 +174,10 @@
                             </div>
                         </div>
 
-                        <!-- Audience & Reach -->
-                        <div style="font-family: 'Rajdhani', sans-serif;">
-                            <div class="mb-6">
-                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Audience &amp; Reach</h2>
-                                <p class="text-gray-300 mt-3 max-w-2xl">Cross-platform reach for sponsored streams, launch campaigns, and community-first publishing beats.</p>
-                            </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #9146FF; box-shadow: 0 10px 30px rgba(145, 70, 255, 0.35);">
-                                    <div class="relative flex items-center justify-between text-white">
-                                        <div class="flex items-center gap-4">
-                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform" style="color: #9146FF;">
-                                                <svg class="h-9 w-9 fill-current" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.428l-3 3v-3H6.857V1.714h13.714z"/></svg>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">Twitch</span>
-                                                <span id="twitch-follower-count" class="text-4xl md:text-5xl font-black tracking-tight text-white">...</span>
-                                            </div>
-                                        </div>
-                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #f3e8ff;">Followers</span>
-                                    </div>
-                                </a>
-                                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #FF0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.35);">
-                                    <div class="relative flex items-center justify-between text-white">
-                                        <div class="flex items-center gap-4">
-                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform" style="color: #FF0000;">
-                                                <svg class="h-9 w-9 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">YouTube</span>
-                                                <span id="youtube-sub-count" class="text-4xl md:text-5xl font-black tracking-tight text-white">...</span>
-                                            </div>
-                                        </div>
-                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #ffe6e6;">Subscribers</span>
-                                    </div>
-                                </a>
-                                <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #D62976; box-shadow: 0 10px 30px rgba(214, 41, 118, 0.35);">
-                                    <div class="relative flex items-center justify-between text-white">
-                                        <div class="flex items-center gap-4">
-                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform">
-                                                <i class="fa-brands fa-instagram" style="font-size: 32px; color: #D62976;"></i>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">Instagram</span>
-                                                <span class="text-2xl md:text-3xl font-black tracking-tight text-white">@cupcakemafiatv</span>
-                                            </div>
-                                        </div>
-                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #fbe4ef;">Follow</span>
-                                    </div>
-                                </a>
-                                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #000000; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
-                                    <div class="relative flex items-center justify-between text-white">
-                                        <div class="flex items-center gap-4">
-                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform">
-                                                <i class="fa-brands fa-tiktok" style="font-size: 32px; color: #000000;"></i>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">TikTok</span>
-                                                <span class="text-2xl md:text-3xl font-black tracking-tight text-white">@cupcakemafiatv</span>
-                                            </div>
-                                        </div>
-                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #d1d5db;">Follow</span>
-                                    </div>
-                                </a>
-                                <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="relative overflow-hidden rounded-2xl p-6 shadow-xl transition-all duration-300 hover:-translate-y-1 block group" style="background-color: #5865F2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.35);">
-                                    <div class="relative flex items-center justify-between text-white">
-                                        <div class="flex items-center gap-4">
-                                            <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-2xl shrink-0 group-hover:scale-105 transition-transform">
-                                                <i class="fa-brands fa-discord" style="font-size: 32px; color: #5865F2;"></i>
-                                            </div>
-                                            <div>
-                                                <span class="text-lg font-black uppercase tracking-wider block leading-none mb-1 text-white group-hover:underline">Discord</span>
-                                                <span class="text-2xl md:text-3xl font-black tracking-tight text-white">Join Us</span>
-                                            </div>
-                                        </div>
-                                        <span class="text-lg font-black uppercase tracking-wider" style="color: #e0e3ff;">Community</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
                         <!-- Contact CTA -->
                         <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;">
                             <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-3.5xl">Let's Talk</h2>
-                            <p class="text-gray-300 mt-3 max-w-2xl mb-6">Interested in a sponsorship, integration, or collab? Send me an email and let's figure out what makes sense.</p>
+                            <p class="text-gray-300 mt-3 mb-6">Whether it's a sponsored stream, a product integration, or something else entirely, I'd love to hear what you have in mind. Send me an email and let's figure out what makes sense together.</p>
                             <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
                                 <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
                                 <span>CONTACT ME</span>
@@ -212,8 +195,15 @@
             <script>
                 fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
                     .then(response => response.json())
-                    .then(data => { document.getElementById('youtube-sub-count').innerText = Number(data.subscriberCount).toLocaleString(); })
-                    .catch(error => { console.error('Error fetching subscribers:', error); });
+                    .then(data => {
+                        window.cmtvCountUp(document.getElementById('youtube-sub-count'), Number(data.subscriberCount));
+                        localStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching subscribers:', error);
+                        const cached = localStorage.getItem('cmtv_youtube_subs');
+                        if (cached) window.cmtvCountUp(document.getElementById('youtube-sub-count'), Number(cached));
+                    });
             </script>
 
         </div>

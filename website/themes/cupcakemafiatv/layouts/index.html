@@ -81,7 +81,13 @@
     width: 140px;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
   }
-  @media (min-width: 768px) { .side-cupcake-trigger, .side-cupcake-decor { width: 190px; } }
+  @media (min-width: 768px) {
+    .side-cupcake-trigger, .side-cupcake-decor { width: 190px; }
+    /* SideCupcake2.png has more built-in transparent padding on its left edge
+       than SideCupcake1.png has on its right edge; pull it in so the visible
+       gap on both sides of the center box matches. */
+    .side-cupcake-trigger { margin-left: -16px; }
+  }
 
   .side-cupcake-trigger, .side-cupcake-decor {
     cursor: pointer;
@@ -189,7 +195,7 @@
           League of Legends <img src="/img/lol-icon.svg" alt="League of Legends" style="display: inline-block; height: 16px; width: auto; vertical-align: middle; margin-left: 2px;"> &nbsp;·&nbsp; Ontario, Canada <img src="/img/flag-canada.svg" alt="Canada" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
         </div>
         <div class="mt-2 text-sm md:text-base text-gray-300 font-semibold text-center">
-          <span id="hero-twitch-count" class="text-accent">...</span> Twitch Followers &nbsp;·&nbsp; <span id="hero-youtube-count" class="text-accent">...</span> YouTube Subscribers
+          <span id="hero-twitch-count" class="text-accent"><span class="stat-skeleton"></span></span> Twitch Followers &nbsp;·&nbsp; <span id="hero-youtube-count" class="text-accent"><span class="stat-skeleton"></span></span> YouTube Subscribers
         </div>
       </div>
     </div>
@@ -199,7 +205,7 @@
   <main id="main-content" class="grow lg:pt-0 text-white">
 
     <!-- Stream Schedule Section -->
-    <div class="section-band-pb section-band section-band-teal">
+    <div class="section-band-pb section-band section-band-teal reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
@@ -247,7 +253,7 @@
     </div>
 
     <!-- Watch Live Section -->
-    <div class="section-band-pb section-band section-band-blue">
+    <div class="section-band-pb section-band section-band-blue reveal-on-scroll">
       <div class="container">
         <div class="mb-3 flex items-center justify-center gap-3">
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
@@ -274,7 +280,7 @@
     </div>
 
     <!-- Latest Content Section (Upload + VOD side by side) -->
-    <div class="section-band-pb section-band section-band-teal">
+    <div class="section-band-pb section-band section-band-teal reveal-on-scroll">
       <div class="container">
         <div class="mb-8 text-center">
           <div class="flex items-center justify-center gap-3">
@@ -320,7 +326,7 @@
     </div>
 
     <!-- League of Legends Rank Section -->
-    <div class="section-band-pb section-band section-band-blue">
+    <div class="section-band-pb section-band section-band-blue reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
@@ -341,7 +347,7 @@
     </div>
 
     <!-- Name Generator Section -->
-    <div class="section-band-pb section-band section-band-teal">
+    <div class="section-band-pb section-band section-band-teal reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">
@@ -469,6 +475,7 @@
     container.classList.add('max-h-32', 'opacity-100');
     inner.classList.remove('scale-[0.98]');
     inner.classList.add('scale-100');
+    if (window.cmtvConfetti) window.cmtvConfetti(inner);
   }
 
   let latestVideoId = "";
@@ -580,7 +587,8 @@
           if (data.rank) {
               const tierName = data.rank.tier.charAt(0) + data.rank.tier.slice(1).toLowerCase();
               tierEl.innerText = `${tierName} ${data.rank.division}`;
-              lpEl.innerText = `${data.rank.leaguePoints} LP`;
+              lpEl.innerHTML = '<span id="lol-lp-value">0</span> LP';
+              window.cmtvCountUp(document.getElementById('lol-lp-value'), Number(data.rank.leaguePoints));
               wlEl.innerText = `${data.rank.wins}W · ${data.rank.losses}L`;
           } else {
               tierEl.innerText = 'Unranked';
@@ -609,13 +617,27 @@
 
   fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
     .then(response => response.json())
-    .then(data => { document.getElementById('hero-twitch-count').innerText = Number(data.followerCount).toLocaleString(); })
-    .catch(error => { console.error('Error fetching Twitch followers:', error); });
+    .then(data => {
+      window.cmtvCountUp(document.getElementById('hero-twitch-count'), Number(data.followerCount));
+      localStorage.setItem('cmtv_twitch_followers', data.followerCount);
+    })
+    .catch(error => {
+      console.error('Error fetching Twitch followers:', error);
+      const cached = localStorage.getItem('cmtv_twitch_followers');
+      if (cached) window.cmtvCountUp(document.getElementById('hero-twitch-count'), Number(cached));
+    });
 
   fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
     .then(response => response.json())
-    .then(data => { document.getElementById('hero-youtube-count').innerText = Number(data.subscriberCount).toLocaleString(); })
-    .catch(error => { console.error('Error fetching subscribers:', error); });
+    .then(data => {
+      window.cmtvCountUp(document.getElementById('hero-youtube-count'), Number(data.subscriberCount));
+      localStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
+    })
+    .catch(error => {
+      console.error('Error fetching subscribers:', error);
+      const cached = localStorage.getItem('cmtv_youtube_subs');
+      if (cached) window.cmtvCountUp(document.getElementById('hero-youtube-count'), Number(cached));
+    });
 
   const MAFIA_RANKS = [
     { min: 0, name: 'Nobody' },
