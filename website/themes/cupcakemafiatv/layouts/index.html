@@ -195,7 +195,7 @@
           League of Legends <img src="/img/lol-icon.svg" alt="League of Legends" style="display: inline-block; height: 16px; width: auto; vertical-align: middle; margin-left: 2px;"> &nbsp;·&nbsp; Ontario, Canada <img src="/img/flag-canada.svg" alt="Canada" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
         </div>
         <div class="mt-2 text-sm md:text-base text-gray-300 font-semibold text-center">
-          <span id="hero-twitch-count" class="text-accent"><span class="stat-skeleton"></span></span> Twitch Followers &nbsp;·&nbsp; <span id="hero-youtube-count" class="text-accent"><span class="stat-skeleton"></span></span> YouTube Subscribers
+          <span id="twitch-follower-count" class="text-accent"><span class="stat-skeleton"></span></span> Twitch Followers &nbsp;·&nbsp; <span id="youtube-sub-count" class="text-accent"><span class="stat-skeleton"></span></span> YouTube Subscribers
         </div>
       </div>
     </div>
@@ -615,29 +615,8 @@
     todayCard.style.boxShadow = '0 0 16px rgba(34, 197, 94, 0.35)';
   }
 
-  fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
-    .then(response => response.json())
-    .then(data => {
-      window.cmtvCountUp(document.getElementById('hero-twitch-count'), Number(data.followerCount));
-      localStorage.setItem('cmtv_twitch_followers', data.followerCount);
-    })
-    .catch(error => {
-      console.error('Error fetching Twitch followers:', error);
-      const cached = localStorage.getItem('cmtv_twitch_followers');
-      if (cached) window.cmtvCountUp(document.getElementById('hero-twitch-count'), Number(cached));
-    });
-
-  fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
-    .then(response => response.json())
-    .then(data => {
-      window.cmtvCountUp(document.getElementById('hero-youtube-count'), Number(data.subscriberCount));
-      localStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
-    })
-    .catch(error => {
-      console.error('Error fetching subscribers:', error);
-      const cached = localStorage.getItem('cmtv_youtube_subs');
-      if (cached) window.cmtvCountUp(document.getElementById('hero-youtube-count'), Number(cached));
-    });
+  // Twitch/YouTube counts for #twitch-follower-count and #youtube-sub-count
+  // are fetched once, globally, by scripts.html (shared across every page).
 
   const MAFIA_RANKS = [
     { min: 0, name: 'Nobody' },

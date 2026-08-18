@@ -191,20 +191,9 @@
 
             {{- partial "footer.html" . -}}
             {{- partial "scripts.html" . -}}
-
-            <script>
-                fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
-                    .then(response => response.json())
-                    .then(data => {
-                        window.cmtvCountUp(document.getElementById('youtube-sub-count'), Number(data.subscriberCount));
-                        localStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching subscribers:', error);
-                        const cached = localStorage.getItem('cmtv_youtube_subs');
-                        if (cached) window.cmtvCountUp(document.getElementById('youtube-sub-count'), Number(cached));
-                    });
-            </script>
+            <!-- #youtube-sub-count and #twitch-follower-count are populated
+                 by the shared fetch in scripts.html; no page-specific fetch
+                 needed here. -->
 
         </div>
 

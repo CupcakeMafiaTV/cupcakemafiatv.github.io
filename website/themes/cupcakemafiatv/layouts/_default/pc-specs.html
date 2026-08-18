@@ -19,7 +19,7 @@
            stay in view while scrolling the much taller specs grid, sized by
            aspect-ratio instead of a stretched/forced height. */
         .img-column {
-            width: 320px;
+            width: 360px;
             max-width: 100%;
             flex-shrink: 0;
             display: flex;
@@ -66,11 +66,29 @@
         /* Grid Layout */
         .specs-grid {
             flex: 1;
-            min-width: 300px;
+            min-width: 280px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 10px;
             align-content: start;
+        }
+
+        /* Item cards here are a little more compact than the shared default,
+           so the wider photo column above has room to breathe. */
+        .specs-grid .brand-card {
+            gap: 10px;
+            padding: 12px 14px;
+        }
+        .specs-grid .brand-card-icon {
+            width: 34px;
+            height: 34px;
+            font-size: 15px;
+        }
+        .specs-grid .brand-card-title {
+            font-size: 13.5px;
+        }
+        .specs-grid .brand-card-subtitle {
+            font-size: 11px;
         }
 
         /* Category headers use the shared .category-header component (see

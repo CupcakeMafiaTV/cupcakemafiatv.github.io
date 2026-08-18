@@ -283,5 +283,18 @@
           height: 1px;
           background: linear-gradient(90deg, var(--cat-color, rgba(255, 255, 255, 0.4)) 0%, transparent 100%);
       }
+
+      /* Visible keyboard-focus ring. Most interactive elements on the site
+         are custom link-cards that only had :hover feedback, so a
+         keyboard-only visitor had no way to see where focus currently is.
+         :focus-visible (not :focus) keeps this from showing on mouse clicks. */
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible,
+      [tabindex]:focus-visible {
+          outline: 2px solid rgb(var(--color-accent));
+          outline-offset: 3px;
+          border-radius: 4px;
+      }
   </style>
 </head>
