@@ -25,35 +25,50 @@
 
   // Fetch and Toggle Live Status Badges
   async function checkLiveStatuses() {
+    let twitchIsLive = false;
+    let youtubeIsLive = false;
+
     // 1. Check Twitch Live Status
     try {
       const twitchRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status');
       const twitchData = await twitchRes.json();
+      twitchIsLive = Boolean(twitchData.isLive);
+
       const twitchBadge = document.getElementById('twitch-live-badge');
-
       if (twitchBadge) {
-        twitchBadge.style.display = twitchData.isLive ? 'inline-block' : 'none';
-      }
-
-      const navBadge = document.getElementById('nav-live-badge');
-      if (navBadge) {
-        navBadge.style.display = twitchData.isLive ? 'inline-flex' : 'none';
+        twitchBadge.style.display = twitchIsLive ? 'inline-block' : 'none';
       }
     } catch (e) {
       console.log('Error checking Twitch status:', e);
     }
 
-    // 2. Check YouTube Live Status (Optional)
+    // 2. Check YouTube Live Status
     try {
       const ytRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/youtube-status');
       const ytData = await ytRes.json();
+      youtubeIsLive = Boolean(ytData.isLive);
+
       const ytBadge = document.getElementById('youtube-live-badge');
-      
       if (ytBadge) {
-        ytBadge.style.display = ytData.isLive ? 'inline-block' : 'none';
+        ytBadge.style.display = youtubeIsLive ? 'inline-block' : 'none';
       }
     } catch (e) {
       // Silently fail if not configured yet
+    }
+
+    // 3. Nav badge reflects either platform, linking to whichever is live
+    // (Twitch takes priority if both are live at once).
+    const navBadge = document.getElementById('nav-live-badge');
+    if (navBadge) {
+      if (twitchIsLive) {
+        navBadge.href = 'https://twitch.tv/cupcakemafiatv';
+        navBadge.style.display = 'inline-flex';
+      } else if (youtubeIsLive) {
+        navBadge.href = 'https://youtube.com/@cupcakemafiatv/live';
+        navBadge.style.display = 'inline-flex';
+      } else {
+        navBadge.style.display = 'none';
+      }
     }
   }
 

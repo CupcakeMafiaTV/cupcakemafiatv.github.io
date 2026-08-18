@@ -61,13 +61,27 @@ export default async function handler(req, res) {
     // is streaming, with no API key or quota involved.
     const response = await fetch(`https://www.youtube.com/channel/${CHANNEL_ID}/live`, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        // A full, current browser-request header set. Serverless functions run
+        // from datacenter IPs, which YouTube is more likely to serve a stripped
+        // fallback page (no player data) to when the request looks bot-like;
+        // matching a real Chrome navigation as closely as possible reduces that.
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-User': '?1',
+        'Sec-Ch-Ua': '"Chromium";v="126", "Not.A/Brand";v="24", "Google Chrome";v="126"',
+        'Sec-Ch-Ua-Mobile': '?0',
+        'Sec-Ch-Ua-Platform': '"Windows"',
+        'Upgrade-Insecure-Requests': '1',
         // Bypasses the EU cookie-consent interstitial, which would otherwise
         // replace the channel page with a consent form (no player data) for
         // requests originating from EU-region servers.
         'Cookie': 'CONSENT=YES+1'
-      }
+      },
+      redirect: 'follow'
     });
 
     if (!response.ok) {
