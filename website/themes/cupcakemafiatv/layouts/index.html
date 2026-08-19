@@ -5,12 +5,19 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.4; }
   }
+  @keyframes scheduleTodayPulse {
+    0%, 100% { box-shadow: 0 0 16px rgba(34, 197, 94, 0.35); }
+    50% { box-shadow: 0 0 30px rgba(34, 197, 94, 0.75); }
+  }
+  .schedule-day-today {
+    border: 2px solid #22c55e !important;
+    animation: scheduleTodayPulse 2s ease-in-out infinite;
+  }
   .hero-btn-twitch { background-color: #9146FF; }
   .hero-btn-twitch:hover { background-color: #7c3aed; }
   .hero-btn-youtube { background-color: #FF0000; }
   .hero-btn-youtube:hover { background-color: #cc0000; }
-  .hero-btn-discord { background-color: #5865F2; }
-  .hero-btn-discord:hover { background-color: #4752c4; }
+  .hero-btn-twitch, .hero-btn-youtube { width: 250px; justify-content: center; }
 
   .section-band {
     position: relative;
@@ -46,15 +53,13 @@
   @media (min-width: 768px) { .section-band-pb { padding-bottom: 40px; } }
   @media (min-width: 1024px) { .section-band-pb { padding-bottom: 30px; } }
 
-  .hero-tint { background-color: rgba(30, 64, 110, 0.32); }
-
   .hero-wrap {
     position: relative;
     overflow: hidden;
-    padding: 64px 0 48px;
+    padding: 50px 0;
   }
-  @media (min-width: 768px) { .hero-wrap { padding: 88px 0 40px; } }
-  @media (min-width: 1024px) { .hero-wrap { padding: 100px 0 48px; } }
+  @media (min-width: 768px) { .hero-wrap { padding: 58px 0; } }
+  @media (min-width: 1024px) { .hero-wrap { padding: 66px 0; } }
 
   .hero-photo-panel { display: none; }
   @media (min-width: 768px) {
@@ -64,18 +69,38 @@
       top: 0;
       bottom: 0;
       right: 0;
-      width: 55%;
+      width: 50%;
       mask-image: linear-gradient(to right, transparent 0%, black 42%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 42%);
     }
   }
-  @media (min-width: 1024px) { .hero-photo-panel { width: 50%; } }
+  @media (min-width: 1024px) { .hero-photo-panel { width: 44%; } }
 
   .hero-mobile-avatar { display: block; }
   @media (min-width: 768px) { .hero-mobile-avatar { display: none; } }
 
-  .hero-text-col { position: relative; z-index: 10; text-align: center; }
+  .hero-text-col { position: relative; text-align: center; margin: 0 auto; }
   @media (min-width: 768px) { .hero-text-col { max-width: 42rem; } }
+
+  .hero-center-zone { position: relative; z-index: 10; padding: 0 20px; }
+
+  .hero-rank-watermark {
+    display: none;
+    position: absolute;
+    top: 50%;
+    /* Mirrors the photo panel: its right edge sits at (100% - photo width),
+       the same distance from the left as the photo's left edge is from the
+       right, keeping the centered text equidistant from both. */
+    right: 62%;
+    width: 295px;
+    height: auto;
+    transform: translateY(-50%);
+    opacity: 0.14;
+    pointer-events: none;
+    z-index: -1;
+  }
+  @media (min-width: 768px) { .hero-rank-watermark { display: block; } }
+  @media (min-width: 1024px) { .hero-rank-watermark { right: 68%; width: 360px; } }
 
   .hero-actions {
     margin-top: 2rem;
@@ -185,21 +210,22 @@
 <div style="background-color: #0f172a; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed;">
 
   <!-- Hero -->
-  <div class="hero-tint hero-wrap">
+  <div class="hero-wrap">
     <!-- Bleed photo (tablet/desktop only) -->
     <div class="hero-photo-panel">
       <img src="/img/CodyWeirdAl.jpg" alt="Cody, CupcakeMafiaTV" class="w-full h-full object-cover" style="object-position: 50% 36%;">
       <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.1) 45%, rgba(15,23,42,0.3) 100%);"></div>
     </div>
 
-    <div class="container">
+    <div class="hero-center-zone">
+      <img src="/img/rank-master.png" alt="" aria-hidden="true" class="hero-rank-watermark">
       <div class="hero-text-col">
         <img src="/img/CodyWeirdAl.jpg" alt="Cody, CupcakeMafiaTV" class="hero-mobile-avatar mx-auto mb-5 w-24 h-24 rounded-full object-cover shadow-2xl" style="object-position: 50% 18%; border: 3px solid rgb(var(--color-accent) / 0.6);">
         <h1 class="text-4xl font-black tracking-tighter text-white leading-none sm:text-5xl md:text-6xl lg:text-[64px]">
           CupcakeMafiaTV
         </h1>
         <p class="text-gray-300 mt-2 text-xl">
-          Streamer &amp; League of Legends Master's Mid Laner <img src="/img/rank-master.png" alt="Master Rank" style="display: inline-block; height: 36px; width: auto; vertical-align: middle; margin-left: 2px; margin-top: -4px;"> <img src="/img/position-mid.png" alt="Mid Lane" style="display: inline-block; height: 26px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 6px;">
+          Streamer &amp; League of Legends Master's Mid Laner
         </p>
         <div class="hero-actions">
           <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-twitch px-7 py-3 text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
@@ -207,9 +233,6 @@
           </a>
           <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-youtube px-7 py-3 text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
             <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
-          </a>
-          <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="hero-btn-discord px-7 py-3 text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
-            <i class="fa-brands fa-discord"></i> Join the Discord
           </a>
         </div>
         <div class="mt-3 text-sm md:text-base text-gray-300 text-center">
@@ -293,7 +316,7 @@
           </div>
           <div class="col-span-full lg:col-span-4 flex flex-col">
             <div class="w-full h-full overflow-hidden rounded-xl bg-black flex flex-col">
-              <iframe id="chat_embed" src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" height="100%" width="100%" class="w-full flex-grow" style="min-height: 320px;"></iframe>
+              <iframe id="chat_embed" src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&darkpopout" height="100%" width="100%" class="w-full flex-grow" style="min-height: 320px;"></iframe>
             </div>
           </div>
         </div>
@@ -632,8 +655,7 @@
   const todayIndex = new Date().getDay();
   const todayCard = document.querySelector(`.schedule-day[data-day="${todayIndex}"]`);
   if (todayCard) {
-    todayCard.style.border = '2px solid #22c55e';
-    todayCard.style.boxShadow = '0 0 16px rgba(34, 197, 94, 0.35)';
+    todayCard.classList.add('schedule-day-today');
   }
 
   // Twitch/YouTube counts for #twitch-follower-count and #youtube-sub-count
