@@ -180,7 +180,14 @@ export default async function handler(req, res) {
       lastPublishedAt: new Date(new Date(newest.publishedAt).getTime() - 1000).toISOString(),
     };
     await kvSet(VOD_STATE_KEY, state);
-    return res.status(200).json({ reset: true, targetVideoId: newest.id, targetTitle: newest.title });
+    const readBack = await kvGet(VOD_STATE_KEY);
+    return res.status(200).json({
+      reset: true,
+      targetVideoId: newest.id,
+      targetTitle: newest.title,
+      wrote: state,
+      readBack,
+    });
   }
 
   const results = {};
