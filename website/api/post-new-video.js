@@ -73,6 +73,7 @@ async function postToDiscord(webhookUrl, video) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username: 'CupcakeMafiaTV',
+      avatar_url: 'https://cupcakemafiatv.com/img/emotes/MainCupcake.png',
       content: `🎬 New video is up! https://youtu.be/${video.id}`,
       embeds: [
         {
