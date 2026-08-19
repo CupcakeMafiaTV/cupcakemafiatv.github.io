@@ -1,12 +1,17 @@
 // Runs on a daily Vercel Cron schedule (see vercel.json). Checks for a new
-// long-form video and posts it to Discord via webhook. Shorts are excluded
-// using YouTube's Shorts duration cutoff (<=180s). Dedup state (the last
-// video posted) is kept in Upstash Redis so the same video is never posted
-// twice, even if the check runs again before the next upload.
+// long-form video AND a new VOD upload in the same run (folded together so
+// the free Vercel plan's cron-job cap isn't a factor) and posts each to its
+// own Discord channel via its own webhook. Shorts are excluded from the main
+// channel using YouTube's Shorts duration cutoff (<=180s). Dedup state (the
+// last item posted, per feed) is kept in Upstash Redis so nothing is ever
+// posted twice, even if the check runs again before the next upload.
 
 const SHORTS_MAX_SECONDS = 180;
 const ACCENT_COLOR = 0x00dbc9;
+const VOD_ACCENT_COLOR = 0x654cff;
 const STATE_KEY = 'last-posted-video';
+const VOD_STATE_KEY = 'last-posted-vod';
+const VODS_HANDLE = 'CupcakeMafiaTVODs';
 
 function parseDurationSeconds(iso8601) {
   const match = iso8601.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
@@ -67,20 +72,44 @@ async function fetchRecentLongFormVideos(apiKey, channelId) {
     }));
 }
 
-async function postToDiscord(webhookUrl, video) {
+async function fetchRecentVods(apiKey) {
+  const channelRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forHandle=${VODS_HANDLE}&key=${apiKey}`
+  );
+  const channelData = await channelRes.json();
+  const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+  if (!uploadsPlaylistId) throw new Error('Could not resolve uploads playlist for VODs channel');
+
+  const playlistRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=10&key=${apiKey}`
+  );
+  const playlistData = await playlistRes.json();
+
+  return (playlistData.items || []).map((item) => ({
+    id: item.snippet.resourceId.videoId,
+    title: item.snippet.title,
+    publishedAt: item.snippet.publishedAt,
+    thumbnail:
+      item.snippet.thumbnails.maxres?.url ||
+      item.snippet.thumbnails.high?.url ||
+      item.snippet.thumbnails.medium.url,
+  }));
+}
+
+async function postToDiscord(webhookUrl, item, { emoji, label, color }) {
   const res = await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       username: 'CupcakeMafiaTV',
       avatar_url: 'https://cupcakemafiatv.com/img/emotes/MainCupcake.png',
-      content: `🎬 New video is up! https://youtu.be/${video.id}`,
+      content: `${emoji} ${label} https://youtu.be/${item.id}`,
       embeds: [
         {
-          title: video.title,
-          url: `https://youtu.be/${video.id}`,
-          color: ACCENT_COLOR,
-          image: { url: video.thumbnail },
+          title: item.title,
+          url: `https://youtu.be/${item.id}`,
+          color,
+          image: { url: item.thumbnail },
         },
       ],
     }),
@@ -88,6 +117,35 @@ async function postToDiscord(webhookUrl, video) {
   if (!res.ok) {
     throw new Error(`Discord webhook failed: ${res.status} ${await res.text()}`);
   }
+}
+
+async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label, color }) {
+  let state = await kvGet(stateKey);
+  if (!state) {
+    // First run ever (fresh KV store): prime with "now" instead of
+    // backfilling every existing item as if it were new.
+    state = { lastId: '', lastPublishedAt: new Date().toISOString() };
+    await kvSet(stateKey, state);
+    return { posted: 0, primed: true };
+  }
+
+  const items = await fetchItems();
+  const newItems = items
+    .filter((v) => new Date(v.publishedAt) > new Date(state.lastPublishedAt))
+    .sort((a, b) => new Date(a.publishedAt) - new Date(b.publishedAt));
+
+  if (newItems.length === 0) {
+    return { posted: 0 };
+  }
+
+  for (const item of newItems) {
+    await postToDiscord(webhookUrl, item, { emoji, label, color });
+    state.lastId = item.id;
+    state.lastPublishedAt = item.publishedAt;
+  }
+  await kvSet(stateKey, state);
+
+  return { posted: newItems.length, ids: newItems.map((v) => v.id) };
 }
 
 export default async function handler(req, res) {
@@ -101,6 +159,7 @@ export default async function handler(req, res) {
   const API_KEY = process.env.YouTube_Live_Checker;
   const CHANNEL_ID = process.env.CHANNEL_ID;
   const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+  const VODS_WEBHOOK_URL = process.env.DISCORD_VODS_WEBHOOK_URL;
 
   if (!API_KEY || !CHANNEL_ID || !WEBHOOK_URL) {
     return res.status(500).json({ error: 'Missing required env vars' });
@@ -109,35 +168,37 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Missing KV env vars (add the Upstash Redis integration in Vercel)' });
   }
 
+  const results = {};
+
   try {
-    let state = await kvGet(STATE_KEY);
-    if (!state) {
-      // First run ever (fresh KV store): prime with "now" instead of
-      // backfilling every existing video as if it were new.
-      state = { lastVideoId: '', lastPublishedAt: new Date().toISOString() };
-      await kvSet(STATE_KEY, state);
-      return res.status(200).json({ posted: 0, primed: true });
-    }
-
-    const videos = await fetchRecentLongFormVideos(API_KEY, CHANNEL_ID);
-
-    const newVideos = videos
-      .filter((v) => new Date(v.publishedAt) > new Date(state.lastPublishedAt))
-      .sort((a, b) => new Date(a.publishedAt) - new Date(b.publishedAt));
-
-    if (newVideos.length === 0) {
-      return res.status(200).json({ posted: 0 });
-    }
-
-    for (const video of newVideos) {
-      await postToDiscord(WEBHOOK_URL, video);
-      state.lastVideoId = video.id;
-      state.lastPublishedAt = video.publishedAt;
-    }
-    await kvSet(STATE_KEY, state);
-
-    return res.status(200).json({ posted: newVideos.length, videos: newVideos.map((v) => v.id) });
+    results.video = await checkAndPostFeed({
+      stateKey: STATE_KEY,
+      fetchItems: () => fetchRecentLongFormVideos(API_KEY, CHANNEL_ID),
+      webhookUrl: WEBHOOK_URL,
+      emoji: '🎬',
+      label: 'New video is up!',
+      color: ACCENT_COLOR,
+    });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    results.video = { error: error.message };
   }
+
+  if (VODS_WEBHOOK_URL) {
+    try {
+      results.vod = await checkAndPostFeed({
+        stateKey: VOD_STATE_KEY,
+        fetchItems: () => fetchRecentVods(API_KEY),
+        webhookUrl: VODS_WEBHOOK_URL,
+        emoji: '🎞️',
+        label: 'New VOD is up!',
+        color: VOD_ACCENT_COLOR,
+      });
+    } catch (error) {
+      results.vod = { error: error.message };
+    }
+  } else {
+    results.vod = { skipped: 'DISCORD_VODS_WEBHOOK_URL not set' };
+  }
+
+  return res.status(200).json(results);
 }

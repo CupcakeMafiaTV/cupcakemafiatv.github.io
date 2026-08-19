@@ -1,0 +1,13 @@
+name: Poll for new Twitch clips
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping clip checker endpoint
+        run: curl -sf https://cupcakemafiatv-github-io.vercel.app/api/post-new-clip
