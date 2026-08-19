@@ -97,30 +97,6 @@
             grid-column: 1 / -1;
         }
 
-        /* Lightbox Dialog */
-        #img-modal {
-            border: none;
-            background: transparent;
-            padding: 0;
-            max-width: 90vw;
-            max-height: 90vh;
-            outline: none;
-        }
-
-        #img-modal::backdrop {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(6px);
-        }
-
-        #img-modal-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
-            object-fit: contain;
-            display: block;
-        }
-
         /* Mobile Adjustments */
         @media (max-width: 768px) {
             .specs-grid {
@@ -552,19 +528,6 @@
 
         </div>
 
-        <!-- Lightbox Modal Dialog -->
-        <dialog id="img-modal" onclick="this.close()">
-            <img id="img-modal-img" src="" alt="Enlarged setup view">
-        </dialog>
-
-        <!-- Script for Lightbox -->
-        <script>
-            function openModal(imgSrc) {
-                const modal = document.getElementById('img-modal');
-                const modalImg = document.getElementById('img-modal-img');
-                modalImg.src = imgSrc;
-                modal.showModal();
-            }
-        </script>
+        {{- partial "lightbox.html" . -}}
     </body>
 </html>

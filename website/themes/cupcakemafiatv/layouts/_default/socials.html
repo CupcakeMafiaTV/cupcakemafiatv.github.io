@@ -37,8 +37,8 @@
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.35);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #000;
-            padding: 4px;
+            background: rgba(31, 41, 55, 0.5);
+            padding: 8px;
             box-sizing: border-box;
             aspect-ratio: 16 / 9;
         }
@@ -53,6 +53,22 @@
         .video-container:hover {
             transform: translateY(-3px);
             border-color: #ffffff;
+        }
+
+        .video-play-btn {
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            background: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 0 6px rgba(255, 255, 255, 0.08);
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-container:hover .video-play-btn {
+            transform: scale(1.12);
         }
 
         /* Image Box Interactivity & White Glow Effect */
@@ -104,27 +120,6 @@
             }
         }
 
-        /* Modal Dialog Styling */
-        #img-modal {
-            border: none;
-            background: transparent;
-            padding: 0;
-            max-width: 90vw;
-            max-height: 90vh;
-            outline: none;
-        }
-        #img-modal::backdrop {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(6px);
-        }
-        #img-modal-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
-            object-fit: contain;
-            display: block;
-        }
     </style>
 
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray">
@@ -200,10 +195,10 @@
 
                             <!-- YouTube Video with Custom Thumbnail & Adjusted Crop (Moved to Second Position) -->
                             <div class="video-container" style="display: flex; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
-                                <img src="/img/Masters.png" alt="Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% center; border-radius: 8px; display: block;">
+                                <img src="/img/Masters.jpg" alt="Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% center; border-radius: 8px; display: block;">
                                 <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: background 0.2s;">
-                                    <div style="width: 68px; height: 48px; background: #ef4444; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
-                                        <i class="fa-solid fa-play" style="color: #ffffff; font-size: 20px; margin-left: 3px;"></i>
+                                    <div class="video-play-btn">
+                                        <i class="fa-solid fa-play" style="color: #ffffff; font-size: 22px; margin-left: 4px;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -331,10 +326,7 @@
 
         </div>
 
-        <!-- Image Lightbox Modal -->
-        <dialog id="img-modal" onclick="closeModal()">
-            <img id="img-modal-img" src="" alt="Enlarged setup view">
-        </dialog>
+        {{- partial "lightbox.html" . -}}
 
         <script>
             // YouTube Lazy Loader Function
@@ -349,24 +341,11 @@
                 iframe.style.height = '100%';
                 iframe.style.borderRadius = '8px';
                 iframe.style.display = 'block';
-                
+
                 container.innerHTML = '';
                 container.appendChild(iframe);
                 container.style.cursor = 'default';
                 container.removeAttribute('onclick');
-            }
-
-            // Modal JS
-            const modal = document.getElementById('img-modal');
-            const modalImg = document.getElementById('img-modal-img');
-
-            function openModal(src) {
-                modalImg.src = src;
-                modal.showModal();
-            }
-
-            function closeModal() {
-                modal.close();
             }
         </script>
 

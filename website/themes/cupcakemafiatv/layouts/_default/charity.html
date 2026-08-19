@@ -11,6 +11,29 @@
         }
         @media (min-width: 768px) { .charity-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
         @media (min-width: 1024px) { .charity-stats-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+        /* Same hover/click feel as the shared .brand-card component
+           elsewhere on the site: lift + crisper shadow on hover, icon
+           bounces, quick press-down on click. */
+        .charity-card {
+            background-color: #1e293b;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .charity-card:hover {
+            transform: translateY(-4px);
+            background-color: #24324a;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+        .charity-card:active {
+            transform: translateY(-1px) scale(0.98);
+            transition-duration: 0.1s;
+        }
+        .charity-card-icon {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .charity-card:hover .charity-card-icon {
+            transform: scale(1.14) rotate(-6deg);
+        }
     </style>
 
     <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
@@ -95,8 +118,8 @@
                                 <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; THANK YOU to everyone who's chipped in or participated.</p>
                             </div>
                             <div class="charity-stats-grid">
-                                <div class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(234, 179, 8, 0.5);">
-                                    <div style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
+                                <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 1px solid rgba(234, 179, 8, 0.5);">
+                                    <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
                                         <i class="fa-solid fa-sack-dollar" style="color: rgb(var(--color-accent)); font-size: 20px;"></i>
                                     </div>
                                     <div>
@@ -104,8 +127,8 @@
                                         <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
                                     </div>
                                 </div>
-                                <div class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(234, 179, 8, 0.5);">
-                                    <div style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
+                                <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 1px solid rgba(234, 179, 8, 0.5);">
+                                    <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
                                         <i class="fa-solid fa-hand-holding-heart" style="color: rgb(var(--color-accent)); font-size: 20px;"></i>
                                     </div>
                                     <div>
@@ -113,8 +136,8 @@
                                         <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations Received</div>
                                     </div>
                                 </div>
-                                <div class="rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="background-color: #1e293b; border: 1px solid rgba(234, 179, 8, 0.5);">
-                                    <div style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
+                                <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 1px solid rgba(234, 179, 8, 0.5);">
+                                    <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgb(var(--color-accent) / 0.15); display: flex; align-items: center; justify-content: center;">
                                         <i class="fa-solid fa-calendar-check" style="color: rgb(var(--color-accent)); font-size: 20px;"></i>
                                     </div>
                                     <div>
@@ -122,13 +145,13 @@
                                         <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
                                     </div>
                                 </div>
-                                <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="background-color: #1e293b; border: 1px solid rgba(234, 179, 8, 0.5); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                                <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 1px solid rgba(234, 179, 8, 0.5);">
                                     <div style="height: 72px; display: flex; align-items: center;">
                                         <img src="/img/CHEOLogo.png" alt="CHEO Foundation" style="height: 68px; width: auto;">
                                     </div>
                                     <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Ottawa</div>
                                 </a>
-                                <a href="https://iwkfoundation.org/" target="_blank" rel="noopener noreferrer" class="rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="background-color: #1e293b; border: 1px solid rgba(234, 179, 8, 0.5); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                                <a href="https://iwkfoundation.org/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 1px solid rgba(234, 179, 8, 0.5);">
                                     <div style="height: 72px; display: flex; align-items: center;">
                                         <img src="/img/IWKLogo.svg" alt="IWK Foundation" style="height: 66px; width: auto;">
                                     </div>

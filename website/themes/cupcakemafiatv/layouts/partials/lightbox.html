@@ -1,0 +1,15 @@
+<!-- Shared click-to-zoom lightbox. Make any image zoomable with:
+     onclick="openModal(this.src)" (or this.querySelector('img').src on a
+     wrapping container). Styling lives in head.html (#img-modal). -->
+<dialog id="img-modal" onclick="this.close()">
+    <img id="img-modal-img" src="" alt="Enlarged view">
+</dialog>
+
+<script>
+    function openModal(imgSrc) {
+        const modal = document.getElementById('img-modal');
+        const modalImg = document.getElementById('img-modal-img');
+        modalImg.src = imgSrc;
+        modal.showModal();
+    }
+</script>

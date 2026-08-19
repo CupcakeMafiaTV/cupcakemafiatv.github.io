@@ -162,11 +162,16 @@
           border: 1px solid rgba(255, 255, 255, 0.08);
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
           text-decoration: none !important;
-          transition: transform 0.25s ease, background-color 0.25s ease;
+          transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
       }
       .brand-card:hover {
-          transform: translateY(-3px);
+          transform: translateY(-4px);
           background-color: rgba(17, 24, 39, 0.85);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      }
+      .brand-card:active {
+          transform: translateY(-1px) scale(0.98);
+          transition-duration: 0.1s;
       }
       .brand-card-icon {
           width: 40px;
@@ -177,6 +182,10 @@
           justify-content: center;
           font-size: 18px;
           flex-shrink: 0;
+          transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .brand-card:hover .brand-card-icon {
+          transform: scale(1.14) rotate(-6deg);
       }
       .brand-card-body { overflow: hidden; flex: 1; min-width: 0; }
       .brand-card-title {
@@ -204,8 +213,13 @@
           right: 12px;
           font-size: 11px;
           color: #ffffff;
-          opacity: 0.85;
+          opacity: 0.6;
           pointer-events: none;
+          transition: transform 0.25s ease, opacity 0.25s ease;
+      }
+      .brand-card:hover .brand-card-ext {
+          opacity: 1;
+          transform: translate(2px, -2px);
       }
       .brand-card-badge {
           flex-shrink: 0;
@@ -295,6 +309,29 @@
           outline: 2px solid rgb(var(--color-accent));
           outline-offset: 3px;
           border-radius: 4px;
+      }
+
+      /* Shared click-to-zoom lightbox (see partials/lightbox.html). Any page
+         can make an image zoomable with onclick="openModal(this.src)". */
+      #img-modal {
+          border: none;
+          background: transparent;
+          padding: 0;
+          max-width: 90vw;
+          max-height: 90vh;
+          outline: none;
+      }
+      #img-modal::backdrop {
+          background: rgba(0, 0, 0, 0.85);
+          backdrop-filter: blur(6px);
+      }
+      #img-modal-img {
+          max-width: 90vw;
+          max-height: 85vh;
+          border-radius: 8px;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+          object-fit: contain;
+          display: block;
       }
   </style>
 </head>
