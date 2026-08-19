@@ -94,15 +94,6 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Missing KV env vars (add the Upstash Redis integration in Vercel)' });
   }
 
-  // One-time manual utility: re-prime the clip state to "now", discarding
-  // the corrupted double-encoded value from the kvSet bug. Remove this
-  // branch after use.
-  if (req.query.resetToNow === '1') {
-    const state = { lastClipId: '', lastCreatedAt: new Date().toISOString() };
-    await kvSet(STATE_KEY, state);
-    return res.status(200).json({ reset: true, state });
-  }
-
   try {
     let state = await kvGet(STATE_KEY);
     if (!state) {

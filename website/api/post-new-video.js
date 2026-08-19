@@ -168,37 +168,6 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Missing KV env vars (add the Upstash Redis integration in Vercel)' });
   }
 
-  // One-time manual utility: re-prime the main video state to "now",
-  // discarding the corrupted double-encoded value from the kvSet bug.
-  // Remove this branch after use.
-  if (req.query.resetVideoToNow === '1') {
-    const state = { lastId: '', lastPublishedAt: new Date().toISOString() };
-    await kvSet(STATE_KEY, state);
-    return res.status(200).json({ reset: true, state });
-  }
-
-  // One-time manual utility: rewind the VOD state to just before the
-  // current newest VOD, so the next normal call picks up exactly that one
-  // (not a full backfill). Remove this branch after use.
-  if (req.query.resetVodToLatest === '1') {
-    const vods = await fetchRecentVods(API_KEY);
-    const newest = vods.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))[0];
-    if (!newest) return res.status(404).json({ error: 'No VODs found' });
-    const state = {
-      lastId: '',
-      lastPublishedAt: new Date(new Date(newest.publishedAt).getTime() - 1000).toISOString(),
-    };
-    await kvSet(VOD_STATE_KEY, state);
-    const readBack = await kvGet(VOD_STATE_KEY);
-    return res.status(200).json({
-      reset: true,
-      targetVideoId: newest.id,
-      targetTitle: newest.title,
-      wrote: state,
-      readBack,
-    });
-  }
-
   const results = {};
 
   try {
