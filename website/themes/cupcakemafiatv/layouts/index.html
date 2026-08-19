@@ -13,18 +13,39 @@
   .hero-btn-discord:hover { background-color: #4752c4; }
 
   .section-band {
+    position: relative;
     padding-top: 24px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
   @media (min-width: 768px) { .section-band { padding-top: 40px; } }
   @media (min-width: 1024px) { .section-band { padding-top: 30px; } }
+
+  .section-band::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(70%, 640px);
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, transparent, rgb(var(--color-accent) / 0.5), transparent);
+  }
+  .section-band::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    transform: translate(-50%, -50%);
+    background: rgb(var(--color-accent));
+    box-shadow: 0 0 8px rgb(var(--color-accent) / 0.8);
+  }
 
   .section-band-pb { padding-bottom: 24px; }
   @media (min-width: 768px) { .section-band-pb { padding-bottom: 40px; } }
   @media (min-width: 1024px) { .section-band-pb { padding-bottom: 30px; } }
 
-  .section-band-blue { background-color: rgba(30, 64, 110, 0.32); }
-  .section-band-teal { background-color: rgba(13, 63, 76, 0.4); }
   .hero-tint { background-color: rgba(30, 64, 110, 0.32); }
 
   .hero-wrap {
@@ -205,7 +226,7 @@
   <main id="main-content" class="grow lg:pt-0 text-white">
 
     <!-- Stream Schedule Section -->
-    <div class="section-band-pb section-band section-band-teal reveal-on-scroll">
+    <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
@@ -253,7 +274,7 @@
     </div>
 
     <!-- Watch Live Section -->
-    <div class="section-band-pb section-band section-band-blue reveal-on-scroll">
+    <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-3 flex items-center justify-center gap-3">
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
@@ -280,7 +301,7 @@
     </div>
 
     <!-- Latest Content Section (Upload + VOD side by side) -->
-    <div class="section-band-pb section-band section-band-teal reveal-on-scroll">
+    <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-8 text-center">
           <div class="flex items-center justify-center gap-3">
@@ -326,7 +347,7 @@
     </div>
 
     <!-- League of Legends Rank Section -->
-    <div class="section-band-pb section-band section-band-blue reveal-on-scroll">
+    <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
@@ -347,7 +368,7 @@
     </div>
 
     <!-- Name Generator Section -->
-    <div class="section-band-pb section-band section-band-teal reveal-on-scroll">
+    <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-accent before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">
