@@ -35,7 +35,7 @@ async function kvSet(key, value) {
       Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(JSON.stringify(value)),
+    body: JSON.stringify(value),
   });
 }
 
@@ -166,6 +166,15 @@ export default async function handler(req, res) {
   }
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     return res.status(500).json({ error: 'Missing KV env vars (add the Upstash Redis integration in Vercel)' });
+  }
+
+  // One-time manual utility: re-prime the main video state to "now",
+  // discarding the corrupted double-encoded value from the kvSet bug.
+  // Remove this branch after use.
+  if (req.query.resetVideoToNow === '1') {
+    const state = { lastId: '', lastPublishedAt: new Date().toISOString() };
+    await kvSet(STATE_KEY, state);
+    return res.status(200).json({ reset: true, state });
   }
 
   // One-time manual utility: rewind the VOD state to just before the
