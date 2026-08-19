@@ -3,6 +3,10 @@
     {
       "path": "/api/post-new-video",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/post-new-clip",
+      "schedule": "5 12 * * *"
     }
   ]
 }

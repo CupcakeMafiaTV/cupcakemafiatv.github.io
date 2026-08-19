@@ -110,7 +110,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const state = (await kvGet(STATE_KEY)) || { lastPublishedAt: new Date(0).toISOString() };
+    let state = await kvGet(STATE_KEY);
+    if (!state) {
+      // First run ever (fresh KV store): prime with "now" instead of
+      // backfilling every existing video as if it were new.
+      state = { lastVideoId: '', lastPublishedAt: new Date().toISOString() };
+      await kvSet(STATE_KEY, state);
+      return res.status(200).json({ posted: 0, primed: true });
+    }
+
     const videos = await fetchRecentLongFormVideos(API_KEY, CHANNEL_ID);
 
     const newVideos = videos
