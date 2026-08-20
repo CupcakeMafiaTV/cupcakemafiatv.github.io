@@ -2,10 +2,12 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
 
-  // search.list costs 100 quota units per call against a 10,000/day quota
-  // shared with the subscriber-count and latest-video endpoints, so this is
-  // cached much longer than a simple status check would otherwise need.
-  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
+  // search.list is capped at just 100 calls/day by YouTube, a separate and
+  // much stricter limit than the general 10,000-unit quota shared with the
+  // subscriber-count and latest-video endpoints. Cached long enough that
+  // even with steady traffic, origin hits stay well under that 100/day cap
+  // (max ~72/day at this duration).
+  res.setHeader('Cache-Control', 's-maxage=1200, stale-while-revalidate=1800');
 
   const API_KEY = process.env.YouTube_Live_Checker;
   const CHANNEL_ID = process.env.CHANNEL_ID;
