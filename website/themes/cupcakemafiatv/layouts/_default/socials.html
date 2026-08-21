@@ -2,7 +2,19 @@
 
 <style>
     /* Social links use the shared .brand-card component (see head.html);
-       only grid-specific layout lives here. */
+       sized up a bit from the shared default so the text reads at the
+       same weight as the rest of the site's sub-pages. */
+    .social-grid .brand-card-icon {
+        width: 46px;
+        height: 46px;
+        font-size: 20px;
+    }
+    .social-grid .brand-card-title {
+        font-size: 16px;
+    }
+    .social-grid .brand-card-subtitle {
+        font-size: 13px;
+    }
 
     /* Video Box Styling */
     .video-container {
@@ -95,11 +107,11 @@
 </style>
 
 <!-- Main Content Area with flex-grow -->
-<main id="main-content" style="flex: 1 0 auto; padding: 24px 24px 40px 24px;">
+<main id="main-content" style="flex: 1 0 auto; padding: 30px 20px 40px 20px;">
     <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
 
         <!-- Title Banner -->
-        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 10px; margin-bottom: 20px;">
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px;">
             <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
                 Socials
             </h1>
@@ -236,6 +248,8 @@
             </div>
 
         </div>
+
+        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
 
     </div>
 </main>

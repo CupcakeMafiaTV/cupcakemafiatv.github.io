@@ -27,12 +27,33 @@
     .social-stat-grid .brand-card-body { flex: none; width: 100%; }
     .social-stat-grid .brand-card-subtitle { font-size: 16px; color: #cbd5e1; }
     .social-stat-grid .brand-card-icon { width: 52px; height: 52px; font-size: 24px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
+
+    /* Same hover/click feel as the shared .brand-card component elsewhere
+       on the site: lift + crisper shadow on hover, icon bounces. */
+    .wwm-get-grid > div {
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .wwm-get-grid > div:hover {
+        transform: translateY(-4px);
+        background-color: rgba(17, 24, 39, 0.85);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgb(var(--color-gold) / 0.3);
+    }
+    .wwm-get-grid > div:active {
+        transform: translateY(-1px) scale(0.98);
+        transition-duration: 0.1s;
+    }
+    .wwm-get-grid > div i {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .wwm-get-grid > div:hover i {
+        transform: scale(1.14) rotate(-6deg);
+    }
 </style>
 
 <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
     <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
 
-        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 10px; margin-bottom: 20px;">
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px;">
             <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
                 Work With Me
             </h1>
@@ -41,46 +62,46 @@
         <div class="flex flex-col gap-y-12">
 
             <!-- Pitch -->
-            <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
+            <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg reveal-on-scroll">
                 I'm eager to team up with brands and vendors who want to connect with a passionate gaming community through sponsored streams, game launches, and integrated campaigns. My focus is League of Legends — ranked grinding and everything in between — but I'm open to other titles and campaigns where it's a good fit. If that sounds like you, let's talk.
             </div>
 
             <!-- Audience & Reach -->
-            <div style="font-family: 'Rajdhani', sans-serif;">
+            <div style="font-family: 'Rajdhani', sans-serif;" class="reveal-on-scroll">
                 <div class="mb-6">
                     <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Audience &amp; Reach</h2>
                     <p class="text-gray-300 mt-3 max-w-2xl">Reach across live streams, VODs, and the clips and updates in between.</p>
                 </div>
                 <div class="social-stat-grid">
-                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(145, 70, 255, 0.5);">
+                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(145, 70, 255, 0.5); box-shadow: 0 0 14px rgba(145, 70, 255, 0.25);">
                         <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #9146FF;"><i class="fa-brands fa-twitch"></i></div>
                         <div class="brand-card-body">
                             <div id="twitch-follower-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
                             <div class="brand-card-subtitle">Followers</div>
                         </div>
                     </a>
-                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 0, 0, 0.5);">
+                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 0, 0, 0.5); box-shadow: 0 0 14px rgba(255, 0, 0, 0.25);">
                         <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
                         <div class="brand-card-body">
                             <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
                             <div class="brand-card-subtitle">Subscribers</div>
                         </div>
                     </a>
-                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45);">
+                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);">
                         <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
                         <div class="brand-card-body">
                             <div class="brand-card-title brand-card-title-lg static-count-up">54</div>
                             <div class="brand-card-subtitle">Followers</div>
                         </div>
                     </a>
-                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(214, 41, 118, 0.5);">
+                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(214, 41, 118, 0.5); box-shadow: 0 0 14px rgba(214, 41, 118, 0.25);">
                         <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #D62976;"><i class="fa-brands fa-instagram"></i></div>
                         <div class="brand-card-body">
                             <div class="brand-card-title brand-card-title-lg static-count-up">61</div>
                             <div class="brand-card-subtitle">Followers</div>
                         </div>
                     </a>
-                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45);">
+                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);">
                         <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
                         <div class="brand-card-body">
                             <div class="brand-card-title brand-card-title-lg static-count-up">42</div>
@@ -91,29 +112,29 @@
             </div>
 
             <!-- What You Get -->
-            <div style="font-family: 'Rajdhani', sans-serif;">
+            <div style="font-family: 'Rajdhani', sans-serif;" class="reveal-on-scroll">
                 <div class="mb-6">
                     <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">What You Get</h2>
                     <p class="text-gray-300 mt-3 max-w-2xl">Straightforward deliverables built around a League-focused audience.</p>
                 </div>
                 <div class="wwm-get-grid">
                     <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                        <i class="fa-solid fa-tower-broadcast text-accent mb-3" style="font-size: 22px;"></i>
+                        <i class="fa-solid fa-tower-broadcast text-gold mb-3" style="font-size: 22px;"></i>
                         <div class="text-base font-bold text-white mb-1">Dedicated Stream Segment</div>
                         <p class="text-sm text-gray-400">A live callout or integration built into the broadcast, not just a passing mention.</p>
                     </div>
                     <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                        <i class="fa-solid fa-share-nodes text-accent mb-3" style="font-size: 22px;"></i>
+                        <i class="fa-solid fa-share-nodes text-gold mb-3" style="font-size: 22px;"></i>
                         <div class="text-base font-bold text-white mb-1">Multi-Platform Shoutouts</div>
                         <p class="text-sm text-gray-400">Mentions across Twitch, YouTube, Instagram, TikTok, and X.</p>
                     </div>
                     <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                        <i class="fa-solid fa-clapperboard text-accent mb-3" style="font-size: 22px;"></i>
+                        <i class="fa-solid fa-clapperboard text-gold mb-3" style="font-size: 22px;"></i>
                         <div class="text-base font-bold text-white mb-1">VOD &amp; Highlight Placement</div>
                         <p class="text-sm text-gray-400">Featured placement in uploaded VODs and highlight clips after the stream.</p>
                     </div>
                     <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                        <i class="fa-solid fa-bolt text-accent mb-3" style="font-size: 22px;"></i>
+                        <i class="fa-solid fa-bolt text-gold mb-3" style="font-size: 22px;"></i>
                         <div class="text-base font-bold text-white mb-1">Fast, Direct Communication</div>
                         <p class="text-sm text-gray-400">Quick turnaround on logistics, no agency layers to navigate.</p>
                     </div>
@@ -121,7 +142,7 @@
             </div>
 
             <!-- Contact CTA -->
-            <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;">
+            <div style="padding-top: 12px;" class="reveal-on-scroll">
                 <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Let's Talk</h2>
                 <p class="text-gray-300 mt-3 mb-6">Whether it's a sponsored stream, a product integration, or something else entirely, I'd love to hear what you have in mind. Send me an email and let's figure out what makes sense together.</p>
                 <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
@@ -131,6 +152,8 @@
             </div>
 
         </div>
+
+        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
 
     </div>
 </main>
