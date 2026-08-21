@@ -1,13 +1,49 @@
 {{ define "main" }}
 
 <style>
-    .profile-photo { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .profile-photo { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
     .profile-photo:hover {
         transform: translateY(-3px);
         border-color: rgb(var(--color-gold));
     }
     .profile-photo:hover img { transform: translateY(-15%) scale(1.03); filter: brightness(1.05); }
     .profile-photo img { transition: transform 0.3s ease, filter 0.3s ease; }
+
+    /* "Click to enlarge" hint — fades in on hover, ties the image back
+       to the click-to-zoom lightbox it already opens. */
+    .img-zoom-hint {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(15, 23, 42, 0);
+        opacity: 0;
+        transition: opacity 0.25s ease, background 0.25s ease;
+        pointer-events: none;
+        z-index: 2;
+    }
+    .profile-photo:hover .img-zoom-hint {
+        opacity: 1;
+        background: rgba(15, 23, 42, 0.35);
+    }
+    .img-zoom-hint i {
+        color: #ffffff;
+        font-size: 22px;
+        width: 48px;
+        height: 48px;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(15, 23, 42, 0.75);
+        border: 1.5px solid rgb(var(--color-gold) / 0.85);
+        transform: scale(0.85);
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .profile-photo:hover .img-zoom-hint i {
+        transform: scale(1);
+    }
 </style>
 
 <main id="main-content" style="flex-grow: 1; padding: 30px 20px 8px 20px;">
@@ -23,10 +59,11 @@
         <div class="flex flex-col gap-y-6">
 
             <!-- Bio Section with Increased Font Size -->
-            <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
+            <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center reveal-on-scroll">
                 <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
                     <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85);" onclick="openModal(this.querySelector('img').src)">
                         <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
+                        <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                 </div>
                 <div class="col-span-full md:col-span-8">
@@ -38,7 +75,7 @@
             </div>
 
             <!-- Favorite Champions Grid Section -->
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 10px;" class="reveal-on-scroll">
                 <div class="category-header" style="margin-top: 0; margin-bottom: 16px;">
                     <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><i class="fa-solid fa-crown"></i></div>
                     <div class="category-header-label">Favorite Champions</div>
@@ -96,7 +133,7 @@
             </div>
 
             <!-- Favorite Games Poster Grid Section -->
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 10px;" class="reveal-on-scroll">
                 <div class="category-header" style="margin-top: 0; margin-bottom: 16px;">
                     <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><i class="fa-solid fa-gamepad"></i></div>
                     <div class="category-header-label">Favorite Games</div>
