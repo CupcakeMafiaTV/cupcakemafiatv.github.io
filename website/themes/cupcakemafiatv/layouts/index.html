@@ -227,12 +227,12 @@
     line-height: 1;
   }
   .game-rank {
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: rgb(var(--color-gold));
-    margin-top: 6px;
+    margin-top: 8px;
   }
 </style>
 
@@ -467,9 +467,7 @@
     <div id="cupcake-game-modal" class="game-modal-overlay" onclick="if (event.target === this) closeMafiaGame();">
       <div class="game-modal-card">
         <button class="game-close-btn" onclick="closeMafiaGame()" aria-label="Close">&times;</button>
-        <div class="text-xs uppercase tracking-wide text-gray-500 font-bold">You Found a Secret</div>
-        <h3 class="text-2xl font-black text-white mt-1">Join the Family!</h3>
-        <p class="text-gray-400 text-sm mt-2">Click to earn the Don's respect.</p>
+        <div class="text-lg font-bold text-white">Click to Earn the Don's Respect!</div>
         <img src="/img/SideCupcake2.png" alt="Click to earn respect" class="game-mascot-btn" onclick="clickMafiaMascot()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();clickMafiaMascot();}" role="button" tabindex="0">
         <div class="game-score" id="game-score-val">0</div>
         <div class="game-rank" id="game-rank-val">Nobody</div>
