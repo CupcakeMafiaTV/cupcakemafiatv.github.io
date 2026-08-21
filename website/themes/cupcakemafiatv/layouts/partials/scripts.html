@@ -81,25 +81,6 @@
     }
   };
 
-  // Fade/slide sections up as they scroll into view.
-  (function initScrollReveal() {
-    const revealEls = document.querySelectorAll('.reveal-on-scroll');
-    if (!revealEls.length) return;
-    if (!('IntersectionObserver' in window)) {
-      revealEls.forEach(el => el.classList.add('is-visible'));
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    revealEls.forEach(el => observer.observe(el));
-  })();
-
   // Count up any static number on load (e.g. the X/Instagram/TikTok
   // follower cards on Work With Me, or the charity stats). Add
   // data-decimals="2" on an element to count up a money figure.
