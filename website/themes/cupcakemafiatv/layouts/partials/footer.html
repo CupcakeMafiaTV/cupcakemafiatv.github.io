@@ -68,8 +68,13 @@
 
     /* Accent Highlight on Hover */
     .footer-nav-link:hover {
-        color: rgb(var(--color-accent)) !important;
-        text-shadow: 0 0 12px rgb(var(--color-accent) / 0.4);
+        color: rgb(var(--color-gold)) !important;
+        text-shadow: 0 0 12px rgb(var(--color-gold) / 0.5);
+    }
+
+    @keyframes footerContactGlowPulse {
+        0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 6px rgb(var(--color-gold) / 0.35); }
+        50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 16px rgb(var(--color-gold) / 0.85); }
     }
 
     /* Footer Social Icon Styling (permanent brand-colored badges, no hover needed) */
@@ -82,7 +87,7 @@
         border-radius: 9999px;
         color: #ffffff;
         font-size: 14px;
-        border: 2px solid #ffffff;
+        border: 1px solid #ffffff;
         transition: all 0.2s ease-in-out;
     }
 
@@ -101,12 +106,12 @@
 
     .footer-social-icon.footer-social-twitch:hover { box-shadow: 0 0 7px rgba(145, 70, 255, 0.6); }
     .footer-social-icon.footer-social-youtube:hover { box-shadow: 0 0 7px rgba(255, 0, 0, 0.6); }
-    .footer-social-icon.footer-social-x:hover { box-shadow: 0 0 7px rgba(255, 255, 255, 0.35); }
+    .footer-social-icon.footer-social-x:hover { box-shadow: 0 0 7px rgb(var(--color-gold) / 0.7); }
     .footer-social-icon.footer-social-instagram:hover { box-shadow: 0 0 7px rgba(214, 41, 118, 0.6); }
-    .footer-social-icon.footer-social-tiktok:hover { box-shadow: 0 0 7px rgba(255, 255, 255, 0.35); }
+    .footer-social-icon.footer-social-tiktok:hover { box-shadow: 0 0 7px rgb(var(--color-gold) / 0.7); }
     .footer-social-icon.footer-social-discord:hover { box-shadow: 0 0 7px rgba(88, 101, 242, 0.6); }
 
-    /* White Outline Button Base Styling */
+    /* Gold Outline Button Base Styling */
     .footer-contact-btn {
         display: inline-flex;
         align-items: center;
@@ -119,18 +124,25 @@
         padding: 9px 18px;
         border-radius: 8px;
         text-decoration: none !important;
-        border: 1.5px solid #ffffff;
+        border: 1.5px solid rgb(var(--color-gold) / 0.85);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: footerContactGlowPulse 2.4s ease-in-out infinite;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .footer-contact-btn {
+            animation: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgb(var(--color-gold) / 0.55);
+        }
     }
 
-    /* Teal Fill & Glow on Hover */
+    /* Gold Fill & Glow on Hover */
     .footer-contact-btn:hover {
-        background-color: rgb(var(--color-accent));
-        border-color: rgb(var(--color-accent));
+        background-color: rgb(var(--color-gold));
+        border-color: rgb(var(--color-gold));
         color: #0f172a !important;
         transform: translateY(-2px);
-        box-shadow: 0 0 9px rgb(var(--color-accent) / 0.35);
+        box-shadow: 0 0 9px rgb(var(--color-gold) / 0.5);
     }
 
     /* Responsive Mobile Layout */

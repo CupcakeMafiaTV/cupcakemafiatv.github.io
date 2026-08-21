@@ -6,12 +6,16 @@
 // last item posted, per feed) is kept in Upstash Redis so nothing is ever
 // posted twice, even if the check runs again before the next upload.
 //
-// Vercel Cron only supports fixed UTC schedules, but we want this to always
-// fire at true 8PM US Eastern time regardless of Daylight Saving. vercel.json
-// schedules TWO triggers (covering both the EST and EDT UTC offsets); this
-// handler checks the real Eastern-time hour and no-ops unless it's actually
-// 8PM there, so only one of the two triggers ever does real work on a given
-// day. Manual testing can bypass this with ?force=1.
+// Vercel Cron only supports fixed UTC schedules, but we want this to fire at
+// true 8PM AND 10PM US Eastern time regardless of Daylight Saving (two passes
+// a night, not one, since Hobby-tier cron execution isn't guaranteed to fire
+// at its scheduled minute and an occasional miss otherwise means a whole day's
+// wait — see the 2026-08-20 incident where the 8PM run never fired at all).
+// vercel.json schedules FOUR triggers (covering both the EST and EDT UTC
+// offsets for each of the two target hours); this handler checks the real
+// Eastern-time hour and no-ops unless it's actually 8PM or 10PM there, so only
+// one trigger per target hour ever does real work on a given day. Manual
+// testing can bypass this with ?force=1.
 
 const SHORTS_MAX_SECONDS = 180;
 const ACCENT_COLOR = 0x00dbc9;
@@ -19,7 +23,7 @@ const VOD_ACCENT_COLOR = 0x654cff;
 const STATE_KEY = 'last-posted-video';
 const VOD_STATE_KEY = 'last-posted-vod';
 const VODS_HANDLE = 'CupcakeMafiaTVODs';
-const TARGET_EASTERN_HOUR = 20; // 8PM
+const TARGET_EASTERN_HOURS = [20, 22]; // 8PM and 10PM
 
 function currentEasternHour() {
   return Number(
@@ -167,8 +171,8 @@ async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label
 }
 
 export default async function handler(req, res) {
-  if (req.query.force !== '1' && currentEasternHour() !== TARGET_EASTERN_HOUR) {
-    return res.status(200).json({ skipped: 'Not 8PM Eastern yet', easternHour: currentEasternHour() });
+  if (req.query.force !== '1' && !TARGET_EASTERN_HOURS.includes(currentEasternHour())) {
+    return res.status(200).json({ skipped: 'Not a target check hour', easternHour: currentEasternHour() });
   }
 
   if (process.env.CRON_SECRET) {

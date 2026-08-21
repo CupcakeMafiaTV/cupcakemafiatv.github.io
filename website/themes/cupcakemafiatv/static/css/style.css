@@ -547,14 +547,15 @@ select {
     /* Colors */
     --color-primary: 101 76 255; /* #654cff */
     --color-primary-500: 78 55 222; /* #4e37de */
-    --color-accent: 0 219 201; /* #00dbc9 */
+    --color-accent: 168 85 247; /* #a855f7 */
+    --color-gold: 234 179 8; /* #eab308 */
 
     /* Lightbox Player */
     --plyr-color-main: rgb(var(--color-accent) / 1);
   }
 
   .dark {
-    --color-accent: 0 255 234; /* #00ffea */
+    --color-accent: 192 132 252; /* #c084fc */
   }
 
 *, ::before, ::after {
@@ -5093,6 +5094,10 @@ select {
   --tw-text-opacity: 1;
   color: rgb(var(--color-accent) / var(--tw-text-opacity));
 }
+.text-gold {
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-gold) / var(--tw-text-opacity));
+}
 .text-danger {
   --tw-text-opacity: 1;
   color: rgb(255 61 84 / var(--tw-text-opacity));
@@ -5814,6 +5819,11 @@ select {
   content: var(--tw-content);
   --tw-text-opacity: 1;
   color: rgb(var(--color-accent) / var(--tw-text-opacity));
+}
+.before\:text-gold::before {
+  content: var(--tw-content);
+  --tw-text-opacity: 1;
+  color: rgb(var(--color-gold) / var(--tw-text-opacity));
 }
 .before\:text-primary::before {
   content: var(--tw-content);

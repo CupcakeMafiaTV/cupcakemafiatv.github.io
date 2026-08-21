@@ -7,13 +7,13 @@
         .profile-photo { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .profile-photo:hover {
             transform: translateY(-3px);
-            border-color: #ffffff;
+            border-color: rgb(var(--color-gold));
         }
         .profile-photo:hover img { transform: translateY(-15%) scale(1.03); filter: brightness(1.05); }
         .profile-photo img { transition: transform 0.3s ease, filter 0.3s ease; }
     </style>
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: radial-gradient(at 15% 25%, rgba(168, 85, 247, 0.12) 0px, transparent 45%), radial-gradient(at 85% 75%, rgba(56, 189, 248, 0.12) 0px, transparent 45%), radial-gradient(at 50% 50%, rgba(239, 68, 68, 0.05) 0px, transparent 60%); background-attachment: fixed; min-height: 100vh;">
+    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%); background-attachment: fixed; min-height: 100vh;">
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
         
@@ -80,7 +80,7 @@
                         <!-- Bio Section with Increased Font Size -->
                         <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center">
                             <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
-                                <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.35);" onclick="openModal(this.querySelector('img').src)">
+                                <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85);" onclick="openModal(this.querySelector('img').src)">
                                     <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <div class="category-header" style="margin-top: 0; margin-bottom: 16px;">
                                 <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><i class="fa-solid fa-crown"></i></div>
                                 <div class="category-header-label">Favorite Champions</div>
-                                <div class="category-header-line" style="--cat-color: rgb(var(--color-accent) / 0.6);"></div>
+                                <div class="category-header-line" style="--cat-color: rgba(255, 255, 255, 0.5);"></div>
                             </div>
 
                             <div class="poster-grid champion-grid">
@@ -155,7 +155,7 @@
                             <div class="category-header" style="margin-top: 0; margin-bottom: 16px;">
                                 <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><i class="fa-solid fa-gamepad"></i></div>
                                 <div class="category-header-label">Favorite Games</div>
-                                <div class="category-header-line" style="--cat-color: rgb(var(--color-accent) / 0.6);"></div>
+                                <div class="category-header-line" style="--cat-color: rgba(255, 255, 255, 0.5);"></div>
                             </div>
 
                             <div class="poster-grid">
@@ -301,8 +301,8 @@
                 /* Intensified Glow & Lift Effect matching other site components */
                 .poster-card:hover {
                     transform: translateY(-6px);
-                    border-color: rgba(56, 189, 248, 0.9);
-                    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgba(56, 189, 248, 0.6), 0 0 10px rgba(168, 85, 247, 0.4);
+                    border-color: rgb(var(--color-gold) / 0.9);
+                    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 30px rgb(var(--color-gold) / 0.6), 0 0 10px rgb(var(--color-gold) / 0.3);
                 }
 
                 .poster-card:hover img {
