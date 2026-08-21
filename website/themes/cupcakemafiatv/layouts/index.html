@@ -427,9 +427,9 @@
               <label for="userInputName" class="text-2xl md:text-3xl font-bold text-white leading-none">What's Your Mafia Name?</label>
             </div>
             <div class="flex flex-col sm:flex-row items-stretch gap-3">
-              <input type="text" id="userInputName" placeholder="Example Name (e.g. CupcakeMafiaTV)" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white text-gray-900 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111; border: 1px solid #d1d5db;">
+              <input type="text" id="userInputName" placeholder="Example (e.g. CupcakeMafiaTV)" class="w-full min-w-0 px-5 py-4 text-base md:text-lg rounded-xl bg-white text-gray-900 focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/25 transition-all duration-300" style="background-color: #ffffff; color: #111111; border: 1px solid #d1d5db;">
               <button onclick="generateMafiaName()" class="px-7 py-4 text-sm md:text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-gray-900 bg-accent hover:bg-accent/90 shadow-2xl">
-                Get Alias
+                Join the Family
               </button>
             </div>
             <div id="mafiaResultContainer" class="mt-4 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0">
@@ -504,13 +504,21 @@
         "Sharkskin", "The Undertaker", "Pretty Boy", "The Vulture", "Deuce", "The Hyena",
         "Rooster", "The Gravedigger", "Chains", "The Weasel", "Big Sal", "The Pigeon",
         "Toothpick", "The Jackal", "Feathers", "The Bull", "Cufflinks", "The Eel", "Sugar",
-        "The Mortician", "Fast Eddie", "The Choirboy"
+        "The Mortician", "Fast Eddie", "The Choirboy", "The Accountant", "Stitches",
+        "The Barber", "Nine Lives", "The Tailor", "Gravel Voice", "The Locksmith", "Onions",
+        "The Widowmaker", "Spider", "The Collector", "Two-Bit", "The Janitor", "Coldcuts",
+        "The Hornet", "Marbles", "The Landlord", "Peaches", "The Cardinal", "Stubby",
+        "The Iceman", "Nutmeg", "The Bookkeeper", "Sledgehammer", "The Doorman", "Rusty",
+        "The Cobra", "Pockets", "The Umpire", "Cannoli", "The Plumber", "Slim",
+        "The Coroner", "Buttons"
       ];
       const prefixNicknames = [
         "The Big Don", "Don", "Big", "Little", "Fat", "Mad Dog", "Uncle", "Cousin", "Sir",
         "Lord", "Captain", "Boss", "The Notorious", "The Legendary", "The Infamous",
         "The Honorable", "Godfather", "Crazy", "Wild", "Silky", "The One and Only",
-        "Diamond", "King"
+        "Diamond", "King", "The Untouchable", "Slippery", "Old Man", "The Real Deal",
+        "Suave", "The Iron", "Smooth", "The Quiet", "Ruthless", "The Elder", "Young",
+        "The Velvet", "Stone-Cold", "The Untamed", "Sneaky"
       ];
 
       let usePrefix, pick;
@@ -523,7 +531,7 @@
       } while (resultKey === lastMafiaResultKey);
 
       resultHTML = usePrefix
-        ? `<span class="text-accent">${pick}</span> ${formattedName}`
+        ? `<span class="text-accent">"${pick}"</span> ${formattedName}`
         : `${formattedName} <span class="text-accent">"${pick}"</span>`;
     }
 
@@ -633,7 +641,7 @@
 
           media.innerHTML = `
             <iframe src="${embedSrc}" frameborder="0" allowfullscreen="true" scrolling="no" class="absolute top-0 left-0 w-full h-full"></iframe>
-            <div class="absolute top-2 left-2 px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(15, 23, 42, 0.85); color: #e2e8f0; letter-spacing: 0.025em;">Clip While I'm Offline</div>
+            <div class="absolute top-6 right-3 px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(15, 23, 42, 0.85); color: #e2e8f0; letter-spacing: 0.025em;">Fan Favorite Clip</div>
           `;
       } catch (error) { console.error("Error loading top clip", error); }
   }

@@ -1,186 +1,123 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
+{{ define "main" }}
 
-    {{- partial "head.html" . -}}
+<style>
+    .charity-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    @media (min-width: 768px) { .charity-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .charity-stats-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
 
-    <style>
-        .charity-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-        }
-        @media (min-width: 768px) { .charity-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-        @media (min-width: 1024px) { .charity-stats-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+    /* Same hover/click feel as the shared .brand-card component
+       elsewhere on the site: lift + crisper shadow on hover, icon
+       bounces, quick press-down on click. */
+    .charity-card {
+        background-color: #1e293b;
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .charity-card:hover {
+        transform: translateY(-4px);
+        background-color: #24324a;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+    .charity-card:active {
+        transform: translateY(-1px) scale(0.98);
+        transition-duration: 0.1s;
+    }
+    .charity-card-icon {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .charity-card:hover .charity-card-icon {
+        transform: scale(1.14) rotate(-6deg);
+    }
+</style>
 
-        /* Same hover/click feel as the shared .brand-card component
-           elsewhere on the site: lift + crisper shadow on hover, icon
-           bounces, quick press-down on click. */
-        .charity-card {
-            background-color: #1e293b;
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
-        }
-        .charity-card:hover {
-            transform: translateY(-4px);
-            background-color: #24324a;
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
-        }
-        .charity-card:active {
-            transform: translateY(-1px) scale(0.98);
-            transition-duration: 0.1s;
-        }
-        .charity-card-icon {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .charity-card:hover .charity-card-icon {
-            transform: scale(1.14) rotate(-6deg);
-        }
-    </style>
+<main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
+    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%); background-attachment: fixed; min-height: 100vh;">
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+                Charity
+            </h1>
+        </div>
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">
+        <div class="flex flex-col gap-y-12">
 
-            <div class="header-wrapper text-white" style="background: transparent;">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-                            <!-- Logo / End -->
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-                            <!-- Navigation (Desktop) / End -->
-
-                            <!-- Header Controls -->
-                            <div class="flex items-center ml-auto -mr-3">
-                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
-                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                                </div>
-                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
-                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
-                                </a>
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                    <use xlink:href="/img/sprite.svg#menu"></use>
-                                </svg>
-                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                    <use xlink:href="/img/sprite.svg#menu-close"></use>
-                                </svg>
-                                </button>
-                            </div>
-                            <!-- Header Controls / End -->
-
-                        </nav>
-                    </div>
-                </header>
-
+            <!-- Pitch -->
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" style="background-color: #ffffff; border-radius: 12px; padding: 8px 14px; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <img src="/img/ExtraLifeLogo.svg" alt="Extra Life" style="height: 40px; width: auto;">
+                </a>
+                <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl" style="margin: 0;">Extra Life</h2>
             </div>
 
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
-            <!-- Mobile Menu / End -->
+            <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75; margin-top: -20px;" class="lg:text-lg">
+                Gaming for a good cause, one marathon stream at a time. Every year on Extra Life Game Day, I run a 24 hour stream with friends in support of CHEO (Children's Hospital of Eastern Ontario) and IWK Health (the IWK Foundation). Twenty-four hours in, we're making complete fools of ourselves, all for a good cause and to raise donations. 100% of what's raised through my page goes straight to their care. If you've ever had fun in my chat, this is the one stream a year where that fun turns into something that actually helps sick and injured kids in our community.
+            </div>
 
-            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
-                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
-
-                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
-                        <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
-                            Charity
-                        </h1>
-                    </div>
-
-                    <div class="flex flex-col gap-y-12">
-
-                        <!-- Pitch -->
-                        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-                            <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" style="background-color: #ffffff; border-radius: 12px; padding: 8px 14px; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                                <img src="/img/ExtraLifeLogo.svg" alt="Extra Life" style="height: 40px; width: auto;">
-                            </a>
-                            <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl" style="margin: 0;">Extra Life</h2>
-                        </div>
-
-                        <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75; margin-top: -20px;" class="lg:text-lg">
-                            Gaming for a good cause, one marathon stream at a time. Every year on Extra Life Game Day, I run a 24 hour stream with friends in support of CHEO (Children's Hospital of Eastern Ontario) and IWK Health (the IWK Foundation). Twenty-four hours in, we're making complete fools of ourselves, all for a good cause and to raise donations. 100% of what's raised through my page goes straight to their care. If you've ever had fun in my chat, this is the one stream a year where that fun turns into something that actually helps sick and injured kids in our community.
-                        </div>
-
-                        <!-- Stats -->
-                        <div style="font-family: 'Rajdhani', sans-serif;" class="reveal-on-scroll">
-                            <div class="mb-6">
-                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">The Numbers</h2>
-                                <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; THANK YOU to everyone who's chipped in or participated.</p>
-                            </div>
-                            <div class="charity-stats-grid">
-                                <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
-                                    <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
-                                        <i class="fa-solid fa-sack-dollar" style="color: #22c55e; font-size: 20px;"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-3xl font-black text-white">$<span class="static-count-up" data-decimals="2">1263.50</span> <span class="text-lg font-bold" style="color: #94a3b8;">USD</span></div>
-                                        <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
-                                    </div>
-                                </div>
-                                <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
-                                    <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
-                                        <i class="fa-solid fa-hand-holding-heart" style="color: #22c55e; font-size: 20px;"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-3xl font-black text-white static-count-up">37</div>
-                                        <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations Received</div>
-                                    </div>
-                                </div>
-                                <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
-                                    <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
-                                        <i class="fa-solid fa-calendar-check" style="color: #22c55e; font-size: 20px;"></i>
-                                    </div>
-                                    <div>
-                                        <div class="text-3xl font-black text-white static-count-up">5</div>
-                                        <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
-                                    </div>
-                                </div>
-                                <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
-                                    <div class="charity-card-icon" style="height: 72px; display: flex; align-items: center;">
-                                        <img src="/img/CHEOLogo.png" alt="CHEO Foundation" style="height: 68px; width: auto;">
-                                    </div>
-                                    <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Ottawa</div>
-                                </a>
-                                <a href="https://iwkfoundation.org/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
-                                    <div class="charity-card-icon" style="height: 72px; display: flex; align-items: center;">
-                                        <img src="/img/IWKLogo.svg" alt="IWK Foundation" style="height: 66px; width: auto;">
-                                    </div>
-                                    <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Halifax</div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Donate CTA -->
-                        <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;" class="reveal-on-scroll">
-                            <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Donate</h2>
-                            <p class="text-gray-300 mt-3 max-w-2xl mb-6">Every dollar goes directly to the hospital through Extra Life &mdash; no cut, no fees to me. Even a few dollars makes a difference.</p>
-                            <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
-                                <i class="fa-solid fa-heart" style="font-size: 15px;"></i>
-                                <span>DONATE ON EXTRA LIFE</span>
-                            </a>
-                        </div>
-
-                    </div>
-
+            <!-- Stats -->
+            <div style="font-family: 'Rajdhani', sans-serif;" class="reveal-on-scroll">
+                <div class="mb-6">
+                    <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">The Numbers</h2>
+                    <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; THANK YOU to everyone who's chipped in or participated.</p>
                 </div>
-            </main>
+                <div class="charity-stats-grid">
+                    <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
+                        <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-sack-dollar" style="color: #22c55e; font-size: 20px;"></i>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white">$<span class="static-count-up" data-decimals="2">1263.50</span> <span class="text-lg font-bold" style="color: #94a3b8;">USD</span></div>
+                            <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
+                        </div>
+                    </div>
+                    <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
+                        <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-hand-holding-heart" style="color: #22c55e; font-size: 20px;"></i>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white static-count-up">37</div>
+                            <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations Received</div>
+                        </div>
+                    </div>
+                    <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
+                        <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-calendar-check" style="color: #22c55e; font-size: 20px;"></i>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-white static-count-up">5</div>
+                            <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
+                        </div>
+                    </div>
+                    <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
+                        <div class="charity-card-icon" style="height: 72px; display: flex; align-items: center;">
+                            <img src="/img/CHEOLogo.png" alt="CHEO Foundation" style="height: 68px; width: auto;">
+                        </div>
+                        <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Ottawa</div>
+                    </a>
+                    <a href="https://iwkfoundation.org/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 2px solid rgba(234, 179, 8, 0.85);">
+                        <div class="charity-card-icon" style="height: 72px; display: flex; align-items: center;">
+                            <img src="/img/IWKLogo.svg" alt="IWK Foundation" style="height: 66px; width: auto;">
+                        </div>
+                        <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Halifax</div>
+                    </a>
+                </div>
+            </div>
 
-            {{- partial "footer.html" . -}}
-            {{- partial "scripts.html" . -}}
+            <!-- Donate CTA -->
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;" class="reveal-on-scroll">
+                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Donate</h2>
+                <p class="text-gray-300 mt-3 max-w-2xl mb-6">Every dollar goes directly to the hospital through Extra Life &mdash; no cut, no fees to me. Even a few dollars makes a difference.</p>
+                <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
+                    <i class="fa-solid fa-heart" style="font-size: 15px;"></i>
+                    <span>DONATE ON EXTRA LIFE</span>
+                </a>
+            </div>
 
         </div>
 
-        {{- partial "socials.html" . -}}
+    </div>
+</main>
 
-    </body>
-</html>
+{{ end }}

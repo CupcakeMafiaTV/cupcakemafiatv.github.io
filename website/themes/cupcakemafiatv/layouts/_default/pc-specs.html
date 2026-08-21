@@ -1,532 +1,218 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
+{{ define "main" }}
 
-    {{- partial "head.html" . -}}
+<style>
+    /* Plain bulleted spec list — no cards, no icons, no per-item color.
+       Modeled after a reference setup page: bold label, plain value,
+       simple bullets, letting typography (not decoration) carry it. */
 
-    <style>
-        /* Item cards use the shared .brand-card component (see head.html);
-           only layout/grid rules specific to this page live here. */
+    /* Layout Container */
+    .specs-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        align-items: flex-start;
+    }
 
-        /* Layout Container */
-        .specs-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            align-items: flex-start;
-        }
+    /* Image Column Sizing — sticky so the (eventually 1920x1080) photos
+       stay in view while scrolling the much taller specs grid, sized by
+       aspect-ratio instead of a stretched/forced height. Kept flush left
+       and sized up so the photos carry real visual weight instead of
+       shrinking the gap by repositioning things. */
+    .img-column {
+        width: 500px;
+        max-width: 100%;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: sticky;
+        top: 24px;
+    }
 
-        /* Image Column Sizing — sticky so the (eventually 1920x1080) photos
-           stay in view while scrolling the much taller specs grid, sized by
-           aspect-ratio instead of a stretched/forced height. */
+    .img-container {
+        position: relative;
+        background: rgba(30, 41, 59, 0.7);
+        border: 2px solid rgb(var(--color-gold) / 0.7);
+        border-radius: 14px;
+        display: flex;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Image Hover Effect */
+    .img-container:hover {
+        transform: translateY(-3px);
+        border-color: rgb(var(--color-gold));
+    }
+
+    .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .img-container:hover img {
+        transform: scale(1.02);
+        filter: brightness(1.1);
+    }
+
+    .specs-list {
+        flex: 1;
+        min-width: 280px;
+    }
+
+    .specs-heading {
+        color: #ffffff;
+        font-size: 23px;
+        font-weight: 800;
+        margin-top: 32px;
+        margin-bottom: 12px;
+    }
+    .specs-heading:first-child {
+        margin-top: 0;
+    }
+
+    .specs-plain-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .specs-plain-list li {
+        position: relative;
+        padding-left: 20px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        color: #cbd5e1;
+        font-size: 17px;
+        line-height: 1.55;
+    }
+    .specs-plain-list li::before {
+        content: '';
+        position: absolute;
+        left: 2px;
+        top: 16px;
+        width: 6px;
+        height: 6px;
+        border-radius: 9999px;
+        background: rgb(var(--color-gold) / 0.8);
+    }
+    .specs-plain-list li strong {
+        color: #ffffff;
+        font-weight: 700;
+    }
+    .specs-plain-list li a {
+        color: rgb(var(--color-gold));
+        text-decoration: none;
+    }
+    .specs-plain-list li a:hover {
+        text-decoration: underline;
+    }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
         .img-column {
-            width: 360px;
-            max-width: 100%;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            position: sticky;
-            top: 24px;
-        }
-
-        .img-container {
-            position: relative;
-            background: rgba(30, 41, 59, 0.7);
-            border: 2px solid rgb(var(--color-gold) / 0.7);
-            border-radius: 14px;
-            display: flex;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Image Hover Effect */
-        .img-container:hover {
-            transform: translateY(-3px);
-            border-color: rgb(var(--color-gold));
-        }
-
-        .img-container img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            position: static;
         }
+    }
+</style>
 
-        .img-container:hover img {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
+<!-- Main Content Area -->
+<main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
+    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
 
-        /* Grid Layout */
-        .specs-grid {
-            flex: 1;
-            min-width: 280px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            align-content: start;
-        }
+        <!-- Title Banner -->
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+                PC Specs
+            </h1>
+        </div>
 
-        /* Item cards here are a little more compact than the shared default,
-           so the wider photo column above has room to breathe. */
-        .specs-grid .brand-card {
-            gap: 10px;
-            padding: 12px 14px;
-        }
-        .specs-grid .brand-card-icon {
-            width: 34px;
-            height: 34px;
-            font-size: 15px;
-        }
-        .specs-grid .brand-card-title {
-            font-size: 13.5px;
-        }
-        .specs-grid .brand-card-subtitle {
-            font-size: 11px;
-        }
+        <!-- Container Layout -->
+        <div class="specs-container">
 
-        /* Category headers use the shared .category-header component (see
-           head.html); grid-column here just lets it span both grid columns. */
-        .category-header {
-            grid-column: 1 / -1;
-        }
+            <!-- Stacked Images Column -->
+            <div class="img-column">
 
-        /* Mobile Adjustments */
-        @media (max-width: 768px) {
-            .specs-grid {
-                grid-template-columns: 1fr;
-            }
-            .img-column {
-                width: 100%;
-                position: static;
-            }
-        }
-    </style>
+                <!-- Image 1 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
+                </div>
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%); background-attachment: fixed; min-height: 100vh;">
+                <!-- Image 2 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
+                </div>
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">        
-            
-            <div class="header-wrapper text-white" style="background: transparent;">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-
-                            <!-- Header Controls -->
-                            <div class="flex items-center ml-auto -mr-3">
-                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
-                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                                </div>
-                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
-                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
-                                </a>
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprite.svg#menu"></use>
-                                    </svg>
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprite.svg#menu-close"></use>
-                                    </svg>
-                                </button>
-                            </div>
-
-                        </nav>
-                    </div>
-                </header>
+                <!-- Image 3 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
+                </div>
 
             </div>
 
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
+            <!-- Specs List -->
+            <div class="specs-list">
 
-            <!-- Main Content Area -->
-            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
-                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
-                    
-                    <!-- Title Banner -->
-                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
-                        <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
-                            PC Specs
-                        </h1>
-                    </div>
+                <h2 class="specs-heading">System Specs</h2>
+                <ul class="specs-plain-list">
+                    <li><strong>CPU:</strong> <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer">AMD Ryzen 7 9800X3D</a></li>
+                    <li><strong>GPU:</strong> <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer">MSI GeForce RTX 5080</a></li>
+                    <li><strong>RAM:</strong> <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory?speed=6000mt%2Fs&total%20(kit)%20capacity=64gb&kit=kit%20of%202&cas%20latency=30&dram%20density=16gbit&profile%20type=amd%20expo%20%2F%20intel%20xmp&color=black" target="_blank" rel="noopener noreferrer">Kingston 6000MHz DDR5 (64GB)</a></li>
+                    <li><strong>Motherboard:</strong> <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer">X870E AORUS ELITE</a></li>
+                    <li><strong>SSD #1:</strong> <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd?sku=WDS200T2X0E-00BCA0" target="_blank" rel="noopener noreferrer">WD Black NVMe 2TB</a></li>
+                    <li><strong>SSD #2:</strong> <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn7100-nvme-internal-ssd?sku=WDS400T4X0E-00CJA0" target="_blank" rel="noopener noreferrer">WD Black NVMe 4TB</a></li>
+                    <li><strong>Capture Card:</strong> <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer">AVerMedia GC573</a></li>
+                </ul>
 
-                    <!-- Container Layout -->
-                    <div class="specs-container">
-                        
-                        <!-- Stacked Images Column -->
-                        <div class="img-column">
-                            
-                            <!-- Image 1 Container (placeholder — real setup photos coming soon) -->
-                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
-                            </div>
+                <h2 class="specs-heading">Audio</h2>
+                <ul class="specs-plain-list">
+                    <li><strong>Microphone:</strong> <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer">Shure SM7B</a></li>
+                    <li><strong>Mic Arm:</strong> <a href="https://rode.com/en-ca/products/psa1-plus" target="_blank" rel="noopener noreferrer">RODE PSA1 + Studio Arm</a></li>
+                    <li><strong>Audio Mixer:</strong> <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer">RodeCaster Duo</a></li>
+                </ul>
 
-                            <!-- Image 2 Container (placeholder — real setup photos coming soon) -->
-                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
-                            </div>
+                <h2 class="specs-heading">Camera</h2>
+                <ul class="specs-plain-list">
+                    <li><strong>Camera:</strong> <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer">Canon EOS M200</a></li>
+                    <li><strong>CAM Link:</strong> <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer">Elgato CAM Link 4K</a></li>
+                </ul>
 
-                            <!-- Image 3 Container (placeholder — real setup photos coming soon) -->
-                            <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
-                            </div>
+                <h2 class="specs-heading">Peripherals</h2>
+                <ul class="specs-plain-list">
+                    <li><strong>Mouse:</strong> <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer">Razer Naga V2 HyperSpeed</a></li>
+                    <li><strong>Keyboard:</strong> <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer">Razer Huntsman V3 Pro</a></li>
+                    <li><strong>Monitor:</strong> <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer">HP Omen 27" QHD 280Hz (x3)</a></li>
+                    <li><strong>Headphones:</strong> <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer">HyperX Cloud III Wired</a></li>
+                </ul>
 
-                        </div>
+                <h2 class="specs-heading">Miscellaneous</h2>
+                <ul class="specs-plain-list">
+                    <li><strong>Desk:</strong> <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer">Secretlab MAGNUS Pro XL</a></li>
+                    <li><strong>Chair:</strong> <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer">Secretlab TITAN Evo XL</a></li>
+                    <li><strong>Green Screen:</strong> <a href="https://www.elgato.com/ca/en/p/green-screen" target="_blank" rel="noopener noreferrer">Elgato Green Screen XL</a></li>
+                    <li><strong>Stream Deck:</strong> <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer">Elgato Stream Deck XL</a></li>
+                    <li><strong>Teleprompter:</strong> <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer">Elgato Prompter</a></li>
+                    <li><strong>Lights:</strong> <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer">Elgato Key Light (x2)</a></li>
+                    <li><strong>Desk Decor:</strong> <a href="https://www.amazon.com/Divoom-Pixoo-64-Digital-Control-Decoration/dp/B09H3YWPCH/ref=sr_1_1?crid=GXCFVM60MELD&dib=eyJ2IjoiMSJ9.GD2pPRSX8qQaFeA5SrKNmNbqYJ1xaM0giWtDLzeRiJnmIc-IM1Jid0EZKBfLY8f_V6dzEJWSvTMkg-duMcokm6IZeDAkmNC6fzG7Wl4KHRrwIQOPVrtoWaMAFcUFZ4E0cI2tn0wNG6HVksarUxBY-Frfkjs5FQig0VKfBhHHDivhZz3636NOU17fhooc7HyfZq-KQOJ6PNZUmBGeoIk7Uly4vrQJ9-QyjTKFouYUS8Y.Isk1vBXAIj07l49keeiCSAcGuJ8E3bb_RJSxcaRkHC0&dib_tag=se&keywords=divoom%2Bpixel%2B64&qid=1786287192&sprefix=divoom%2Bpixel%2B64%2Caps%2C131&sr=8-1&th=1" target="_blank" rel="noopener noreferrer">Divoom Pixoo-64 (x2)</a></li>
+                </ul>
 
-                        <!-- Specs Cards Grid -->
-                        <div class="specs-grid">
-                            
-                            <!-- Category: Core Components -->
-                            <div class="category-header">
-                                <div class="category-header-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-microchip"></i></div>
-                                <div class="category-header-label">System Specs</div>
-                                <div class="category-header-line" style="--cat-color: rgba(239, 68, 68, 0.6);"></div>
-                            </div>
-
-                            <!-- CPU -->
-                            <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-microchip"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">AMD Ryzen 7 9800X3D</div>
-                                    <div class="brand-card-subtitle">CPU</div>
-                                </div>
-                            </a>
-
-                            <!-- GPU -->
-                            <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-desktop"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">MSI GeForce RTX 5080</div>
-                                    <div class="brand-card-subtitle">GPU</div>
-                                </div>
-                            </a>
-
-                            <!-- RAM -->
-                            <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory?speed=6000mt%2Fs&total%20(kit)%20capacity=64gb&kit=kit%20of%202&cas%20latency=30&dram%20density=16gbit&profile%20type=amd%20expo%20%2F%20intel%20xmp&color=black" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-memory"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Kingston 6000MHz DDR5 (64GB)</div>
-                                    <div class="brand-card-subtitle">RAM</div>
-                                </div>
-                            </a>
-
-                            <!-- Motherboard -->
-                            <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-hard-drive"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">X870E AORUS ELITE</div>
-                                    <div class="brand-card-subtitle">Motherboard</div>
-                                </div>
-                            </a>
-
-                            <!-- SSD 1 -->
-                            <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd?sku=WDS200T2X0E-00BCA0" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-hard-drive"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">WD Black NVMe 2TB</div>
-                                    <div class="brand-card-subtitle">SSD #1</div>
-                                </div>
-                            </a>
-
-                            <!-- SSD 2 -->
-                            <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn7100-nvme-internal-ssd?sku=WDS400T4X0E-00CJA0" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-hard-drive"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">WD Black NVMe 4TB</div>
-                                    <div class="brand-card-subtitle">SSD #2</div>
-                                </div>
-                            </a>
-
-                            <!-- Capture Card -->
-                            <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(239, 68, 68, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fa-solid fa-video"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">AVerMedia GC573</div>
-                                    <div class="brand-card-subtitle">Capture Card</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Streaming & Audio -->
-                            <div class="category-header">
-                                <div class="category-header-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-volume-high"></i></div>
-                                <div class="category-header-label">Audio</div>
-                                <div class="category-header-line" style="--cat-color: rgba(234, 179, 8, 0.6);"></div>
-                            </div>
-
-                            <!-- Microphone -->
-                            <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-microphone"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Shure SM7B</div>
-                                    <div class="brand-card-subtitle">Microphone</div>
-                                </div>
-                            </a>
-
-                            <!-- Mic Arm -->
-                            <a href="https://rode.com/en-ca/products/psa1-plus" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-sliders"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">RODE PSA1 + Studio Arm</div>
-                                    <div class="brand-card-subtitle">Mic Arm</div>
-                                </div>
-                            </a>
-
-                            <!-- Audio Mixer -->
-                            <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-sliders"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">RodeCaster Duo</div>
-                                    <div class="brand-card-subtitle">Audio Mixer</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Camera -->
-                            <div class="category-header">
-                                <div class="category-header-icon" style="background: rgba(249, 115, 22, 0.15); color: #f97316;"><i class="fa-solid fa-camera-retro"></i></div>
-                                <div class="category-header-label">Camera</div>
-                                <div class="category-header-line" style="--cat-color: rgba(249, 115, 22, 0.6);"></div>
-                            </div>
-
-                            <!-- Camera -->
-                            <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(249, 115, 22, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(249, 115, 22, 0.15); color: #f97316;"><i class="fa-solid fa-camera"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Canon EOS M200</div>
-                                    <div class="brand-card-subtitle">Camera</div>
-                                </div>
-                            </a>
-
-                            <!-- Elgato CAM Link 4K -->
-                            <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(249, 115, 22, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(249, 115, 22, 0.15); color: #f97316;"><i class="fa-solid fa-camera"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Elgato CAM Link 4K</div>
-                                    <div class="brand-card-subtitle">CAM Link</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Peripherals -->
-                            <div class="category-header">
-                                <div class="category-header-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-solid fa-computer"></i></div>
-                                <div class="category-header-label">Peripherals</div>
-                                <div class="category-header-line" style="--cat-color: rgba(34, 197, 94, 0.6);"></div>
-                            </div>
-
-                            <!-- Mouse -->
-                            <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-solid fa-computer-mouse"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Razer Naga V2 HyperSpeed</div>
-                                    <div class="brand-card-subtitle">Mouse</div>
-                                </div>
-                            </a>
-
-                            <!-- Keyboard -->
-                            <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-solid fa-keyboard"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Razer Huntsman V3 Pro</div>
-                                    <div class="brand-card-subtitle">Keyboard</div>
-                                </div>
-                            </a>
-
-                            <!-- Monitor -->
-                            <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-solid fa-tv"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">HP Omen 27" QHD 280Hz (x3)</div>
-                                    <div class="brand-card-subtitle">Monitor</div>
-                                </div>
-                            </a>
-
-                            <!-- Headphones -->
-                            <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-solid fa-headphones"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">HyperX Cloud III Wired</div>
-                                    <div class="brand-card-subtitle">Headphones</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Miscellaneous -->
-                            <div class="category-header">
-                                <div class="category-header-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-layer-group"></i></div>
-                                <div class="category-header-label">Miscellaneous</div>
-                                <div class="category-header-line" style="--cat-color: rgba(236, 72, 153, 0.6);"></div>
-                            </div>
-
-                            <!-- Desk -->
-                            <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-table"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Secretlab MAGNUS Pro XL</div>
-                                    <div class="brand-card-subtitle">Desk</div>
-                                </div>
-                            </a>
-
-                            <!-- Chair -->
-                            <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-chair"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Secretlab TITAN Evo XL</div>
-                                    <div class="brand-card-subtitle">Chair</div>
-                                </div>
-                            </a>
-
-                            <!-- Green Screen -->
-                            <a href="https://www.elgato.com/ca/en/p/green-screen" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-image"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Elgato Green Screen XL</div>
-                                    <div class="brand-card-subtitle">Green Screen</div>
-                                </div>
-                            </a>
-
-                            <!-- Stream Deck XL -->
-                            <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-gamepad"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Elgato Stream Deck XL</div>
-                                    <div class="brand-card-subtitle">Stream Deck</div>
-                                </div>
-                            </a>
-
-                            <!-- Elgato Prompter -->
-                            <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-display"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Elgato Prompter</div>
-                                    <div class="brand-card-subtitle">Teleprompter</div>
-                                </div>
-                            </a>
-
-                            <!-- Elgato Key Light -->
-                            <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-lightbulb"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Elgato Key Light (x2)</div>
-                                    <div class="brand-card-subtitle">Lights</div>
-                                </div>
-                            </a>
-
-                            <!-- Divoom Pixoo-64 (x2) -->
-                            <a href="https://www.amazon.com/Divoom-Pixoo-64-Digital-Control-Decoration/dp/B09H3YWPCH/ref=sr_1_1?crid=GXCFVM60MELD&dib=eyJ2IjoiMSJ9.GD2pPRSX8qQaFeA5SrKNmNbqYJ1xaM0giWtDLzeRiJnmIc-IM1Jid0EZKBfLY8f_V6dzEJWSvTMkg-duMcokm6IZeDAkmNC6fzG7Wl4KHRrwIQOPVrtoWaMAFcUFZ4E0cI2tn0wNG6HVksarUxBY-Frfkjs5FQig0VKfBhHHDivhZz3636NOU17fhooc7HyfZq-KQOJ6PNZUmBGeoIk7Uly4vrQJ9-QyjTKFouYUS8Y.Isk1vBXAIj07l49keeiCSAcGuJ8E3bb_RJSxcaRkHC0&dib_tag=se&keywords=divoom%2Bpixel%2B64&qid=1786287192&sprefix=divoom%2Bpixel%2B64%2Caps%2C131&sr=8-1&th=1" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(236, 72, 153, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(236, 72, 153, 0.15); color: #ec4899;"><i class="fa-solid fa-image"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Divoom Pixoo-64 (x2)</div>
-                                    <div class="brand-card-subtitle">Desk Decor</div>
-                                </div>
-                            </a>
-
-                            <!-- Category: Gaming Consoles -->
-                            <div class="category-header">
-                                <div class="category-header-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-gamepad"></i></div>
-                                <div class="category-header-label">Gaming Consoles</div>
-                                <div class="category-header-line" style="--cat-color: rgba(20, 184, 166, 0.6);"></div>
-                            </div>
-
-                            <!-- Switch 2 -->
-                            <a href="https://www.nintendo.com/en-ca/gaming-systems/switch-2/features/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(20, 184, 166, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M9.34 8.005c0-4.38.01-7.972.023-7.982C9.373.01 10.036 0 10.831 0c1.153 0 1.51.01 1.743.05 1.73.298 3.045 1.6 3.373 3.326.046.242.053.809.053 4.61 0 4.06.005 4.537-.123 4.976-.022.076-.048.15-.08.242a4.14 4.14 0 0 1-3.426 2.767c-.317.033-2.889.046-2.978.013-.05-.02-.053-.752-.053-7.979m4.675.269a1.62 1.62 0 0 0-1.113-1.034 1.61 1.61 0 0 0-1.938 1.073 1.9 1.9 0 0 0-.014.935 1.63 1.63 0 0 0 1.952 1.107c.51-.136.908-.504 1.11-1.028.11-.285.113-.742.003-1.053M3.71 3.317c-.208.04-.526.199-.695.348-.348.301-.52.729-.494 1.232.013.262.03.332.136.544.155.321.39.556.712.715.222.11.278.123.567.133.261.01.354 0 .53-.06.719-.242 1.153-.94 1.03-1.656-.142-.852-.95-1.422-1.786-1.256"/><path d="M3.425.053a4.14 4.14 0 0 0-3.28 3.015C0 3.628-.01 3.956.005 8.3c.01 3.99.014 4.082.08 4.39.368 1.66 1.548 2.844 3.224 3.235.22.05.497.06 2.29.07 1.856.012 2.048.009 2.097-.04.05-.05.053-.69.053-7.94 0-5.374-.01-7.906-.033-7.952-.033-.06-.09-.063-2.03-.06-1.578.004-2.052.014-2.26.05Zm3 14.665-1.35-.016c-1.242-.013-1.375-.02-1.623-.083a2.81 2.81 0 0 1-2.08-2.167c-.074-.335-.074-8.579-.004-8.907a2.85 2.85 0 0 1 1.716-2.05c.438-.176.64-.196 2.058-.2l1.282-.003v13.426Z"/></svg>
-                                </div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Nintendo Switch 2</div>
-                                    <div class="brand-card-subtitle">Console</div>
-                                </div>
-                            </a>
-
-                            <!-- 3DS XL -->
-                            <a href="https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS-XL/Nintendo-3DS-XL-727629.html" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(20, 184, 166, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;">
-                                    <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                        <rect fill="currentColor" x="3" y="0.5" width="10" height="5.5" rx="1.2"/>
-                                        <rect fill="currentColor" fill-opacity="0.35" x="4" y="1.4" width="8" height="3.7" rx="0.5"/>
-                                        <rect fill="currentColor" x="1.3" y="7" width="13.4" height="8.5" rx="1.6"/>
-                                        <rect fill="currentColor" fill-opacity="0.35" x="2.6" y="7.9" width="10.8" height="5.2" rx="0.6"/>
-                                        <circle fill="currentColor" cx="5" cy="14.2" r="0.75"/>
-                                        <circle fill="currentColor" cx="11" cy="14.2" r="0.75"/>
-                                    </svg>
-                                </div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Nintendo 3DS XL</div>
-                                    <div class="brand-card-subtitle">Handheld</div>
-                                </div>
-                            </a>
-
-                            <!-- PS5 -->
-                            <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(20, 184, 166, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-brands fa-playstation"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">PlayStation 5</div>
-                                    <div class="brand-card-subtitle">Console</div>
-                                </div>
-                            </a>
-
-                            <!-- PSVR2 -->
-                            <a href="https://www.playstation.com/en-ca/ps-vr2/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(20, 184, 166, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(20, 184, 166, 0.15); color: #14b8a6;"><i class="fa-solid fa-vr-cardboard"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">PSVR2</div>
-                                    <div class="brand-card-subtitle">Console</div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-            </main>
-
-            <!-- Footer Partial -->
-            {{- partial "footer.html" . -}}
-            {{- partial "scripts.html" . -}}
-
+                <h2 class="specs-heading">Gaming Consoles</h2>
+                <ul class="specs-plain-list">
+                    <li><strong>Console:</strong> <a href="https://www.nintendo.com/en-ca/gaming-systems/switch-2/features/" target="_blank" rel="noopener noreferrer">Nintendo Switch 2</a></li>
+                    <li><strong>Handheld:</strong> <a href="https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS-XL/Nintendo-3DS-XL-727629.html" target="_blank" rel="noopener noreferrer">Nintendo 3DS XL</a></li>
+                    <li><strong>Console:</strong> <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer">PlayStation 5</a></li>
+                    <li><strong>Console:</strong> <a href="https://www.playstation.com/en-ca/ps-vr2/" target="_blank" rel="noopener noreferrer">PSVR2</a></li>
+                </ul>
+            </div>
         </div>
+    </div>
+</main>
 
-        {{- partial "lightbox.html" . -}}
-    </body>
-</html>
+{{ end }}

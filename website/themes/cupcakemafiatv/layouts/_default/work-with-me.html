@@ -1,204 +1,141 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
+{{ define "main" }}
 
-    {{- partial "head.html" . -}}
+<style>
+    .wwm-get-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+    }
+    @media (min-width: 640px) { .wwm-get-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .wwm-get-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
-    <style>
-        .wwm-get-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 1rem;
-        }
-        @media (min-width: 640px) { .wwm-get-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (min-width: 1024px) { .wwm-get-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .social-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+    @media (min-width: 640px) { .social-stat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1024px) { .social-stat-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; } }
 
-        .social-stat-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
-        @media (min-width: 640px) { .social-stat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-        @media (min-width: 1024px) { .social-stat-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; } }
+    /* Stat cards use the shared .brand-card component but stack the
+       icon above the number/label instead of sitting beside it. */
+    .social-stat-grid .brand-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 12px;
+    }
+    .social-stat-grid .brand-card-body { flex: none; width: 100%; }
+    .social-stat-grid .brand-card-subtitle { font-size: 16px; color: #cbd5e1; }
+    .social-stat-grid .brand-card-icon { width: 52px; height: 52px; font-size: 24px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
+</style>
 
-        /* Stat cards use the shared .brand-card component but stack the
-           icon above the number/label instead of sitting beside it. */
-        .social-stat-grid .brand-card {
-            flex-direction: column;
-            text-align: center;
-            padding: 20px 12px;
-        }
-        .social-stat-grid .brand-card-body { flex: none; width: 100%; }
-        .social-stat-grid .brand-card-subtitle { font-size: 16px; color: #cbd5e1; }
-        .social-stat-grid .brand-card-icon { width: 52px; height: 52px; font-size: 24px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
-    </style>
+<main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
+    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%); background-attachment: fixed; min-height: 100vh;">
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+                Work With Me
+            </h1>
+        </div>
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">
+        <div class="flex flex-col gap-y-12">
 
-            <div class="header-wrapper text-white" style="background: transparent;">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-                            <!-- Logo / End -->
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-                            <!-- Navigation (Desktop) / End -->
-
-                            <!-- Header Controls -->
-                            <div class="flex items-center ml-auto -mr-3">
-                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
-                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                                </div>
-                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
-                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
-                                </a>
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                    <use xlink:href="/img/sprite.svg#menu"></use>
-                                </svg>
-                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                    <use xlink:href="/img/sprite.svg#menu-close"></use>
-                                </svg>
-                                </button>
-                            </div>
-                            <!-- Header Controls / End -->
-
-                        </nav>
-                    </div>
-                </header>
-
+            <!-- Pitch -->
+            <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
+                I'm eager to team up with brands and vendors who want to connect with a passionate gaming community through sponsored streams, game launches, and integrated campaigns. My focus is League of Legends — ranked grinding and everything in between — but I'm open to other titles and campaigns where it's a good fit. If that sounds like you, let's talk.
             </div>
 
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
-            <!-- Mobile Menu / End -->
-
-            <main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
-                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
-
-                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
-                        <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
-                            Work With Me
-                        </h1>
-                    </div>
-
-                    <div class="flex flex-col gap-y-12">
-
-                        <!-- Pitch -->
-                        <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
-                            I'm eager to team up with brands and vendors who want to connect with a passionate gaming community through sponsored streams, game launches, and integrated campaigns. My focus is League of Legends — ranked grinding and everything in between — but I'm open to other titles and campaigns where it's a good fit. If that sounds like you, let's talk.
-                        </div>
-
-                        <!-- Audience & Reach -->
-                        <div style="font-family: 'Rajdhani', sans-serif;">
-                            <div class="mb-6">
-                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Audience &amp; Reach</h2>
-                                <p class="text-gray-300 mt-3 max-w-2xl">Reach across live streams, VODs, and the clips and updates in between.</p>
-                            </div>
-                            <div class="social-stat-grid">
-                                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(145, 70, 255, 0.5);">
-                                    <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #9146FF;"><i class="fa-brands fa-twitch"></i></div>
-                                    <div class="brand-card-body">
-                                        <div id="twitch-follower-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
-                                        <div class="brand-card-subtitle">Followers</div>
-                                    </div>
-                                </a>
-                                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 0, 0, 0.5);">
-                                    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
-                                    <div class="brand-card-body">
-                                        <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
-                                        <div class="brand-card-subtitle">Subscribers</div>
-                                    </div>
-                                </a>
-                                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45);">
-                                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
-                                    <div class="brand-card-body">
-                                        <div class="brand-card-title brand-card-title-lg static-count-up">54</div>
-                                        <div class="brand-card-subtitle">Followers</div>
-                                    </div>
-                                </a>
-                                <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(214, 41, 118, 0.5);">
-                                    <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #D62976;"><i class="fa-brands fa-instagram"></i></div>
-                                    <div class="brand-card-body">
-                                        <div class="brand-card-title brand-card-title-lg static-count-up">61</div>
-                                        <div class="brand-card-subtitle">Followers</div>
-                                    </div>
-                                </a>
-                                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45);">
-                                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
-                                    <div class="brand-card-body">
-                                        <div class="brand-card-title brand-card-title-lg static-count-up">42</div>
-                                        <div class="brand-card-subtitle">Followers</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- What You Get -->
-                        <div style="font-family: 'Rajdhani', sans-serif;">
-                            <div class="mb-6">
-                                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">What You Get</h2>
-                                <p class="text-gray-300 mt-3 max-w-2xl">Straightforward deliverables built around a League-focused audience.</p>
-                            </div>
-                            <div class="wwm-get-grid">
-                                <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                                    <i class="fa-solid fa-tower-broadcast text-accent mb-3" style="font-size: 22px;"></i>
-                                    <div class="text-base font-bold text-white mb-1">Dedicated Stream Segment</div>
-                                    <p class="text-sm text-gray-400">A live callout or integration built into the broadcast, not just a passing mention.</p>
-                                </div>
-                                <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                                    <i class="fa-solid fa-share-nodes text-accent mb-3" style="font-size: 22px;"></i>
-                                    <div class="text-base font-bold text-white mb-1">Multi-Platform Shoutouts</div>
-                                    <p class="text-sm text-gray-400">Mentions across Twitch, YouTube, Instagram, TikTok, and X.</p>
-                                </div>
-                                <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                                    <i class="fa-solid fa-clapperboard text-accent mb-3" style="font-size: 22px;"></i>
-                                    <div class="text-base font-bold text-white mb-1">VOD &amp; Highlight Placement</div>
-                                    <p class="text-sm text-gray-400">Featured placement in uploaded VODs and highlight clips after the stream.</p>
-                                </div>
-                                <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
-                                    <i class="fa-solid fa-bolt text-accent mb-3" style="font-size: 22px;"></i>
-                                    <div class="text-base font-bold text-white mb-1">Fast, Direct Communication</div>
-                                    <p class="text-sm text-gray-400">Quick turnaround on logistics, no agency layers to navigate.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contact CTA -->
-                        <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;">
-                            <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Let's Talk</h2>
-                            <p class="text-gray-300 mt-3 mb-6">Whether it's a sponsored stream, a product integration, or something else entirely, I'd love to hear what you have in mind. Send me an email and let's figure out what makes sense together.</p>
-                            <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
-                                <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
-                                <span>CONTACT ME</span>
-                            </a>
-                        </div>
-
-                    </div>
-
+            <!-- Audience & Reach -->
+            <div style="font-family: 'Rajdhani', sans-serif;">
+                <div class="mb-6">
+                    <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Audience &amp; Reach</h2>
+                    <p class="text-gray-300 mt-3 max-w-2xl">Reach across live streams, VODs, and the clips and updates in between.</p>
                 </div>
-            </main>
+                <div class="social-stat-grid">
+                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(145, 70, 255, 0.5);">
+                        <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #9146FF;"><i class="fa-brands fa-twitch"></i></div>
+                        <div class="brand-card-body">
+                            <div id="twitch-follower-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
+                            <div class="brand-card-subtitle">Followers</div>
+                        </div>
+                    </a>
+                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 0, 0, 0.5);">
+                        <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #FF0000;"><i class="fa-brands fa-youtube"></i></div>
+                        <div class="brand-card-body">
+                            <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
+                            <div class="brand-card-subtitle">Subscribers</div>
+                        </div>
+                    </a>
+                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45);">
+                        <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
+                        <div class="brand-card-body">
+                            <div class="brand-card-title brand-card-title-lg static-count-up">54</div>
+                            <div class="brand-card-subtitle">Followers</div>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(214, 41, 118, 0.5);">
+                        <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #D62976;"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="brand-card-body">
+                            <div class="brand-card-title brand-card-title-lg static-count-up">61</div>
+                            <div class="brand-card-subtitle">Followers</div>
+                        </div>
+                    </a>
+                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 2px; border-color: rgba(255, 255, 255, 0.45);">
+                        <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
+                        <div class="brand-card-body">
+                            <div class="brand-card-title brand-card-title-lg static-count-up">42</div>
+                            <div class="brand-card-subtitle">Followers</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-            {{- partial "footer.html" . -}}
-            {{- partial "scripts.html" . -}}
-            <!-- #youtube-sub-count and #twitch-follower-count are populated
-                 by the shared fetch in scripts.html; no page-specific fetch
-                 needed here. -->
+            <!-- What You Get -->
+            <div style="font-family: 'Rajdhani', sans-serif;">
+                <div class="mb-6">
+                    <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">What You Get</h2>
+                    <p class="text-gray-300 mt-3 max-w-2xl">Straightforward deliverables built around a League-focused audience.</p>
+                </div>
+                <div class="wwm-get-grid">
+                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
+                        <i class="fa-solid fa-tower-broadcast text-accent mb-3" style="font-size: 22px;"></i>
+                        <div class="text-base font-bold text-white mb-1">Dedicated Stream Segment</div>
+                        <p class="text-sm text-gray-400">A live callout or integration built into the broadcast, not just a passing mention.</p>
+                    </div>
+                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
+                        <i class="fa-solid fa-share-nodes text-accent mb-3" style="font-size: 22px;"></i>
+                        <div class="text-base font-bold text-white mb-1">Multi-Platform Shoutouts</div>
+                        <p class="text-sm text-gray-400">Mentions across Twitch, YouTube, Instagram, TikTok, and X.</p>
+                    </div>
+                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
+                        <i class="fa-solid fa-clapperboard text-accent mb-3" style="font-size: 22px;"></i>
+                        <div class="text-base font-bold text-white mb-1">VOD &amp; Highlight Placement</div>
+                        <p class="text-sm text-gray-400">Featured placement in uploaded VODs and highlight clips after the stream.</p>
+                    </div>
+                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 2px solid rgba(234, 179, 8, 0.75);">
+                        <i class="fa-solid fa-bolt text-accent mb-3" style="font-size: 22px;"></i>
+                        <div class="text-base font-bold text-white mb-1">Fast, Direct Communication</div>
+                        <p class="text-sm text-gray-400">Quick turnaround on logistics, no agency layers to navigate.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div style="border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 32px;">
+                <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Let's Talk</h2>
+                <p class="text-gray-300 mt-3 mb-6">Whether it's a sponsored stream, a product integration, or something else entirely, I'd love to hear what you have in mind. Send me an email and let's figure out what makes sense together.</p>
+                <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
+                    <i class="fa-solid fa-envelope" style="font-size: 15px;"></i>
+                    <span>CONTACT ME</span>
+                </a>
+            </div>
 
         </div>
 
-        {{- partial "socials.html" . -}}
+    </div>
+</main>
+<!-- #youtube-sub-count and #twitch-follower-count are populated
+     by the shared fetch in scripts.html; no page-specific fetch
+     needed here. -->
 
-    </body>
-</html>
+{{ end }}

@@ -1,88 +1,28 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
+{{ define "main" }}
 
-    {{- partial "head.html" . -}}
+<main id="main-content" style="flex-grow: 1; display: flex; align-items: center; padding: 60px 20px;">
+    <div style="max-width: 620px; margin: 0 auto; text-align: center;">
 
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray" style="background-color: #0f172a; color: #ffffff; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%); background-attachment: fixed; min-height: 100vh;">
+        <img src="/img/emotes/Confusion.png" alt="" style="width: 150px; height: auto; margin: 0 auto 24px; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));">
 
-        <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper" style="min-height: 100vh; background: transparent;">
+        <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(var(--color-accent));">404 &middot; Page Not Found</div>
+        <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 10px 0 0;">Looks like this page skipped town.</h1>
+        <p class="text-gray-300" style="font-size: 1.05rem; line-height: 1.75; margin-top: 14px;">
+            Whatever you were looking for isn't here — maybe it moved, maybe the link's stale. Either way, the Don doesn't know this address.
+        </p>
 
-            <div class="header-wrapper text-white" style="background: transparent;">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-                            <!-- Logo / End -->
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-                            <!-- Navigation (Desktop) / End -->
-
-                            <!-- Header Controls -->
-                            <div class="flex items-center ml-auto -mr-3">
-                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
-                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                                </div>
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                    <use xlink:href="/img/sprite.svg#menu"></use>
-                                </svg>
-                                <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                    <use xlink:href="/img/sprite.svg#menu-close"></use>
-                                </svg>
-                                </button>
-                            </div>
-                            <!-- Header Controls / End -->
-
-                        </nav>
-                    </div>
-                </header>
-
-            </div>
-
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
-            <!-- Mobile Menu / End -->
-
-            <main id="main-content" style="flex-grow: 1; display: flex; align-items: center; padding: 60px 20px;">
-                <div style="max-width: 620px; margin: 0 auto; text-align: center;">
-
-                    <img src="/img/emotes/Confusion.png" alt="" style="width: 150px; height: auto; margin: 0 auto 24px; filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));">
-
-                    <div style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: rgb(var(--color-accent));">404 &middot; Page Not Found</div>
-                    <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 10px 0 0;">Looks like this page skipped town.</h1>
-                    <p class="text-gray-300" style="font-size: 1.05rem; line-height: 1.75; margin-top: 14px;">
-                        Whatever you were looking for isn't here — maybe it moved, maybe the link's stale. Either way, the Don doesn't know this address.
-                    </p>
-
-                    <div style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-                        <a href="/" class="footer-contact-btn">
-                            <i class="fa-solid fa-house" style="font-size: 15px;"></i>
-                            <span>BACK TO HOME</span>
-                        </a>
-                        <a href="/socials" class="footer-contact-btn">
-                            <i class="fa-solid fa-share-nodes" style="font-size: 15px;"></i>
-                            <span>FIND ME ELSEWHERE</span>
-                        </a>
-                    </div>
-
-                </div>
-            </main>
-
-            {{- partial "footer.html" . -}}
-            {{- partial "scripts.html" . -}}
-
+        <div style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+            <a href="/" class="footer-contact-btn">
+                <i class="fa-solid fa-house" style="font-size: 15px;"></i>
+                <span>BACK TO HOME</span>
+            </a>
+            <a href="/socials" class="footer-contact-btn">
+                <i class="fa-solid fa-share-nodes" style="font-size: 15px;"></i>
+                <span>FIND ME ELSEWHERE</span>
+            </a>
         </div>
 
-        {{- partial "socials.html" . -}}
+    </div>
+</main>
 
-    </body>
-</html>
+{{ end }}

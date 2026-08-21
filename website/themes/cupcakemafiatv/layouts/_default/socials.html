@@ -1,348 +1,264 @@
-<!DOCTYPE html>
-<html lang="zxx" class="h-full overflow-x-hidden dark">
+{{ define "main" }}
 
-    {{- partial "head.html" . -}}
+<style>
+    /* Social links use the shared .brand-card component (see head.html);
+       only grid-specific layout lives here. */
 
-    <style>
-        /* Body with Ambient Background Glows */
-        body {
-            background-color: #0f172a;
-            color: #ffffff;
-            background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%);
-            background-attachment: fixed;
+    /* Video Box Styling */
+    .video-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 2px solid rgb(var(--color-gold) / 0.7);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(31, 41, 55, 0.5);
+        box-sizing: border-box;
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-container iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        display: block;
+    }
+
+    .video-container:hover {
+        transform: translateY(-3px);
+        border-color: rgb(var(--color-gold));
+    }
+
+    .video-play-btn {
+        width: 64px;
+        height: 64px;
+        border-radius: 9999px;
+        background: #dc2626;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .video-container:hover .video-play-btn {
+        transform: scale(1.12);
+    }
+
+    /* Image Box Interactivity & White Glow Effect */
+    .img-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        border: 2px solid rgb(var(--color-gold) / 0.7);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(31, 41, 55, 0.5);
+        box-sizing: border-box;
+        aspect-ratio: 16 / 9;
+    }
+
+    .img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        display: block;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .img-container:hover {
+        transform: translateY(-3px);
+        border-color: rgb(var(--color-gold));
+    }
+
+    .img-container:hover img {
+        transform: scale(1.02);
+        filter: brightness(1.1);
+    }
+
+    /* Responsive Mobile Layout Adjustments */
+    @media (max-width: 768px) {
+        .main-social-container {
+            flex-direction: column !important;
         }
-
-        /* Sticky Footer Setup */
-        html, body {
-            height: 100%;
-            margin: 0;
+        .social-grid {
+            grid-template-columns: 1fr !important;
+            max-width: 100% !important;
         }
-
-        #site-wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        .image-col {
+            width: 100% !important;
+            height: auto !important;
+            position: static !important;
         }
+    }
 
-        /* Social links use the shared .brand-card component (see head.html);
-           only grid-specific layout lives here. */
+</style>
 
-        /* Video Box Styling */
-        .video-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 2px solid rgb(var(--color-gold) / 0.7);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(31, 41, 55, 0.5);
-            box-sizing: border-box;
-            aspect-ratio: 16 / 9;
-        }
+<!-- Main Content Area with flex-grow -->
+<main id="main-content" style="flex: 1 0 auto; padding: 24px 24px 40px 24px;">
+    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
 
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-            display: block;
-        }
+        <!-- Title Banner -->
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 10px; margin-bottom: 20px;">
+            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+                Socials
+            </h1>
+        </div>
 
-        .video-container:hover {
-            transform: translateY(-3px);
-            border-color: rgb(var(--color-gold));
-        }
+        <!-- Container Layout -->
+        <div class="main-social-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
 
-        .video-play-btn {
-            width: 64px;
-            height: 64px;
-            border-radius: 9999px;
-            background: #dc2626;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+            <!-- Stacked Media Column -->
+            <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px;">
 
-        .video-container:hover .video-play-btn {
-            transform: scale(1.12);
-        }
+                <!-- Image 2 (Shifted to the right by changing 20% to 80%) -->
+                <div class="img-container" style="display: flex;" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
+                </div>
 
-        /* Image Box Interactivity & White Glow Effect */
-        .img-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            cursor: pointer;
-            border: 2px solid rgb(var(--color-gold) / 0.7);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(31, 41, 55, 0.5);
-            box-sizing: border-box;
-            aspect-ratio: 16 / 9;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            display: block;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .img-container:hover {
-            transform: translateY(-3px);
-            border-color: rgb(var(--color-gold));
-        }
-
-        .img-container:hover img {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
-
-        /* Responsive Mobile Layout Adjustments */
-        @media (max-width: 768px) {
-            .main-social-container {
-                flex-direction: column !important;
-            }
-            .social-grid {
-                grid-template-columns: 1fr !important;
-                max-width: 100% !important;
-            }
-            .image-col {
-                width: 100% !important;
-                height: auto !important;
-                position: static !important;
-            }
-        }
-
-    </style>
-
-    <body class="relative z-10 antialiased font-base text-gray-500 text-sm font-medium lg:text-base h-full overflow-x-hidden dark:text-gray">
-
-        <!-- Sticky Footer Wrapper Container -->
-        <div id="site-wrapper" class="js-site-wrapper">        
-
-            <div class="header-wrapper text-white">
-
-                <header id="site-header" class="text-white">
-                    <div class="max-w-[1360px] mx-auto px-5">
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
-
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-
-                            <!-- Header Controls -->
-                            <div class="flex items-center ml-auto -mr-3">
-                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
-                                    <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-                                    <a href="https://instagram.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-tiktok" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                                    <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-discord" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                                </div>
-                                <a id="nav-live-badge" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hidden px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="align-items: center; gap: 6px; margin-right: 12px; letter-spacing: 0.025em; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171;">
-                                    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #ef4444; animation: navLivePulse 2s infinite;"></span> Live
-                                </a>
-                                <button class="js-menu-toggle -mr-2 inline-flex py-4 px-2 sm:px-3 lg:hidden xl:px-4">
-                                    <svg role="img" class="js-menu-toggle-icon-open h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprite.svg#menu"></use>
-                                    </svg>
-                                    <svg role="img" class="js-menu-toggle-icon-close hidden h-6 w-6 fill-gray-900 dark:fill-white">
-                                        <use xlink:href="/img/sprite.svg#menu-close"></use>
-                                    </svg>
-                                </button>
-                            </div>
-
-                        </nav>
+                <!-- YouTube Video with Custom Thumbnail & Adjusted Crop (Moved to Second Position) -->
+                <div class="video-container" style="display: flex; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
+                    <img src="/img/Masters.jpg" alt="Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% center; border-radius: 8px; display: block;">
+                    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: background 0.2s;">
+                        <div class="video-play-btn">
+                            <i class="fa-solid fa-play" style="color: #ffffff; font-size: 24px; margin-left: 4px;"></i>
+                        </div>
                     </div>
-                </header>
+                </div>
 
             </div>
 
-            <!-- Mobile Menu -->
-            {{- partial "mobile_menu.html" . -}}
+            <!-- Social Cards Grid -->
+            <div class="social-grid" style="flex: 1; max-width: 880px; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); align-content: start; gap: 16px;">
 
-            <!-- Main Content Area with flex-grow -->
-            <main id="main-content" style="flex: 1 0 auto; padding: 24px 24px 40px 24px;">
-                <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
-
-                    <!-- Title Banner -->
-                    <div style="border-bottom: 1px solid #ffffff; padding-bottom: 10px; margin-bottom: 20px;">
-                        <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
-                            Socials
-                        </h1>
+                <!-- Twitch -->
+                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(145, 70, 255, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #a855f7;"><i class="fa-brands fa-twitch"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Twitch</div>
+                        <div class="brand-card-subtitle">Live Broadcasts</div>
                     </div>
+                    <span id="twitch-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
+                </a>
 
-                    <!-- Container Layout -->
-                    <div class="main-social-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
-
-                        <!-- Stacked Media Column -->
-                        <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px;">
-
-                            <!-- Image 2 (Shifted to the right by changing 20% to 80%) -->
-                            <div class="img-container" style="display: flex;" onclick="openModal(this.querySelector('img').src)">
-                                <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
-                            </div>
-
-                            <!-- YouTube Video with Custom Thumbnail & Adjusted Crop (Moved to Second Position) -->
-                            <div class="video-container" style="display: flex; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
-                                <img src="/img/Masters.jpg" alt="Video Thumbnail" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% center; border-radius: 8px; display: block;">
-                                <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: background 0.2s;">
-                                    <div class="video-play-btn">
-                                        <i class="fa-solid fa-play" style="color: #ffffff; font-size: 24px; margin-left: 4px;"></i>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- Social Cards Grid -->
-                        <div class="social-grid" style="flex: 1; max-width: 880px; min-width: 300px; display: grid; grid-template-columns: repeat(2, 1fr); align-content: start; gap: 16px;">
-
-<!-- Twitch -->
-<a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(145, 70, 255, 0.5);">
-    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-    <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #a855f7;"><i class="fa-brands fa-twitch"></i></div>
-    <div class="brand-card-body">
-        <div class="brand-card-title">Twitch</div>
-        <div class="brand-card-subtitle">Live Broadcasts</div>
-    </div>
-    <span id="twitch-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
-</a>
-
-<!-- YouTube -->
-<a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
-    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><i class="fa-brands fa-youtube"></i></div>
-    <div class="brand-card-body">
-        <div class="brand-card-title">YouTube</div>
-        <div class="brand-card-subtitle">Video Uploads</div>
-    </div>
-    <span id="youtube-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
-</a>
-
-                            <!-- Instagram -->
-                            <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(214, 41, 118, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #ec4899;"><i class="fa-brands fa-instagram"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Instagram</div>
-                                    <div class="brand-card-subtitle">Photos &amp; Life Updates</div>
-                                </div>
-                            </a>
-
-                            <!-- YouTube VODs -->
-                            <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><i class="fa-brands fa-youtube"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">YouTube VODs</div>
-                                    <div class="brand-card-subtitle">Full Stream VOD Archive</div>
-                                </div>
-                            </a>
-
-                            <!-- X -->
-                            <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">X</div>
-                                    <div class="brand-card-subtitle">Daily Discussions</div>
-                                </div>
-                            </a>
-
-                            <!-- TikTok -->
-                            <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">TikTok</div>
-                                    <div class="brand-card-subtitle">Clips &amp; Highlights</div>
-                                </div>
-                            </a>
-
-                            <!-- Merch Shop -->
-                            <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-bag-shopping"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Merch Shop</div>
-                                    <div class="brand-card-subtitle">Official Merch</div>
-                                </div>
-                            </a>
-
-                            <!-- Discord -->
-                            <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(88, 101, 242, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(88, 101, 242, 0.15); color: #818cf8;"><i class="fa-brands fa-discord"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Discord</div>
-                                    <div class="brand-card-subtitle">Join Our Community Server</div>
-                                </div>
-                            </a>
-
-                            <!-- OP.GG -->
-                            <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(59, 130, 246, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-chart-simple"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">OP.GG</div>
-                                    <div class="brand-card-subtitle">Current Rank</div>
-                                </div>
-                            </a>
-
-                            <!-- Spotify -->
-                            <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
-                                <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                                <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-brands fa-spotify"></i></div>
-                                <div class="brand-card-body">
-                                    <div class="brand-card-title">Spotify</div>
-                                    <div class="brand-card-subtitle">Stream Playlist</div>
-                                </div>
-                            </a>
-
-                        </div>
-
+                <!-- YouTube -->
+                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><i class="fa-brands fa-youtube"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">YouTube</div>
+                        <div class="brand-card-subtitle">Video Uploads</div>
                     </div>
+                    <span id="youtube-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
+                </a>
 
-                </div>            
-            </main>            
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(214, 41, 118, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #ec4899;"><i class="fa-brands fa-instagram"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Instagram</div>
+                        <div class="brand-card-subtitle">Photos &amp; Life Updates</div>
+                    </div>
+                </a>
 
-            <!-- Footer pinned at page bottom -->
-            <footer style="flex-shrink: 0;">
-                {{- partial "footer.html" . -}}
-            </footer>
-            
-            {{- partial "scripts.html" . -}}
+                <!-- YouTube VODs -->
+                <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><i class="fa-brands fa-youtube"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">YouTube VODs</div>
+                        <div class="brand-card-subtitle">Full Stream VOD Archive</div>
+                    </div>
+                </a>
+
+                <!-- X -->
+                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">X</div>
+                        <div class="brand-card-subtitle">Daily Discussions</div>
+                    </div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><i class="fa-brands fa-tiktok"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">TikTok</div>
+                        <div class="brand-card-subtitle">Clips &amp; Highlights</div>
+                    </div>
+                </a>
+
+                <!-- Merch Shop -->
+                <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><i class="fa-solid fa-bag-shopping"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Merch Shop</div>
+                        <div class="brand-card-subtitle">Official Merch</div>
+                    </div>
+                </a>
+
+                <!-- Discord -->
+                <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(88, 101, 242, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(88, 101, 242, 0.15); color: #818cf8;"><i class="fa-brands fa-discord"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Discord</div>
+                        <div class="brand-card-subtitle">Join Our Community Server</div>
+                    </div>
+                </a>
+
+                <!-- OP.GG -->
+                <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(59, 130, 246, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><i class="fa-solid fa-chart-simple"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">OP.GG</div>
+                        <div class="brand-card-subtitle">Current Rank</div>
+                    </div>
+                </a>
+
+                <!-- Spotify -->
+                <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
+                    <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
+                    <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><i class="fa-brands fa-spotify"></i></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Spotify</div>
+                        <div class="brand-card-subtitle">Stream Playlist</div>
+                    </div>
+                </a>
+
+            </div>
 
         </div>
 
-        {{- partial "lightbox.html" . -}}
+    </div>
+</main>
 
-        <script>
-            // YouTube Lazy Loader Function
-            function loadYouTubeVideo(container) {
-                const iframe = document.createElement('iframe');
-                iframe.setAttribute('src', 'https://www.youtube.com/embed/x-nnoa7h-uE?autoplay=1&rel=0');
-                iframe.setAttribute('title', 'YouTube video player');
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.style.borderRadius = '8px';
-                iframe.style.display = 'block';
+<script>
+    // YouTube Lazy Loader Function
+    function loadYouTubeVideo(container) {
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', 'https://www.youtube.com/embed/x-nnoa7h-uE?autoplay=1&rel=0');
+        iframe.setAttribute('title', 'YouTube video player');
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.borderRadius = '8px';
+        iframe.style.display = 'block';
 
-                container.innerHTML = '';
-                container.appendChild(iframe);
-                container.style.cursor = 'default';
-                container.removeAttribute('onclick');
-            }
-        </script>
+        container.innerHTML = '';
+        container.appendChild(iframe);
+        container.style.cursor = 'default';
+        container.removeAttribute('onclick');
+    }
+</script>
 
-    </body>
-</html>
+{{ end }}

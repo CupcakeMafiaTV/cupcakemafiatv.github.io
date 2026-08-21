@@ -8,7 +8,9 @@
 
         <div id="site-wrapper" class="flex flex-col h-full js-site-wrapper">        
         
-            <div class="header-wrapper text-white" style="background: rgba(0, 0, 0, 0.4);">
+            <div class="header-wrapper text-white" style="position: relative; z-index: 1; background: rgba(0, 0, 0, 0.3);">
+
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 220px; z-index: -1; pointer-events: none; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0) 100%);"></div>
 
                 <header id="site-header" class="text-white">
 
@@ -60,7 +62,7 @@
             {{- partial "mobile_menu.html" . -}}
             <!-- Mobile Menu / End -->
             
-            <div id="content">
+            <div id="content" class="flex flex-col grow">
             {{- block "main" . }}{{- end }}
             </div>
 
@@ -70,6 +72,7 @@
         </div>
 
         {{- partial "socials.html" . -}}
+        {{- partial "lightbox.html" . -}}
 
     </body>
 
