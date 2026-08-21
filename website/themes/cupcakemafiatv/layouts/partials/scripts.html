@@ -1,4 +1,24 @@
 <script>
+  // Mobile hamburger menu toggle (header button -> slide-in nav panel).
+  (function initMobileMenuToggle() {
+    const siteWrapper = document.querySelector('.js-site-wrapper');
+    const menuToggle = document.querySelector('.js-menu-toggle');
+    const iconOpen = document.querySelector('.js-menu-toggle-icon-open');
+    const iconClose = document.querySelector('.js-menu-toggle-icon-close');
+    const mobileMenu = document.querySelector('.js-mobile-menu');
+    if (!menuToggle || !mobileMenu) return;
+
+    menuToggle.onclick = () => {
+      menuToggle.classList.toggle('active');
+      const isOpen = menuToggle.classList.contains('active');
+      if (siteWrapper) siteWrapper.classList.toggle('overflow-y-hidden', isOpen);
+      if (iconOpen) iconOpen.classList.toggle('hidden', isOpen);
+      if (iconClose) iconClose.classList.toggle('hidden', !isOpen);
+      mobileMenu.classList.toggle('translate-x-full', !isOpen);
+      mobileMenu.classList.toggle('translate-x-0', isOpen);
+    };
+  })();
+
   // Animates an element's text from 0 up to `target`, easing out. Clears
   // any .stat-skeleton shimmer placeholder on the element first. Shared
   // across pages so every live/static stat counts up the same way.
