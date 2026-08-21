@@ -84,12 +84,12 @@
       top: 0;
       bottom: 0;
       right: 0;
-      width: 50%;
+      width: 48%;
       mask-image: linear-gradient(to right, transparent 0%, black 42%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 42%);
     }
   }
-  @media (min-width: 1024px) { .hero-photo-panel { width: 44%; } }
+  @media (min-width: 1024px) { .hero-photo-panel { width: 42%; } }
 
   .hero-mobile-avatar { display: block; }
   @media (min-width: 768px) { .hero-mobile-avatar { display: none; } }
@@ -106,16 +106,17 @@
     /* Mirrors the photo panel: its right edge sits at (100% - photo width),
        the same distance from the left as the photo's left edge is from the
        right, keeping the centered text equidistant from both. */
-    right: 62%;
-    width: 295px;
+    right: 65%;
+    width: 260px;
     height: auto;
     transform: translateY(-50%);
     opacity: 0.14;
     pointer-events: none;
     z-index: -1;
+    filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
   }
   @media (min-width: 768px) { .hero-rank-watermark { display: block; } }
-  @media (min-width: 1024px) { .hero-rank-watermark { right: 68%; width: 360px; } }
+  @media (min-width: 1024px) { .hero-rank-watermark { right: 71%; width: 320px; } }
 
   .hero-actions {
     margin-top: 1.1rem;
@@ -222,14 +223,14 @@
   }
 </style>
 
-<div style="background-color: #0f172a; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.55) 0%, rgba(15, 23, 42, 1) 40%, rgba(15, 23, 42, 1) 60%, rgba(112, 26, 117, 0.55) 100%); background-attachment: fixed;">
+<div style="background-color: #1a1128; background-image: linear-gradient(135deg, rgba(88, 28, 135, 0.7) 0%, rgba(26, 17, 40, 1) 40%, rgba(26, 17, 40, 1) 60%, rgba(112, 26, 117, 0.7) 100%); background-attachment: fixed;">
 
   <!-- Hero -->
   <div class="hero-wrap">
     <!-- Bleed photo (tablet/desktop only) -->
     <div class="hero-photo-panel">
       <img src="/img/CodyWeirdAl.jpg" alt="Cody, CupcakeMafiaTV" class="w-full h-full object-cover" style="object-position: 50% 36%;">
-      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.05) 45%, rgba(15,23,42,0.12) 100%);"></div>
+      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(26,17,40,0.85) 0%, rgba(26,17,40,0.05) 45%, rgba(26,17,40,0.12) 100%);"></div>
     </div>
 
     <div class="hero-center-zone">
@@ -323,7 +324,7 @@
         </div>
         <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch the action live on Twitch — drop in and say hi in chat.</p>
         <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
-        <div class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl grid grid-cols-12 gap-5 md:gap-6 items-stretch">
+        <div class="bg-gray-900/60 p-4 md:p-6 rounded-2xl shadow-2xl grid grid-cols-12 gap-5 md:gap-6 items-stretch" style="border: 2px solid rgb(var(--color-gold) / 0.7);">
           <div class="col-span-full lg:col-span-8 flex flex-col">
             <div id="watch-live-media" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
               <iframe id="twitch-live-iframe" src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" class="absolute top-0 left-0 w-full h-full"></iframe>
@@ -349,7 +350,7 @@
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Fresh upload for the highlights, full VOD if you missed the stream.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);">
+          <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 2px solid rgb(var(--color-gold) / 0.7);">
             <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
               <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
@@ -365,7 +366,7 @@
             <div id="home-hero-title" class="mt-2 text-center text-base font-bold text-white leading-snug">Loading...</div>
           </div>
 
-          <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);">
+          <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 2px solid rgb(var(--color-gold) / 0.7);">
             <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
               <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
@@ -394,7 +395,7 @@
           </div>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia#NA1.</p>
         </div>
-        <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative">
+        <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative" style="border: 2px solid rgb(var(--color-gold) / 0.7);">
           <div id="lol-live-badge" class="hidden" style="display: none; align-items: center; justify-content: center; gap: 6px; margin: 0 auto 16px auto; width: fit-content; padding: 4px 12px; border-radius: 9999px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.025em;">
             <span style="display: inline-block; width: 8px; height: 8px; border-radius: 9999px; background: #ef4444; animation: homeLivePulse 2s infinite;"></span> In a Ranked Game
           </div>
