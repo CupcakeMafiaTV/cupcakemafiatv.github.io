@@ -350,35 +350,35 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);">
-            <div class="flex items-center gap-2 mb-4 pl-2">
-              <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 20px;"></i>
-              <span class="text-sm font-black uppercase tracking-wider text-white">Latest Upload</span>
-            </div>
             <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
               <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover">
+              <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
+                <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 16px;"></i>
+                <span class="text-xs font-black uppercase tracking-wider text-white">Latest Upload</span>
+              </div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
                   <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <div id="home-hero-title" class="mt-2 text-center text-base font-bold text-white">Loading...</div>
+            <div id="home-hero-title" class="mt-2 text-center text-base font-bold text-white leading-snug">Loading...</div>
           </div>
 
           <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);">
-            <div class="flex items-center gap-2 mb-4 pl-2">
-              <i class="fa-solid fa-clock-rotate-left" style="color: #FF0000; font-size: 18px;"></i>
-              <span class="text-sm font-black uppercase tracking-wider text-white">Latest VOD</span>
-            </div>
             <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
               <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover">
+              <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
+                <i class="fa-solid fa-clock-rotate-left" style="color: #FF0000; font-size: 14px;"></i>
+                <span class="text-xs font-black uppercase tracking-wider text-white">Latest VOD</span>
+              </div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
                   <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
                 </div>
               </div>
             </div>
-            <div id="home-vod-title" class="mt-2 text-center text-base font-bold text-white">Loading...</div>
+            <div id="home-vod-title" class="mt-2 text-center text-base font-bold text-white leading-snug">Loading...</div>
           </div>
         </div>
       </div>
@@ -566,7 +566,12 @@
           if (response.ok && data.videoId) {
               latestVodId = data.videoId;
               document.getElementById('home-vod-thumbnail').src = data.thumbnail;
-              document.getElementById('home-vod-title').innerText = data.title;
+              const vodTitleEl = document.getElementById('home-vod-title');
+              const escapedTitle = data.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+              vodTitleEl.innerHTML = escapedTitle.replace(
+                /(\d{4}-\d{2}-\d{2})/,
+                '<span style="color: rgb(var(--color-gold));">$1</span>'
+              );
           }
       } catch (error) { console.error("Error loading VOD", error); }
   }
