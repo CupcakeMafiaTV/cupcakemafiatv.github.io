@@ -283,7 +283,7 @@
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Stream Schedule</h2>
-            <img src="/img/emotes/POG.gif" alt="" class="h-10 w-10">
+            <img src="/img/emotes/POG.gif" alt="" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">All times Eastern (EST). Come hang out.</p>
         </div>
@@ -333,7 +333,7 @@
           <div id="home-twitch-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-xs font-semibold text-gray-400" style="border: 1px solid rgba(255,255,255,0.15);">
             <span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline
           </div>
-          <img id="lurk-emote" src="/img/emotes/Lurk.gif" alt="" class="h-10 w-10">
+          <img id="lurk-emote" src="/img/emotes/Lurk.gif" alt="" class="h-10 w-10" loading="lazy">
         </div>
         <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch the action live on Twitch — drop in and say hi in chat.</p>
         <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
@@ -358,14 +358,14 @@
         <div class="mb-8 text-center">
           <div class="flex items-center justify-center gap-3">
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl">Latest Content</h2>
-            <img src="/img/emotes/Flex.gif" alt="" class="h-10 w-10">
+            <img src="/img/emotes/Flex.gif" alt="" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Fresh upload for the highlights, full VOD if you missed the stream.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 2px solid rgb(var(--color-gold) / 0.7);">
             <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
-              <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover">
+              <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
                 <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 16px;"></i>
                 <span class="text-xs font-black uppercase tracking-wider text-white">Latest Upload</span>
@@ -381,7 +381,7 @@
 
           <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 2px solid rgb(var(--color-gold) / 0.7);">
             <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
-              <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover">
+              <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
                 <i class="fa-solid fa-clock-rotate-left" style="color: #FF0000; font-size: 14px;"></i>
                 <span class="text-xs font-black uppercase tracking-wider text-white">Latest VOD</span>
@@ -404,7 +404,7 @@
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Solo Queue Rank</h2>
-            <img src="/img/emotes/Zoe.png" alt="" class="h-10 w-10">
+            <img src="/img/emotes/Zoe.png" alt="" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia#NA1.</p>
         </div>
@@ -427,7 +427,7 @@
             <h2 id="mafiaGenTitle" class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">
               Mafia Name Generator
             </h2>
-            <img src="{{ "img/hype.gif" | relURL }}" alt="" class="h-10 w-10">
+            <img src="{{ "img/hype.gif" | relURL }}" alt="" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">
             Enter your name and find out what they call you down at the docks.
@@ -436,7 +436,7 @@
 
         <div id="mafiaGenRow" class="mafia-gen-row">
           <a href="/dodge/" title="Fancy a quick game?">
-            <img src="/img/SideCupcake1.png" alt="Play Dodge the Toxic Teammates" class="side-cupcake-decor">
+            <img src="/img/SideCupcake1.png" alt="Play Dodge the Toxic Teammates" class="side-cupcake-decor" loading="lazy">
           </a>
 
           <div id="mafiaGenBox" class="w-full" style="max-width: 470px; padding: 18px; border: 2px solid rgb(var(--color-gold) / 0.7); border-radius: 1rem; background-color: rgba(17, 24, 39, 0.6); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
@@ -451,7 +451,7 @@
             </div>
             <div id="mafiaResultContainer" class="mt-4 overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0">
               <div id="mafiaResultInner" class="rounded-xl px-5 py-4 transition-transform duration-300 scale-[0.98] flex items-center gap-4" style="border-left: 3px solid rgb(var(--color-accent)); background-color: rgba(0,0,0,0.2);">
-                <img src="/img/emotes/Sleep-with-the-Fishes.png" alt="" class="h-12 w-12 shrink-0">
+                <img src="/img/emotes/Sleep-with-the-Fishes.png" alt="" class="h-12 w-12 shrink-0" loading="lazy">
                 <div>
                   <span class="text-xs uppercase tracking-wide text-gray-500">Your CupcakeMafia Name</span>
                   <p id="mafiaResultText" class="mt-1 text-xl md:text-2xl font-bold text-white"></p>
@@ -460,7 +460,7 @@
             </div>
           </div>
 
-          <img src="/img/SideCupcake2.png" alt="Open a secret mini-game" class="side-cupcake-trigger" onclick="openMafiaGame()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMafiaGame();}" title="Hmm, what's this guy up to?" role="button" tabindex="0">
+          <img src="/img/SideCupcake2.png" alt="Open a secret mini-game" class="side-cupcake-trigger" loading="lazy" onclick="openMafiaGame()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMafiaGame();}" title="Hmm, what's this guy up to?" role="button" tabindex="0">
         </div>
       </div>
     </div>
@@ -470,7 +470,7 @@
       <div class="game-modal-card">
         <button class="game-close-btn" onclick="closeMafiaGame()" aria-label="Close">&times;</button>
         <div class="text-lg font-bold text-white">Click to Earn the Don's Respect!</div>
-        <img src="/img/SideCupcake2.png" alt="Click to earn respect" class="game-mascot-btn" onclick="clickMafiaMascot()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();clickMafiaMascot();}" role="button" tabindex="0">
+        <img src="/img/SideCupcake2.png" alt="Click to earn respect" class="game-mascot-btn" loading="lazy" onclick="clickMafiaMascot()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();clickMafiaMascot();}" role="button" tabindex="0">
         <div class="game-score" id="game-score-val">0</div>
         <div class="game-rank" id="game-rank-val">Nobody</div>
       </div>
