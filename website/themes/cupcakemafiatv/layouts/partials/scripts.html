@@ -179,10 +179,9 @@
   // Run live check immediately on page load
   checkLiveStatuses();
 
-  // Re-check live status every 5 minutes (300,000 milliseconds). Kept in
-  // step with the server-side cache duration on /api/youtube-status so
-  // client polling doesn't outrun the cache and burn through YouTube's
-  // separate, stricter search.list quota (100 calls/day, regardless of
-  // the general 10,000-unit budget).
+  // Re-check live status every 5 minutes (300,000 milliseconds). Safe to
+  // poll faster than YouTube's actual refresh interval: /api/youtube-status
+  // gates real search.list calls behind a shared Redis cache (20 min TTL),
+  // not per-visitor Cache-Control, so extra client polls just hit that cache.
   setInterval(checkLiveStatuses, 300000);
 </script>

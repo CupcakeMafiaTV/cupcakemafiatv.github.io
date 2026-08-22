@@ -1,0 +1,571 @@
+{{ define "main" }}
+
+<style>
+    #dodge-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    #dodge-scoreboard {
+        display: flex;
+        gap: 16px;
+    }
+    #dodge-scoreboard .dodge-stat {
+        text-align: center;
+        background: rgba(30, 41, 59, 0.6);
+        border: 1.5px solid rgb(var(--color-gold) / 0.5);
+        border-radius: 12px;
+        padding: 8px 26px;
+    }
+    #dodge-scoreboard .dodge-stat-label {
+        display: block;
+        color: #94a3b8;
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 2px;
+    }
+    #dodge-scoreboard .dodge-stat-value {
+        color: #ffffff;
+        font-weight: 900;
+        font-size: 28px;
+        line-height: 1.1;
+        text-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
+    }
+    #dodge-scoreboard #dodge-best {
+        color: #22c55e;
+        text-shadow: 0 0 14px rgba(34, 197, 94, 0.4);
+    }
+
+    #dodge-mute-btn {
+        align-self: stretch;
+        width: 44px;
+        background: rgba(30, 41, 59, 0.6);
+        border: 1.5px solid rgba(34, 197, 94, 0.5);
+        border-radius: 12px;
+        color: #22c55e;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    #dodge-mute-btn.muted {
+        border-color: rgba(239, 68, 68, 0.5);
+        color: #ef4444;
+    }
+
+    #dodge-canvas {
+        display: block;
+        width: 100%;
+        max-width: 460px;
+        height: auto;
+        background: linear-gradient(180deg, #1e2a45 0%, #0f1a2e 100%);
+        border: 2px solid rgb(var(--color-gold) / 0.7);
+        border-radius: 14px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        touch-action: none;
+    }
+
+    #dodge-layout {
+        display: flex;
+        gap: 36px;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #dodge-rules {
+        width: 300px;
+        max-width: 100%;
+        margin-top: 104px;
+        background: rgba(30, 41, 59, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 20px;
+    }
+    #dodge-rules h3 {
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin: 0 0 14px 0;
+    }
+    .dodge-rule-example {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+    .dodge-rule-chip {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        border: 2px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 10px;
+        text-align: center;
+    }
+    .dodge-rule-text {
+        color: #cbd5e1;
+        font-size: 13px;
+        line-height: 1.4;
+        white-space: nowrap;
+    }
+    .dodge-rule-text strong { color: #ffffff; }
+    .dodge-rule-chip.dodge-rule-chip-icon {
+        font-size: 16px;
+    }
+    #dodge-controls-group {
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    #dodge-controls-group .dodge-rule-example:last-child { margin-bottom: 0; }
+    .dodge-rule-or {
+        text-align: center;
+        color: #64748b;
+        font-weight: 800;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        margin: -4px 0 10px 0;
+    }
+
+</style>
+
+<main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
+    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+
+        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+                Dodge Toxic Teammates
+            </h1>
+            <img src="/img/emotes/Clown.png" alt="" style="height: 40px; width: 40px;">
+        </div>
+
+        <div id="dodge-layout">
+            <div id="dodge-wrap">
+                <div id="dodge-scoreboard">
+                    <div class="dodge-stat">
+                        <span class="dodge-stat-label">Score</span>
+                        <span class="dodge-stat-value" id="dodge-score">0</span>
+                    </div>
+                    <div class="dodge-stat">
+                        <span class="dodge-stat-label">Best</span>
+                        <span class="dodge-stat-value" id="dodge-best">0</span>
+                    </div>
+                    <button id="dodge-mute-btn" aria-label="Toggle sound">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <canvas id="dodge-canvas" width="440" height="640"></canvas>
+            </div>
+
+            <div id="dodge-rules">
+                <h3>How to Play</h3>
+                <div id="dodge-controls-group">
+                    <div class="dodge-rule-example">
+                        <div class="dodge-rule-chip dodge-rule-chip-icon" style="border-color: rgb(var(--color-gold) / 0.6); background: rgba(234, 179, 8, 0.08); color: rgb(var(--color-gold));">
+                            <i class="fa-solid fa-arrow-pointer"></i>
+                        </div>
+                        <div class="dodge-rule-text">Click <strong>Left</strong> or <strong>Right</strong></div>
+                    </div>
+                    <div class="dodge-rule-or">OR</div>
+                    <div class="dodge-rule-example">
+                        <div class="dodge-rule-chip dodge-rule-chip-icon" style="border-color: rgb(var(--color-gold) / 0.6); background: rgba(234, 179, 8, 0.08); color: rgb(var(--color-gold));">
+                            <i class="fa-solid fa-keyboard"></i>
+                        </div>
+                        <div class="dodge-rule-text">Use <strong>A</strong> & <strong>D</strong> or <strong>Arrow Keys</strong></div>
+                    </div>
+                </div>
+                <div class="dodge-rule-example">
+                    <div class="dodge-rule-chip" style="border-color: #eab308; padding: 0; overflow: hidden; border-radius: 50%;">
+                        <img src="/img/emotes/Zoe.png" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="dodge-rule-text"><strong>Zoe</strong> &mdash; Bonus Points</div>
+                </div>
+                <div class="dodge-rule-example">
+                    <div class="dodge-rule-chip" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.18); color: #ef4444;">AFK</div>
+                    <div class="dodge-rule-text"><strong>Toxic Teammates</strong> &mdash; Lose Your LP</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
+
+    </div>
+</main>
+
+<script>
+(function () {
+    const canvas = document.getElementById('dodge-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width;
+    const H = canvas.height;
+    const scoreEl = document.getElementById('dodge-score');
+    const bestEl = document.getElementById('dodge-best');
+
+    const BEST_KEY = 'cmtv_dodge_best';
+    let best = parseInt(localStorage.getItem(BEST_KEY) || '0', 10);
+    bestEl.textContent = best;
+
+    const sprite = new Image();
+    sprite.src = '/img/emotes/MainCupcake.png';
+
+    const zoeSprite = new Image();
+    zoeSprite.src = '/img/emotes/Zoe.png';
+
+    const LANES = 3;
+    const LANE_WIDTH = W / LANES;
+    const PLAYER_Y = H - 85;
+    const PLAYER_SIZE = 44;
+    const ENTITY_SIZE = 56;
+    const GOLD = '#eab308';
+    const RED = '#ef4444';
+
+    const BASE_FALL_SPEED = 2.1;
+    const MAX_FALL_SPEED = 4.4;
+    const BASE_SPAWN_INTERVAL = 72;
+    const MIN_SPAWN_INTERVAL = 42;
+
+    const TOXIC_LABELS = ['INT!', 'FF15', 'AFK', '0/10', 'MUTE', 'REPORT'];
+    const GOOD_LABELS = ['GG', 'WP', 'PENTA!', 'CARRY', 'NICE'];
+
+    function laneCenterX(lane) {
+        return LANE_WIDTH * lane + LANE_WIDTH / 2;
+    }
+
+    // Tiny procedural sound effects (no audio files needed) — a soft blip on
+    // lane switch, a rising chime on collecting a good teammate, and a
+    // descending buzzer when a toxic teammate gets you.
+    const MUTE_KEY = 'cmtv_dodge_muted';
+    let muted = localStorage.getItem(MUTE_KEY) === 'true';
+    const muteBtn = document.getElementById('dodge-mute-btn');
+    const muteIcon = muteBtn.querySelector('i');
+    function updateMuteBtn() {
+        muteBtn.classList.toggle('muted', muted);
+        muteIcon.className = muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+    }
+    muteBtn.addEventListener('click', () => {
+        muted = !muted;
+        localStorage.setItem(MUTE_KEY, String(muted));
+        updateMuteBtn();
+    });
+    updateMuteBtn();
+
+    let audioCtx;
+    function playTone(freq, duration, type, volume, delay) {
+        if (muted) return;
+        try {
+            audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type || 'square';
+            osc.frequency.value = freq;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            const t = audioCtx.currentTime + (delay || 0);
+            gain.gain.setValueAtTime(volume || 0.08, t);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+            osc.start(t);
+            osc.stop(t + duration + 0.02);
+        } catch (e) {}
+    }
+    function playMoveSound() { playTone(520, 0.06, 'square', 0.05); }
+    function playCollectSound() {
+        playTone(660, 0.08, 'square', 0.06);
+        playTone(880, 0.09, 'square', 0.06, 0.07);
+    }
+    function playFailSound() {
+        playTone(220, 0.22, 'sawtooth', 0.09);
+        playTone(140, 0.28, 'sawtooth', 0.08, 0.1);
+    }
+
+    // Looping procedural background music — a short bassline that repeats
+    // for as long as you're on the page. Starts on the first tap (browsers
+    // block audio before a user gesture), and just keeps going.
+    const MUSIC_NOTES = [130.81, 130.81, 155.56, 130.81, 174.61, 155.56, 116.54, 98.00];
+    let musicTimer = null;
+    let musicStep = 0;
+    function playMusicStep() {
+        playTone(MUSIC_NOTES[musicStep % MUSIC_NOTES.length], 0.18, 'triangle', 0.055);
+        musicStep++;
+    }
+    function startMusic() {
+        if (musicTimer) return;
+        playMusicStep();
+        musicTimer = setInterval(playMusicStep, 260);
+    }
+    function stopMusic() {
+        if (musicTimer) {
+            clearInterval(musicTimer);
+            musicTimer = null;
+        }
+    }
+
+    let state = 'ready'; // ready | playing | over
+    let player, entities, score, frame, fallSpeed, spawnInterval, spawnTimer, shakeFrames;
+
+    function resetGame() {
+        player = { lane: 1, x: laneCenterX(1), rotation: 0 };
+        entities = [];
+        score = 0;
+        frame = 0;
+        fallSpeed = BASE_FALL_SPEED;
+        spawnInterval = BASE_SPAWN_INTERVAL;
+        spawnTimer = BASE_SPAWN_INTERVAL;
+        shakeFrames = 0;
+        scoreEl.textContent = '0';
+    }
+
+    function moveLeft() {
+        if (player.lane === 0) return;
+        player.lane--;
+        playMoveSound();
+    }
+    function moveRight() {
+        if (player.lane === LANES - 1) return;
+        player.lane++;
+        playMoveSound();
+    }
+
+    function startOrRestart() {
+        resetGame();
+        state = 'playing';
+        startMusic();
+    }
+
+    function handleTap(x) {
+        if (state !== 'playing') { startOrRestart(); return; }
+        if (x < W / 2) moveLeft(); else moveRight();
+    }
+
+    function spawnEntity() {
+        const lane = Math.floor(Math.random() * LANES);
+        const isGood = Math.random() < 0.3;
+        const labels = isGood ? GOOD_LABELS : TOXIC_LABELS;
+        const label = labels[Math.floor(Math.random() * labels.length)];
+        entities.push({ lane, y: -ENTITY_SIZE, type: isGood ? 'good' : 'toxic', label, resolved: false });
+    }
+
+    function gameOver() {
+        state = 'over';
+        shakeFrames = 14;
+        stopMusic();
+        playFailSound();
+        if (score > best) {
+            best = score;
+            localStorage.setItem(BEST_KEY, String(best));
+            bestEl.textContent = best;
+        }
+    }
+
+    function update() {
+        frame++;
+
+        // Gentle difficulty ramp over time.
+        fallSpeed = Math.min(MAX_FALL_SPEED, BASE_FALL_SPEED + frame / 1800);
+        spawnInterval = Math.max(MIN_SPAWN_INTERVAL, BASE_SPAWN_INTERVAL - frame / 80);
+
+        // Countdown timer (not frame % interval) so a shrinking spawnInterval
+        // can never cause two spawns to land only a few frames apart in the
+        // same lane — every spawn is guaranteed at least spawnInterval frames
+        // after the previous one.
+        spawnTimer--;
+        if (spawnTimer <= 0) {
+            spawnEntity();
+            spawnTimer = Math.round(spawnInterval);
+        }
+
+        // Player lane easing for a smooth slide + slight tilt.
+        const targetX = laneCenterX(player.lane);
+        player.x += (targetX - player.x) * 0.25;
+        player.rotation = (targetX - player.x) * 0.02;
+
+        for (const ent of entities) {
+            ent.y += fallSpeed;
+
+            const inPlayerZone = ent.y + ENTITY_SIZE / 2 > PLAYER_Y - PLAYER_SIZE / 2 &&
+                                  ent.y - ENTITY_SIZE / 2 < PLAYER_Y + PLAYER_SIZE / 2;
+
+            if (!ent.resolved && inPlayerZone && ent.lane === player.lane) {
+                ent.resolved = true;
+                if (ent.type === 'toxic') {
+                    gameOver();
+                    return;
+                } else {
+                    score += 3;
+                    scoreEl.textContent = score;
+                    playCollectSound();
+                }
+            } else if (!ent.resolved && ent.type === 'toxic' && ent.y - ENTITY_SIZE / 2 > PLAYER_Y + PLAYER_SIZE / 2) {
+                ent.resolved = true;
+                score += 1;
+                scoreEl.textContent = score;
+            }
+        }
+
+        while (entities.length && entities[0].y - ENTITY_SIZE > H) entities.shift();
+    }
+
+    function drawLanes() {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+        ctx.lineWidth = 1;
+        for (let i = 1; i < LANES; i++) {
+            const x = LANE_WIDTH * i;
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, H);
+            ctx.stroke();
+        }
+    }
+
+    // Shrinks the font until `text` fits within `maxWidth`, so labels like
+    // "REPORTED" never spill outside their chip the way short ones like "GG" don't.
+    function fitFontSize(text, maxWidth, maxSize, minSize) {
+        let size = maxSize;
+        while (size > minSize) {
+            ctx.font = '800 ' + size + 'px sans-serif';
+            if (ctx.measureText(text).width <= maxWidth) break;
+            size--;
+        }
+        return size;
+    }
+
+    function drawEntity(ent) {
+        const x = laneCenterX(ent.lane);
+
+        if (ent.type === 'good') {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(x, ent.y, ENTITY_SIZE / 2, 0, Math.PI * 2);
+            ctx.strokeStyle = GOLD;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.clip();
+            if (zoeSprite.complete && zoeSprite.naturalWidth) {
+                ctx.drawImage(zoeSprite, x - ENTITY_SIZE / 2, ent.y - ENTITY_SIZE / 2, ENTITY_SIZE, ENTITY_SIZE);
+            } else {
+                ctx.fillStyle = 'rgba(234, 179, 8, 0.18)';
+                ctx.fillRect(x - ENTITY_SIZE / 2, ent.y - ENTITY_SIZE / 2, ENTITY_SIZE, ENTITY_SIZE);
+            }
+            ctx.restore();
+            return;
+        }
+
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.18)';
+        ctx.strokeStyle = RED;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(x - ENTITY_SIZE / 2, ent.y - ENTITY_SIZE / 2, ENTITY_SIZE, ENTITY_SIZE, 10);
+        ctx.fill();
+        ctx.stroke();
+
+        const fontSize = fitFontSize(ent.label, ENTITY_SIZE - 10, 13, 8);
+        ctx.fillStyle = RED;
+        ctx.font = '800 ' + fontSize + 'px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(ent.label, x, ent.y + 1);
+    }
+
+    function drawPlayer() {
+        ctx.save();
+        ctx.translate(player.x, PLAYER_Y);
+        ctx.rotate(player.rotation);
+        if (sprite.complete && sprite.naturalWidth) {
+            ctx.drawImage(sprite, -PLAYER_SIZE / 2, -PLAYER_SIZE / 2, PLAYER_SIZE, PLAYER_SIZE);
+        } else {
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(0, 0, PLAYER_SIZE / 2, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        ctx.restore();
+    }
+
+    function drawOverlayText(lines) {
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.55)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'alphabetic';
+        lines.forEach((line, i) => {
+            ctx.font = line.font || '700 18px sans-serif';
+            ctx.fillStyle = line.color || '#ffffff';
+            ctx.fillText(line.text, W / 2, H / 2 + i * 30 - (lines.length - 1) * 15);
+        });
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Brief shake on death — decays over a handful of frames.
+        ctx.save();
+        if (shakeFrames > 0) {
+            const mag = (shakeFrames / 14) * 8;
+            ctx.translate((Math.random() - 0.5) * mag, (Math.random() - 0.5) * mag);
+            shakeFrames--;
+        }
+        drawLanes();
+        for (const ent of entities) drawEntity(ent);
+        drawPlayer();
+        ctx.restore();
+
+        if (state === 'ready') {
+            drawOverlayText([
+                { text: 'Dodge Toxic Teammates', font: '900 20px sans-serif', color: GOLD },
+                { text: 'Tap or press A/D to start', font: '600 15px sans-serif' },
+            ]);
+        } else if (state === 'over') {
+            drawOverlayText([
+                { text: 'Game Over', font: '900 24px sans-serif', color: GOLD },
+                { text: 'Score: ' + score, font: '700 16px sans-serif' },
+                { text: 'Tap to play again', font: '600 14px sans-serif' },
+            ]);
+        }
+    }
+
+    function loop() {
+        if (state === 'playing') update();
+        draw();
+        requestAnimationFrame(loop);
+    }
+
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX - rect.left) * (W / rect.width);
+        handleTap(x);
+    });
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.changedTouches[0];
+        const x = (touch.clientX - rect.left) * (W / rect.width);
+        handleTap(x);
+    }, { passive: false });
+
+    document.addEventListener('keydown', (e) => {
+        if (!['ArrowLeft', 'ArrowRight', 'KeyA', 'KeyD', 'Space'].includes(e.code)) return;
+        e.preventDefault();
+        if (state !== 'playing') { startOrRestart(); return; }
+        if (e.code === 'ArrowLeft' || e.code === 'KeyA') moveLeft();
+        else if (e.code === 'ArrowRight' || e.code === 'KeyD') moveRight();
+    });
+
+    resetGame();
+    loop();
+})();
+</script>
+
+{{ end }}
