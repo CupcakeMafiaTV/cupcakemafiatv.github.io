@@ -118,9 +118,13 @@
       }
 
       /* Hover Glow Effect for Links */
-      #site-header nav a:hover:not(.header-social-icon),
-      .main-nav a:hover:not(.header-social-icon) {
+      #site-header nav a:hover:not(.header-social-icon):not(#nav-live-badge),
+      .main-nav a:hover:not(.header-social-icon):not(#nav-live-badge) {
           color: rgb(var(--color-gold)) !important;
+      }
+
+      #nav-live-badge:hover {
+          color: #f87171 !important;
       }
 
       /* Brand-Colored Header Social Icons (permanent circle badges, matches footer style) */
