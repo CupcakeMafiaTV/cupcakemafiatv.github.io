@@ -29,11 +29,11 @@ export default async function handler(req, res) {
     const LEAGUE_OF_LEGENDS_GAME_ID = '21779';
 
     const now = new Date();
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+    const ninetyDaysAgo = new Date();
+    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
 
     const clipsRes = await fetch(
-      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100&started_at=${oneYearAgo.toISOString()}&ended_at=${now.toISOString()}`,
+      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100&started_at=${ninetyDaysAgo.toISOString()}&ended_at=${now.toISOString()}`,
       {
         headers: {
           'Client-ID': CLIENT_ID,
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
 
     const topClips = clips
       .filter(clip => clip.game_id === LEAGUE_OF_LEGENDS_GAME_ID)
-      .sort((a, b) => b.view_count - a.view_count)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, 10)
       .map(clip => ({
         id: clip.id,
