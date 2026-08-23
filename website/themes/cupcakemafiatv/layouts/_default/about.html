@@ -6,8 +6,8 @@
         transform: translateY(-3px);
         border-color: rgb(var(--color-gold));
     }
-    .profile-photo:hover img { transform: translateY(-15%) scale(1.03); filter: brightness(1.05); }
-    .profile-photo img { transition: transform 0.3s ease, filter 0.3s ease; }
+    .profile-photo:hover img { filter: brightness(1.05); }
+    .profile-photo img { transition: filter 0.3s ease; }
 
     /* "Click to enlarge" hint — fades in on hover, ties the image back
        to the click-to-zoom lightbox it already opens. */
@@ -62,7 +62,7 @@
             <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-center reveal-on-scroll">
                 <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center">
                     <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 320px; height: 360px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85);" onclick="openModal(this.querySelector('img').src)">
-                        <img src="/img/CodyWeirdAl.jpg" alt="Cody Weird Al" style="width: 100%; height: auto; object-fit: cover; object-position: top center; transform: translateY(-15%);">
+                        <img src="/img/CodyAboutMe.webp" alt="Cody, CupcakeMafiaTV" style="width: 100%; height: auto; object-fit: cover; object-position: top center;">
                         <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                 </div>
