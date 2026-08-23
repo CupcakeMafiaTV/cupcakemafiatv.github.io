@@ -128,6 +128,7 @@
     });
 
   // Fetch and Toggle Live Status Badges
+  let homeTwitchWidgetsLoaded = false;
   async function checkLiveStatuses() {
     let twitchIsLive = false;
     let youtubeIsLive = false;
@@ -141,6 +142,36 @@
       const twitchBadge = document.getElementById('twitch-live-badge');
       if (twitchBadge) {
         twitchBadge.style.display = twitchIsLive ? 'inline-block' : 'none';
+      }
+
+      // Homepage hero widgets (badge, title, lurk emote, offline clip) used
+      // to run their own separate fetch to this same endpoint; they now
+      // reuse this one. Guarded to run once, matching their old load-once
+      // behavior (only the nav/twitch-live-badge above re-poll every 5min).
+      if (!homeTwitchWidgetsLoaded && twitchRes.ok) {
+        homeTwitchWidgetsLoaded = true;
+        const homeBadge = document.getElementById('home-twitch-badge');
+        const homeTitleEl = document.getElementById('home-twitch-title');
+        const lurkEmote = document.getElementById('lurk-emote');
+        if (lurkEmote) lurkEmote.style.display = twitchIsLive ? 'none' : 'inline-block';
+        if (homeBadge) {
+          if (twitchIsLive) {
+            homeBadge.classList.remove('hidden', 'bg-gray-900', 'text-gray-400');
+            homeBadge.style.display = 'flex';
+            homeBadge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+            homeBadge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+            homeBadge.style.color = '#f87171';
+            homeBadge.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:9999px;background:#ef4444;animation:homeLivePulse 2s infinite;"></span> Live' + (twitchData.viewerCount ? ` · ${Number(twitchData.viewerCount).toLocaleString()} viewers` : '');
+            if (twitchData.title && homeTitleEl) {
+              homeTitleEl.innerText = twitchData.title;
+              homeTitleEl.classList.remove('hidden');
+            }
+          } else {
+            homeBadge.style.display = 'none';
+            if (homeTitleEl) homeTitleEl.classList.add('hidden');
+            if (typeof loadTopClipForOffline === 'function') loadTopClipForOffline();
+          }
+        }
       }
     } catch (e) {
       console.log('Error checking Twitch status:', e);

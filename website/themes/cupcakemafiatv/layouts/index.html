@@ -644,36 +644,9 @@
 
   loadLatestVod();
 
-  async function loadTwitchStatus() {
-      try {
-          const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status');
-          const data = await response.json();
-          const badge = document.getElementById('home-twitch-badge');
-          const titleEl = document.getElementById('home-twitch-title');
-          const lurkEmote = document.getElementById('lurk-emote');
-          if (!response.ok) return;
-
-          if (lurkEmote) lurkEmote.style.display = data.isLive ? 'none' : 'inline-block';
-          if (data.isLive) {
-              badge.classList.remove('hidden', 'bg-gray-900', 'text-gray-400');
-              badge.style.display = 'flex';
-              badge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-              badge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-              badge.style.color = '#f87171';
-              badge.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:9999px;background:#ef4444;animation:homeLivePulse 2s infinite;"></span> Live' + (data.viewerCount ? ` · ${Number(data.viewerCount).toLocaleString()} viewers` : '');
-              if (data.title) {
-                  titleEl.innerText = data.title;
-                  titleEl.classList.remove('hidden');
-              }
-          } else {
-              badge.style.display = 'none';
-              titleEl.classList.add('hidden');
-              loadTopClipForOffline();
-          }
-      } catch (error) { console.error("Error loading Twitch status", error); }
-  }
-
-  loadTwitchStatus();
+  // Twitch live badge/title, lurk emote, and offline fallback clip on this
+  // page are populated by scripts.html's checkLiveStatuses(), which reuses
+  // the same /api/twitch-status fetch shared with the nav live badge.
 
   async function loadTopClipForOffline() {
       try {
