@@ -9,24 +9,22 @@
     .specs-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 24px;
-        align-items: flex-start;
+        gap: 10px;
     }
 
-    /* Image Column Sizing — sticky so the (eventually 1920x1080) photos
-       stay in view while scrolling the much taller specs grid, sized by
-       aspect-ratio instead of a stretched/forced height. Kept flush left
-       and sized up so the photos carry real visual weight instead of
-       shrinking the gap by repositioning things. */
+    /* Image Column Sizing — no align-items on the container means this
+       column stretches to match the specs list's full height, and
+       justify-content spaces the 4 photos evenly across it so they run
+       flush from the header all the way to the footer instead of
+       bunching up at the top with empty space below. */
     .img-column {
-        width: 500px;
+        width: 600px;
         max-width: 100%;
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         gap: 16px;
-        position: sticky;
-        top: 24px;
     }
 
     .img-container {
@@ -40,12 +38,24 @@
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        animation: photoGlowPulse 3.5s ease-in-out infinite;
+    }
+
+    /* Staggered so the 4 photos don't all pulse in sync. */
+    .img-container:nth-of-type(2) { animation-delay: 0.9s; }
+    .img-container:nth-of-type(3) { animation-delay: 1.8s; }
+    .img-container:nth-of-type(4) { animation-delay: 2.6s; }
+
+    @keyframes photoGlowPulse {
+        0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 rgb(var(--color-gold) / 0); }
+        50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 16px rgb(var(--color-gold) / 0.5); }
     }
 
     /* Image Hover Effect */
     .img-container:hover {
         transform: translateY(-3px);
         border-color: rgb(var(--color-gold));
+        animation-play-state: paused;
     }
 
     .img-container img {
@@ -98,7 +108,8 @@
     }
 
     .specs-list {
-        flex: 1;
+        flex: 1 1 480px;
+        max-width: 620px;
         min-width: 280px;
     }
 
@@ -188,8 +199,18 @@
     @media (max-width: 768px) {
         .img-column {
             width: 100%;
-            position: static;
         }
+    }
+
+    /* Fades/slides the photo column in once it scrolls into view. */
+    .photo-reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .photo-reveal.is-visible {
+        opacity: 1;
+        transform: none;
     }
 </style>
 
@@ -206,29 +227,6 @@
 
         <!-- Container Layout -->
         <div class="specs-container">
-
-            <!-- Stacked Images Column -->
-            <div class="img-column">
-
-                <!-- Image 1 Container (placeholder — real setup photos coming soon) -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-
-                <!-- Image 2 Container (placeholder — real setup photos coming soon) -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-
-                <!-- Image 3 Container (placeholder — real setup photos coming soon) -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
-                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-                </div>
-
-            </div>
 
             <!-- Specs List -->
             <div class="specs-list reveal-on-scroll">
@@ -284,10 +282,56 @@
                     <li><strong>Console:</strong> <a href="https://www.playstation.com/en-ca/ps-vr2/" target="_blank" rel="noopener noreferrer">PSVR2</a></li>
                 </ul>
             </div>
+
+            <!-- Stacked Images Column -->
+            <div class="img-column photo-reveal">
+
+                <!-- Image 1 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
+                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <!-- Image 2 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
+                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <!-- Image 3 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
+                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+
+                <!-- Image 4 Container (placeholder — real setup photos coming soon) -->
+                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
+                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                </div>
+
+            </div>
         </div>
 
         <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
     </div>
 </main>
+
+<script>
+    (function () {
+        const el = document.querySelector('.photo-reveal');
+        if (!el) return;
+        if (!('IntersectionObserver' in window)) { el.classList.add('is-visible'); return; }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        observer.observe(el);
+    })();
+</script>
 
 {{ end }}
