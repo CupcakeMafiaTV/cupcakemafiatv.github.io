@@ -169,27 +169,24 @@
     }
   }
 
-  // Live Discord member/online counts (Socials page only — no-op elsewhere
-  // since the target elements won't exist).
-  if (document.getElementById('discord-member-stats')) {
+  // Live Discord member count (Work With Me's stat row only — no-op
+  // elsewhere since the element won't exist).
+  if (document.getElementById('discord-member-count')) {
     fetch('https://cupcakemafiatv-github-io.vercel.app/api/discord-widget')
       .then(response => response.json())
       .then(data => {
-        const statsEl = document.getElementById('discord-member-stats');
-        if (statsEl && (data.memberCount || data.memberCount === 0)) {
-          statsEl.textContent = `${Number(data.memberCount).toLocaleString()} members · ${Number(data.onlineCount || 0).toLocaleString()} online`;
+        const countEl = document.getElementById('discord-member-count');
+        if (countEl && (data.memberCount || data.memberCount === 0)) {
+          window.cmtvCountUp(countEl, Number(data.memberCount));
         }
-        const iconEl = document.getElementById('discord-guild-icon');
-        const fallbackIconEl = document.getElementById('discord-fallback-icon');
-        if (iconEl && data.iconUrl) {
-          iconEl.onload = () => {
-            iconEl.style.display = 'block';
-            if (fallbackIconEl) fallbackIconEl.style.display = 'none';
-          };
-          iconEl.src = data.iconUrl;
-        }
+        if (data.memberCount || data.memberCount === 0) localStorage.setItem('cmtv_discord_members', data.memberCount);
       })
-      .catch(error => console.error('Error fetching Discord widget:', error));
+      .catch(error => {
+        console.error('Error fetching Discord widget:', error);
+        const countEl = document.getElementById('discord-member-count');
+        const cached = localStorage.getItem('cmtv_discord_members');
+        if (countEl && cached) window.cmtvCountUp(countEl, Number(cached));
+      });
   }
 
   // Fetch and Toggle Live Status Badges
