@@ -127,6 +127,71 @@
       if (twitchCountEl && cached) window.cmtvCountUp(twitchCountEl, Number(cached));
     });
 
+  // Swaps the browser tab title/favicon to a "live" state while streaming,
+  // so a backgrounded tab still announces it. Draws the red dot onto the
+  // existing favicon at runtime (via canvas) instead of needing a second
+  // favicon asset to keep in sync with the real one.
+  const cmtvOriginalTitle = document.title;
+  const cmtvFaviconEl = document.querySelector('link[rel="icon"]');
+  const cmtvOriginalFaviconHref = cmtvFaviconEl ? cmtvFaviconEl.getAttribute('href') : null;
+  let cmtvLiveFaviconDataUrl = null;
+
+  function cmtvBuildLiveFavicon(callback) {
+    if (cmtvLiveFaviconDataUrl) { callback(cmtvLiveFaviconDataUrl); return; }
+    if (!cmtvFaviconEl || !cmtvOriginalFaviconHref) return;
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, 32, 32);
+      ctx.beginPath();
+      ctx.arc(24, 8, 7, 0, Math.PI * 2);
+      ctx.fillStyle = '#ef4444';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#1a1128';
+      ctx.stroke();
+      cmtvLiveFaviconDataUrl = canvas.toDataURL('image/png');
+      callback(cmtvLiveFaviconDataUrl);
+    };
+    img.src = cmtvOriginalFaviconHref;
+  }
+
+  function cmtvSetLiveIndicator(isLive) {
+    document.title = isLive ? '🔴 LIVE — ' + cmtvOriginalTitle : cmtvOriginalTitle;
+    if (!cmtvFaviconEl) return;
+    if (isLive) {
+      cmtvBuildLiveFavicon((dataUrl) => { cmtvFaviconEl.setAttribute('href', dataUrl); });
+    } else if (cmtvOriginalFaviconHref) {
+      cmtvFaviconEl.setAttribute('href', cmtvOriginalFaviconHref);
+    }
+  }
+
+  // Live Discord member/online counts (Socials page only — no-op elsewhere
+  // since the target elements won't exist).
+  if (document.getElementById('discord-member-stats')) {
+    fetch('https://cupcakemafiatv-github-io.vercel.app/api/discord-widget')
+      .then(response => response.json())
+      .then(data => {
+        const statsEl = document.getElementById('discord-member-stats');
+        if (statsEl && (data.memberCount || data.memberCount === 0)) {
+          statsEl.textContent = `${Number(data.memberCount).toLocaleString()} members · ${Number(data.onlineCount || 0).toLocaleString()} online`;
+        }
+        const iconEl = document.getElementById('discord-guild-icon');
+        const fallbackIconEl = document.getElementById('discord-fallback-icon');
+        if (iconEl && data.iconUrl) {
+          iconEl.onload = () => {
+            iconEl.style.display = 'block';
+            if (fallbackIconEl) fallbackIconEl.style.display = 'none';
+          };
+          iconEl.src = data.iconUrl;
+        }
+      })
+      .catch(error => console.error('Error fetching Discord widget:', error));
+  }
+
   // Fetch and Toggle Live Status Badges
   let homeTwitchWidgetsLoaded = false;
   async function checkLiveStatuses() {
@@ -205,6 +270,12 @@
         navBadge.style.display = 'none';
       }
     }
+
+    // 4. Site-wide "is live" flag other pages/widgets can react to
+    // (tab title/favicon here; the homepage schedule countdown listens too).
+    window.cmtvIsLive = twitchIsLive || youtubeIsLive;
+    cmtvSetLiveIndicator(window.cmtvIsLive);
+    document.dispatchEvent(new CustomEvent('cmtv:livestatus', { detail: { isLive: window.cmtvIsLive } }));
   }
 
   // Run live check immediately on page load

@@ -2,3 +2,4 @@ baseURL = 'https://cupcakemafiatv.com/'
 languageCode = 'en-us'
 title = 'cupcakemafiatv'
 theme = 'cupcakemafiatv'
+disableKinds = ['taxonomy', 'term']

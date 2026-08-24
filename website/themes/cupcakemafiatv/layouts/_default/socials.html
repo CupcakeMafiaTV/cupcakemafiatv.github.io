@@ -254,10 +254,13 @@
                 <!-- Discord -->
                 <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(88, 101, 242, 0.5);">
                     <i class="fa-solid fa-arrow-up-right-from-square brand-card-ext"></i>
-                    <div class="brand-card-icon" style="background: rgba(88, 101, 242, 0.15); color: #818cf8;"><i class="fa-brands fa-discord"></i></div>
+                    <div class="brand-card-icon" style="background: rgba(88, 101, 242, 0.15); color: #818cf8; overflow: hidden;">
+                        <img id="discord-guild-icon" src="" alt="" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+                        <i id="discord-fallback-icon" class="fa-brands fa-discord"></i>
+                    </div>
                     <div class="brand-card-body">
                         <div class="brand-card-title">Discord</div>
-                        <div class="brand-card-subtitle">Join Our Community Server</div>
+                        <div class="brand-card-subtitle" id="discord-member-stats">Join Our Community Server</div>
                     </div>
                 </a>
 
