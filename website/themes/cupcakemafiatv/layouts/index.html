@@ -356,26 +356,11 @@
           </div>
           <img id="lurk-emote" src="/img/emotes/Lurk.gif" alt="" class="h-10 w-10" loading="lazy">
         </div>
-        <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch all the action live on Twitch! Join the chat and be part of the stream.</p>
+        <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch all the action live on Twitch!</p>
         <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
-        <div class="bg-gray-900/60 p-1 rounded-2xl shadow-2xl grid grid-cols-12 gap-1 items-stretch" style="border: 2px solid rgb(var(--color-gold) / 0.7);">
-          <div class="col-span-full lg:col-span-8 flex flex-col">
-            <div id="watch-live-media" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
-              <iframe id="twitch-live-iframe" src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
-            </div>
-          </div>
-          <div class="col-span-full lg:col-span-4 flex flex-col">
-            <div class="w-full h-full overflow-hidden rounded-xl bg-black flex flex-col">
-              <iframe id="chat_embed" src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&darkpopout" width="100%" loading="lazy" class="w-full flex-grow" style="min-height: 320px; height: auto;"></iframe>
-              <!-- Twitch's chat embed needs its own session cookies to connect,
-                   which browsers with third-party cookies blocked (Safari by
-                   default, others increasingly) will refuse -- Twitch then
-                   renders its own empty/error state inside the iframe, which
-                   is invisible to us since it's cross-origin content. This
-                   always-present link is the fallback so chat stays reachable
-                   either way, not just when the embed happens to fail. -->
-              <a href="https://www.twitch.tv/popout/cupcakemafiatv/chat" target="_blank" rel="noopener noreferrer" class="text-center text-xs text-gray-400 hover:text-gold py-2" style="border-top: 1px solid rgba(255,255,255,0.08);">Chat not loading? Open on Twitch &#8599;</a>
-            </div>
+        <div class="bg-gray-900/60 p-1 rounded-2xl shadow-2xl" style="border: 2px solid rgb(var(--color-gold) / 0.7);">
+          <div id="watch-live-media" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
+            <iframe id="twitch-live-iframe" src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
           </div>
         </div>
       </div>
