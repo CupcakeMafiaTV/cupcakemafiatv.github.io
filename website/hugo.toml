@@ -1,5 +1,5 @@
 baseURL = 'https://cupcakemafiatv.com/'
 languageCode = 'en-us'
-title = 'cupcakemafiatv'
+title = 'CupcakeMafiaTV'
 theme = 'cupcakemafiatv'
 disableKinds = ['taxonomy', 'term', 'RSS']
