@@ -21,7 +21,11 @@
 
             <!-- Center: Auto-Updating Copyright Text (true-centered regardless of side content width) -->
             <div class="footer-copyright" style="color: #cbd5e1; font-size: 15px; font-weight: 500; text-align: center; letter-spacing: 0.3px;">
-                &copy;&nbsp;<span id="copyright-year"></span>&nbsp;CupcakeMafiaTV. All rights reserved.
+                <!-- The (c) glyph carries extra built-in right-side bearing in this
+                     font, so a normal space after it reads as a much bigger gap than
+                     the other word spaces even though the markup is identical -- pull
+                     it in slightly to match. -->
+                <span style="margin-right: -0.05em;">&copy;</span>&nbsp;<span id="copyright-year"></span>&nbsp;CupcakeMafiaTV. All rights reserved.
             </div>
 
             <!-- Right: Social Icons + Contact Button -->
