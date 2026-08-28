@@ -2,6 +2,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Content-Security-Policy: must come before any resource-loading tag
+       to govern the whole page. Delivered via meta, so frame-ancestors is
+       silently ignored by browsers per spec (that needs a real response
+       header, which GitHub Pages doesn't support) -- this only covers
+       resource/script/connect sources, not clickjacking.
+       script-src/style-src need 'unsafe-inline': every script and most
+       styling on this site is inline (no external .js files exist), so
+       this can't block an injected inline <script> from running -- its
+       real job is stopping an injection from pulling in more external
+       code or exfiltrating data to an unlisted domain. -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data: https://i.ytimg.com;
+    connect-src 'self' https://cupcakemafiatv-github-io.vercel.app https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com;
+    frame-src https://player.twitch.tv https://clips.twitch.tv https://www.youtube.com;
+    object-src 'none';
+    base-uri 'self';
+    form-action 'self';
+    upgrade-insecure-requests;
+  ">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZSLEPQDX3"></script>
   <script>
