@@ -46,16 +46,20 @@
 </footer>
 
 <style>
-    /* Footer Row Layout: side columns match width so the center column is truly centered */
+    /* Footer Row Layout: flexbox + space-between (not grid's equal-width
+       columns) so the copyright text sits exactly midway between the nav
+       block's right edge and the icon block's left edge, regardless of how
+       wide either side is -- a grid's 1fr/auto/1fr centers on the whole
+       container instead, which looks off when the two side blocks differ
+       in width (the nav list is wider than the icon+contact block). */
     .footer-row {
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
         gap: 16px;
     }
 
     .footer-copyright {
-        justify-self: center;
         white-space: nowrap;
     }
 
