@@ -367,6 +367,14 @@
           <div class="col-span-full lg:col-span-4 flex flex-col">
             <div class="w-full h-full overflow-hidden rounded-xl bg-black flex flex-col">
               <iframe id="chat_embed" src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&darkpopout" height="100%" width="100%" loading="lazy" class="w-full flex-grow" style="min-height: 320px;"></iframe>
+              <!-- Twitch's chat embed needs its own session cookies to connect,
+                   which browsers with third-party cookies blocked (Safari by
+                   default, others increasingly) will refuse -- Twitch then
+                   renders its own empty/error state inside the iframe, which
+                   is invisible to us since it's cross-origin content. This
+                   always-present link is the fallback so chat stays reachable
+                   either way, not just when the embed happens to fail. -->
+              <a href="https://www.twitch.tv/popout/cupcakemafiatv/chat" target="_blank" rel="noopener noreferrer" class="text-center text-xs text-gray-400 hover:text-gold py-2" style="border-top: 1px solid rgba(255,255,255,0.08);">Chat not loading? Open on Twitch &#8599;</a>
             </div>
           </div>
         </div>
