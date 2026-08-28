@@ -15,8 +15,8 @@
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
-    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
     img-src 'self' data: https://i.ytimg.com;
     connect-src 'self' https://cupcakemafiatv-github-io.vercel.app https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com;
     frame-src https://player.twitch.tv https://clips.twitch.tv https://www.youtube.com;
@@ -80,9 +80,12 @@
   <meta property="og:image" content="{{ "img/og-image.png" | absURL }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_CA">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@cupcakemafiatv">
+  <meta name="twitter:creator" content="@cupcakemafiatv">
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:description" content="{{ $description }}">
   <meta name="twitter:image" content="{{ "img/og-image.png" | absURL }}">
@@ -91,13 +94,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180.png">
 
+  <!-- Tints mobile browser chrome (address bar, task switcher) to match
+       the site's dark purple background instead of default white/black. -->
+  <meta name="theme-color" content="#1a1128">
+
   <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Vendor CSS -->
   <link href="/common/glightbox/css/glightbox.min.css" rel="stylesheet">
@@ -326,6 +330,19 @@
           flex: 1;
           height: 1px;
           background: linear-gradient(90deg, var(--cat-color, rgba(255, 255, 255, 0.4)) 0%, transparent 100%);
+      }
+
+      /* Self-hosted icon sprite (replaces the Font Awesome CDN -- was a
+         102KB stylesheet plus webfont downloads for ~30 icons). Sized like
+         the old icon font (1em square, so font-size/text utility classes
+         still control size) and colored via currentColor (so color/text-*
+         utility classes still control color), matching prior behavior. */
+      .icon {
+          display: inline-block;
+          width: 1em;
+          height: 1em;
+          fill: currentColor;
+          vertical-align: -0.125em;
       }
 
       /* Visible keyboard-focus ring. Most interactive elements on the site

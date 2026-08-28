@@ -165,7 +165,7 @@
                         <span class="dodge-stat-value" id="dodge-best">0</span>
                     </div>
                     <button id="dodge-mute-btn" aria-label="Toggle sound">
-                        <i class="fa-solid fa-volume-high"></i>
+                        <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-volume-high"></use></svg>
                     </button>
                 </div>
 
@@ -177,14 +177,14 @@
                 <div id="dodge-controls-group">
                     <div class="dodge-rule-example">
                         <div class="dodge-rule-chip dodge-rule-chip-icon" style="border-color: rgb(var(--color-gold) / 0.6); background: rgba(234, 179, 8, 0.08); color: rgb(var(--color-gold));">
-                            <i class="fa-solid fa-arrow-pointer"></i>
+                            <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-pointer"></use></svg>
                         </div>
                         <div class="dodge-rule-text">Click <strong>Left</strong> or <strong>Right</strong></div>
                     </div>
                     <div class="dodge-rule-or">OR</div>
                     <div class="dodge-rule-example">
                         <div class="dodge-rule-chip dodge-rule-chip-icon" style="border-color: rgb(var(--color-gold) / 0.6); background: rgba(234, 179, 8, 0.08); color: rgb(var(--color-gold));">
-                            <i class="fa-solid fa-keyboard"></i>
+                            <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-keyboard"></use></svg>
                         </div>
                         <div class="dodge-rule-text">Use <strong>A</strong> & <strong>D</strong> or <strong>Arrow Keys</strong></div>
                     </div>
@@ -252,10 +252,10 @@
     const MUTE_KEY = 'cmtv_dodge_muted';
     let muted = localStorage.getItem(MUTE_KEY) === 'true';
     const muteBtn = document.getElementById('dodge-mute-btn');
-    const muteIcon = muteBtn.querySelector('i');
+    const muteIcon = muteBtn.querySelector('use');
     function updateMuteBtn() {
         muteBtn.classList.toggle('muted', muted);
-        muteIcon.className = muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+        muteIcon.setAttribute('href', muted ? '/img/icons-sprite.svg#fas-volume-xmark' : '/img/icons-sprite.svg#fas-volume-high');
     }
     muteBtn.addEventListener('click', () => {
         muted = !muted;

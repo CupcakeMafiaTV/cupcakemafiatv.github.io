@@ -279,10 +279,10 @@
         </p>
         <div class="hero-actions">
           <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-twitch px-7 py-3 text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
-            <i class="fa-brands fa-twitch"></i> Watch on Twitch
+            <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg> Watch on Twitch
           </a>
           <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="hero-btn-youtube px-7 py-3 text-base font-bold uppercase whitespace-nowrap rounded-xl transition-all duration-300 text-white inline-flex items-center gap-2">
-            <i class="fa-brands fa-youtube"></i> Subscribe on YouTube
+            <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg> Subscribe on YouTube
           </a>
         </div>
         <div class="mt-3 text-sm md:text-base text-gray-300 text-center">
@@ -388,12 +388,12 @@
             <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
               <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
-                <i class="fa-brands fa-youtube" style="color: #FF0000; font-size: 16px;"></i>
+                <svg class="icon" aria-hidden="true" style="color: #FF0000; font-size: 16px;"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg>
                 <span class="text-xs font-black uppercase tracking-wider text-white">Latest Upload</span>
               </div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
-                  <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
+                  <svg class="icon text-white text-2xl ml-1" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-play"></use></svg>
                 </div>
               </div>
             </div>
@@ -404,12 +404,12 @@
             <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
               <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
-                <i class="fa-solid fa-clock-rotate-left" style="color: #FF0000; font-size: 14px;"></i>
+                <svg class="icon" aria-hidden="true" style="color: #FF0000; font-size: 14px;"><use href="/img/icons-sprite.svg#fas-clock-rotate-left"></use></svg>
                 <span class="text-xs font-black uppercase tracking-wider text-white">Latest VOD</span>
               </div>
               <div class="absolute inset-0 flex items-center justify-center">
                 <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
-                  <i class="fa-solid fa-play text-white text-2xl ml-1"></i>
+                  <svg class="icon text-white text-2xl ml-1" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-play"></use></svg>
                 </div>
               </div>
             </div>
@@ -478,10 +478,10 @@
                   <p id="mafiaResultText" class="mt-1 text-xl md:text-2xl font-bold text-white"></p>
                   <div class="mt-2 flex items-center gap-2">
                     <button type="button" id="mafiaCopyBtn" onclick="shareMafiaName()" class="mafia-share-btn">
-                      <i class="fa-regular fa-copy"></i> Copy
+                      <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#far-copy"></use></svg> Copy
                     </button>
                     <a id="mafiaShareTwitter" href="#" target="_blank" rel="noopener noreferrer" class="mafia-share-btn">
-                      <i class="fa-brands fa-x-twitter"></i> Share
+                      <svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg> Share
                     </a>
                   </div>
                 </div>
@@ -649,7 +649,7 @@
       navigator.clipboard.writeText(shareMsg).then(() => {
         if (!btn) return;
         const original = btn.innerHTML;
-        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        btn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-check"></use></svg> Copied!';
         restore(original);
       }).catch(() => {});
     }

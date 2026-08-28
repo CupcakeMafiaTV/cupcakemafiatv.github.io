@@ -27,7 +27,7 @@
         opacity: 1;
         background: rgba(15, 23, 42, 0.35);
     }
-    .img-zoom-hint i {
+    .img-zoom-hint svg {
         color: #ffffff;
         font-size: 22px;
         width: 48px;
@@ -41,7 +41,7 @@
         transform: scale(0.85);
         transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .profile-photo:hover .img-zoom-hint i {
+    .profile-photo:hover .img-zoom-hint svg {
         transform: scale(1);
     }
 </style>
@@ -63,7 +63,7 @@
                 <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center" style="position: sticky; top: 24px;">
                     <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 480px; height: 540px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85);" onclick="openModal(this.querySelector('img').src)">
                         <img src="/img/CodyAboutMe.webp" alt="Cody, CupcakeMafiaTV" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
-                        <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                        <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                     </div>
                 </div>
                 <div class="col-span-full md:col-span-8">
@@ -80,7 +80,7 @@
             <!-- Favorite Champions Grid Section -->
             <div style="margin-top: 10px;" class="reveal-on-scroll">
                 <div class="category-header" style="margin-top: 0; margin-bottom: 16px;">
-                    <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><i class="fa-solid fa-crown"></i></div>
+                    <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-crown"></use></svg></div>
                     <div class="category-header-label">Favorite Champions</div>
                     <div class="category-header-line" style="--cat-color: rgb(var(--color-gold) / 0.6);"></div>
                 </div>
@@ -89,7 +89,7 @@
 
                     <!-- Zoe -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/zoe/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Champ-Zoe.webp" alt="Zoe" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Zoe</div>
@@ -98,7 +98,7 @@
 
                     <!-- LeBlanc -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/leblanc/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Champ-Leblanc.webp" alt="LeBlanc" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">LeBlanc</div>
@@ -107,7 +107,7 @@
 
                     <!-- Gwen -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/gwen/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Champ-Gwen.webp" alt="Gwen" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Gwen</div>
@@ -116,7 +116,7 @@
 
                     <!-- Yorick -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/yorick/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Champ-Yorick.webp" alt="Yorick" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Yorick</div>
@@ -125,7 +125,7 @@
 
                     <!-- Vel'Koz -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/velkoz/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Champ-Velkoz.webp" alt="Vel'Koz" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Vel'Koz</div>
@@ -138,7 +138,7 @@
             <!-- Favorite Games Poster Grid Section -->
             <div style="margin-top: 10px;" class="reveal-on-scroll">
                 <div class="category-header" style="margin-top: 0; margin-bottom: 16px;">
-                    <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><i class="fa-solid fa-gamepad"></i></div>
+                    <div class="category-header-icon" style="background: rgb(var(--color-accent) / 0.15); color: rgb(var(--color-accent));"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-gamepad"></use></svg></div>
                     <div class="category-header-label">Favorite Games</div>
                     <div class="category-header-line" style="--cat-color: rgb(var(--color-gold) / 0.6);"></div>
                 </div>
@@ -147,7 +147,7 @@
 
                     <!-- Poster 1: League of Legends -->
                     <a href="https://www.leagueoflegends.com" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/League of Legends.webp" alt="League of Legends" style="object-position: center 48%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">League of Legends</div>
@@ -156,7 +156,7 @@
 
                     <!-- Poster 8: World of Warcraft -->
                     <a href="https://worldofwarcraft.blizzard.com" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/WoW-Sylvanas.webp" alt="World of Warcraft: Sylvanas Windrunner" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">World of Warcraft</div>
@@ -165,7 +165,7 @@
 
                     <!-- Poster 2: Scott Pilgrim vs. The World: The Game -->
                     <a href="https://store.steampowered.com/app/2215260/Scott_Pilgrim_vs_The_World_The_Game__Complete_Edition/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/ScottPilgrim.webp" alt="Scott Pilgrim vs The World" style="object-position: center 60%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Scott Pilgrim vs. The World</div>
@@ -174,7 +174,7 @@
 
                     <!-- Stardew Valley -->
                     <a href="https://store.steampowered.com/app/413150/Stardew_Valley/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/StardewValley.webp" alt="Stardew Valley" style="object-position: center 92%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Stardew Valley</div>
@@ -183,7 +183,7 @@
 
                     <!-- Poster 3: Grounded -->
                     <a href="https://store.steampowered.com/app/962130/Grounded/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Grounded.webp" alt="Grounded" style="object-position: center 30%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Grounded</div>
@@ -192,7 +192,7 @@
 
                     <!-- Shantae and the Seven Sirens -->
                     <a href="https://store.steampowered.com/app/1191630/Shantae_and_the_Seven_Sirens/" target="_blank" rel="noopener noreferrer" class="poster-card">
-                        <i class="fa-solid fa-arrow-up-right-from-square poster-ext"></i>
+                        <svg class="icon poster-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
                         <img src="/img/Shantae7.webp" alt="Shantae and the Seven Sirens" style="object-position: center 30%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Shantae and the Seven Sirens</div>

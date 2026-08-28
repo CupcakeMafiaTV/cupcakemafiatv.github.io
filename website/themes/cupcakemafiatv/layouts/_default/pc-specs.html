@@ -89,7 +89,7 @@
         opacity: 1;
         background: rgba(15, 23, 42, 0.35);
     }
-    .img-zoom-hint i {
+    .img-zoom-hint svg {
         color: #ffffff;
         font-size: 22px;
         width: 48px;
@@ -103,7 +103,7 @@
         transform: scale(0.85);
         transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .img-container:hover .img-zoom-hint i {
+    .img-container:hover .img-zoom-hint svg {
         transform: scale(1);
     }
 
@@ -124,7 +124,7 @@
         gap: 10px;
         position: relative;
     }
-    .specs-heading i {
+    .specs-heading svg {
         font-size: 0.8em;
     }
     .specs-heading:first-child {
@@ -231,7 +231,7 @@
             <!-- Specs List -->
             <div class="specs-list reveal-on-scroll">
 
-                <h2 class="specs-heading" style="--cat-color: #ef4444;"><i class="fa-solid fa-microchip" style="color: #ef4444;"></i>System Specs</h2>
+                <h2 class="specs-heading" style="--cat-color: #ef4444;"><svg class="icon" aria-hidden="true" style="color: #ef4444;"><use href="/img/icons-sprite.svg#fas-microchip"></use></svg>System Specs</h2>
                 <ul class="specs-plain-list">
                     <li><strong>CPU:</strong> <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer">AMD Ryzen 7 9800X3D</a></li>
                     <li><strong>GPU:</strong> <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer">MSI GeForce RTX 5080</a></li>
@@ -242,20 +242,20 @@
                     <li><strong>Capture Card:</strong> <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer">AVerMedia GC573</a></li>
                 </ul>
 
-                <h2 class="specs-heading" style="--cat-color: #14b8a6;"><i class="fa-solid fa-volume-high" style="color: #14b8a6;"></i>Audio</h2>
+                <h2 class="specs-heading" style="--cat-color: #14b8a6;"><svg class="icon" aria-hidden="true" style="color: #14b8a6;"><use href="/img/icons-sprite.svg#fas-volume-high"></use></svg>Audio</h2>
                 <ul class="specs-plain-list">
                     <li><strong>Microphone:</strong> <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer">Shure SM7B</a></li>
                     <li><strong>Mic Arm:</strong> <a href="https://rode.com/en-ca/products/psa1-plus" target="_blank" rel="noopener noreferrer">RODE PSA1 + Studio Arm</a></li>
                     <li><strong>Audio Mixer:</strong> <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer">RodeCaster Duo</a></li>
                 </ul>
 
-                <h2 class="specs-heading" style="--cat-color: #3b82f6;"><i class="fa-solid fa-camera-retro" style="color: #3b82f6;"></i>Camera</h2>
+                <h2 class="specs-heading" style="--cat-color: #3b82f6;"><svg class="icon" aria-hidden="true" style="color: #3b82f6;"><use href="/img/icons-sprite.svg#fas-camera-retro"></use></svg>Camera</h2>
                 <ul class="specs-plain-list">
                     <li><strong>Camera:</strong> <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer">Canon EOS M200</a></li>
                     <li><strong>CAM Link:</strong> <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer">Elgato CAM Link 4K</a></li>
                 </ul>
 
-                <h2 class="specs-heading" style="--cat-color: #ec4899;"><i class="fa-solid fa-computer" style="color: #ec4899;"></i>Peripherals</h2>
+                <h2 class="specs-heading" style="--cat-color: #ec4899;"><svg class="icon" aria-hidden="true" style="color: #ec4899;"><use href="/img/icons-sprite.svg#fas-computer"></use></svg>Peripherals</h2>
                 <ul class="specs-plain-list">
                     <li><strong>Mouse:</strong> <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer">Razer Naga V2 HyperSpeed</a></li>
                     <li><strong>Keyboard:</strong> <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer">Razer Huntsman V3 Pro</a></li>
@@ -263,7 +263,7 @@
                     <li><strong>Headset:</strong> <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset?variant=52630368256365" target="_blank" rel="noopener noreferrer">HyperX Cloud III Wired (White)</a></li>
                 </ul>
 
-                <h2 class="specs-heading" style="--cat-color: #f97316;"><i class="fa-solid fa-layer-group" style="color: #f97316;"></i>Miscellaneous</h2>
+                <h2 class="specs-heading" style="--cat-color: #f97316;"><svg class="icon" aria-hidden="true" style="color: #f97316;"><use href="/img/icons-sprite.svg#fas-layer-group"></use></svg>Miscellaneous</h2>
                 <ul class="specs-plain-list">
                     <li><strong>Desk:</strong> <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer">Secretlab MAGNUS Pro XL</a></li>
                     <li><strong>Chair:</strong> <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer">Secretlab TITAN Evo XL</a></li>
@@ -274,7 +274,7 @@
                     <li><strong>Desk Decor:</strong> <a href="https://www.amazon.com/Divoom-Pixoo-64-Digital-Control-Decoration/dp/B09H3YWPCH/ref=sr_1_1?crid=GXCFVM60MELD&dib=eyJ2IjoiMSJ9.GD2pPRSX8qQaFeA5SrKNmNbqYJ1xaM0giWtDLzeRiJnmIc-IM1Jid0EZKBfLY8f_V6dzEJWSvTMkg-duMcokm6IZeDAkmNC6fzG7Wl4KHRrwIQOPVrtoWaMAFcUFZ4E0cI2tn0wNG6HVksarUxBY-Frfkjs5FQig0VKfBhHHDivhZz3636NOU17fhooc7HyfZq-KQOJ6PNZUmBGeoIk7Uly4vrQJ9-QyjTKFouYUS8Y.Isk1vBXAIj07l49keeiCSAcGuJ8E3bb_RJSxcaRkHC0&dib_tag=se&keywords=divoom%2Bpixel%2B64&qid=1786287192&sprefix=divoom%2Bpixel%2B64%2Caps%2C131&sr=8-1&th=1" target="_blank" rel="noopener noreferrer">Divoom Pixoo-64 (x2)</a></li>
                 </ul>
 
-                <h2 class="specs-heading" style="--cat-color: #22c55e;"><i class="fa-solid fa-gamepad" style="color: #22c55e;"></i>Gaming Consoles</h2>
+                <h2 class="specs-heading" style="--cat-color: #22c55e;"><svg class="icon" aria-hidden="true" style="color: #22c55e;"><use href="/img/icons-sprite.svg#fas-gamepad"></use></svg>Gaming Consoles</h2>
                 <ul class="specs-plain-list">
                     <li><strong>Console:</strong> <a href="https://www.nintendo.com/en-ca/gaming-systems/switch-2/features/" target="_blank" rel="noopener noreferrer">Nintendo Switch 2</a></li>
                     <li><strong>Handheld:</strong> <a href="https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS-XL/Nintendo-3DS-XL-727629.html" target="_blank" rel="noopener noreferrer">Nintendo 3DS XL</a></li>
@@ -289,25 +289,25 @@
                 <!-- Image 1 Container (placeholder — real setup photos coming soon) -->
                 <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                     <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- Image 2 Container (placeholder — real setup photos coming soon) -->
                 <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                     <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- Image 3 Container (placeholder — real setup photos coming soon) -->
                 <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                     <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- Image 4 Container (placeholder — real setup photos coming soon) -->
                 <div class="img-container" onclick="openModal(this.querySelector('img').src)">
                     <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;" loading="lazy">
-                    <div class="img-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
             </div>
