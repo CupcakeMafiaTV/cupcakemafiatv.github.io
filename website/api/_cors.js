@@ -14,4 +14,9 @@ export function setCors(req, res, methods = 'GET') {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   res.setHeader('Access-Control-Allow-Methods', methods);
+  // These responses also carry Cache-Control: s-maxage, so the CDN caches
+  // per URL. Without Vary, the first request's Origin (or lack of one)
+  // would get baked into the cached response and served to every other
+  // origin until it expires — silently breaking CORS for everyone else.
+  res.setHeader('Vary', 'Origin');
 }
