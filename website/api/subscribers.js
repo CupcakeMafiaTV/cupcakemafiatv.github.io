@@ -1,7 +1,8 @@
+import { setCors } from './_cors.js';
+
 export default async function handler(req, res) {
-  // Allow requests from your website domain
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Or replace '*' with 'https://cupcakemafiatv.github.io' or your custom domain
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+  setCors(req, res, 'GET,OPTIONS');
+  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=1800');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();

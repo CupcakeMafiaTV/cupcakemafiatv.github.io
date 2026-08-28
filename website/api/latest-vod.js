@@ -1,6 +1,8 @@
+import { setCors } from './_cors.js';
+
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+    setCors(req, res, 'GET,OPTIONS');
+    res.setHeader('Cache-Control', 's-maxage=900, stale-while-revalidate=3600');
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();

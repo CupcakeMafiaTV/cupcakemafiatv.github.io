@@ -1,3 +1,5 @@
+import { setCors } from './_cors.js';
+
 // search.list is capped at just 100 calls/day by YouTube (quota metric
 // 'Search Queries per day', separate from the general 10,000-unit budget).
 // CDN edge caching (Cache-Control: s-maxage) isn't a reliable enough gate for
@@ -44,8 +46,7 @@ async function checkYouTubeLive(apiKey, channelId) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  setCors(req, res, 'GET');
   // Belt-and-suspenders: still avoids a KV round trip for rapid repeat hits
   // to the same edge node, but the KV check below is the real quota gate.
   res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');

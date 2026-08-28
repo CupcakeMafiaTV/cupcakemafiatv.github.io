@@ -31,7 +31,7 @@
     "name": "Cody",
     "alternateName": "CupcakeMafiaTV",
     "url": "{{ .Site.BaseURL }}",
-    "image": "{{ "img/CodyWeirdAl.jpg" | absURL }}",
+    "image": "{{ "img/CodyWeirdAl.webp" | absURL }}",
     "jobTitle": "Twitch Streamer",
     "description": "{{ $description }}",
     "sameAs": [
@@ -306,6 +306,28 @@
           outline: 2px solid rgb(var(--color-accent));
           outline-offset: 3px;
           border-radius: 4px;
+      }
+
+      /* Skip-to-content link: offscreen until keyboard-focused, then
+         drops into view above the header so keyboard/screen-reader
+         users can bypass the nav and social icons. */
+      .skip-to-content-link {
+          position: absolute;
+          top: -100px;
+          left: 12px;
+          z-index: 100;
+          padding: 10px 18px;
+          background: #1a1128;
+          color: #ffffff;
+          font-weight: 700;
+          font-size: 14px;
+          border-radius: 0 0 8px 8px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          text-decoration: none !important;
+          transition: top 0.2s ease-in-out;
+      }
+      .skip-to-content-link:focus-visible {
+          top: 0;
       }
 
       /* Shared click-to-zoom lightbox (see partials/lightbox.html). Any page
