@@ -1,4 +1,14 @@
 import { setCors } from './_cors.js';
+import { getTwitchToken } from './_twitch-token.js';
+
+async function fetchFollowers(clientId, accessToken, broadcasterId) {
+  return fetch(`https://api.twitch.tv/helix/channels/followers?broadcaster_id=${broadcasterId}`, {
+    headers: {
+      'Client-ID': clientId,
+      'Authorization': `Bearer ${accessToken}`
+    }
+  });
+}
 
 export default async function handler(req, res) {
   setCors(req, res, 'GET');
@@ -13,23 +23,13 @@ export default async function handler(req, res) {
   }
 
   try {
-    const tokenRes = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&grant_type=client_credentials`, {
-      method: 'POST'
-    });
-    
-    const tokenData = await tokenRes.json();
-    const accessToken = tokenData.access_token;
+    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET);
+    let followersRes = await fetchFollowers(CLIENT_ID, accessToken, BROADCASTER_ID);
 
-    if (!accessToken) {
-      return res.status(500).json({ error: 'Failed to authenticate with Twitch API', details: tokenData });
+    if (followersRes.status === 401) {
+      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true);
+      followersRes = await fetchFollowers(CLIENT_ID, accessToken, BROADCASTER_ID);
     }
-
-    const followersRes = await fetch(`https://api.twitch.tv/helix/channels/followers?broadcaster_id=${BROADCASTER_ID}`, {
-      headers: {
-        'Client-ID': CLIENT_ID,
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
 
     const followersData = await followersRes.json();
     const followerCount = followersData.total || 0;

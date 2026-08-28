@@ -1,4 +1,22 @@
 import { setCors } from './_cors.js';
+import { getTwitchToken } from './_twitch-token.js';
+
+// League of Legends' Twitch game ID. The clips endpoint doesn't support
+// filtering by broadcaster_id and game_id at the same time, so we filter
+// client-side after fetching.
+const LEAGUE_OF_LEGENDS_GAME_ID = '21779';
+
+async function fetchClips(clientId, accessToken, broadcasterId, startedAt, endedAt) {
+  return fetch(
+    `https://api.twitch.tv/helix/clips?broadcaster_id=${broadcasterId}&first=100&started_at=${startedAt}&ended_at=${endedAt}`,
+    {
+      headers: {
+        'Client-ID': clientId,
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }
+  );
+}
 
 export default async function handler(req, res) {
   setCors(req, res, 'GET');
@@ -13,35 +31,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const tokenRes = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&grant_type=client_credentials`, {
-      method: 'POST'
-    });
-
-    const tokenData = await tokenRes.json();
-    const accessToken = tokenData.access_token;
-
-    if (!accessToken) {
-      return res.status(500).json({ error: 'Failed to authenticate with Twitch API', details: tokenData });
-    }
-
-    // League of Legends' Twitch game ID. The clips endpoint doesn't support
-    // filtering by broadcaster_id and game_id at the same time, so we filter
-    // client-side after fetching.
-    const LEAGUE_OF_LEGENDS_GAME_ID = '21779';
-
     const now = new Date();
     const ninetyDaysAgo = new Date();
     ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
 
-    const clipsRes = await fetch(
-      `https://api.twitch.tv/helix/clips?broadcaster_id=${BROADCASTER_ID}&first=100&started_at=${ninetyDaysAgo.toISOString()}&ended_at=${now.toISOString()}`,
-      {
-        headers: {
-          'Client-ID': CLIENT_ID,
-          'Authorization': `Bearer ${accessToken}`
-        }
-      }
-    );
+    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET);
+    let clipsRes = await fetchClips(CLIENT_ID, accessToken, BROADCASTER_ID, ninetyDaysAgo.toISOString(), now.toISOString());
+
+    if (clipsRes.status === 401) {
+      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true);
+      clipsRes = await fetchClips(CLIENT_ID, accessToken, BROADCASTER_ID, ninetyDaysAgo.toISOString(), now.toISOString());
+    }
 
     const clipsData = await clipsRes.json();
     const clips = clipsData.data || [];

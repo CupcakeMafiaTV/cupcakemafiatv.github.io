@@ -11,6 +11,7 @@
     menuToggle.onclick = () => {
       menuToggle.classList.toggle('active');
       const isOpen = menuToggle.classList.contains('active');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
       if (siteWrapper) siteWrapper.classList.toggle('overflow-y-hidden', isOpen);
       if (iconOpen) iconOpen.classList.toggle('hidden', isOpen);
       if (iconClose) iconClose.classList.toggle('hidden', !isOpen);

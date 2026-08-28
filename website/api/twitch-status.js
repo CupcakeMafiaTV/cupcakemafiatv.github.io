@@ -1,4 +1,14 @@
 import { setCors } from './_cors.js';
+import { getTwitchToken } from './_twitch-token.js';
+
+async function fetchStream(clientId, accessToken, broadcasterId) {
+  return fetch(`https://api.twitch.tv/helix/streams?user_id=${broadcasterId}`, {
+    headers: {
+      'Client-ID': clientId,
+      'Authorization': `Bearer ${accessToken}`
+    }
+  });
+}
 
 export default async function handler(req, res) {
   setCors(req, res, 'GET');
@@ -13,23 +23,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    const tokenRes = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&grant_type=client_credentials`, {
-      method: 'POST'
-    });
+    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET);
+    let streamRes = await fetchStream(CLIENT_ID, accessToken, BROADCASTER_ID);
 
-    const tokenData = await tokenRes.json();
-    const accessToken = tokenData.access_token;
-
-    if (!accessToken) {
-      return res.status(500).json({ isLive: false, error: 'Failed to authenticate with Twitch API', details: tokenData });
+    if (streamRes.status === 401) {
+      // Cached token was revoked/stale: get a fresh one and retry once.
+      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true);
+      streamRes = await fetchStream(CLIENT_ID, accessToken, BROADCASTER_ID);
     }
-
-    const streamRes = await fetch(`https://api.twitch.tv/helix/streams?user_id=${BROADCASTER_ID}`, {
-      headers: {
-        'Client-ID': CLIENT_ID,
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
 
     const streamData = await streamRes.json();
     const stream = streamData.data && streamData.data[0];
