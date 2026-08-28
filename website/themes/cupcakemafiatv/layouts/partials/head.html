@@ -107,6 +107,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
 
+  <!-- Every page fetches live stats (followers, live status, etc.) from the
+       Vercel API on load; preconnecting saves a DNS+TLS round trip on that
+       first request. -->
+  <link rel="preconnect" href="https://cupcakemafiatv-github-io.vercel.app">
+
   <!-- Vendor CSS -->
   <link href="/common/glightbox/css/glightbox.min.css" rel="stylesheet">
 

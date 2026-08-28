@@ -540,12 +540,17 @@
     document.fonts.ready.then(syncMafiaBoxWidth);
   }
 
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
   function generateMafiaName() {
     const nameInput = document.getElementById('userInputName').value.trim();
     if (!nameInput) return;
 
     const lower = nameInput.toLowerCase();
     const formattedName = nameInput.charAt(0).toUpperCase() + nameInput.slice(1).toLowerCase();
+    const formattedNameHTML = escapeHtml(formattedName);
     let resultHTML, resultKey, resultPlain;
 
     if (lower === 'daggy' || lower === 'daggy3d') {
@@ -605,8 +610,8 @@
       } while (resultKey === lastMafiaResultKey);
 
       resultHTML = usePrefix
-        ? `<span class="text-accent">"${pick}"</span> ${formattedName}`
-        : `${formattedName} <span class="text-accent">"${pick}"</span>`;
+        ? `<span class="text-accent">"${pick}"</span> ${formattedNameHTML}`
+        : `${formattedNameHTML} <span class="text-accent">"${pick}"</span>`;
       resultPlain = usePrefix ? `"${pick}" ${formattedName}` : `${formattedName} "${pick}"`;
     }
 

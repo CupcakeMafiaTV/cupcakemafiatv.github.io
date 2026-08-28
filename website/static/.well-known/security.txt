@@ -1,0 +1,4 @@
+Contact: mailto:cody.vriends@gmail.com
+Expires: 2027-08-28T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://cupcakemafiatv.com/.well-known/security.txt
