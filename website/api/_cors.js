@@ -5,6 +5,8 @@
 // Vercel, so this can be imported by the sibling handler files.
 const ALLOWED_ORIGINS = [
   'https://cupcakemafiatv.com',
+  'https://www.cupcakemafiatv.com',
+  'https://cupcakemafiatv.github.io',
   'http://localhost:1313',
 ];
 
