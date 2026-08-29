@@ -219,12 +219,10 @@
         if (lurkEmote) lurkEmote.style.display = twitchIsLive ? 'none' : 'inline-block';
         if (homeBadge) {
           if (twitchIsLive) {
-            homeBadge.classList.remove('hidden', 'bg-gray-900', 'text-gray-400');
+            homeBadge.classList.remove('hidden');
             homeBadge.style.display = 'flex';
-            homeBadge.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-            homeBadge.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-            homeBadge.style.color = '#f87171';
-            homeBadge.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:9999px;background:#ef4444;animation:homeLivePulse 2s infinite;"></span> Live' + (twitchData.viewerCount ? ` · ${Number(twitchData.viewerCount).toLocaleString()} viewers` : '');
+            const homeBadgeLabel = homeBadge.querySelector('span:last-child');
+            if (homeBadgeLabel) homeBadgeLabel.textContent = 'Live Now' + (twitchData.viewerCount ? ` · ${Number(twitchData.viewerCount).toLocaleString()} viewers` : '');
             if (twitchData.title && homeTitleEl) {
               homeTitleEl.innerText = twitchData.title;
               homeTitleEl.classList.remove('hidden');

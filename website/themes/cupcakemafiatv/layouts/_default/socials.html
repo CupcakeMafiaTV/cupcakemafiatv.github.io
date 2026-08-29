@@ -4,6 +4,9 @@
     /* Social links use the shared .brand-card component (see head.html);
        sized up a bit from the shared default so the text reads at the
        same weight as the rest of the site's sub-pages. */
+    .social-grid .brand-card {
+        border-width: 3px;
+    }
     .social-grid .brand-card-icon {
         width: 46px;
         height: 46px;
@@ -21,7 +24,7 @@
         position: relative;
         overflow: hidden;
         border-radius: 12px;
-        border: 2px solid rgb(var(--color-gold) / 0.7);
+        border: 3px solid rgb(var(--color-gold) / 0.7);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         background: rgba(31, 41, 55, 0.5);
         box-sizing: border-box;
@@ -62,7 +65,7 @@
         overflow: hidden;
         border-radius: 12px;
         cursor: pointer;
-        border: 2px solid rgb(var(--color-gold) / 0.7);
+        border: 3px solid rgb(var(--color-gold) / 0.7);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         background: rgba(31, 41, 55, 0.5);
         box-sizing: border-box;
@@ -158,9 +161,9 @@
             <!-- Stacked Media Column -->
             <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px;">
 
-                <!-- Image 2 (Shifted to the right by changing 20% to 80%) -->
+                <!-- Image 1: real setup photo -->
                 <div class="img-container" style="display: flex;" onclick="openModal(this.querySelector('img').src)">
-                    <img src="/img/League.jpg" alt="CupcakeMafiaTV League of Legends artwork" style="object-position: 80% center;">
+                    <img src="/img/CodySetup.webp" alt="CupcakeMafiaTV at his streaming setup" style="object-position: center;">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 

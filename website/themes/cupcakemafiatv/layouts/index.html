@@ -14,8 +14,26 @@
     50% { box-shadow: 0 0 20px rgb(var(--color-gold) / 0.9); }
   }
   .schedule-day-today {
-    border: 2px solid #22c55e !important;
+    border: 4px solid #22c55e !important;
     animation: scheduleTodayPulse 2s ease-in-out infinite;
+  }
+  .watch-live-split {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .watch-live-video, .watch-live-chat {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 3px solid rgb(var(--color-gold) / 0.7);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  }
+  .watch-live-video { width: 100%; }
+  .watch-live-chat { width: 100%; height: 420px; }
+  @media (min-width: 992px) {
+    .watch-live-split { flex-direction: row; }
+    .watch-live-video { width: 70%; }
+    .watch-live-chat { width: 30%; height: auto; }
   }
   .hero-btn-twitch { background-color: #9146FF; }
   .hero-btn-twitch:hover { background-color: #7c3aed; }
@@ -309,35 +327,35 @@
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">All times listed in Eastern Standard Time (EST).</p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
-          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="1" style="border: 1px solid rgb(var(--color-gold) / 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="1" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-2">Monday</div>
             <div class="text-sm font-bold text-white mb-2">Solo Queue</div>
             <div class="text-sm text-gold font-bold">7PM EST</div>
           </div>
-          <div class="schedule-day rounded-2xl bg-gray-900/40 shadow-2xl p-4 text-center transition-all duration-300" data-day="2" style="border: 1px solid rgba(239, 68, 68, 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/40 shadow-2xl p-4 text-center transition-all duration-300" data-day="2" style="border: 3px solid rgba(239, 68, 68, 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">Tuesday</div>
             <div class="text-sm font-bold mb-2" style="color: #f87171;">Day Off</div>
           </div>
-          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="3" style="border: 1px solid rgb(var(--color-gold) / 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="3" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-2">Wednesday</div>
             <div class="text-sm font-bold text-white mb-2">Solo Queue</div>
             <div class="text-sm text-gold font-bold">7PM EST</div>
           </div>
-          <div class="schedule-day rounded-2xl bg-gray-900/40 shadow-2xl p-4 text-center transition-all duration-300" data-day="4" style="border: 1px solid rgba(239, 68, 68, 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/40 shadow-2xl p-4 text-center transition-all duration-300" data-day="4" style="border: 3px solid rgba(239, 68, 68, 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">Thursday</div>
             <div class="text-sm font-bold mb-2" style="color: #f87171;">Day Off</div>
           </div>
-          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="5" style="border: 1px solid rgb(var(--color-gold) / 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="5" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-2">Friday</div>
             <div class="text-sm font-bold text-white mb-2">Solo Queue</div>
             <div class="text-sm text-gold font-bold">7PM EST</div>
           </div>
-          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="6" style="border: 1px solid rgb(var(--color-gold) / 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="6" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-2">Saturday</div>
             <div class="text-sm font-bold text-white mb-2" style="white-space: nowrap;">Community Night</div>
             <div class="text-sm text-gold font-bold">7PM EST</div>
           </div>
-          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="0" style="border: 1px solid rgb(var(--color-gold) / 0.4);">
+          <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="0" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-2">Sunday</div>
             <div class="text-sm font-bold text-white mb-2" style="white-space: nowrap;">Community Night</div>
             <div class="text-sm text-gold font-bold">7PM EST</div>
@@ -349,18 +367,22 @@
     <!-- Watch Live Section -->
     <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
+        <div id="home-twitch-badge" class="hidden items-center justify-center gap-2 mb-2">
+          <span style="width: 12px; height: 12px; border-radius: 9999px; background: #ef4444; animation: homeLivePulse 2s infinite; display: inline-block;"></span>
+          <span class="text-lg sm:text-xl font-black uppercase" style="color: #ef4444; letter-spacing: 0.05em;">Live Now</span>
+        </div>
         <div class="mb-3 flex items-center justify-center gap-3">
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
-          <div id="home-twitch-badge" class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-gray-900 text-xs font-semibold text-gray-400" style="border: 1px solid rgba(255,255,255,0.15);">
-            <span class="w-2 h-2 rounded-full bg-gray-500"></span> Offline
-          </div>
           <img id="lurk-emote" src="/img/emotes/Lurk.gif" alt="" class="h-10 w-10" loading="lazy">
         </div>
         <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch all the action live on Twitch!</p>
         <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
-        <div class="rounded-xl shadow-2xl" style="border: 2px solid rgb(var(--color-gold) / 0.7);">
-          <div id="watch-live-media" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black">
+        <div class="watch-live-split">
+          <div id="watch-live-media" class="watch-live-video relative aspect-video bg-black">
             <iframe id="twitch-live-iframe" src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
+          </div>
+          <div class="watch-live-chat" style="background-color: #18181b;">
+            <iframe src="https://www.twitch.tv/embed/cupcakemafiatv/chat?parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&darkpopout" frameborder="0" scrolling="no" loading="lazy" class="w-full h-full"></iframe>
           </div>
         </div>
       </div>
@@ -377,7 +399,7 @@
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Latest uploads, stream replays, and VODs — all in one place.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 2px solid rgb(var(--color-gold) / 0.7);">
+          <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 3px solid rgb(var(--color-gold) / 0.7);">
             <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
               <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
@@ -393,7 +415,7 @@
             <div id="home-hero-title" class="mt-2 text-center text-base font-bold text-white leading-snug">Loading...</div>
           </div>
 
-          <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 2px solid rgb(var(--color-gold) / 0.7);">
+          <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 3px solid rgb(var(--color-gold) / 0.7);">
             <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
               <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover" loading="lazy">
               <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
@@ -422,7 +444,7 @@
           </div>
           <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia — follow along as I climb the ladder!</p>
         </div>
-        <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative" style="border: 2px solid rgb(var(--color-gold) / 0.7);">
+        <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative" style="border: 3px solid rgb(var(--color-gold) / 0.7);">
           <div id="lol-live-badge" class="hidden" style="display: none; align-items: center; justify-content: center; gap: 6px; margin: 0 auto 16px auto; width: fit-content; padding: 4px 12px; border-radius: 9999px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.025em;">
             <span style="display: inline-block; width: 8px; height: 8px; border-radius: 9999px; background: #ef4444; animation: homeLivePulse 2s infinite;"></span> In a Ranked Game
           </div>
@@ -453,7 +475,7 @@
             <img src="/img/SideCupcake1.png" alt="Play Dodge the Toxic Teammates" class="side-cupcake-decor" loading="lazy">
           </a>
 
-          <div id="mafiaGenBox" class="w-full" style="max-width: 470px; padding: 18px; border: 2px solid rgb(var(--color-gold) / 0.7); border-radius: 1rem; background-color: rgba(17, 24, 39, 0.6); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
+          <div id="mafiaGenBox" class="w-full" style="max-width: 470px; padding: 18px; border: 3px solid rgb(var(--color-gold) / 0.7); border-radius: 1rem; background-color: rgba(17, 24, 39, 0.6); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);">
             <div class="mb-4 text-center">
               <label for="userInputName" class="text-xl font-bold text-white leading-none">What's Your Mafia Name?</label>
             </div>
