@@ -10,6 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping clip checker endpoint
-        env:
-          CRON_SECRET: ${{ secrets.CRON_SECRET }}
-        run: curl -sf -H "Authorization: Bearer $CRON_SECRET" https://cupcakemafiatv-github-io.vercel.app/api/post-new-clip
+        run: curl -sf https://cupcakemafiatv-github-io.vercel.app/api/post-new-clip

@@ -75,13 +75,11 @@ async function postToDiscord(webhookUrl, clip) {
 }
 
 export default async function handler(req, res) {
-  if (process.env.CRON_SECRET) {
-    const authHeader = req.headers.authorization;
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-  }
-
+  // Deliberately not gated behind CRON_SECRET: poll-clips.yml pings this
+  // endpoint every 30 minutes via plain curl (no secret) to work around
+  // Vercel Hobby-tier cron's unreliable timing, and repeat/unauthenticated
+  // calls are harmless -- the KV dedup state below means an extra call can
+  // never cause a duplicate Discord post, just a wasted Twitch API call.
   const CLIENT_ID = process.env.TWITCH_CLIENT_ID;
   const CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
   const BROADCASTER_ID = process.env.TWITCH_BROADCASTER_ID;
