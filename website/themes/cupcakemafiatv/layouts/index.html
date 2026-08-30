@@ -592,32 +592,23 @@
       resultKey = 'The CCM46';
       resultHTML = '<span class="text-accent">"The CCM46"</span>';
       resultPlain = '"The CCM46"';
-      if (!mafiaJinglePlayed) {
-        mafiaJinglePlayed = true;
-        const jingle = new Audio('/audio/mamma-mia.mp3');
-        jingle.volume = 0.5;
-        jingle.play().catch(() => {});
-      }
+      const ccmAudio = new Audio('/audio/ccm.mp3');
+      ccmAudio.volume = 0.5;
+      ccmAudio.play().catch(() => {});
     } else if (lower === 'doomreaper115' || lower === 'doomreaper') {
       resultKey = 'The Doom';
       resultHTML = '<span class="text-accent">"The Doom"</span>';
       resultPlain = '"The Doom"';
-      if (!mafiaJinglePlayed) {
-        mafiaJinglePlayed = true;
-        const jingle = new Audio('/audio/mamma-mia.mp3');
-        jingle.volume = 0.5;
-        jingle.play().catch(() => {});
-      }
+      const doomAudio = new Audio('/audio/the-doom.mp3');
+      doomAudio.volume = 0.5;
+      doomAudio.play().catch(() => {});
     } else if (lower === 'redphoenixcasts' || lower === 'redphoenix') {
       resultKey = 'Awkward_Fart.wav';
       resultHTML = '<span class="text-accent">"Awkward_Fart.wav"</span>';
       resultPlain = '"Awkward_Fart.wav"';
-      if (!mafiaJinglePlayed) {
-        mafiaJinglePlayed = true;
-        const jingle = new Audio('/audio/mamma-mia.mp3');
-        jingle.volume = 0.5;
-        jingle.play().catch(() => {});
-      }
+      const fartAudio = new Audio('/audio/fart.mp3');
+      fartAudio.volume = 0.5;
+      fartAudio.play().catch(() => {});
     } else {
       if (!mafiaJinglePlayed) {
         mafiaJinglePlayed = true;
