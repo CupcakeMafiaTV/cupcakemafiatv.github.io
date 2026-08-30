@@ -44,6 +44,13 @@
     requestAnimationFrame(step);
   };
 
+  // Compact number formatting (850K, 1.2M) for stats shown inline in tight
+  // spaces, e.g. the "Subscribers · X Views" card subtitle, where a full
+  // comma-separated number would overflow the single-line text.
+  window.cmtvFormatCompact = function (n) {
+    return new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+  };
+
   // Small DOM-based confetti burst (no external library) fired from a
   // given element's center — used by the Mafia Name Generator.
   window.cmtvConfetti = function (originEl) {
@@ -104,9 +111,12 @@
       }
       if (data.subscriberCount) localStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
 
+      // Lifetime views is shown compact (850K, 1.2M) rather than count-up
+      // animated, to match the "media kit" style number creators quote
+      // rather than a long comma-separated figure.
       const viewElement = document.getElementById('youtube-view-count');
       if (viewElement && data.viewCount) {
-        window.cmtvCountUp(viewElement, Number(data.viewCount));
+        viewElement.textContent = window.cmtvFormatCompact(Number(data.viewCount));
       }
       if (data.viewCount) localStorage.setItem('cmtv_youtube_views', data.viewCount);
     })
@@ -118,7 +128,7 @@
 
       const viewElement = document.getElementById('youtube-view-count');
       const cachedViews = localStorage.getItem('cmtv_youtube_views');
-      if (viewElement && cachedViews) window.cmtvCountUp(viewElement, Number(cachedViews));
+      if (viewElement && cachedViews) viewElement.textContent = window.cmtvFormatCompact(Number(cachedViews));
     });
 
   // Fetch live Twitch follower count from Vercel API (same fallback pattern)

@@ -22,20 +22,28 @@
     .social-stat-grid .brand-card {
         flex-direction: column;
         text-align: center;
-        padding: 20px 12px;
+        padding: 16px 10px;
     }
     .social-stat-grid .brand-card-body { flex: none; width: 100%; }
+    .social-stat-grid .brand-card-title-lg { font-size: 2.1rem; line-height: 1.1; margin-bottom: 0; }
     .social-stat-grid .brand-card-subtitle { font-size: 16px; color: #cbd5e1; }
-    .social-stat-grid .brand-card-icon { width: 52px; height: 52px; font-size: 24px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
+    .social-stat-grid .brand-card-icon { width: 56px; height: 56px; font-size: 26px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
 
-    /* Secondary stat line under a card's main title/subtitle pair, e.g.
-       lifetime YouTube views under the subscriber count. */
-    .brand-card-substat {
-        font-size: 11px;
-        font-weight: 600;
-        color: rgb(var(--color-gold) / 0.85);
-        margin-top: 6px;
+    /* YouTube card flips from Subscribers to Total Views on hover: both
+       faces are the same size/weight as every other card's stat, stacked
+       on top of each other so the card never changes height or size. */
+    .yt-flip-body { position: relative; }
+    .yt-flip-face { transition: opacity 0.2s ease; }
+    .yt-flip-views {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
     }
+    .yt-flip-card:hover .yt-flip-subs { opacity: 0; }
+    .yt-flip-card:hover .yt-flip-views { opacity: 1; }
 
     /* Same hover/click feel as the shared .brand-card component elsewhere
        on the site: lift + crisper shadow on hover, icon bounces. */
@@ -85,12 +93,17 @@
                             <div class="brand-card-subtitle">Followers</div>
                         </div>
                     </a>
-                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 3px; border-color: rgba(255, 0, 0, 0.5); box-shadow: 0 0 18px rgba(255, 0, 0, 0.35);">
+                    <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card yt-flip-card" style="border-width: 3px; border-color: rgba(255, 0, 0, 0.5); box-shadow: 0 0 18px rgba(255, 0, 0, 0.35);">
                         <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #FF0000;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></div>
-                        <div class="brand-card-body">
-                            <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
-                            <div class="brand-card-subtitle">Subscribers</div>
-                            <div class="brand-card-substat"><span id="youtube-view-count"><span class="stat-skeleton"></span></span> lifetime views</div>
+                        <div class="brand-card-body yt-flip-body">
+                            <div class="yt-flip-face yt-flip-subs">
+                                <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
+                                <div class="brand-card-subtitle">Subscribers</div>
+                            </div>
+                            <div class="yt-flip-face yt-flip-views">
+                                <div id="youtube-view-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
+                                <div class="brand-card-subtitle">Total Views</div>
+                            </div>
                         </div>
                     </a>
                     <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 3px; border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);">
