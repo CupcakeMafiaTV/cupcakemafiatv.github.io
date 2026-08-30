@@ -28,6 +28,15 @@
     .social-stat-grid .brand-card-subtitle { font-size: 16px; color: #cbd5e1; }
     .social-stat-grid .brand-card-icon { width: 52px; height: 52px; font-size: 24px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
 
+    /* Secondary stat line under a card's main title/subtitle pair, e.g.
+       lifetime YouTube views under the subscriber count. */
+    .brand-card-substat {
+        font-size: 11px;
+        font-weight: 600;
+        color: rgb(var(--color-gold) / 0.85);
+        margin-top: 6px;
+    }
+
     /* Same hover/click feel as the shared .brand-card component elsewhere
        on the site: lift + crisper shadow on hover, icon bounces. */
     .wwm-get-grid > div {
@@ -81,6 +90,7 @@
                         <div class="brand-card-body">
                             <div id="youtube-sub-count" class="brand-card-title brand-card-title-lg"><span class="stat-skeleton"></span></div>
                             <div class="brand-card-subtitle">Subscribers</div>
+                            <div class="brand-card-substat"><span id="youtube-view-count"><span class="stat-skeleton"></span></span> lifetime views</div>
                         </div>
                     </a>
                     <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-width: 3px; border-color: rgba(255, 255, 255, 0.45); box-shadow: 0 0 18px rgba(255, 255, 255, 0.25);">

@@ -23,7 +23,8 @@ export default async function handler(req, res) {
 
     if (data.items && data.items.length > 0) {
       const subscriberCount = data.items[0].statistics.subscriberCount;
-      return res.status(200).json({ subscriberCount });
+      const viewCount = data.items[0].statistics.viewCount;
+      return res.status(200).json({ subscriberCount, viewCount });
     } else {
       return res.status(404).json({ error: 'Channel not found' });
     }
