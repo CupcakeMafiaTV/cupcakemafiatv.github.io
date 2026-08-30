@@ -324,7 +324,7 @@
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Stream Schedule</h2>
             <img src="/img/emotes/POG.gif" alt="" class="h-10 w-10" loading="lazy">
           </div>
-          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">All times listed in Eastern Standard Time (EST).</p>
+          <p class="text-gray-300 mt-2 max-w-2xl mx-auto">All times listed in Eastern Standard Time (EST).</p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
           <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="1" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
@@ -367,7 +367,7 @@
     <!-- Watch Live Section -->
     <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
-        <div id="home-twitch-badge" class="hidden items-center justify-center gap-2 mb-2">
+        <div id="home-twitch-badge" class="hidden items-center justify-center gap-2 mb-3">
           <span style="width: 12px; height: 12px; border-radius: 9999px; background: #ef4444; animation: homeLivePulse 2s infinite; display: inline-block;"></span>
           <span class="text-lg sm:text-xl font-black uppercase" style="color: #ef4444; letter-spacing: 0.05em;">Live Now</span>
         </div>
@@ -375,8 +375,7 @@
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
           <img id="lurk-emote" src="/img/emotes/Lurk.gif" alt="" class="h-10 w-10" loading="lazy">
         </div>
-        <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-center">Catch all the action live on Twitch!</p>
-        <p id="home-twitch-title" class="hidden -mt-6 mb-8 text-gray-300 text-center"></p>
+        <p class="text-gray-300 mb-3 max-w-2xl mx-auto text-center">Catch all the action live on Twitch!</p>
         <div class="watch-live-split">
           <div id="watch-live-media" class="watch-live-video relative aspect-video bg-black">
             <iframe id="twitch-live-iframe" src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
@@ -396,7 +395,7 @@
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl">Latest Content</h2>
             <img src="/img/emotes/Flex.gif" alt="" class="h-10 w-10" loading="lazy">
           </div>
-          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Latest uploads, stream replays, and VODs — all in one place.</p>
+          <p class="text-gray-300 mt-2 max-w-2xl mx-auto">Latest uploads, stream replays, and VODs — all in one place.</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 3px solid rgb(var(--color-gold) / 0.7);">
@@ -442,7 +441,7 @@
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Solo Queue Rank</h2>
             <img src="/img/emotes/Zoe.png" alt="" class="h-10 w-10" loading="lazy">
           </div>
-          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia — follow along as I climb the ladder!</p>
+          <p class="text-gray-300 mt-2 max-w-2xl mx-auto">Live ranked stats for CupcakeMafia — follow along as I climb the ladder!</p>
         </div>
         <div class="max-w-md mx-auto bg-gray-900/60 rounded-2xl shadow-2xl p-6 md:p-8 text-center relative" style="border: 3px solid rgb(var(--color-gold) / 0.7);">
           <div id="lol-live-badge" class="hidden" style="display: none; align-items: center; justify-content: center; gap: 6px; margin: 0 auto 16px auto; width: fit-content; padding: 4px 12px; border-radius: 9999px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.025em;">
@@ -465,7 +464,7 @@
             </h2>
             <img src="{{ "img/hype.gif" | relURL }}" alt="" class="h-10 w-10" loading="lazy">
           </div>
-          <p class="text-gray-300 mt-3 max-w-2xl mx-auto">
+          <p class="text-gray-300 mt-2 max-w-2xl mx-auto">
             Join the sweetest syndicate in town — enter your name to claim your mafia alias!
           </p>
         </div>
@@ -589,6 +588,36 @@
       const daggyAudio = new Audio(daggyClip);
       daggyAudio.volume = 0.5;
       daggyAudio.play().catch(() => {});
+    } else if (lower === 'ccm46' || lower === 'colonialcrazyman') {
+      resultKey = 'The CCM46';
+      resultHTML = '<span class="text-accent">"The CCM46"</span>';
+      resultPlain = '"The CCM46"';
+      if (!mafiaJinglePlayed) {
+        mafiaJinglePlayed = true;
+        const jingle = new Audio('/audio/mamma-mia.mp3');
+        jingle.volume = 0.5;
+        jingle.play().catch(() => {});
+      }
+    } else if (lower === 'doomreaper115' || lower === 'doomreaper') {
+      resultKey = 'The Doom';
+      resultHTML = '<span class="text-accent">"The Doom"</span>';
+      resultPlain = '"The Doom"';
+      if (!mafiaJinglePlayed) {
+        mafiaJinglePlayed = true;
+        const jingle = new Audio('/audio/mamma-mia.mp3');
+        jingle.volume = 0.5;
+        jingle.play().catch(() => {});
+      }
+    } else if (lower === 'redphoenixcasts' || lower === 'redphoenix') {
+      resultKey = 'Awkward_Fart.wav';
+      resultHTML = '<span class="text-accent">"Awkward_Fart.wav"</span>';
+      resultPlain = '"Awkward_Fart.wav"';
+      if (!mafiaJinglePlayed) {
+        mafiaJinglePlayed = true;
+        const jingle = new Audio('/audio/mamma-mia.mp3');
+        jingle.volume = 0.5;
+        jingle.play().catch(() => {});
+      }
     } else {
       if (!mafiaJinglePlayed) {
         mafiaJinglePlayed = true;

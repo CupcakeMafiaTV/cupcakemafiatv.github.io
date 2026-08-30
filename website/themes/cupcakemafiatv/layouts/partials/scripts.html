@@ -214,7 +214,6 @@
       if (!homeTwitchWidgetsLoaded && twitchRes.ok) {
         homeTwitchWidgetsLoaded = true;
         const homeBadge = document.getElementById('home-twitch-badge');
-        const homeTitleEl = document.getElementById('home-twitch-title');
         const lurkEmote = document.getElementById('lurk-emote');
         if (lurkEmote) lurkEmote.style.display = twitchIsLive ? 'none' : 'inline-block';
         if (homeBadge) {
@@ -223,13 +222,8 @@
             homeBadge.style.display = 'flex';
             const homeBadgeLabel = homeBadge.querySelector('span:last-child');
             if (homeBadgeLabel) homeBadgeLabel.textContent = 'Live Now' + (twitchData.viewerCount ? ` · ${Number(twitchData.viewerCount).toLocaleString()} viewers` : '');
-            if (twitchData.title && homeTitleEl) {
-              homeTitleEl.innerText = twitchData.title;
-              homeTitleEl.classList.remove('hidden');
-            }
           } else {
             homeBadge.style.display = 'none';
-            if (homeTitleEl) homeTitleEl.classList.add('hidden');
             if (typeof loadTopClipForOffline === 'function') loadTopClipForOffline();
           }
         }
