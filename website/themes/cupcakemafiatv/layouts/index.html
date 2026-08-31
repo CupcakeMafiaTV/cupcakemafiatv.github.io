@@ -576,25 +576,48 @@
 
     if (lower === 'daggy' || lower === 'daggy3d') {
       const displayName = lower === 'daggy3d' ? 'Daggy3D' : 'Daggy';
+      const daggyOptions = ['Dirt Bike', 'Dirt Bag', "No Daggy's Club", 'Daggy'];
       let easterEgg;
       do {
-        easterEgg = Math.random() < 0.5 ? 'Dirt Bike' : 'Dirt Bag';
+        easterEgg = daggyOptions[Math.floor(Math.random() * daggyOptions.length)];
       } while (easterEgg === lastMafiaResultKey);
       resultKey = easterEgg;
-      resultHTML = `<span class="text-accent">"${easterEgg}"</span> ${displayName}`;
-      resultPlain = `"${easterEgg}" ${displayName}`;
 
-      const daggyClip = easterEgg === 'Dirt Bike' ? '/audio/dirt-bike-daggy.mp3' : '/audio/dirt-bag-daggy.mp3';
-      const daggyAudio = new Audio(daggyClip);
+      const daggyClips = {
+        'Dirt Bike': '/audio/dirt-bike-daggy.mp3',
+        'Dirt Bag': '/audio/dirt-bag-daggy.mp3',
+        "No Daggy's Club": '/audio/no-daggys.mp3',
+        'Daggy': '/audio/daggy.mp3'
+      };
+
+      if (easterEgg === "No Daggy's Club") {
+        resultHTML = `<span class="text-accent">"No Daggy's Club"</span>`;
+        resultPlain = `"No Daggy's Club"`;
+      } else if (easterEgg === 'Daggy') {
+        resultHTML = displayName;
+        resultPlain = displayName;
+      } else {
+        resultHTML = `<span class="text-accent">"${easterEgg}"</span> ${displayName}`;
+        resultPlain = `"${easterEgg}" ${displayName}`;
+      }
+
+      const daggyAudio = new Audio(daggyClips[easterEgg]);
       daggyAudio.volume = 0.5;
       daggyAudio.play().catch(() => {});
-    } else if (lower === 'ccm46' || lower === 'colonialcrazyman') {
-      resultKey = 'The CCM46';
-      resultHTML = '<span class="text-accent">"The CCM46"</span>';
-      resultPlain = '"The CCM46"';
-      const ccmAudio = new Audio('/audio/ccm.mp3');
-      ccmAudio.volume = 0.5;
-      ccmAudio.play().catch(() => {});
+    } else if (lower === 'swiftstrikemike') {
+      resultKey = 'The Only Galio';
+      resultHTML = '<span class="text-accent">"The Only Galio"</span>';
+      resultPlain = '"The Only Galio"';
+      const galioAudio = new Audio('/audio/galio.mp3');
+      galioAudio.volume = 0.5;
+      galioAudio.play().catch(() => {});
+    } else if (lower === 'eatherex') {
+      resultKey = 'Mr. Sexy Eath';
+      resultHTML = '<span class="text-accent">"Mr. Sexy Eath"</span>';
+      resultPlain = '"Mr. Sexy Eath"';
+      const eathAudio = new Audio('/audio/eath.mp3');
+      eathAudio.volume = 0.5;
+      eathAudio.play().catch(() => {});
     } else if (lower === 'doomreaper115' || lower === 'doomreaper') {
       resultKey = 'The Doom';
       resultHTML = '<span class="text-accent">"The Doom"</span>';
