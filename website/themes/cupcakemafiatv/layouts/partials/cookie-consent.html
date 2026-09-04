@@ -1,0 +1,25 @@
+<!-- Cookie-consent banner: gates Google Analytics behind an opt-in (see
+     cmtvLoadAnalytics() in head.html). Shown once, until a choice is made. -->
+<div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" hidden>
+    <p>This site uses Google Analytics to see how it's used. No personal info is collected. See the <a href="/privacy/">Privacy Policy</a>.</p>
+    <div class="cookie-consent-actions">
+        <button type="button" onclick="cmtvCookieConsent(false)">Decline</button>
+        <button type="button" class="cookie-consent-accept" onclick="cmtvCookieConsent(true)">Accept</button>
+    </div>
+</div>
+
+<script>
+    function cmtvCookieConsent(accepted) {
+        try {
+            localStorage.setItem('cmtv-cookie-consent', accepted ? 'accepted' : 'declined');
+        } catch (e) {}
+        if (accepted) cmtvLoadAnalytics();
+        document.getElementById('cookie-consent-banner').hidden = true;
+    }
+
+    (function () {
+        var consent = null;
+        try { consent = localStorage.getItem('cmtv-cookie-consent'); } catch (e) {}
+        if (!consent) document.getElementById('cookie-consent-banner').hidden = false;
+    })();
+</script>

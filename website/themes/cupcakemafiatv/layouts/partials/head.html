@@ -27,14 +27,28 @@
   ">
   <meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZSLEPQDX3"></script>
+  <!-- Google tag (gtag.js) -- only loaded after cookie-consent opt-in (see
+       partials/cookie-consent.html), not unconditionally on page load. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-ZZSLEPQDX3');
+    function cmtvLoadAnalytics() {
+      if (window.cmtvAnalyticsLoaded) return;
+      window.cmtvAnalyticsLoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZZSLEPQDX3';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-ZZSLEPQDX3');
+    }
+
+    try {
+      if (localStorage.getItem('cmtv-cookie-consent') === 'accepted') {
+        cmtvLoadAnalytics();
+      }
+    } catch (e) {}
   </script>
 
   <!-- Basic Page Needs -->
@@ -397,6 +411,62 @@
       }
       .skip-to-content-link:focus-visible {
           top: 0;
+      }
+
+      /* Cookie-consent banner (see partials/cookie-consent.html). Analytics
+         (Google Analytics) only loads after the visitor accepts here --
+         see cmtvLoadAnalytics() above. */
+      #cookie-consent-banner {
+          position: fixed;
+          left: 12px;
+          right: 12px;
+          bottom: 12px;
+          z-index: 90;
+          max-width: 560px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 12px;
+          padding: 16px 18px;
+          border-radius: 14px;
+          background: #1a1128;
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
+          color: #ffffff;
+      }
+      #cookie-consent-banner p {
+          flex: 1 1 260px;
+          margin: 0;
+          font-size: 13px;
+          line-height: 1.5;
+          color: #cbd5e1;
+      }
+      #cookie-consent-banner a {
+          color: rgb(var(--color-gold));
+          text-decoration: underline;
+          text-underline-offset: 2px;
+      }
+      #cookie-consent-banner .cookie-consent-actions {
+          display: flex;
+          gap: 8px;
+          flex-shrink: 0;
+          margin-left: auto;
+      }
+      #cookie-consent-banner button {
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-size: 13px;
+          font-weight: 700;
+          cursor: pointer;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          background: transparent;
+          color: #ffffff;
+      }
+      #cookie-consent-banner button.cookie-consent-accept {
+          border-color: transparent;
+          background: rgb(var(--color-gold));
+          color: #1a1128;
       }
 
       /* Shared click-to-zoom lightbox (see partials/lightbox.html). Any page
