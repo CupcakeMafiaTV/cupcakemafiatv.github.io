@@ -54,7 +54,7 @@
   {{ $ogImage := "img/og-image.jpg" }}
   {{ if .File }}
     {{ $slug := .File.ContentBaseName }}
-    {{ if in (slice "about" "pc-specs" "work-with-me" "charity" "socials") $slug }}
+    {{ if in (slice "about" "pc-specs" "work-with-me" "charity" "socials" "dodge") $slug }}
       {{ $ogImage = printf "img/og-image-%s.jpg" $slug }}
     {{ end }}
   {{ end }}
