@@ -435,6 +435,14 @@
           box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5);
           color: #ffffff;
       }
+      /* The banner's own `display: flex` above (an ID selector) beats the
+         browser's built-in `[hidden] { display: none }` (an attribute
+         selector, lower specificity), so without this the JS-managed
+         `hidden` attribute never actually hides it. This ID+attribute
+         selector out-specifies the base rule to fix that. */
+      #cookie-consent-banner[hidden] {
+          display: none;
+      }
       #cookie-consent-banner p {
           flex: 1 1 260px;
           margin: 0;
