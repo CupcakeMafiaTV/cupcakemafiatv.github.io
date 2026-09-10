@@ -117,6 +117,24 @@
 
   .hero-center-zone { position: relative; z-index: 10; padding: 0 20px; }
 
+  .hero-brand-watermark {
+    display: none;
+    position: absolute;
+    top: 50%;
+    /* Pushed further left than a strict photo-panel mirror so it clears the
+       centered headline/subtext instead of sitting under it. */
+    right: 73%;
+    width: 200px;
+    height: auto;
+    transform: translateY(-50%);
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: -1;
+    filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
+  }
+  @media (min-width: 768px) { .hero-brand-watermark { display: block; } }
+  @media (min-width: 1024px) { .hero-brand-watermark { width: 260px; } }
+
   .hero-actions {
     margin-top: 1.1rem;
     display: flex;
@@ -267,6 +285,7 @@
     </div>
 
     <div class="hero-center-zone">
+      <img src="/img/emotes/HeroMascot.webp" alt="" aria-hidden="true" width="640" height="640" class="hero-brand-watermark">
       <div class="hero-text-col">
         <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="hero-mobile-avatar mx-auto mb-5 w-24 h-24 rounded-full object-cover shadow-2xl" style="object-position: 50% 18%; border: 3px solid rgb(var(--color-accent) / 0.6);" fetchpriority="high">
         <h1 class="text-4xl font-black tracking-tighter text-white leading-none sm:text-5xl md:text-6xl lg:text-[64px]">
