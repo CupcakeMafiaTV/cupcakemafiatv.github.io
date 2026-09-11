@@ -64,7 +64,7 @@
   <link rel="canonical" href="{{ .Permalink }}">
 
   <!-- Per-page share image: pages with their own labeled variant get it,
-       everything else (home, privacy, dodge) falls back to the plain one. -->
+       everything else (home, privacy) falls back to the plain one. -->
   {{ $ogImage := "img/og-image.jpg" }}
   {{ if .File }}
     {{ $slug := .File.ContentBaseName }}

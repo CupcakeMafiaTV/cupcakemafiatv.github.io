@@ -165,14 +165,19 @@ async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label
     return { posted: 0 };
   }
 
+  const postedIds = [];
   for (const item of newItems) {
     await postToDiscord(webhookUrl, item, { emoji, label, color });
     state.lastId = item.id;
     state.lastPublishedAt = item.publishedAt;
+    // Persist after each successful post (not once at the end) so a later
+    // item failing (Discord rate-limit, transient 5xx) doesn't leave earlier,
+    // already-posted items unrecorded and get them reposted next run.
+    await kvSet(stateKey, state);
+    postedIds.push(item.id);
   }
-  await kvSet(stateKey, state);
 
-  return { posted: newItems.length, ids: newItems.map((v) => v.id) };
+  return { posted: postedIds.length, ids: postedIds };
 }
 
 export default async function handler(req, res) {
