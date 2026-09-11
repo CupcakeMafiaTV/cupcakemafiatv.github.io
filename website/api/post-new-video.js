@@ -1,10 +1,12 @@
 // Runs on a daily Vercel Cron schedule (see vercel.json). Checks for a new
-// long-form video AND a new VOD upload in the same run (folded together so
-// the free Vercel plan's cron-job cap isn't a factor) and posts each to its
-// own Discord channel via its own webhook. Shorts are excluded from the main
-// channel using YouTube's Shorts duration cutoff (<=180s). Dedup state (the
-// last item posted, per feed) is kept in Upstash Redis so nothing is ever
-// posted twice, even if the check runs again before the next upload.
+// long-form video/Short AND a new VOD upload in the same run (folded together
+// so the free Vercel plan's cron-job cap isn't a factor) and posts each to
+// its own Discord channel via its own webhook. Long-form videos and Shorts
+// share the main channel/webhook and a single dedup timeline, but are tagged
+// separately (YouTube's Shorts duration cutoff, <=180s) so each gets its own
+// emoji/label in the post. Dedup state (the last item posted, per feed) is
+// kept in Upstash Redis so nothing is ever posted twice, even if the check
+// runs again before the next upload.
 //
 // Vercel Cron only supports fixed UTC schedules, but we want this to fire at
 // true 8PM AND 10PM US Eastern time regardless of Daylight Saving (two passes
@@ -61,7 +63,7 @@ async function kvSet(key, value) {
   });
 }
 
-async function fetchRecentLongFormVideos(apiKey, channelId) {
+async function fetchRecentVideos(apiKey, channelId) {
   const channelRes = await fetch(
     `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`
   );
@@ -81,17 +83,16 @@ async function fetchRecentLongFormVideos(apiKey, channelId) {
   );
   const detailsData = await detailsRes.json();
 
-  return (detailsData.items || [])
-    .filter((video) => parseDurationSeconds(video.contentDetails.duration) > SHORTS_MAX_SECONDS)
-    .map((video) => ({
-      id: video.id,
-      title: video.snippet.title,
-      publishedAt: video.snippet.publishedAt,
-      thumbnail:
-        video.snippet.thumbnails.maxres?.url ||
-        video.snippet.thumbnails.high?.url ||
-        video.snippet.thumbnails.medium.url,
-    }));
+  return (detailsData.items || []).map((video) => ({
+    id: video.id,
+    title: video.snippet.title,
+    publishedAt: video.snippet.publishedAt,
+    isShort: parseDurationSeconds(video.contentDetails.duration) <= SHORTS_MAX_SECONDS,
+    thumbnail:
+      video.snippet.thumbnails.maxres?.url ||
+      video.snippet.thumbnails.high?.url ||
+      video.snippet.thumbnails.medium.url,
+  }));
 }
 
 async function fetchRecentVods(apiKey) {
@@ -119,6 +120,10 @@ async function fetchRecentVods(apiKey) {
 }
 
 async function postToDiscord(webhookUrl, item, { emoji, label, color }) {
+  if (item.isShort) {
+    emoji = '⚡';
+    label = 'New Short is up!';
+  }
   const res = await fetch(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -199,7 +204,7 @@ export default async function handler(req, res) {
   try {
     results.video = await checkAndPostFeed({
       stateKey: STATE_KEY,
-      fetchItems: () => fetchRecentLongFormVideos(API_KEY, CHANNEL_ID),
+      fetchItems: () => fetchRecentVideos(API_KEY, CHANNEL_ID),
       webhookUrl: WEBHOOK_URL,
       emoji: '🎬',
       label: 'New video is up!',
