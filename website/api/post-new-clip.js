@@ -3,6 +3,8 @@
 // webhook. Dedup state (the last clip seen) is kept in Upstash Redis so the
 // same clip is never posted twice.
 
+import { getTwitchToken } from './_twitch-token.js';
+
 const ACCENT_COLOR = 0x654cff;
 const STATE_KEY = 'last-posted-clip';
 
@@ -25,20 +27,8 @@ async function kvSet(key, value) {
   });
 }
 
-async function getAccessToken(clientId, clientSecret) {
-  const tokenRes = await fetch(
-    `https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
-    { method: 'POST' }
-  );
-  const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) {
-    throw new Error(`Failed to authenticate with Twitch API: ${JSON.stringify(tokenData)}`);
-  }
-  return tokenData.access_token;
-}
-
 async function fetchClipsSince(clientId, accessToken, broadcasterId, sinceISOString) {
-  const clipsRes = await fetch(
+  return fetch(
     `https://api.twitch.tv/helix/clips?broadcaster_id=${broadcasterId}&first=100&started_at=${sinceISOString}&ended_at=${new Date().toISOString()}`,
     {
       headers: {
@@ -47,8 +37,6 @@ async function fetchClipsSince(clientId, accessToken, broadcasterId, sinceISOStr
       },
     }
   );
-  const clipsData = await clipsRes.json();
-  return clipsData.data || [];
 }
 
 async function postToDiscord(webhookUrl, clip) {
@@ -102,8 +90,16 @@ export default async function handler(req, res) {
       return res.status(200).json({ posted: 0, primed: true });
     }
 
-    const accessToken = await getAccessToken(CLIENT_ID, CLIENT_SECRET);
-    const clips = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt);
+    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET);
+    let clipsRes = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt);
+
+    if (clipsRes.status === 401) {
+      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true);
+      clipsRes = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt);
+    }
+
+    const clipsData = await clipsRes.json();
+    const clips = clipsData.data || [];
 
     const newClips = clips
       .filter((c) => new Date(c.created_at) > new Date(state.lastCreatedAt))
@@ -113,14 +109,19 @@ export default async function handler(req, res) {
       return res.status(200).json({ posted: 0 });
     }
 
+    const postedIds = [];
     for (const clip of newClips) {
       await postToDiscord(WEBHOOK_URL, clip);
       state.lastClipId = clip.id;
       state.lastCreatedAt = clip.created_at;
+      // Persist after each successful post (not once at the end) so a later
+      // clip failing (Discord rate-limit, transient 5xx) doesn't leave
+      // earlier, already-posted clips unrecorded and get them reposted next run.
+      await kvSet(STATE_KEY, state);
+      postedIds.push(clip.id);
     }
-    await kvSet(STATE_KEY, state);
 
-    return res.status(200).json({ posted: newClips.length, clips: newClips.map((c) => c.id) });
+    return res.status(200).json({ posted: postedIds.length, clips: postedIds });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

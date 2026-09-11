@@ -1,4 +1,5 @@
 import { setCors } from './_cors.js';
+import { isShort } from './_youtube-duration.js';
 
 export default async function handler(req, res) {
     setCors(req, res, 'GET,OPTIONS');
@@ -40,10 +41,7 @@ export default async function handler(req, res) {
         const detailsRes = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoIds}&key=${API_KEY}`);
         const detailsData = await detailsRes.json();
 
-        const longFormVideo = detailsData.items.find(video => {
-            const duration = video.contentDetails.duration;
-            return duration.includes('M') || duration.includes('H');
-        });
+        const longFormVideo = detailsData.items.find(video => !isShort(video.contentDetails.duration));
 
         if (longFormVideo) {
             return res.status(200).json({

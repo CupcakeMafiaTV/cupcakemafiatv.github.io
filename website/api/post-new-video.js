@@ -19,7 +19,8 @@
 // one trigger per target hour ever does real work on a given day. Manual
 // testing can bypass this with ?force=1.
 
-const SHORTS_MAX_SECONDS = 180;
+import { isShort } from './_youtube-duration.js';
+
 const ACCENT_COLOR = 0x00dbc9;
 const VOD_ACCENT_COLOR = 0x654cff;
 const STATE_KEY = 'last-posted-video';
@@ -35,13 +36,6 @@ function currentEasternHour() {
       hour12: false,
     }).format(new Date())
   );
-}
-
-function parseDurationSeconds(iso8601) {
-  const match = iso8601.match(/^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/);
-  if (!match) return 0;
-  const [, h, m, s] = match;
-  return (Number(h) || 0) * 3600 + (Number(m) || 0) * 60 + (Number(s) || 0);
 }
 
 async function kvGet(key) {
@@ -87,7 +81,7 @@ async function fetchRecentVideos(apiKey, channelId) {
     id: video.id,
     title: video.snippet.title,
     publishedAt: video.snippet.publishedAt,
-    isShort: parseDurationSeconds(video.contentDetails.duration) <= SHORTS_MAX_SECONDS,
+    isShort: isShort(video.contentDetails.duration),
     thumbnail:
       video.snippet.thumbnails.maxres?.url ||
       video.snippet.thumbnails.high?.url ||
