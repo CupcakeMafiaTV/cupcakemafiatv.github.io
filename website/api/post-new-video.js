@@ -20,6 +20,9 @@
 // testing can bypass this with ?force=1.
 
 import { isShort } from './_youtube-duration.js';
+import { acquireLock, releaseLock } from './_kv-lock.js';
+
+const LOCK_KEY = 'lock:post-new-video';
 
 const ACCENT_COLOR = 0x00dbc9;
 const VOD_ACCENT_COLOR = 0x654cff;
@@ -66,7 +69,7 @@ async function fetchRecentVideos(apiKey, channelId) {
   if (!uploadsPlaylistId) throw new Error('Could not resolve uploads playlist for channel');
 
   const playlistRes = await fetch(
-    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=10&key=${apiKey}`
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=50&key=${apiKey}`
   );
   const playlistData = await playlistRes.json();
   const videoIds = (playlistData.items || []).map((item) => item.snippet.resourceId.videoId);
@@ -98,7 +101,7 @@ async function fetchRecentVods(apiKey) {
   if (!uploadsPlaylistId) throw new Error('Could not resolve uploads playlist for VODs channel');
 
   const playlistRes = await fetch(
-    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=10&key=${apiKey}`
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=50&key=${apiKey}`
   );
   const playlistData = await playlistRes.json();
 
@@ -198,36 +201,47 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Missing KV env vars (add the Upstash Redis integration in Vercel)' });
   }
 
+  // Guards against two overlapping invocations (e.g. a manual ?force=1 test
+  // racing a scheduled cron fire) both reading the same stale dedup state
+  // and double-posting to Discord.
+  if (!(await acquireLock(LOCK_KEY))) {
+    return res.status(200).json({ skipped: 'Another check is already in progress' });
+  }
+
   const results = {};
 
   try {
-    results.video = await checkAndPostFeed({
-      stateKey: STATE_KEY,
-      fetchItems: () => fetchRecentVideos(API_KEY, CHANNEL_ID),
-      webhookUrl: WEBHOOK_URL,
-      emoji: '🎬',
-      label: 'New video is up!',
-      color: ACCENT_COLOR,
-    });
-  } catch (error) {
-    results.video = { error: error.message };
-  }
-
-  if (VODS_WEBHOOK_URL) {
     try {
-      results.vod = await checkAndPostFeed({
-        stateKey: VOD_STATE_KEY,
-        fetchItems: () => fetchRecentVods(API_KEY),
-        webhookUrl: VODS_WEBHOOK_URL,
-        emoji: '🎞️',
-        label: 'New VOD is up!',
-        color: VOD_ACCENT_COLOR,
+      results.video = await checkAndPostFeed({
+        stateKey: STATE_KEY,
+        fetchItems: () => fetchRecentVideos(API_KEY, CHANNEL_ID),
+        webhookUrl: WEBHOOK_URL,
+        emoji: '🎬',
+        label: 'New video is up!',
+        color: ACCENT_COLOR,
       });
     } catch (error) {
-      results.vod = { error: error.message };
+      results.video = { error: error.message };
     }
-  } else {
-    results.vod = { skipped: 'DISCORD_VODS_WEBHOOK_URL not set' };
+
+    if (VODS_WEBHOOK_URL) {
+      try {
+        results.vod = await checkAndPostFeed({
+          stateKey: VOD_STATE_KEY,
+          fetchItems: () => fetchRecentVods(API_KEY),
+          webhookUrl: VODS_WEBHOOK_URL,
+          emoji: '🎞️',
+          label: 'New VOD is up!',
+          color: VOD_ACCENT_COLOR,
+        });
+      } catch (error) {
+        results.vod = { error: error.message };
+      }
+    } else {
+      results.vod = { skipped: 'DISCORD_VODS_WEBHOOK_URL not set' };
+    }
+  } finally {
+    await releaseLock(LOCK_KEY);
   }
 
   return res.status(200).json(results);

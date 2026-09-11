@@ -4,9 +4,11 @@
 // same clip is never posted twice.
 
 import { getTwitchToken } from './_twitch-token.js';
+import { acquireLock, releaseLock } from './_kv-lock.js';
 
 const ACCENT_COLOR = 0x654cff;
 const STATE_KEY = 'last-posted-clip';
+const LOCK_KEY = 'lock:post-new-clip';
 
 async function kvGet(key) {
   const res = await fetch(`${process.env.KV_REST_API_URL}/get/${key}`, {
@@ -65,9 +67,10 @@ async function postToDiscord(webhookUrl, clip) {
 export default async function handler(req, res) {
   // Deliberately not gated behind CRON_SECRET: poll-clips.yml pings this
   // endpoint every 30 minutes via plain curl (no secret) to work around
-  // Vercel Hobby-tier cron's unreliable timing, and repeat/unauthenticated
-  // calls are harmless -- the KV dedup state below means an extra call can
-  // never cause a duplicate Discord post, just a wasted Twitch API call.
+  // Vercel Hobby-tier cron's unreliable timing. Repeat/unauthenticated calls
+  // are harmless -- the KV dedup state means an extra call can't cause a
+  // duplicate post on its own, and the lock below covers the case where two
+  // calls genuinely overlap in time.
   const CLIENT_ID = process.env.TWITCH_CLIENT_ID;
   const CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
   const BROADCASTER_ID = process.env.TWITCH_BROADCASTER_ID;
@@ -78,6 +81,13 @@ export default async function handler(req, res) {
   }
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     return res.status(500).json({ error: 'Missing KV env vars (add the Upstash Redis integration in Vercel)' });
+  }
+
+  // Guards against two overlapping invocations (e.g. the 30-min poll firing
+  // again before a slow prior run finished) both reading the same stale
+  // dedup state and double-posting to Discord.
+  if (!(await acquireLock(LOCK_KEY))) {
+    return res.status(200).json({ skipped: 'Another check is already in progress' });
   }
 
   try {
@@ -124,5 +134,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ posted: postedIds.length, clips: postedIds });
   } catch (error) {
     return res.status(500).json({ error: error.message });
+  } finally {
+    await releaseLock(LOCK_KEY);
   }
 }

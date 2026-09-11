@@ -900,7 +900,9 @@
   }
 
   function closeMafiaGame() {
-    document.getElementById('cupcake-game-modal').classList.remove('active');
+    const modal = document.getElementById('cupcake-game-modal');
+    if (!modal) return;
+    modal.classList.remove('active');
     localStorage.setItem('cupcakeMafiaScore', '0');
     renderMafiaGame();
   }
