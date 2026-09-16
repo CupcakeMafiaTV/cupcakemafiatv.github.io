@@ -1,10 +1,14 @@
 // Runs on a daily Vercel Cron schedule (see vercel.json). Checks for a new
 // long-form video/Short AND a new VOD upload in the same run (folded together
 // so the free Vercel plan's cron-job cap isn't a factor) and posts each to
-// its own Discord channel via its own webhook. Long-form videos and Shorts
-// share the main channel/webhook and a single dedup timeline, but are tagged
-// separately (YouTube's Shorts duration cutoff, <=180s) so each gets its own
-// emoji/label in the post. Dedup state (the last item posted, per feed) is
+// its own Discord channel via its own webhook (DISCORD_VIDEOS_WEBHOOK_URL for
+// videos/Shorts, DISCORD_VODS_WEBHOOK_URL for VODs -- separate from
+// DISCORD_WEBHOOK_URL, which post-new-clip.js uses for Twitch clips). Long-form
+// videos and Shorts share the videos channel/webhook and a single dedup
+// timeline, but are tagged separately (YouTube's Shorts duration cutoff,
+// <=180s) so each gets its own emoji/label in the post. Live/upcoming streams
+// are filtered out entirely (see fetchRecentVideos) since another service
+// already announces those. Dedup state (the last item posted, per feed) is
 // kept in Upstash Redis so nothing is ever posted twice, even if the check
 // runs again before the next upload.
 //
@@ -80,16 +84,23 @@ async function fetchRecentVideos(apiKey, channelId) {
   );
   const detailsData = await detailsRes.json();
 
-  return (detailsData.items || []).map((video) => ({
-    id: video.id,
-    title: video.snippet.title,
-    publishedAt: video.snippet.publishedAt,
-    isShort: isShort(video.contentDetails.duration),
-    thumbnail:
-      video.snippet.thumbnails.maxres?.url ||
-      video.snippet.thumbnails.high?.url ||
-      video.snippet.thumbnails.medium.url,
-  }));
+  return (detailsData.items || [])
+    // While a stream is live (or scheduled), YouTube reports its duration as
+    // "P0D" instead of a real PT#M#S value, which isShort() parses as 0
+    // seconds and misclassifies as a Short. Live announcements are also
+    // already handled by a separate service, so skip anything not yet a
+    // finished upload.
+    .filter((video) => video.snippet.liveBroadcastContent === 'none')
+    .map((video) => ({
+      id: video.id,
+      title: video.snippet.title,
+      publishedAt: video.snippet.publishedAt,
+      isShort: isShort(video.contentDetails.duration),
+      thumbnail:
+        video.snippet.thumbnails.maxres?.url ||
+        video.snippet.thumbnails.high?.url ||
+        video.snippet.thumbnails.medium.url,
+    }));
 }
 
 async function fetchRecentVods(apiKey) {
@@ -191,7 +202,9 @@ export default async function handler(req, res) {
 
   const API_KEY = process.env.YouTube_Live_Checker;
   const CHANNEL_ID = process.env.CHANNEL_ID;
-  const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+  // Separate from DISCORD_WEBHOOK_URL, which post-new-clip.js uses for the
+  // Twitch clips channel -- videos/Shorts get their own "videos" channel.
+  const WEBHOOK_URL = process.env.DISCORD_VIDEOS_WEBHOOK_URL;
   const VODS_WEBHOOK_URL = process.env.DISCORD_VODS_WEBHOOK_URL;
 
   if (!API_KEY || !CHANNEL_ID || !WEBHOOK_URL) {
