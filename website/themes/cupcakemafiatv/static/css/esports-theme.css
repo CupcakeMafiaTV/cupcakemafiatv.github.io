@@ -1,0 +1,46 @@
+/* Match the stream's charcoal arena, violet walls, and champagne gold frames. */
+:root,.dark{
+  --color-primary:108 78 138;
+  --color-primary-500:83 57 110;
+  --color-accent:192 157 225;
+  --color-gold:239 208 149;
+  --esports-floor:#101023;
+  --esports-panel:#191526;
+  --esports-gold:#efd095;
+  --esports-text:#f5f1f7;
+}
+body.esports-theme{
+  background-color:var(--esports-floor)!important;
+  background-image:radial-gradient(ellipse at 0% 12%,#35244799,transparent 48%),radial-gradient(ellipse at 100% 65%,#3b285077,transparent 48%),linear-gradient(180deg,#101023,#181224)!important;
+  color:var(--esports-text);
+}
+.esports-theme .header-wrapper,.esports-theme footer{background:#0c0c18e6!important}
+.esports-theme h1,.esports-theme h2,.esports-theme .category-header-label{font-family:Rajdhani,Bahnschrift,"Segoe UI",sans-serif}
+.esports-theme h1,.esports-theme h2{color:var(--esports-text)}
+.esports-theme .text-white{color:var(--esports-text)}
+.esports-theme .brand-card{
+  background:linear-gradient(135deg,#211a32,#151321)!important;
+  border-color:#a28b62aa!important;
+  box-shadow:0 10px 24px #08071166!important;
+}
+.esports-theme .brand-card:hover{border-color:var(--esports-gold)!important;box-shadow:0 12px 28px #08071199,0 0 12px #c09de51a!important}
+.esports-theme main [class*="bg-gray-900"],.esports-theme main [class*="bg-gray-800"],
+.esports-theme #video-container-wrapper,.esports-theme #vod-container-wrapper,
+.esports-theme .game-modal-card{background-color:var(--esports-panel)!important}
+.esports-theme .hero-btn-twitch,.esports-theme .hero-btn-youtube{
+  border-color:#efd095cc;
+  box-shadow:0 6px 18px #08071166,inset 0 1px 0 #ffffff0d;
+  animation:none;
+}
+.esports-theme .hero-btn-twitch{background:#604085}
+.esports-theme .hero-btn-twitch:hover{background:#735197}
+.esports-theme .hero-btn-youtube{background:#85464b}
+.esports-theme .hero-btn-youtube:hover{background:#99565b}
+.esports-theme .hero-btn-youtube svg{color:#fff}
+.esports-theme .schedule-day{border-color:#a28b6266!important}
+.esports-theme .schedule-day[data-day="2"],.esports-theme .schedule-day[data-day="4"]{border-color:#b65f65!important}
+.esports-theme .schedule-day.schedule-day-today{border-color:#22c55e!important;animation:esports-today-pulse 3.8s ease-in-out infinite}
+@keyframes esports-today-pulse{0%,100%{box-shadow:0 0 10px #22c55e33}50%{box-shadow:0 0 20px #22c55e66}}
+.esports-theme .watch-live-video,.esports-theme .watch-live-chat{border-color:#efd09599;box-shadow:0 12px 24px #08071188}
+.esports-theme #cookie-consent-banner,.esports-theme #mobile-menu{background-color:#151321}
+@media(prefers-reduced-motion:reduce){.esports-theme .schedule-day-today{animation:none}}
