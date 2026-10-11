@@ -1,5 +1,5 @@
 {{ define "main" }}
-<link rel="stylesheet" href="/css/home-extras.css?v=2">
+<link rel="stylesheet" href="/css/home-extras.css?v=3">
 
 <style>
   @keyframes homeLivePulse {
@@ -108,7 +108,7 @@
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 42%);
     }
   }
-  @media (min-width: 1024px) { .hero-photo-panel { width: 42%; } }
+  @media (min-width: 1024px) { .hero-photo-panel { width: 36%; max-width: 400px; } }
 
   .hero-mobile-avatar { display: block; }
   @media (min-width: 768px) { .hero-mobile-avatar { display: none; } }
@@ -128,10 +128,9 @@
     width: 200px;
     height: auto;
     transform: translateY(-50%);
-    opacity: 0.25;
+    opacity: 0.19;
     pointer-events: none;
     z-index: -1;
-    filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
   }
   @media (min-width: 768px) { .hero-brand-watermark { display: block; } }
   @media (min-width: 1024px) { .hero-brand-watermark { width: 260px; } }
@@ -281,7 +280,7 @@
   <div class="hero-wrap">
     <!-- Bleed photo (tablet/desktop only) -->
     <div class="hero-photo-panel">
-      <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="w-full h-full object-cover" style="object-position: 50% 36%;" fetchpriority="high">
+      <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="w-full h-full object-cover" style="object-position: 50% 28%;" fetchpriority="high">
       <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(16,16,35,0.85) 0%, rgba(16,16,35,0.05) 45%, rgba(16,16,35,0.12) 100%);"></div>
     </div>
 
@@ -296,7 +295,7 @@
           Streamer &amp; Content Creator
         </p>
         <div class="mt-3 text-sm md:text-base text-gray-300 text-center">
-          League of Legends <img src="/img/lol-icon.svg" alt="League of Legends" width="15" height="16" style="display: inline-block; height: 16px; width: auto; vertical-align: middle; margin-left: 2px;"> &nbsp;·&nbsp; Ontario, Canada <img src="/img/flag-canada.svg" alt="Canada" width="24" height="12" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
+          Ontario, Canada <img src="/img/flag-canada.svg" alt="Canada" width="24" height="12" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
         </div>
         <div class="mt-2 text-sm md:text-base text-gray-300 font-semibold text-center">
           <span id="twitch-follower-count" class="text-gold"><span class="stat-skeleton"></span></span> Twitch Followers &nbsp;·&nbsp; <span id="youtube-sub-count" class="text-gold"><span class="stat-skeleton"></span></span> YouTube Subscribers
@@ -873,5 +872,5 @@
     if (e.key === 'Escape') closeMafiaGame();
   });
 </script>
-<script type="module" src="/js/home-extras.js?v=2"></script>
+<script type="module" src="/js/home-extras.js?v=3"></script>
 {{ end }}

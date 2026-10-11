@@ -280,7 +280,7 @@
     }
 
     // 4. Site-wide "is live" flag other pages/widgets can react to
-    // (tab title/favicon here; the homepage mascot listens too).
+    // (tab title and favicon here).
     window.cmtvIsLive = twitchIsLive || youtubeIsLive;
     cmtvSetLiveIndicator(window.cmtvIsLive);
     document.dispatchEvent(new CustomEvent('cmtv:livestatus', { detail: { isLive: window.cmtvIsLive } }));

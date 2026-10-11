@@ -1,16 +1,3 @@
-// Small brand touches stay clear of video controls and page text.
-const wrapper = document.getElementById('video-container-wrapper');
-if (wrapper) {
-  wrapper.style.position = 'relative';
-  const peek = document.createElement('img'); peek.src = '/img/emotes/Lurk.webp'; peek.alt = ''; peek.className = 'cupcake-clip-peek'; peek.loading = 'lazy'; wrapper.append(peek);
-}
-const aside = document.createElement('div'); aside.className = 'cupcake-aside'; aside.hidden = true; aside.style.display = 'none';
-aside.innerHTML = '<img src="/img/emotes/HeroMascot.webp" width="58" height="58" alt="" loading="lazy"><span>Back soon. The frosting needs a break.</span>';
-document.querySelector('.watch-live-split')?.after(aside);
-function liveMascot(isLive) { aside.hidden = isLive; aside.style.display = isLive ? 'none' : 'flex'; }
-document.addEventListener('cmtv:livestatus', event => liveMascot(event.detail.isLive));
-if (typeof window.cmtvIsLive === 'boolean') liveMascot(window.cmtvIsLive);
-
 // Highlight the current day in the stream's timezone; times stay in Eastern Time.
 function highlightToday() {
   const weekday = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Toronto', weekday: 'short' }).format(new Date());
