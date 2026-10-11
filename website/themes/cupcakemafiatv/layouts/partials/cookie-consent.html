@@ -1,25 +1,22 @@
-<!-- Cookie-consent banner: gates Google Analytics behind an opt-in (see
-     cmtvLoadAnalytics() in head.html). Shown once, until a choice is made. -->
-<div id="cookie-consent-banner" role="dialog" aria-label="Cookie consent" hidden>
-    <p>This site uses Google Analytics to see how it's used. No personal info is collected. See the <a href="/privacy/">Privacy Policy</a>.</p>
-    <div class="cookie-consent-actions">
-        <button type="button" onclick="cmtvCookieConsent(false)">Decline</button>
-        <button type="button" class="cookie-consent-accept" onclick="cmtvCookieConsent(true)">Accept</button>
-    </div>
+<!-- Inline privacy preferences; no popup. Analytics remains opt-in. -->
+<div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+  <button type="button" id="analytics-enable" style="padding:10px 16px;border:1px solid #d4ad62;border-radius:8px;color:white">Enable analytics</button>
+  <button type="button" id="analytics-disable" style="padding:10px 16px;border:1px solid #d4ad62;border-radius:8px;color:white">Disable analytics</button>
+  <p id="analytics-preference" role="status"></p>
 </div>
-
 <script>
-    function cmtvCookieConsent(accepted) {
-        try {
-            localStorage.setItem('cmtv-cookie-consent', accepted ? 'accepted' : 'declined');
-        } catch (e) {}
-        if (accepted) cmtvLoadAnalytics();
-        document.getElementById('cookie-consent-banner').hidden = true;
-    }
-
-    (function () {
-        var consent = null;
-        try { consent = localStorage.getItem('cmtv-cookie-consent'); } catch (e) {}
-        if (!consent) document.getElementById('cookie-consent-banner').hidden = false;
-    })();
+(() => {
+  const status = document.getElementById('analytics-preference');
+  const key = 'cmtv-cookie-consent';
+  function show() { let enabled = false; try { enabled = localStorage.getItem(key) === 'accepted'; } catch {} status.textContent = enabled ? 'Analytics enabled in this browser.' : 'Analytics disabled in this browser.'; }
+  function choose(enabled) {
+    try { localStorage.setItem(key, enabled ? 'accepted' : 'declined'); }
+    catch { status.textContent = 'Your browser could not save this preference.'; return; }
+    // Reload also stops an already-loaded analytics script when opting out.
+    location.reload();
+  }
+  document.getElementById('analytics-enable').onclick = () => choose(true);
+  document.getElementById('analytics-disable').onclick = () => choose(false);
+  show();
+})();
 </script>
