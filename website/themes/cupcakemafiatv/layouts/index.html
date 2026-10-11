@@ -1,5 +1,5 @@
 {{ define "main" }}
-<link rel="stylesheet" href="/css/home-extras.css?v=1">
+<link rel="stylesheet" href="/css/home-extras.css?v=2">
 
 <style>
   @keyframes homeLivePulse {
@@ -314,11 +314,9 @@
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Stream Schedule</h2>
-            <img src="/img/emotes/POG.gif" alt="" class="h-10 w-10" loading="lazy">
           </div>
-          <p class="text-gray-300 mt-2 max-w-2xl mx-auto">Streams start at 7 PM Eastern Time. <span id="schedule-zone-note">Choose a stream below to add it to your calendar.</span></p>
+          <p class="text-gray-300 mt-2 max-w-2xl mx-auto">Streams start at 7 PM Eastern Time.</p>
         </div>
-        <div class="schedule-tools"><label for="schedule-zone">Show times in</label><select id="schedule-zone"><option value="local">My timezone</option><option value="eastern">Eastern Time</option></select><p id="schedule-next" aria-live="polite"></p></div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
           <div class="schedule-day rounded-2xl bg-gray-900/60 shadow-2xl p-4 text-center transition-all duration-300" data-day="1" style="border: 3px solid rgb(var(--color-gold) / 0.4);">
             <div class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-2">Monday</div>
@@ -366,7 +364,6 @@
         </div>
         <div class="mb-3 flex items-center justify-center gap-3">
           <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
-          <img id="lurk-emote" src="/img/emotes/Lurk.webp" alt="" width="80" height="80" class="h-10 w-10" loading="lazy">
         </div>
         <p class="text-gray-300 mb-3 max-w-2xl mx-auto text-center">Catch all the action live on Twitch!</p>
         <div class="watch-live-split">
@@ -380,15 +377,12 @@
       </div>
     </div>
 
-    {{ partial "redemption-previews.html" . }}
-
     <!-- Latest Content Section (Upload + VOD side by side) -->
     <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-8 text-center">
           <div class="flex items-center justify-center gap-3">
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl">Latest Content</h2>
-            <img src="/img/emotes/Flex.webp" alt="" width="80" height="80" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-2 max-w-2xl mx-auto">Latest uploads, stream replays, and VODs — all in one place.</p>
         </div>
@@ -434,7 +428,6 @@
         <div class="mb-8 md:mb-10 text-center">
           <div class="flex items-center justify-center gap-3">
             <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Solo Queue Rank</h2>
-            <img src="/img/emotes/Zoe.png" alt="" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-2 max-w-2xl mx-auto">Follow CupcakeMafia’s solo queue climb. The latest confirmed stats, whenever they’re available.</p>
         </div>
@@ -459,7 +452,6 @@
             <h2 id="mafiaGenTitle" class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">
               Mafia Name Generator
             </h2>
-            <img src="{{ "img/hype.webp" | relURL }}" alt="" width="80" height="80" class="h-10 w-10" loading="lazy">
           </div>
           <p class="text-gray-300 mt-2 max-w-2xl mx-auto">
             Join the sweetest syndicate in town — enter your name to claim your mafia alias!
@@ -881,5 +873,5 @@
     if (e.key === 'Escape') closeMafiaGame();
   });
 </script>
-<script type="module" src="/js/home-extras.js?v=1"></script>
+<script type="module" src="/js/home-extras.js?v=2"></script>
 {{ end }}

@@ -227,15 +227,13 @@
         twitchBadge.style.display = twitchIsLive ? 'inline-block' : 'none';
       }
 
-      // Homepage hero widgets (badge, title, lurk emote, offline clip) used
+      // Homepage hero widgets (badge, title, offline clip) used
       // to run their own separate fetch to this same endpoint; they now
       // reuse this one. Guarded to run once, matching their old load-once
       // behavior (only the nav/twitch-live-badge above re-poll every 5min).
       if (!homeTwitchWidgetsLoaded && twitchRes.ok) {
         homeTwitchWidgetsLoaded = true;
         const homeBadge = document.getElementById('home-twitch-badge');
-        const lurkEmote = document.getElementById('lurk-emote');
-        if (lurkEmote) lurkEmote.style.display = twitchIsLive ? 'none' : 'inline-block';
         if (homeBadge) {
           if (twitchIsLive) {
             homeBadge.classList.remove('hidden');
@@ -282,7 +280,7 @@
     }
 
     // 4. Site-wide "is live" flag other pages/widgets can react to
-    // (tab title/favicon here; the homepage schedule countdown listens too).
+    // (tab title/favicon here; the homepage mascot listens too).
     window.cmtvIsLive = twitchIsLive || youtubeIsLive;
     cmtvSetLiveIndicator(window.cmtvIsLive);
     document.dispatchEvent(new CustomEvent('cmtv:livestatus', { detail: { isLive: window.cmtvIsLive } }));

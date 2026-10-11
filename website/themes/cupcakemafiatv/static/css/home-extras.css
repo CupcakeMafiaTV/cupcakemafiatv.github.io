@@ -1,6 +1,42 @@
-.chaos-heading{text-align:center;max-width:720px;margin:0 auto 28px}.chaos-kicker{color:rgb(var(--color-gold));text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:800}.chaos-heading h2{font-size:clamp(30px,4vw,48px);line-height:1.12;font-weight:900;letter-spacing:-.04em;margin:8px 0 14px}.chaos-heading p,.chaos-footer p{color:#d1c7dd;line-height:1.6}.chaos-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.chaos-card{min-width:0;overflow:hidden;border:1px solid #78547b;border-radius:18px;background:linear-gradient(145deg,#21162f,#171022);box-shadow:0 10px 30px #08030e55;display:flex;flex-direction:column}.chaos-stage{height:215px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 65%,#79529a55,transparent 70%);border-bottom:1px solid #76517d66}.demo-mascot{width:162px;height:162px;object-fit:contain;transform-origin:50% 95%;transition:transform .3s}.anime-sprite{width:186px;height:186px;background:url('/img/emotes/anime-cupcake-atlas.png') 0 0 / 200% 200%;margin-bottom:12px}.stage-caption{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.035em;color:#cdb9df}.chaos-card-body{padding:20px;display:flex;flex-direction:column;flex:1}.chaos-meta{color:rgb(var(--color-gold));font-weight:700;font-size:11px;letter-spacing:.035em}.chaos-card h3{font-size:21px;line-height:1.2;font-weight:800;margin:8px 0 10px;color:#fff}.chaos-card-body>p:not(.chaos-meta){color:#d1c7dd;line-height:1.6;font-size:14px;margin-bottom:16px}.chaos-play{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 12px;background:#a77bd21c;border:1px solid #aa84c966;border-radius:9px;color:#eee1ff;font-size:12px;font-weight:700;cursor:pointer;min-height:44px}.chaos-play:hover,.chaos-play[aria-pressed=true]{background:#a77bd240;border-color:#d4ad62}.chaos-play:focus-visible,.weather-options button:focus-visible,.chaos-join:focus-visible,.calendar-link:focus-visible,.home-text-link:focus-visible{outline:3px solid #f8d78e;outline-offset:4px}.chaos-footer{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-top:22px}.chaos-footer p{font-size:13px;max-width:620px}.chaos-join{white-space:nowrap;padding:12px 18px;border:1px solid #d4ad62;border-radius:10px;color:#ffe4a9;font-weight:700}.demo-disguise{position:absolute;width:162px;height:162px;opacity:0;transition:opacity .2s}.is-playing .demo-disguise{opacity:1}.demo-hand{position:absolute;width:166px;height:88px;top:0;right:12px;opacity:0;transform-origin:100% 50%}.demo-hearts{position:absolute;top:88px;color:#efa7d9;font-size:22px;opacity:0}.is-playing .demo-hand{opacity:1;animation:cupcakePat .6s ease-in-out infinite}.is-playing .demo-hearts{animation:cupcakeHearts 1.2s ease-out infinite}.is-playing[data-preview=headpat] .demo-mascot{animation:cupcakeSquish .6s ease-in-out infinite}.is-playing[data-preview=witness] .demo-mascot{transform:rotate(-4deg) scale(1.04)}.is-playing .anime-sprite{animation:cupcakeTalk .7s steps(1) infinite}.demo-weather{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0}.is-playing .demo-weather{opacity:1}.demo-weather i{position:absolute;left:var(--x);top:-35px;animation:cupcakeFall var(--speed) linear infinite;animation-delay:var(--delay);display:block}.demo-weather i.rain{width:2px;height:26px;background:#a4ccff;transform:rotate(12deg)}.demo-weather i.snow{width:7px;height:7px;border-radius:50%;background:#fff}.demo-weather i.balloons{width:20px;height:25px;border-radius:50%;background:var(--color);animation-direction:reverse}.demo-weather i.balloons:after{content:'';position:absolute;height:28px;width:1px;top:25px;left:10px;background:#ffffff66}.weather-options{display:flex;gap:5px;margin:0 0 12px;flex-wrap:wrap}.weather-options button{font-size:11px;padding:5px 9px;min-height:34px;border-radius:20px;border:1px solid #9d81ae;color:#e3d8ee;cursor:pointer}.weather-options button[aria-pressed=true]{background:#dbc18b;color:#21162f;border-color:#dbc18b}.schedule-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 14px;margin:-12px 0 22px;color:#d1c7dd;font-size:13px}.schedule-tools select{background:#21162f;color:#fff;border:1px solid #917499;padding:8px 30px 8px 12px;border-radius:8px}.schedule-tools p{flex-basis:100%;text-align:center;color:#ffe4a9}.schedule-local-date{color:#c0b3cd;font-size:11px;margin-top:6px}.calendar-link{display:inline-block;color:#ffe4a9;border-bottom:1px solid #ac8e62;font-size:11px;margin-top:10px;padding:6px 0}.rank-note{color:#c9b9d5;font-size:13px;line-height:1.6;margin:14px 0}.home-text-link{display:inline-block;color:#ffe4a9;text-decoration:underline;text-underline-offset:4px;font-size:14px}.cupcake-aside{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px auto 0;max-width:340px;font-size:12px;color:#d4c3e0}.cupcake-aside img{width:58px;height:58px;object-fit:contain;transition:transform .25s}.cupcake-aside:hover img{transform:rotate(-9deg) translateY(-3px)}.cupcake-clip-peek{position:absolute;width:54px;height:54px;right:16px;top:-30px;z-index:2;pointer-events:none;transform:rotate(8deg);filter:drop-shadow(0 3px 3px #0008)}
-@keyframes cupcakeTalk{0%,65%,100%{background-position:0 0}20%,45%,80%{background-position:100% 0}90%{background-position:0 100%}}@keyframes cupcakePat{0%,100%{transform:rotate(-7deg) translateY(-6px)}50%{transform:rotate(3deg) translateY(9px)}}@keyframes cupcakeSquish{0%,100%{transform:scale(1)}50%{transform:scale(1.04,.96)}}@keyframes cupcakeHearts{0%{opacity:0;transform:translateY(14px)}35%{opacity:1}100%{opacity:0;transform:translateY(-28px)}}@keyframes cupcakeFall{to{top:250px;transform:translateX(-18px)}}
-@media(max-width:1100px){.chaos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chaos-stage{height:210px}}@media(max-width:600px){.chaos-grid{grid-template-columns:1fr}.chaos-card{max-width:420px;width:100%;margin:auto}.chaos-footer{flex-direction:column;text-align:center;gap:16px}.chaos-heading h2{font-size:34px}.chaos-card-body{padding:20px}.chaos-stage{height:190px}.demo-mascot{width:146px;height:146px}.demo-disguise{width:146px;height:146px}.anime-sprite{width:164px;height:164px}}
-@media(prefers-reduced-motion:reduce){.is-playing .demo-hand,.is-playing .demo-hearts,.is-playing .demo-mascot,.is-playing .anime-sprite,.demo-weather i{animation:none!important}.is-playing .demo-hearts{opacity:1}.demo-weather i{top:var(--y)}.is-playing .anime-sprite{background-position:100% 0}.demo-mascot,.cupcake-aside img,.demo-disguise{transition:none}.schedule-day-today{animation:none}}
-
-.stage-caption{width:fit-content;max-width:calc(100% - 24px);margin:auto;padding:2px 7px;background:#1b1128dd;border-radius:5px;bottom:8px}.cupcake-aside[hidden]{display:none}
+.rank-note {
+  color: #c9b9d5;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 14px 0;
+}
+.home-text-link {
+  display: inline-block;
+  color: #ffe4a9;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 14px;
+}
+.home-text-link:focus-visible { outline: 3px solid #f8d78e; outline-offset: 4px; }
+.cupcake-aside {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px auto 0;
+  max-width: 340px;
+  font-size: 12px;
+  color: #d4c3e0;
+}
+.cupcake-aside[hidden] { display: none; }
+.cupcake-aside img { width: 58px; height: 58px; object-fit: contain; transition: transform .25s; }
+.cupcake-aside:hover img { transform: rotate(-9deg) translateY(-3px); }
+.cupcake-clip-peek {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  right: 16px;
+  top: -30px;
+  z-index: 2;
+  pointer-events: none;
+  transform: rotate(8deg);
+  filter: drop-shadow(0 3px 3px #0008);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cupcake-aside img { transition: none; }
+  .schedule-day-today { animation: none; }
+}
