@@ -98,6 +98,8 @@
     if (!isNaN(target)) window.cmtvCountUp(el, target, undefined, decimals);
   });
 
+  // The homepage audience bar loads these together in audience-bar.js.
+  if (!document.querySelector('.audience-band')) {
   // Fetch live YouTube subscriber count (falls back to the last known-good
   // value in localStorage if the API is unreachable, so the count never
   // gets stuck on "..."). This one fetch covers every page — the homepage
@@ -148,6 +150,8 @@
       if (twitchCountEl && cached) window.cmtvCountUp(twitchCountEl, Number(cached));
     });
 
+  }
+
   // Swaps the browser tab title/favicon to a "live" state while streaming,
   // so a backgrounded tab still announces it. Draws the red dot onto the
   // existing favicon at runtime (via canvas) instead of needing a second
@@ -192,7 +196,7 @@
 
   // Live Discord member count (Work With Me's stat row only — no-op
   // elsewhere since the element won't exist).
-  if (document.getElementById('discord-member-count')) {
+  if (!document.querySelector('.audience-band') && document.getElementById('discord-member-count')) {
     fetch('https://cupcakemafiatv-github-io.vercel.app/api/discord-widget')
       .then(response => response.json())
       .then(data => {
