@@ -79,3 +79,10 @@ body.esports-theme{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-h
   .esports-theme .schedule-grid .schedule-day.schedule-off>.schedule-time{grid-column:2/-1;justify-self:end;font-size:13px}
   .esports-theme .schedule-grid .schedule-day.schedule-day-today{border-top-width:1px!important;border-left-width:3px!important;padding:8px 12px 8px 10px}
 }
+
+/* Stronger section titles with a restrained purple marker. */
+.esports-theme .home-surface .section-band h2{font-size:36px;font-weight:750;letter-spacing:-.8px;line-height:1.2}
+.esports-theme .home-surface .section-band h2::after{content:"";display:block;width:44px;height:3px;margin:12px auto 0;border-radius:3px;background:#b48aff}
+@media(max-width:680px){.esports-theme .home-surface .section-band h2{font-size:30px}.esports-theme .home-surface .section-band h2::after{width:36px;margin-top:10px}}
+/* Header social icons keep their normal color on hover. */
+.esports-theme #site-header .header-social-icon[class]:hover{color:#d9c5e5!important;background:transparent!important;box-shadow:none!important}
