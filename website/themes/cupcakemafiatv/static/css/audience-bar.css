@@ -1,0 +1,43 @@
+﻿.audience-band{background:#1b1525;border-block:1px solid #c9b4ec24;font:15px/1.5 'Segoe UI',Arial,sans-serif;color:#f8f4fa}.audience-wrap{width:min(1280px,calc(100% - 64px));margin-inline:auto}.audience-grid{display:grid;grid-template-columns:180px repeat(6,minmax(0,1fr));align-items:stretch;padding-block:22px}.audience-grid #audience-heading{display:flex;align-items:center;margin:0;padding:0 20px 0 0;font:700 24px/1.2 'Segoe UI',Arial,sans-serif;letter-spacing:-.6px;text-align:left;color:#f8f4fa}.audience-grid>a{display:flex;justify-content:center;align-items:center;gap:17px;min-height:82px;padding:4px 10px;border-left:1px solid #c9b4ec24;color:#fff;text-decoration:none}.audience-metrics{display:flex;align-items:center;justify-content:center;min-width:64px}.audience-value{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center}.audience-value[hidden]{display:none}.audience-value strong{font:750 34px/1.15 'Segoe UI',Arial,sans-serif;letter-spacing:-1px;font-variant-numeric:tabular-nums;white-space:nowrap}.audience-value>span{font-size:11px;color:#bbafc7}.audience-platform-icon{flex-shrink:0;width:36px!important;height:36px!important}.platform-twitch{color:#b48aff}.platform-youtube{color:#ff626c}.platform-instagram{color:#ee8fc9}.platform-discord{color:#939cff}.platform-x{color:#f8f4fa}.platform-tiktok{color:#8be8e4}.audience-band a{text-decoration:none}.audience-band a:focus-visible{outline:2px solid #f2a1d4;outline-offset:5px}.audience-band a:hover{color:inherit}.audience-grid>a:hover{color:#fff}
+@media(max-width:1200px){.audience-wrap{width:calc(100% - 48px)}.audience-grid{grid-template-columns:160px repeat(6,minmax(0,1fr))}.audience-value strong{font-size:29px}.audience-grid>a{gap:10px;padding-inline:7px}.audience-platform-icon{width:30px!important;height:30px!important}.audience-grid #audience-heading{font-size:22px}.audience-metrics{min-width:60px}}
+@media(max-width:1050px){.audience-grid{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:20px}.audience-grid #audience-heading{grid-column:1/-1;justify-content:center;padding:0;font-size:25px}.audience-grid>a:nth-child(1){border-left:0}.audience-wrap{width:calc(100% - 40px)}}
+@media(max-width:850px){.audience-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 0}.audience-grid>a:nth-child(4){border-left:0}.audience-value strong{font-size:32px}.audience-grid>a{gap:18px}.audience-platform-icon{width:36px!important;height:36px!important}}
+@media(max-width:580px){.audience-wrap{width:calc(100% - 28px)}.audience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.audience-grid>a{min-height:86px;gap:18px}.audience-grid>a:nth-child(4){border-left:1px solid #c9b4ec24}.audience-grid>a:nth-child(3),.audience-grid>a:nth-child(5){border-left:0}.audience-grid #audience-heading{font-size:24px}.audience-platform-icon{width:34px!important;height:34px!important}}
+@media(max-width:360px){.audience-grid>a{gap:11px;padding-inline:6px}.audience-value strong{font-size:29px}.audience-platform-icon{width:30px!important;height:30px!important}.audience-metrics{min-width:58px}}
+/* One-line heading and slightly larger metric labels. */
+.audience-grid{grid-template-columns:245px repeat(6,minmax(0,1fr))}
+.audience-grid #audience-heading{white-space:nowrap}.audience-value>span{font-size:13px}.audience-metrics{min-width:76px}
+@media(max-width:1200px){.audience-grid{grid-template-columns:225px repeat(6,minmax(0,1fr))}.audience-metrics{min-width:72px}}
+@media(max-width:1050px){.audience-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:850px){.audience-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:580px){.audience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Center each label beneath the complete number-and-icon row. */
+.audience-grid{column-gap:8px}
+.audience-grid>a{display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;justify-content:center;align-content:center;column-gap:14px;row-gap:7px}
+.audience-grid .audience-metrics,.audience-grid .audience-value:not([hidden]){display:contents}
+.audience-value strong{grid-column:1;grid-row:1;text-align:center}
+.audience-value>span{grid-column:1/-1;grid-row:2;text-align:center}
+.audience-platform-icon{grid-column:2;grid-row:1;align-self:center}
+@media(min-width:1201px){.audience-wrap{width:min(1360px,calc(100% - 48px))}}
+@media(max-width:1200px){.audience-grid>a{column-gap:10px}}
+@media(max-width:1050px){.audience-grid{row-gap:24px}}
+@media(max-width:850px){.audience-grid>a{column-gap:16px}}
+@media(max-width:360px){.audience-grid>a{column-gap:11px}}
+
+/* Slimmer bar, with the heading centered in its column. */
+.audience-grid{padding-block:12px}
+.audience-grid>a{min-height:70px}
+.audience-grid #audience-heading{justify-content:center;text-align:center;padding:0}
+@media(max-width:1050px){.audience-grid{row-gap:18px;padding-block:16px}}
+
+/* A centered section title above the stats, following the reference layout. */
+.audience-grid{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:18px;padding-block:18px}
+.audience-grid #audience-heading{grid-column:1/-1;justify-content:center;font-size:30px;line-height:1.2}
+.audience-grid>a:nth-child(1){border-left:0}
+@media(max-width:850px){.audience-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:580px){.audience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.audience-grid #audience-heading{font-size:26px}}
+
+.audience-section>#audience-heading{margin:0 0 20px;text-align:center;font:700 30px/1.2 'Segoe UI',Arial,sans-serif;letter-spacing:-.6px;color:#f8f4fa}
+.audience-section>#audience-heading a:hover{color:inherit}
+@media(max-width:580px){.audience-section>#audience-heading{font-size:26px}}

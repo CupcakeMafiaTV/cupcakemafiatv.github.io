@@ -1,0 +1,81 @@
+﻿/* A restrained visual refresh of the original layout. */
+body.esports-theme{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.6;background-image:radial-gradient(ellipse at 0% 6%,#7634a438,transparent 45%),linear-gradient(135deg,#20132b,#180f22 70%)!important}
+.esports-theme h1,.esports-theme h2,.esports-theme h3,.esports-theme .category-header-label{font-family:'Segoe UI',Arial,sans-serif;letter-spacing:-.8px}.esports-theme .hero-wrap h1{font-size:clamp(34px,4.3vw,60px);font-weight:750;letter-spacing:-2px}.esports-theme .hero-wrap{padding-block:55px}.esports-theme .hero-text-col>p{font-size:16px;color:#c3b2ce;margin-top:13px}.esports-theme .hero-text-col>div{font-size:13px;color:#b5a0c2}.esports-theme .hero-brand-watermark{opacity:.17}
+.esports-theme .header-wrapper,.esports-theme footer{background:#1b1525!important;border-color:#c9b4ec24}.esports-theme #site-header nav a{font-family:'Segoe UI',Arial,sans-serif;font-size:16px!important;font-weight:600!important;text-shadow:none!important}.esports-theme #site-header .header-social-icon[class],.esports-theme footer .footer-social-icon{background:transparent!important;border:0!important;box-shadow:none!important;color:#d9c5e5!important;font-size:20px!important}.esports-theme #site-header .header-social-icon[class]:hover,.esports-theme footer .footer-social-icon:hover{background:transparent!important;color:#f497cf!important;box-shadow:none!important;transform:none}.esports-theme footer .footer-nav-link{font:500 14px/1.5 'Segoe UI',Arial,sans-serif;text-shadow:none!important}.esports-theme .footer-copyright{font:12px/1.5 'Segoe UI',Arial,sans-serif!important}.esports-theme .footer-divider{display:none}.esports-theme footer .footer-contact-btn{border:0!important;background:transparent!important;box-shadow:none!important;color:#f497cf!important;font-size:14px;text-decoration:underline;text-underline-offset:5px}
+.esports-theme .home-surface .section-band{padding-top:38px}.esports-theme .home-surface .section-band-pb{padding-bottom:38px}.esports-theme .section-band:before,.esports-theme .section-band:after{display:none}.esports-theme .home-surface .section-band h2{font-size:32px;line-height:1.2;font-weight:700;letter-spacing:-1px}.esports-theme .home-surface .section-band h2:before{content:none}.esports-theme .home-surface .section-band .mb-8,.esports-theme .home-surface .section-band .mb-3{margin-bottom:24px}
+.esports-theme .schedule-day{border:1px solid #ba88d139!important;background:#25182f88!important;border-radius:8px;box-shadow:none!important;animation:none!important;padding:20px 12px;transition:background .18s}.esports-theme .schedule-day>div{font-family:'Segoe UI',Arial,sans-serif}.esports-theme .schedule-day>div:first-child{font-size:10px;letter-spacing:1px;font-weight:600}.esports-theme .schedule-day>div:nth-child(2){font-size:13px;font-weight:600}.esports-theme .schedule-day>div:last-child{font-size:11px;font-weight:500}.esports-theme .schedule-day[data-day="2"],.esports-theme .schedule-day[data-day="4"]{border-color:#ad596345!important;background:#311b283d!important}.esports-theme .schedule-day.schedule-day-today{border-color:#4dc88f!important;background:#14332766!important;animation:none!important}.esports-theme .schedule-day-today>div:first-child{color:#81ddb2!important}
+.esports-theme .watch-live-video,.esports-theme .watch-live-chat{border:0;box-shadow:none;border-radius:4px}.esports-theme #video-container-wrapper,.esports-theme #vod-container-wrapper{padding:0;background:transparent!important;border:0!important;box-shadow:none!important}.esports-theme #video-placeholder,.esports-theme #vod-placeholder{border-radius:5px}.esports-theme #home-hero-title,.esports-theme #home-vod-title{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.5;font-weight:600;text-align:left;padding-top:6px}
+.esports-theme .brand-card{border-width:1px!important;border-color:#bb8acc40!important;border-radius:8px!important;background:#25182f!important;box-shadow:none!important}.esports-theme .brand-card:hover{border-color:#e7a3d5!important;box-shadow:none!important;transform:translateY(-2px)}.esports-theme .brand-card-icon{border-width:0!important;border-radius:8px!important;box-shadow:none!important}.esports-theme .brand-card-title,.esports-theme .brand-card-subtitle{font-family:'Segoe UI',Arial,sans-serif}.esports-theme .brand-card-title{font-size:18px}.esports-theme .brand-card-title-lg{font-size:32px!important;font-weight:750;letter-spacing:-1px}.esports-theme .brand-card-subtitle{font-size:13px!important}.esports-theme .profile-photo,.esports-theme .img-container,.esports-theme .video-container{border-width:1px!important;box-shadow:none!important;border-radius:8px!important}.esports-theme .wwm-get-grid>div,.esports-theme .charity-card{border:1px solid #bb8acc40!important;background:#25182f!important;box-shadow:none!important;border-radius:8px!important}.esports-theme .wwm-get-grid>div:hover{transform:none;box-shadow:none}.esports-theme .category-header-line{opacity:.4}
+@media(max-width:680px){.esports-theme .hero-wrap{padding-block:32px}.esports-theme .hero-wrap h1{font-size:34px;letter-spacing:-1.5px}.esports-theme .home-surface .section-band h2{font-size:27px}.esports-theme .home-surface .section-band{padding-top:28px}.esports-theme .home-surface .section-band-pb{padding-bottom:28px}.esports-theme .schedule-day{padding:16px 10px}.esports-theme .hero-text-col>p{font-size:14px}.esports-theme .hero-text-col>div{font-size:12px}.esports-theme footer .footer-nav-link{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.esports-theme .schedule-day,.esports-theme .brand-card{transition:none!important}}
+/* More space for the original hero art; same content and layout. */
+.esports-theme .hero-wrap{padding-block:98px}.esports-theme .hero-brand-watermark{width:338px}.esports-theme .hero-photo-panel{width:38%;max-width:540px}
+/* Clear, evenly aligned day / time / activity hierarchy. */
+.schedule-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.esports-theme .schedule-grid .schedule-day{display:grid;grid-template-rows:22px 34px 24px;align-content:center;align-items:center;gap:6px;min-height:142px;padding:17px 10px;background:#25182f66!important;border:1px solid #ba88d143!important;border-radius:7px;text-align:center}
+.esports-theme .schedule-grid .schedule-day-name{font:600 11px/1.4 'Segoe UI',Arial,sans-serif;letter-spacing:1px;text-transform:uppercase;color:#bba8ca;margin:0}
+.esports-theme .schedule-grid .schedule-time{font:700 23px/1.25 'Segoe UI',Arial,sans-serif;letter-spacing:-.6px;color:#faf2fa;margin:0}
+.esports-theme .schedule-grid .schedule-time span{font-size:10px;letter-spacing:.4px;color:#c8a8cf;font-weight:500;margin-left:3px}
+.esports-theme .schedule-grid .schedule-activity{font:500 12px/1.4 'Segoe UI',Arial,sans-serif;color:#cbb6d5;margin:0;white-space:normal}
+.esports-theme .schedule-grid .schedule-off{background:transparent!important;border-color:#ad596332!important}.esports-theme .schedule-grid .schedule-off .schedule-time{font-size:17px;font-weight:500;letter-spacing:0;color:#cc8996}
+.esports-theme .schedule-grid .schedule-day-today{border-color:#4dc88f!important;background:#17352b55!important;border-top-width:3px!important;padding-top:15px}.esports-theme .schedule-grid .schedule-day-today .schedule-day-name{color:#8de6bd!important}
+/* Thin outlines only around the Twitch and latest-video panels. */
+.esports-theme .watch-live-video{border:1px solid #dca3e666!important;border-radius:7px;box-shadow:none!important;overflow:hidden}
+.esports-theme #video-container-wrapper,.esports-theme #vod-container-wrapper{border:1px solid #dca3e666!important;border-radius:7px!important;padding:0!important;background:transparent!important;box-shadow:none!important;overflow:hidden}
+.esports-theme #video-placeholder,.esports-theme #vod-placeholder{border-radius:0}.esports-theme #home-hero-title,.esports-theme #home-vod-title{padding:14px 16px;margin:0}
+@media(max-width:1023px){.esports-theme .hero-wrap{padding-block:77px}.esports-theme .hero-mobile-avatar{width:124px;height:124px}.schedule-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.esports-theme .schedule-grid .schedule-day:last-child{grid-column:span 2}}
+@media(max-width:680px){.esports-theme .hero-wrap{padding-block:68px}.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.esports-theme .schedule-grid .schedule-day{min-height:132px;padding:14px 10px}.esports-theme .schedule-grid .schedule-day-today{padding-top:12px}.esports-theme .schedule-grid .schedule-time{font-size:22px}.esports-theme .schedule-grid .schedule-day:last-child{grid-column:1/-1;min-height:118px}.esports-theme #home-hero-title,.esports-theme #home-vod-title{padding:12px}}
+.esports-theme .schedule-grid .schedule-day>.schedule-day-name{font:600 11px/1.4 'Segoe UI',Arial,sans-serif;letter-spacing:1px;color:#bba8ca;margin:0}
+.esports-theme .schedule-grid .schedule-day>.schedule-time{font:700 23px/1.25 'Segoe UI',Arial,sans-serif;letter-spacing:-.6px;color:#faf2fa;margin:0}
+.esports-theme .schedule-grid .schedule-day>.schedule-activity{font:500 12px/1.4 'Segoe UI',Arial,sans-serif;color:#cbb6d5;margin:0}
+.esports-theme .schedule-grid .schedule-day.schedule-off>.schedule-time{font-size:17px;font-weight:500;letter-spacing:0;color:#cc8996}
+@media(max-width:680px){.esports-theme .schedule-grid .schedule-day>.schedule-time{font-size:22px}.esports-theme .schedule-grid .schedule-day.schedule-off>.schedule-time{font-size:17px}}
+/* Compact reference-inspired hero, followed by reach and schedule. */
+.esports-theme .home-intro{display:flex;flex-direction:column;gap:0;padding-bottom:16px}
+.esports-theme .home-intro>.hero-wrap{display:flex;align-items:center;height:clamp(320px,44svh,470px);padding-block:32px}
+.esports-theme .home-intro>.audience-band,.esports-theme .home-intro>.section-band{margin-top:0}
+.esports-theme .home-intro>.section-band{padding:40px 0 24px}
+.esports-theme .home-intro .hero-center-zone{width:100%}
+@media(min-width:1024px){
+.esports-theme .home-intro .hero-center-zone{width:calc(100% - 420px);max-width:770px;margin-left:max(24px,calc((100% - 1170px)/2))}
+.esports-theme .home-intro .hero-text-col{text-align:center}
+.esports-theme .home-intro .hero-text-col>div{text-align:center}
+.esports-theme .home-intro .hero-photo-panel{width:calc(38% + 32px);height:100%;max-width:572px;top:0;bottom:0;right:max(54px,calc((100% - 1400px)/2 + 54px));mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.45) 18%,black 42%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.45) 18%,black 42%)}
+}
+@media(max-width:1023px){.esports-theme .home-intro>.hero-wrap{height:auto;justify-content:center;padding-block:40px}}
+@media(max-width:680px){.esports-theme .home-intro{gap:0}.esports-theme .home-intro>.hero-wrap{padding-block:28px}.esports-theme .home-intro>.section-band{padding:20px 0 16px}}
+
+/* Neutral hover feedback for text links. */
+.esports-theme #site-header nav a:hover:not(.header-social-icon):not(#nav-live-badge),.esports-theme .main-nav a:hover:not(.header-social-icon):not(#nav-live-badge),.esports-theme footer .footer-nav-link:hover{color:#fff!important;text-shadow:none!important}
+
+/* Slightly larger social icons in the header. */
+.esports-theme #site-header .header-social-icon[class]{font-size:24px!important}
+
+/* Place the schedule below the flush stats bar and the stream below the fold. */
+@media(min-width:1024px){.esports-theme .home-intro>.section-band{padding-top:max(40px,calc(100svh - clamp(320px,44svh,470px) - 480px))}}
+/* Contact action sits at the right edge of the footer. */
+.esports-theme .footer-inner{width:100%;max-width:none}
+.esports-theme .footer-row-left{flex-wrap:wrap}
+.esports-theme .footer-row-right{margin-left:auto;flex-shrink:0}
+.esports-theme footer .footer-contact-btn{border:1px solid #a99bb9!important;background:#1b1525!important;color:#f8f4fa!important;text-decoration:none!important;padding:11px 20px;border-radius:7px;white-space:nowrap;animation:contactOutlinePulse 8s ease-in-out infinite;box-shadow:none!important}
+.esports-theme footer .footer-contact-btn:hover{color:#fff!important;background:#1b1525!important;border-color:#fff!important;transform:none;animation:none}
+@keyframes contactOutlinePulse{0%,80%,100%{border-color:#a99bb9;outline:2px solid transparent;outline-offset:0}86%{outline:2px solid #d9c5e580;outline-offset:4px}94%{outline:2px solid transparent;outline-offset:7px}}
+@media(max-width:1100px){.esports-theme .footer-row{flex-wrap:wrap}.esports-theme .footer-row-left{flex:1 1 100%}.esports-theme .footer-copyright{flex:1}.esports-theme .footer-row-right{margin-left:auto}}
+@media(max-width:768px){.esports-theme .footer-row{align-items:stretch}.esports-theme .footer-row-right{width:100%;gap:16px!important;justify-content:space-between!important}.esports-theme .footer-row-right>.footer-contact-btn{margin-left:auto}.esports-theme .footer-row-left{justify-content:center}.esports-theme .footer-copyright{white-space:normal}}
+@media(prefers-reduced-motion:reduce){.esports-theme footer .footer-contact-btn{animation:none}}
+
+/* Give the stream and latest videos a little more screen space. */
+.esports-theme #watch-live-section>.container,.esports-theme #latest-videos-section>.container{max-width:1280px}
+.esports-theme #latest-videos-section .max-w-4xl{max-width:1240px}
+
+/* Compact phone schedule: day, time, and activity share a row. */
+@media(max-width:680px){
+  .esports-theme .schedule-grid{grid-template-columns:minmax(0,1fr);gap:6px}
+  .esports-theme .schedule-grid .schedule-day{grid-template-columns:88px 64px minmax(0,1fr);grid-template-rows:auto;gap:10px;min-height:48px;padding:8px 12px;text-align:left;border-radius:5px}
+  .esports-theme .schedule-grid .schedule-day:last-child{grid-column:auto;min-height:48px}
+  .esports-theme .schedule-grid .schedule-day>.schedule-day-name{font-size:12px;letter-spacing:0;text-transform:none;text-align:left}
+  .esports-theme .schedule-grid .schedule-day>.schedule-time{font-size:16px;letter-spacing:0;justify-self:center;white-space:nowrap}
+  .esports-theme .schedule-grid .schedule-day>.schedule-activity{font-size:12px;line-height:1.4;text-align:right}
+  .esports-theme .schedule-grid .schedule-day.schedule-off>.schedule-time{grid-column:2/-1;justify-self:end;font-size:13px}
+  .esports-theme .schedule-grid .schedule-day.schedule-day-today{border-top-width:1px!important;border-left-width:3px!important;padding:8px 12px 8px 10px}
+}
