@@ -808,13 +808,51 @@
           const clip = data.clips[Math.floor(Math.random() * data.clips.length)];
 
           const media = document.getElementById('watch-live-media');
-          // embed_url from the API has no parent param; Twitch requires it to match the embedding domain.
-          const embedSrc = `${clip.embedUrl}&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&autoplay=false`;
+          if (!media) return;
+          const embedUrl = new URL(clip.embedUrl);
+          if (embedUrl.origin !== 'https://clips.twitch.tv' || embedUrl.pathname !== '/embed' || !embedUrl.searchParams.get('clip')) return;
+          embedUrl.searchParams.delete('parent');
+          embedUrl.searchParams.append('parent', window.location.hostname);
+          embedUrl.searchParams.set('autoplay', 'true');
+          embedUrl.searchParams.set('muted', 'true');
 
-          media.innerHTML = `
-            <iframe src="${embedSrc}" frameborder="0" allowfullscreen="true" scrolling="no" class="absolute top-0 left-0 w-full h-full"></iframe>
-            <div class="absolute top-6 right-3 px-2.5 py-1 rounded-full text-xs font-bold uppercase" style="background: rgba(15, 23, 42, 0.85); color: #e2e8f0; letter-spacing: 0.025em;">Fan Favorite Clip</div>
-          `;
+          const frame = document.createElement('iframe');
+          frame.id = 'twitch-clip-iframe';
+          frame.title = 'Twitch clip: ' + (clip.title || 'Fan Favorite Clip');
+          frame.className = 'absolute top-0 left-0 w-full h-full';
+          frame.setAttribute('frameborder', '0');
+          frame.setAttribute('scrolling', 'no');
+          frame.allow = 'autoplay; fullscreen';
+          frame.allowFullscreen = true;
+          media.replaceChildren(frame);
+          // Keep the clip label outside the player so it does not obscure video.
+          const caption = media.closest('.section-band')?.querySelector('p');
+          if (caption) caption.textContent = 'Fan Favorite Clip';
+
+          // Clips have no interactive Twitch player API. Load the muted player
+          // once it enters view; do not reload it on subsequent scrolls, which
+          // would restart the clip and reset the viewer's playback controls.
+          if ('IntersectionObserver' in window) {
+            let inView = false;
+            let started = false;
+            const startWhenVisible = () => {
+              if (started || !inView || document.hidden) return;
+              started = true;
+              frame.src = embedUrl.href;
+              observer.disconnect();
+              document.removeEventListener('visibilitychange', startWhenVisible);
+            };
+            const observer = new IntersectionObserver(entries => {
+              inView = entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.5);
+              startWhenVisible();
+            }, { threshold: 0.5 });
+            document.addEventListener('visibilitychange', startWhenVisible);
+            observer.observe(media);
+          } else {
+            // Older browsers still get a muted player with a working Play button.
+            embedUrl.searchParams.set('autoplay', 'false');
+            frame.src = embedUrl.href;
+          }
       } catch (error) { console.error("Error loading top clip", error); }
   }
 
