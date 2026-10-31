@@ -818,16 +818,15 @@
 
           const frame = document.createElement('iframe');
           frame.id = 'twitch-clip-iframe';
-          frame.title = 'Twitch clip: ' + (clip.title || 'Fan Favorite Clip');
+          frame.title = clip.title ? 'Twitch clip: ' + clip.title : 'Twitch clip';
           frame.className = 'absolute top-0 left-0 w-full h-full';
           frame.setAttribute('frameborder', '0');
           frame.setAttribute('scrolling', 'no');
           frame.allow = 'autoplay; fullscreen';
           frame.allowFullscreen = true;
           media.replaceChildren(frame);
-          // Keep the clip label outside the player so it does not obscure video.
-          const caption = media.closest('.section-band')?.querySelector('p');
-          if (caption) caption.textContent = 'Fan Favorite Clip';
+          // Hide the live-stream caption when showing an offline clip.
+          media.closest('.section-band')?.querySelector('p')?.remove();
 
           // Clips have no interactive Twitch player API. Load the muted player
           // once it enters view; do not reload it on subsequent scrolls, which
