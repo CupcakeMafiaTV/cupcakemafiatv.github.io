@@ -34,7 +34,7 @@ body.esports-theme{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-h
 .esports-theme .home-intro{display:flex;flex-direction:column;gap:0;padding-bottom:16px}
 .esports-theme .home-intro>.hero-wrap{display:flex;align-items:center;height:clamp(320px,44svh,470px);padding-block:32px}
 .esports-theme .home-intro>.audience-band,.esports-theme .home-intro>.section-band{margin-top:0}
-.esports-theme .home-intro>.section-band{padding:40px 0 24px}
+.esports-theme .home-intro>.section-band{padding:32px 0 32px}
 .esports-theme .home-intro .hero-center-zone{width:100%}
 @media(min-width:1024px){
 .esports-theme .home-intro .hero-center-zone{width:calc(100% - 420px);max-width:770px;margin-left:max(24px,calc((100% - 1170px)/2))}
@@ -43,7 +43,7 @@ body.esports-theme{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-h
 .esports-theme .home-intro .hero-photo-panel{width:calc(38% + 32px);height:100%;max-width:572px;top:0;bottom:0;right:max(54px,calc((100% - 1400px)/2 + 54px));mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.45) 18%,black 42%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.45) 18%,black 42%)}
 }
 @media(max-width:1023px){.esports-theme .home-intro>.hero-wrap{height:auto;justify-content:center;padding-block:40px}}
-@media(max-width:680px){.esports-theme .home-intro{gap:0}.esports-theme .home-intro>.hero-wrap{padding-block:28px}.esports-theme .home-intro>.section-band{padding:20px 0 16px}}
+@media(max-width:680px){.esports-theme .home-intro{gap:0}.esports-theme .home-intro>.hero-wrap{padding-block:28px}.esports-theme .home-intro>.section-band{padding:12px 0 24px}}
 
 /* Neutral hover feedback for text links. */
 .esports-theme #site-header nav a:hover:not(.header-social-icon):not(#nav-live-badge),.esports-theme .main-nav a:hover:not(.header-social-icon):not(#nav-live-badge),.esports-theme footer .footer-nav-link:hover{color:#fff!important;text-shadow:none!important}
@@ -52,7 +52,7 @@ body.esports-theme{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-h
 .esports-theme #site-header .header-social-icon[class]{font-size:24px!important}
 
 /* Place the schedule below the flush stats bar and the stream below the fold. */
-@media(min-width:1024px){.esports-theme .home-intro>.section-band{padding-top:max(40px,calc(100svh - clamp(320px,44svh,470px) - 480px))}}
+@media(min-width:1024px){.esports-theme .home-intro>.section-band{padding-top:max(32px,calc(100svh - clamp(320px,44svh,470px) - 488px))}}
 /* Contact action sits at the right edge of the footer. */
 .esports-theme .footer-inner{width:100%;max-width:none}
 .esports-theme .footer-row-left{flex-wrap:wrap}
