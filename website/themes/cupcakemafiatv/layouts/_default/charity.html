@@ -58,15 +58,16 @@
                 <p>100% of donations go directly to their care. If you've ever enjoyed hanging out in chat, this is the one stream a year where our community turns that fun into real, life-changing support.</p>
             </div>
 
-            <!-- Stats: hand-entered, same as the social counts on Work With Me --
-                 no participant ID exists to pull from yet. Once the next Extra
-                 Life event goes live and a participation/fundraising page
-                 exists, these could switch to auto-updating from that API
-                 instead of manual edits. -->
-            <div style="font-family: 'Rajdhani', sans-serif;" class="reveal-on-scroll">
+            <!-- Lifetime baseline before participant 582414 (Extra Life 2026):
+                 $1,263.50 and 37 donations. Its API totals were both zero when
+                 connected. Add campaign totals to this baseline, not vice versa.
+                 Years participating is recorded separately: the participant API
+                 does not expose participation history. -->
+            <div id="charity-stats" data-participant-id="582414" data-historical-cents="126350" data-historical-donations="37" style="font-family: 'Rajdhani', sans-serif;" class="reveal-on-scroll">
                 <div class="mb-6">
                     <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">The Numbers</h2>
-                    <p class="text-gray-300 mt-3 max-w-2xl">Updated after every campaign &mdash; THANK YOU to everyone who has donated, raided, or cheered us on!</p>
+                    <p id="charity-stats-status" class="text-gray-300 mt-3 max-w-2xl" role="status">Checking the latest Extra Life totals &mdash; THANK YOU to everyone who has donated, raided, or cheered us on!</p>
+                    <noscript><p class="text-gray-300 mt-3">Enable JavaScript for automatic donation updates, or <a href="https://dd.extra-life.org/participants/582414" class="text-gold">view the latest totals on Extra Life</a>.</p></noscript>
                 </div>
                 <div class="charity-stats-grid">
                     <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 3px solid rgba(234, 179, 8, 0.85);">
@@ -74,7 +75,7 @@
                             <svg class="icon" aria-hidden="true" style="color: #22c55e; font-size: 20px;"><use href="/img/icons-sprite.svg#fas-sack-dollar"></use></svg>
                         </div>
                         <div>
-                            <div class="text-3xl font-black text-white">$<span class="static-count-up" data-decimals="2">1263.50</span> <span class="text-lg font-bold" style="color: #94a3b8;">USD</span></div>
+                            <div class="text-3xl font-black text-white">$<span id="charity-raised">1,263.50</span> <span class="text-lg font-bold" style="color: #94a3b8;">USD</span></div>
                             <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
                         </div>
                     </div>
@@ -83,7 +84,7 @@
                             <svg class="icon" aria-hidden="true" style="color: #22c55e; font-size: 20px;"><use href="/img/icons-sprite.svg#fas-hand-holding-heart"></use></svg>
                         </div>
                         <div>
-                            <div class="text-3xl font-black text-white static-count-up">37</div>
+                            <div id="charity-donations" class="text-3xl font-black text-white">37</div>
                             <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations Received</div>
                         </div>
                     </div>
@@ -92,7 +93,7 @@
                             <svg class="icon" aria-hidden="true" style="color: #22c55e; font-size: 20px;"><use href="/img/icons-sprite.svg#fas-calendar-check"></use></svg>
                         </div>
                         <div>
-                            <div class="text-3xl font-black text-white static-count-up">5</div>
+                            <div id="charity-years" class="text-3xl font-black text-white static-count-up">6</div>
                             <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
                         </div>
                     </div>
@@ -115,9 +116,9 @@
             <div style="padding-top: 12px;" class="reveal-on-scroll">
                 <h2 class="text-2.5xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-3.5xl">Donate</h2>
                 <p class="text-gray-300 mt-3 max-w-3xl mb-6">100% of your donation goes straight to the hospital through Extra Life&mdash;I don't take a single cent. Even a few dollars makes a real difference!</p>
-                <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
+                <a href="https://dd.extra-life.org/participants/582414" target="_blank" rel="noopener noreferrer" class="footer-contact-btn">
                     <svg class="icon" aria-hidden="true" style="font-size: 15px;"><use href="/img/icons-sprite.svg#fas-heart"></use></svg>
-                    <span>DONATE ON EXTRA LIFE</span>
+                    <span>Donate</span>
                 </a>
             </div>
 
@@ -128,4 +129,5 @@
     </div>
 </main>
 
+<script src="/js/charity-stats.js?v=1" defer></script>
 {{ end }}
