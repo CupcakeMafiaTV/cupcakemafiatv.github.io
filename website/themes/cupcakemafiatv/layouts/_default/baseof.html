@@ -16,21 +16,18 @@
 
                 <header id="site-header" class="text-white">
 
-                    <div class="max-w-[1360px] mx-auto px-5">
+                    <div class="header-shell">
 
-                        <nav class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
+                        <nav aria-label="Main navigation" class="flex min-h-[64px] items-center gap-x-6 lg:gap-x-11 py-1 lg:min-h-[90px] lg:py-4">
 
-                            <!-- Logo -->
-                            {{- partial "logo.html" . -}}
-                            <!-- Logo / End -->
-        
-                            <!-- Navigation (Desktop) -->
-                            {{- partial "navigation.html" . -}}
-                            <!-- Navigation (Desktop) / End -->
+                            <div class="header-navigation">
+                                {{- partial "logo.html" . -}}
+                                {{- partial "navigation.html" . -}}
+                            </div>
 
                             <!-- Header Controls -->
-                            <div class="flex items-center ml-auto -mr-3">
-                                <div class="hidden md:flex items-center gap-2" style="margin-right: 16px;">
+                            <div class="header-controls flex items-center ml-auto">
+                                <div class="header-socials hidden md:flex items-center gap-2">
                                     <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-twitch" aria-label="Twitch"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></a>
                                     <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-youtube" aria-label="YouTube"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></a>
                                     <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="header-social-icon header-social-x" aria-label="X"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></a>

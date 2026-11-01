@@ -1,3 +1,5 @@
+import { authorizeCron } from './_cron-auth.js';
+
 // Runs on a daily Vercel Cron schedule (see vercel.json). Checks for a new
 // long-form video/Short AND a new VOD upload in the same run (folded together
 // so the free Vercel plan's cron-job cap isn't a factor) and posts each to
@@ -45,16 +47,18 @@ function currentEasternHour() {
   );
 }
 
-async function kvGet(key) {
-  const res = await fetch(`${process.env.KV_REST_API_URL}/get/${key}`, {
+async function kvGet(key, request) {
+  const res = await request(`${process.env.KV_REST_API_URL}/get/${key}`, {
     headers: { Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}` },
   });
+  if (!res.ok) throw new Error('Task state unavailable');
   const data = await res.json();
+  if (data.error) throw new Error('Task state unavailable');
   return data.result ? JSON.parse(data.result) : null;
 }
 
-async function kvSet(key, value) {
-  await fetch(`${process.env.KV_REST_API_URL}/set/${key}`, {
+async function kvSet(key, value, request) {
+  const response = await request(`${process.env.KV_REST_API_URL}/set/${key}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
@@ -62,24 +66,25 @@ async function kvSet(key, value) {
     },
     body: JSON.stringify(value),
   });
+  if (!response.ok || (await response.json()).error) throw new Error('Could not save task state');
 }
 
-async function fetchRecentVideos(apiKey, channelId) {
-  const channelRes = await fetch(
+async function fetchRecentVideos(apiKey, channelId, request) {
+  const channelRes = await request(
     `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`
   );
   const channelData = await channelRes.json();
   const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
   if (!uploadsPlaylistId) throw new Error('Could not resolve uploads playlist for channel');
 
-  const playlistRes = await fetch(
+  const playlistRes = await request(
     `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=50&key=${apiKey}`
   );
   const playlistData = await playlistRes.json();
   const videoIds = (playlistData.items || []).map((item) => item.snippet.resourceId.videoId);
   if (videoIds.length === 0) return [];
 
-  const detailsRes = await fetch(
+  const detailsRes = await request(
     `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails&id=${videoIds.join(',')}&key=${apiKey}`
   );
   const detailsData = await detailsRes.json();
@@ -103,15 +108,15 @@ async function fetchRecentVideos(apiKey, channelId) {
     }));
 }
 
-async function fetchRecentVods(apiKey) {
-  const channelRes = await fetch(
+async function fetchRecentVods(apiKey, request) {
+  const channelRes = await request(
     `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forHandle=${VODS_HANDLE}&key=${apiKey}`
   );
   const channelData = await channelRes.json();
   const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
   if (!uploadsPlaylistId) throw new Error('Could not resolve uploads playlist for VODs channel');
 
-  const playlistRes = await fetch(
+  const playlistRes = await request(
     `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=50&key=${apiKey}`
   );
   const playlistData = await playlistRes.json();
@@ -127,12 +132,13 @@ async function fetchRecentVods(apiKey) {
   }));
 }
 
-async function postToDiscord(webhookUrl, item, { emoji, label, color }) {
+async function postToDiscord(webhookUrl, item, { emoji, label, color }, request) {
+  request.assertTime(12000);
   if (item.isShort) {
     emoji = '⚡';
     label = 'New Short is up!';
   }
-  const res = await fetch(webhookUrl, {
+  const res = await request(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -154,13 +160,13 @@ async function postToDiscord(webhookUrl, item, { emoji, label, color }) {
   }
 }
 
-async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label, color }) {
-  let state = await kvGet(stateKey);
+async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label, color, request }) {
+  let state = await kvGet(stateKey, request);
   if (!state) {
     // First run ever (fresh KV store): prime with "now" instead of
     // backfilling every existing item as if it were new.
     state = { lastId: '', lastPublishedAt: new Date().toISOString() };
-    await kvSet(stateKey, state);
+    await kvSet(stateKey, state, request);
     return { posted: 0, primed: true };
   }
 
@@ -175,13 +181,13 @@ async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label
 
   const postedIds = [];
   for (const item of newItems) {
-    await postToDiscord(webhookUrl, item, { emoji, label, color });
+    await postToDiscord(webhookUrl, item, { emoji, label, color }, request);
     state.lastId = item.id;
     state.lastPublishedAt = item.publishedAt;
     // Persist after each successful post (not once at the end) so a later
     // item failing (Discord rate-limit, transient 5xx) doesn't leave earlier,
     // already-posted items unrecorded and get them reposted next run.
-    await kvSet(stateKey, state);
+    await kvSet(stateKey, state, request);
     postedIds.push(item.id);
   }
 
@@ -189,16 +195,11 @@ async function checkAndPostFeed({ stateKey, fetchItems, webhookUrl, emoji, label
 }
 
 export default async function handler(req, res) {
-  if (req.query.force !== '1' && !TARGET_EASTERN_HOURS.includes(currentEasternHour())) {
+  if (!authorizeCron(req, res)) return;
+  if (req.query?.force !== '1' && !TARGET_EASTERN_HOURS.includes(currentEasternHour())) {
     return res.status(200).json({ skipped: 'Not a target check hour', easternHour: currentEasternHour() });
   }
 
-  if (process.env.CRON_SECRET) {
-    const authHeader = req.headers.authorization;
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-  }
 
   const API_KEY = process.env.YouTube_Live_Checker;
   const CHANNEL_ID = process.env.CHANNEL_ID;
@@ -217,17 +218,20 @@ export default async function handler(req, res) {
   // Guards against two overlapping invocations (e.g. a manual ?force=1 test
   // racing a scheduled cron fire) both reading the same stale dedup state
   // and double-posting to Discord.
-  if (!(await acquireLock(LOCK_KEY))) {
+  let lease;
+  try { lease = await acquireLock(LOCK_KEY); } catch { return res.status(503).json({ error: 'Task lock unavailable' }); }
+  if (!lease) {
     return res.status(200).json({ skipped: 'Another check is already in progress' });
   }
+  const request = lease.request;
 
   const results = {};
 
   try {
     try {
       results.video = await checkAndPostFeed({
-        stateKey: STATE_KEY,
-        fetchItems: () => fetchRecentVideos(API_KEY, CHANNEL_ID),
+        stateKey: STATE_KEY, request,
+        fetchItems: () => fetchRecentVideos(API_KEY, CHANNEL_ID, request),
         webhookUrl: WEBHOOK_URL,
         emoji: '🎬',
         label: 'New video is up!',
@@ -240,8 +244,8 @@ export default async function handler(req, res) {
     if (VODS_WEBHOOK_URL) {
       try {
         results.vod = await checkAndPostFeed({
-          stateKey: VOD_STATE_KEY,
-          fetchItems: () => fetchRecentVods(API_KEY),
+          stateKey: VOD_STATE_KEY, request,
+          fetchItems: () => fetchRecentVods(API_KEY, request),
           webhookUrl: VODS_WEBHOOK_URL,
           emoji: '🎞️',
           label: 'New VOD is up!',
@@ -254,7 +258,7 @@ export default async function handler(req, res) {
       results.vod = { skipped: 'DISCORD_VODS_WEBHOOK_URL not set' };
     }
   } finally {
-    await releaseLock(LOCK_KEY);
+    try { await releaseLock(lease); } catch { /* The owned lock expires automatically. */ }
   }
 
   return res.status(200).json(results);

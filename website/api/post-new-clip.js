@@ -1,3 +1,5 @@
+import { authorizeCron } from './_cron-auth.js';
+
 // Runs on a daily Vercel Cron schedule (see vercel.json). Checks for new
 // Twitch clips created of the channel and posts each one to Discord via
 // webhook. Dedup state (the last clip seen) is kept in Upstash Redis so the
@@ -10,16 +12,18 @@ const ACCENT_COLOR = 0x654cff;
 const STATE_KEY = 'last-posted-clip';
 const LOCK_KEY = 'lock:post-new-clip';
 
-async function kvGet(key) {
-  const res = await fetch(`${process.env.KV_REST_API_URL}/get/${key}`, {
+async function kvGet(key, request) {
+  const res = await request(`${process.env.KV_REST_API_URL}/get/${key}`, {
     headers: { Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}` },
   });
+  if (!res.ok) throw new Error('Task state unavailable');
   const data = await res.json();
+  if (data.error) throw new Error('Task state unavailable');
   return data.result ? JSON.parse(data.result) : null;
 }
 
-async function kvSet(key, value) {
-  await fetch(`${process.env.KV_REST_API_URL}/set/${key}`, {
+async function kvSet(key, value, request) {
+  const response = await request(`${process.env.KV_REST_API_URL}/set/${key}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
@@ -27,10 +31,11 @@ async function kvSet(key, value) {
     },
     body: JSON.stringify(value),
   });
+  if (!response.ok || (await response.json()).error) throw new Error('Could not save task state');
 }
 
-async function fetchClipsSince(clientId, accessToken, broadcasterId, sinceISOString) {
-  return fetch(
+async function fetchClipsSince(clientId, accessToken, broadcasterId, sinceISOString, request) {
+  return request(
     `https://api.twitch.tv/helix/clips?broadcaster_id=${broadcasterId}&first=100&started_at=${sinceISOString}&ended_at=${new Date().toISOString()}`,
     {
       headers: {
@@ -41,8 +46,9 @@ async function fetchClipsSince(clientId, accessToken, broadcasterId, sinceISOStr
   );
 }
 
-async function postToDiscord(webhookUrl, clip) {
-  const res = await fetch(webhookUrl, {
+async function postToDiscord(webhookUrl, clip, request) {
+  request.assertTime(12000);
+  const res = await request(webhookUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -65,12 +71,7 @@ async function postToDiscord(webhookUrl, clip) {
 }
 
 export default async function handler(req, res) {
-  // Deliberately not gated behind CRON_SECRET: poll-clips.yml pings this
-  // endpoint every 30 minutes via plain curl (no secret) to work around
-  // Vercel Hobby-tier cron's unreliable timing. Repeat/unauthenticated calls
-  // are harmless -- the KV dedup state means an extra call can't cause a
-  // duplicate post on its own, and the lock below covers the case where two
-  // calls genuinely overlap in time.
+  if (!authorizeCron(req, res)) return;
   const CLIENT_ID = process.env.TWITCH_CLIENT_ID;
   const CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
   const BROADCASTER_ID = process.env.TWITCH_BROADCASTER_ID;
@@ -86,28 +87,32 @@ export default async function handler(req, res) {
   // Guards against two overlapping invocations (e.g. the 30-min poll firing
   // again before a slow prior run finished) both reading the same stale
   // dedup state and double-posting to Discord.
-  if (!(await acquireLock(LOCK_KEY))) {
+  let lease;
+  try { lease = await acquireLock(LOCK_KEY); } catch { return res.status(503).json({ error: 'Task lock unavailable' }); }
+  if (!lease) {
     return res.status(200).json({ skipped: 'Another check is already in progress' });
   }
+  const request = lease.request;
 
   try {
-    let state = await kvGet(STATE_KEY);
+    let state = await kvGet(STATE_KEY, request);
     if (!state) {
       // First run ever (fresh KV store): prime with "now" instead of
       // backfilling every existing clip as if it were new.
       state = { lastClipId: '', lastCreatedAt: new Date().toISOString() };
-      await kvSet(STATE_KEY, state);
+      await kvSet(STATE_KEY, state, request);
       return res.status(200).json({ posted: 0, primed: true });
     }
 
-    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET);
-    let clipsRes = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt);
+    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, false, lease.signal);
+    let clipsRes = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt, request);
 
     if (clipsRes.status === 401) {
-      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true);
-      clipsRes = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt);
+      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true, lease.signal);
+      clipsRes = await fetchClipsSince(CLIENT_ID, accessToken, BROADCASTER_ID, state.lastCreatedAt, request);
     }
 
+    if (!clipsRes.ok) throw new Error('Twitch clips temporarily unavailable');
     const clipsData = await clipsRes.json();
     const clips = clipsData.data || [];
 
@@ -121,13 +126,13 @@ export default async function handler(req, res) {
 
     const postedIds = [];
     for (const clip of newClips) {
-      await postToDiscord(WEBHOOK_URL, clip);
+      await postToDiscord(WEBHOOK_URL, clip, request);
       state.lastClipId = clip.id;
       state.lastCreatedAt = clip.created_at;
       // Persist after each successful post (not once at the end) so a later
       // clip failing (Discord rate-limit, transient 5xx) doesn't leave
       // earlier, already-posted clips unrecorded and get them reposted next run.
-      await kvSet(STATE_KEY, state);
+      await kvSet(STATE_KEY, state, request);
       postedIds.push(clip.id);
     }
 
@@ -135,6 +140,6 @@ export default async function handler(req, res) {
   } catch (error) {
     return res.status(500).json({ error: error.message });
   } finally {
-    await releaseLock(LOCK_KEY);
+    try { await releaseLock(lease); } catch { /* The owned lock expires automatically. */ }
   }
 }

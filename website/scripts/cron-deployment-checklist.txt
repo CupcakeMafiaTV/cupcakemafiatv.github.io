@@ -1,0 +1,6 @@
+Before publishing the cron authentication changes:
+1. Set the same strong, random CRON_SECRET in Vercel production environment variables and GitHub repository Actions secrets.
+2. Deploy the API changes and authenticated poll-clips workflow together after both settings are ready.
+3. Confirm scheduled execution through provider logs. Manual requests to post-new-clip or post-new-video can send real Discord messages; do not use them as read-only health checks.
+Missing secrets intentionally cause the API to return 503 and the GitHub workflow to stop. Invalid credentials return 401.
+Never put the secret into this file, source code, public assets or command logs.

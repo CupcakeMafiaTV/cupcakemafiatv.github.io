@@ -118,8 +118,8 @@
         color: #ffffff;
         font-size: 23px;
         font-weight: 800;
-        margin-top: 32px;
-        margin-bottom: 12px;
+        margin-top: 24px;
+        margin-bottom: 10px;
         display: flex;
         align-items: center;
         gap: 10px;
@@ -129,35 +129,7 @@
         font-size: 0.8em;
     }
     .specs-heading:first-child {
-        margin-top: 28px;
-    }
-
-    /* Fading line + glowing dot before every category — left-aligned to
-       the heading it introduces (not centered/floating), and colored to
-       match that section's own icon instead of always being gold. */
-    .specs-heading:not(:first-child) {
-        margin-top: 46px;
-    }
-    .specs-heading::before {
-        content: '';
-        position: absolute;
-        top: -23px;
-        left: 0;
-        width: min(90%, 390px);
-        height: 2px;
-        background: linear-gradient(to right, var(--cat-color, rgb(var(--color-gold))), transparent);
-    }
-    .specs-heading::after {
-        content: '';
-        position: absolute;
-        top: -23px;
-        left: 0;
-        width: 8px;
-        height: 8px;
-        border-radius: 9999px;
-        transform: translate(-50%, -50%);
-        background: var(--cat-color, rgb(var(--color-gold)));
-        box-shadow: 0 0 10px var(--cat-color, rgb(var(--color-gold)));
+        margin-top: 0;
     }
 
     .specs-plain-list {
@@ -216,12 +188,12 @@
 </style>
 
 <!-- Main Content Area -->
-<main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
-    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+<main id="main-content" class="interior-page specs-page">
+    <div class="page-shell">
 
         <!-- Title Banner -->
-        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px;">
-            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+        <div class="page-title">
+            <h1>
                 PC Specs
             </h1>
         </div>
@@ -289,25 +261,25 @@
             <div class="img-column photo-reveal">
 
                 <!-- Image 1: setup photo -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-2.webp" alt="CupcakeMafiaTV gaming desk and monitors" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- Image 2: setup photo -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-1.webp" alt="CupcakeMafiaTV triple-monitor gaming setup" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- Image 3: setup photo -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-3.webp" alt="CupcakeMafiaTV plushie and Funko shelf" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- Image 4: setup photo -->
-                <div class="img-container" onclick="openModal(this.querySelector('img').src)">
+                <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-4.webp" alt="CupcakeMafiaTV Funko collection wall" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
@@ -315,7 +287,6 @@
             </div>
         </div>
 
-        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
     </div>
 </main>
 

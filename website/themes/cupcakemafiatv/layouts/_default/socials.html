@@ -147,12 +147,12 @@
 </style>
 
 <!-- Main Content Area with flex-grow -->
-<main id="main-content" style="flex: 1 0 auto; padding: 30px 20px 40px 20px;">
-    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+<main id="main-content" class="interior-page socials-page">
+    <div class="page-shell">
 
         <!-- Title Banner -->
-        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px;">
-            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+        <div class="page-title">
+            <h1>
                 Socials
             </h1>
         </div>
@@ -164,13 +164,13 @@
             <div class="image-col" style="width: 420px; max-width: 100%; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px; position: sticky; top: 24px;">
 
                 <!-- Image 1: real setup photo -->
-                <div class="img-container" style="display: flex;" onclick="openModal(this.querySelector('img').src)">
+                <div class="img-container" style="display: flex;" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/CodySetup.webp" alt="CupcakeMafiaTV at his streaming setup" style="object-position: center;">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
                 <!-- YouTube Video with Custom Thumbnail & Adjusted Crop (Moved to Second Position) -->
-                <div class="video-container" style="display: flex; cursor: pointer; position: relative;" onclick="loadYouTubeVideo(this)">
+                <div class="video-container" style="display: flex; cursor: pointer; position: relative;" role="button" tabindex="0" aria-label="Play CupcakeMafiaTV Masters rank highlight" data-video-preview onclick="loadYouTubeVideo(this)">
                     <img src="/img/Masters.webp" alt="CupcakeMafiaTV Masters rank League of Legends highlight" style="width: 100%; height: 100%; object-fit: cover; object-position: 30% center; border-radius: 8px; display: block;">
                     <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); transition: background 0.2s;">
                         <div class="video-play-btn">
@@ -313,6 +313,11 @@
         container.appendChild(iframe);
         container.style.cursor = 'default';
         container.removeAttribute('onclick');
+        container.removeAttribute('role');
+        container.removeAttribute('tabindex');
+        container.removeAttribute('aria-label');
+        container.removeAttribute('data-video-preview');
+        iframe.focus();
     }
 </script>
 

@@ -8,16 +8,42 @@
     const mobileMenu = document.querySelector('.js-mobile-menu');
     if (!menuToggle || !mobileMenu) return;
 
-    menuToggle.onclick = () => {
-      menuToggle.classList.toggle('active');
-      const isOpen = menuToggle.classList.contains('active');
+    let isOpen = false;
+    const content = document.getElementById('content');
+    const footer = document.querySelector('footer');
+    const desktop = matchMedia('(min-width: 1024px)');
+    function setOpen(open, restoreFocus = false) {
+      isOpen = open && !desktop.matches;
+      menuToggle.classList.toggle('active', isOpen);
       menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       if (siteWrapper) siteWrapper.classList.toggle('overflow-y-hidden', isOpen);
+      document.documentElement.classList.toggle('mobile-menu-open', isOpen);
       if (iconOpen) iconOpen.classList.toggle('hidden', isOpen);
       if (iconClose) iconClose.classList.toggle('hidden', !isOpen);
+      mobileMenu.inert = !isOpen;
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
       mobileMenu.classList.toggle('translate-x-full', !isOpen);
       mobileMenu.classList.toggle('translate-x-0', isOpen);
-    };
+      if (content) content.inert = isOpen;
+      if (footer) footer.inert = isOpen;
+      if (isOpen) mobileMenu.querySelector('a[href]')?.focus({ preventScroll: true });
+      else if (restoreFocus) menuToggle.focus({ preventScroll: true });
+    }
+    menuToggle.onclick = () => setOpen(!isOpen, isOpen);
+    document.addEventListener('keydown', event => {
+      if (!isOpen) return;
+      if (event.key === 'Escape') { event.preventDefault(); setOpen(false, true); }
+      if (event.key === 'Tab') {
+        const controls = [menuToggle, ...mobileMenu.querySelectorAll('a[href], button:not([disabled])')];
+        const current = controls.indexOf(document.activeElement);
+        event.preventDefault();
+        controls[(current + (event.shiftKey ? -1 : 1) + controls.length) % controls.length].focus();
+      }
+    });
+    mobileMenu.addEventListener('click', event => { if (event.target.closest('a[href]')) setOpen(false, true); });
+    desktop.addEventListener('change', () => { if (desktop.matches) setOpen(false); });
+    setOpen(false);
   })();
 
   // Animates an element's text from 0 up to `target`, easing out. Clears
@@ -104,14 +130,14 @@
   // value in localStorage if the API is unreachable, so the count never
   // gets stuck on "..."). This one fetch covers every page — the homepage
   // hero and Work With Me's stat card both reuse the same element ID.
-  fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
+  if (document.getElementById('youtube-sub-count') || document.getElementById('youtube-view-count')) fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
     .then(response => response.json())
     .then(data => {
       const subElement = document.getElementById('youtube-sub-count');
       if (subElement && data.subscriberCount) {
         window.cmtvCountUp(subElement, Number(data.subscriberCount));
       }
-      if (data.subscriberCount) localStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
+      if (data.subscriberCount) window.cmtvStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
 
       // Lifetime views is shown compact (850K, 1.2M) rather than count-up
       // animated, to match the "media kit" style number creators quote
@@ -120,33 +146,33 @@
       if (viewElement && data.viewCount) {
         viewElement.textContent = window.cmtvFormatCompact(Number(data.viewCount));
       }
-      if (data.viewCount) localStorage.setItem('cmtv_youtube_views', data.viewCount);
+      if (data.viewCount) window.cmtvStorage.setItem('cmtv_youtube_views', data.viewCount);
     })
     .catch(error => {
       console.error('Error fetching subscriber count:', error);
       const subElement = document.getElementById('youtube-sub-count');
-      const cachedSubs = localStorage.getItem('cmtv_youtube_subs');
+      const cachedSubs = window.cmtvStorage.getItem('cmtv_youtube_subs');
       if (subElement && cachedSubs) window.cmtvCountUp(subElement, Number(cachedSubs));
 
       const viewElement = document.getElementById('youtube-view-count');
-      const cachedViews = localStorage.getItem('cmtv_youtube_views');
+      const cachedViews = window.cmtvStorage.getItem('cmtv_youtube_views');
       if (viewElement && cachedViews) viewElement.textContent = window.cmtvFormatCompact(Number(cachedViews));
     });
 
   // Fetch live Twitch follower count from Vercel API (same fallback pattern)
-  fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
+  if (document.getElementById('twitch-follower-count')) fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
     .then(response => response.json())
     .then(data => {
       const twitchCountEl = document.getElementById('twitch-follower-count');
       if (twitchCountEl && data.followerCount) {
         window.cmtvCountUp(twitchCountEl, Number(data.followerCount));
       }
-      if (data.followerCount) localStorage.setItem('cmtv_twitch_followers', data.followerCount);
+      if (data.followerCount) window.cmtvStorage.setItem('cmtv_twitch_followers', data.followerCount);
     })
     .catch(error => {
       console.error('Error fetching Twitch followers:', error);
       const twitchCountEl = document.getElementById('twitch-follower-count');
-      const cached = localStorage.getItem('cmtv_twitch_followers');
+      const cached = window.cmtvStorage.getItem('cmtv_twitch_followers');
       if (twitchCountEl && cached) window.cmtvCountUp(twitchCountEl, Number(cached));
     });
 
@@ -204,26 +230,29 @@
         if (countEl && (data.memberCount || data.memberCount === 0)) {
           window.cmtvCountUp(countEl, Number(data.memberCount));
         }
-        if (data.memberCount || data.memberCount === 0) localStorage.setItem('cmtv_discord_members', data.memberCount);
+        if (data.memberCount || data.memberCount === 0) window.cmtvStorage.setItem('cmtv_discord_members', data.memberCount);
       })
       .catch(error => {
         console.error('Error fetching Discord widget:', error);
         const countEl = document.getElementById('discord-member-count');
-        const cached = localStorage.getItem('cmtv_discord_members');
+        const cached = window.cmtvStorage.getItem('cmtv_discord_members');
         if (countEl && cached) window.cmtvCountUp(countEl, Number(cached));
       });
   }
 
   // Fetch and Toggle Live Status Badges
-  let homeTwitchWidgetsLoaded = false;
+  let twitchIsLive = false;
+  let youtubeIsLive = false;
+  let liveCheckPending = false;
   async function checkLiveStatuses() {
-    let twitchIsLive = false;
-    let youtubeIsLive = false;
+    if (liveCheckPending) return;
+    liveCheckPending = true;
 
     // 1. Check Twitch Live Status
     try {
-      const twitchRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status');
+      const twitchRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-status', { signal: AbortSignal.timeout(10000) });
       const twitchData = await twitchRes.json();
+      if (!twitchRes.ok || twitchData.available === false || typeof twitchData.isLive !== 'boolean') throw new Error('Twitch status unavailable');
       twitchIsLive = Boolean(twitchData.isLive);
 
       const twitchBadge = document.getElementById('twitch-live-badge');
@@ -231,24 +260,8 @@
         twitchBadge.style.display = twitchIsLive ? 'inline-block' : 'none';
       }
 
-      // Homepage hero widgets (badge, title, offline clip) used
-      // to run their own separate fetch to this same endpoint; they now
-      // reuse this one. Guarded to run once, matching their old load-once
-      // behavior (only the nav/twitch-live-badge above re-poll every 5min).
-      if (!homeTwitchWidgetsLoaded && twitchRes.ok) {
-        homeTwitchWidgetsLoaded = true;
-        const homeBadge = document.getElementById('home-twitch-badge');
-        if (homeBadge) {
-          if (twitchIsLive) {
-            homeBadge.classList.remove('hidden');
-            homeBadge.style.display = 'flex';
-            const homeBadgeLabel = homeBadge.querySelector('span:last-child');
-            if (homeBadgeLabel) homeBadgeLabel.textContent = 'Live Now' + (twitchData.viewerCount ? ` · ${Number(twitchData.viewerCount).toLocaleString()} viewers` : '');
-          } else {
-            homeBadge.style.display = 'none';
-            if (typeof loadTopClipForOffline === 'function') loadTopClipForOffline();
-          }
-        }
+      if (twitchRes.ok && typeof updateHomeStreamState === 'function') {
+        updateHomeStreamState(twitchIsLive, twitchData);
       }
     } catch (e) {
       console.log('Error checking Twitch status:', e);
@@ -256,9 +269,10 @@
 
     // 2. Check YouTube Live Status
     try {
-      const ytRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/youtube-status');
+      const ytRes = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/youtube-status', { signal: AbortSignal.timeout(10000) });
       const ytData = await ytRes.json();
-      youtubeIsLive = Boolean(ytData.isLive);
+      if (!ytRes.ok || ytData.error || ytData.stale || typeof ytData.isLive !== 'boolean') throw new Error('YouTube status unavailable');
+      youtubeIsLive = ytData.isLive;
 
       const ytBadge = document.getElementById('youtube-live-badge');
       if (ytBadge) {
@@ -288,6 +302,7 @@
     window.cmtvIsLive = twitchIsLive || youtubeIsLive;
     cmtvSetLiveIndicator(window.cmtvIsLive);
     document.dispatchEvent(new CustomEvent('cmtv:livestatus', { detail: { isLive: window.cmtvIsLive } }));
+    liveCheckPending = false;
   }
 
   // Run live check immediately on page load

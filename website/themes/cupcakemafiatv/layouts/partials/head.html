@@ -7,17 +7,17 @@
        silently ignored by browsers per spec (that needs a real response
        header, which GitHub Pages doesn't support) -- this only covers
        resource/script/connect sources, not clickjacking.
-       script-src/style-src need 'unsafe-inline': every script and most
-       styling on this site is inline (no external .js files exist), so
+       script-src/style-src currently allow 'unsafe-inline' for the site's
+       embedded scripts and styles, so
        this can't block an injected inline <script> from running -- its
        real job is stopping an injection from pulling in more external
        code or exfiltrating data to an unlisted domain. -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    font-src 'self' https://fonts.gstatic.com;
-    img-src 'self' data: https://i.ytimg.com;
+    style-src 'self' 'unsafe-inline';
+    font-src 'self';
+    img-src 'self' data: https://i.ytimg.com https://static-cdn.jtvnw.net https://clips-media-assets2.twitch.tv https://clips-media-assets.twitch.tv;
     connect-src 'self' {{ if eq .Layout "charity" }}https://dd.extra-life.org{{ end }} https://cupcakemafiatv-github-io.vercel.app https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com;
     frame-src https://player.twitch.tv https://clips.twitch.tv https://www.twitch.tv https://www.youtube.com;
     object-src 'none';
@@ -26,6 +26,14 @@
     upgrade-insecure-requests;
   ">
   <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <script>
+    // Storage is optional: blocked storage must not break playback or the game.
+    window.cmtvStorage = {
+      getItem(key) { try { return localStorage.getItem(key); } catch { return null; } },
+      setItem(key, value) { try { localStorage.setItem(key, value); } catch {} }
+    };
+  </script>
 
   <!-- Google tag (gtag.js) -- only loaded after explicit opt-in on the Privacy page (see
        partials/cookie-consent.html), not unconditionally on page load. -->
@@ -124,20 +132,13 @@
 
   <!-- Tints mobile browser chrome (address bar, task switcher) to match
        the site's dark purple background instead of default white/black. -->
-  <meta name="theme-color" content="#24142f">
-
-  <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#15111d">
+  <link rel="preload" as="image" href="/img/emotes/MainCupcake.png">
 
   <!-- Every page fetches live stats (followers, live status, etc.) from the
        Vercel API on load; preconnecting saves a DNS+TLS round trip on that
        first request. -->
   <link rel="preconnect" href="https://cupcakemafiatv-github-io.vercel.app">
-
-  <!-- Vendor CSS -->
-  <link href="/common/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Template CSS -->
   <link href="/css/style.css" rel="stylesheet">
@@ -149,15 +150,6 @@
           50% { opacity: 0.4; }
       }
 
-      /* Force header container width & centering across all pages */
-      #site-header,
-      header {
-          max-width: 1400px !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
-          padding-left: 24px !important;
-          padding-right: 24px !important;
-      }
 
       /* Header Nav Link Size (intentionally larger than the 15px footer nav) */
       #site-header nav a,
@@ -501,5 +493,5 @@
       }
   </style>
   <link href="/css/esports-theme.css?v=3" rel="stylesheet">
-<link href="/css/modern-polish.css?v=3" rel="stylesheet">
+<link href="/css/modern-polish.css?v=5" rel="stylesheet">
 </head>

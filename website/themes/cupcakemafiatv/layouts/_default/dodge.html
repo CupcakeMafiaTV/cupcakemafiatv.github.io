@@ -89,7 +89,7 @@
         border-radius: 14px;
         padding: 20px;
     }
-    #dodge-rules h3 {
+    #dodge-rules h2 {
         color: #ffffff;
         font-size: 15px;
         font-weight: 800;
@@ -134,7 +134,7 @@
     #dodge-controls-group .dodge-rule-example:last-child { margin-bottom: 0; }
     .dodge-rule-or {
         text-align: center;
-        color: #64748b;
+        color: #bcb3c8;
         font-weight: 800;
         font-size: 11px;
         letter-spacing: 0.08em;
@@ -143,11 +143,11 @@
 
 </style>
 
-<main id="main-content" style="flex-grow: 1; padding: 30px 20px 40px 20px;">
-    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+<main id="main-content" class="interior-page dodge-page">
+    <div class="page-shell">
 
-        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
-            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+        <div class="page-title" style="display: flex; align-items: center; gap: 12px;">
+            <h1>
                 Dodge Toxic Teammates
             </h1>
             <img src="/img/emotes/Clown.png" alt="" width="80" height="80" style="height: 40px; width: 40px;">
@@ -173,7 +173,7 @@
             </div>
 
             <div id="dodge-rules">
-                <h3>How to Play</h3>
+                <h2>How to Play</h2>
                 <div id="dodge-controls-group">
                     <div class="dodge-rule-example">
                         <div class="dodge-rule-chip dodge-rule-chip-icon" style="border-color: rgb(var(--color-gold) / 0.6); background: rgba(234, 179, 8, 0.08); color: rgb(var(--color-gold));">
@@ -196,7 +196,7 @@
                     <div class="dodge-rule-text"><strong>Zoe</strong> &mdash; Bonus Points</div>
                 </div>
                 <div class="dodge-rule-example">
-                    <div class="dodge-rule-chip" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.18); color: #ef4444;">AFK</div>
+                    <div class="dodge-rule-chip" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.18); color: #ffb4b4;">AFK</div>
                     <div class="dodge-rule-text"><strong>Toxic Teammates</strong> &mdash; Lose Your LP</div>
                 </div>
             </div>
@@ -217,7 +217,7 @@
     const bestEl = document.getElementById('dodge-best');
 
     const BEST_KEY = 'cmtv_dodge_best';
-    let best = parseInt(localStorage.getItem(BEST_KEY) || '0', 10);
+    let best = parseInt(window.cmtvStorage.getItem(BEST_KEY) || '0', 10);
     bestEl.textContent = best;
 
     const sprite = new Image();
@@ -250,7 +250,7 @@
     // lane switch, a rising chime on collecting a good teammate, and a
     // descending buzzer when a toxic teammate gets you.
     const MUTE_KEY = 'cmtv_dodge_muted';
-    let muted = localStorage.getItem(MUTE_KEY) === 'true';
+    let muted = window.cmtvStorage.getItem(MUTE_KEY) === 'true';
     const muteBtn = document.getElementById('dodge-mute-btn');
     const muteIcon = muteBtn.querySelector('use');
     function updateMuteBtn() {
@@ -259,7 +259,7 @@
     }
     muteBtn.addEventListener('click', () => {
         muted = !muted;
-        localStorage.setItem(MUTE_KEY, String(muted));
+        window.cmtvStorage.setItem(MUTE_KEY, String(muted));
         updateMuteBtn();
     });
     updateMuteBtn();
@@ -366,7 +366,7 @@
         playFailSound();
         if (score > best) {
             best = score;
-            localStorage.setItem(BEST_KEY, String(best));
+            window.cmtvStorage.setItem(BEST_KEY, String(best));
             bestEl.textContent = best;
         }
     }

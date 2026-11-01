@@ -1,6 +1,6 @@
                   <!-- Navigation (Desktop) -->
 
-                  <ul class="hidden lg:gap-x-0 xl:gap-x-6 text-me font-bold lg:flex">
+                  <ul class="header-page-links hidden lg:gap-x-0 xl:gap-x-6 text-me font-bold lg:flex">
                     {{ range .Site.Menus.main }}
                     {{ $isCurrent := eq (strings.TrimRight "/" $.RelPermalink) .URL }}
                     <li class="">

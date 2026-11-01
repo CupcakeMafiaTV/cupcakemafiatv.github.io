@@ -1,26 +1,3 @@
-﻿(() => {
-  const link = document.querySelector('.youtube-audience');
-  const subscribers = link?.querySelector('[data-youtube-metric="subscribers"]');
-  const views = link?.querySelector('[data-youtube-metric="views"]');
-  if (!link || !subscribers || !views) return;
-  let hovered = false;
-  let focused = false;
-  const render = () => {
-    const showViews = hovered || focused;
-    subscribers.hidden = showViews;
-    views.hidden = !showViews;
-  };
-  link.addEventListener('mouseenter', () => { hovered = true; render(); });
-  link.addEventListener('mouseleave', () => { hovered = false; render(); });
-  link.addEventListener('focusin', () => { focused = true; render(); });
-  link.addEventListener('focusout', event => {
-    focused = link.contains(event.relatedTarget);
-    render();
-  });
-  render();
-})();
-
-
 // The homepage stats share one data-loading phase and one animation clock.
 (async () => {
   const band = document.querySelector('.audience-band');
@@ -31,8 +8,7 @@
     return Number.isSafeInteger(number) && number >= 0 ? number : null;
   };
   const targets = new Map();
-  const viewElement = band.querySelector('#youtube-view-count');
-  const elements = [...band.querySelectorAll('.audience-value strong')].filter(el => el !== viewElement);
+  const elements = [...band.querySelectorAll('.audience-value strong')];
   for (const el of elements) {
     const target = count(el.textContent.replace(/,/g, ''));
     if (target !== null) targets.set(el, target);
@@ -61,14 +37,11 @@
       const fresh = count(data?.[field]);
       const target = fresh === null ? cached(key) : fresh;
       if (fresh !== null) save(key, fresh);
-      if (el === viewElement) {
-        // Lifetime views stay compact on hover; the six visible counts animate together.
-        el.textContent = target === null ? '?' : new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(target);
-      } else if (target !== null) targets.set(el, target);
+      if (target !== null) targets.set(el, target);
     }
   }
   await Promise.all([
-    load('subscribers', [['youtube-sub-count', 'subscriberCount', 'cmtv_youtube_subs'], ['youtube-view-count', 'viewCount', 'cmtv_youtube_views']]),
+    load('subscribers', [['youtube-sub-count', 'subscriberCount', 'cmtv_youtube_subs']]),
     load('twitch-followers', [['twitch-follower-count', 'followerCount', 'cmtv_twitch_followers']]),
     load('discord-widget', [['discord-member-count', 'memberCount', 'cmtv_discord_members']])
   ]);

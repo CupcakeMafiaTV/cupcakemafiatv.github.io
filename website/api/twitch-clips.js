@@ -1,70 +1,47 @@
 import { setCors } from './_cors.js';
 import { getTwitchToken } from './_twitch-token.js';
 
-// League of Legends' Twitch game ID. The clips endpoint doesn't support
-// filtering by broadcaster_id and game_id at the same time, so we filter
-// client-side after fetching.
-const LEAGUE_OF_LEGENDS_GAME_ID = '21779';
 
-async function fetchClips(clientId, accessToken, broadcasterId, startedAt, endedAt) {
-  return fetch(
-    `https://api.twitch.tv/helix/clips?broadcaster_id=${broadcasterId}&first=100&started_at=${startedAt}&ended_at=${endedAt}`,
-    {
-      headers: {
-        'Client-ID': clientId,
-        'Authorization': `Bearer ${accessToken}`
-      }
-    }
-  );
-}
 
 export default async function handler(req, res) {
   setCors(req, res, 'GET');
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
-
-  const CLIENT_ID = process.env.TWITCH_CLIENT_ID;
-  const CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
-  const BROADCASTER_ID = process.env.TWITCH_BROADCASTER_ID;
-
-  if (!CLIENT_ID || !CLIENT_SECRET || !BROADCASTER_ID) {
+  const clientId = process.env.TWITCH_CLIENT_ID;
+  const clientSecret = process.env.TWITCH_CLIENT_SECRET;
+  const broadcasterId = process.env.TWITCH_BROADCASTER_ID;
+  if (!clientId || !clientSecret || !broadcasterId) {
     return res.status(500).json({ error: 'Missing Twitch environment variables in Vercel' });
   }
-
   try {
     const now = new Date();
-    const ninetyDaysAgo = new Date();
-    ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
-
-    let accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET);
-    let clipsRes = await fetchClips(CLIENT_ID, accessToken, BROADCASTER_ID, ninetyDaysAgo.toISOString(), now.toISOString());
-
-    if (clipsRes.status === 401) {
-      accessToken = await getTwitchToken(CLIENT_ID, CLIENT_SECRET, true);
-      clipsRes = await fetchClips(CLIENT_ID, accessToken, BROADCASTER_ID, ninetyDaysAgo.toISOString(), now.toISOString());
+    const startedAt = new Date(now.getTime() - 365 * 86400000).toISOString();
+    let accessToken = await getTwitchToken(clientId, clientSecret);
+    let cursor = '';
+    const clips = new Map();
+    // Twitch sorts by views, so read subsequent pages before choosing recent clips.
+    for (let page = 0; page < 10; page++) {
+      const query = new URLSearchParams({broadcaster_id:broadcasterId, first:'100', started_at:startedAt, ended_at:now.toISOString()});
+      if (cursor) query.set('after', cursor);
+      const request = () => fetch('https://api.twitch.tv/helix/clips?' + query, {headers:{'Client-ID':clientId, Authorization:'Bearer ' + accessToken}, signal:AbortSignal.timeout(10000)});
+      let response = await request();
+      if (response.status === 401) {
+        accessToken = await getTwitchToken(clientId, clientSecret, true);
+        response = await request();
+      }
+      if (!response.ok) throw Error('Twitch clips request failed (' + response.status + ')');
+      const data = await response.json();
+      for (const clip of data.data || []) clips.set(clip.id, clip);
+      const next = data.pagination?.cursor;
+      if (!next || next === cursor) break;
+      cursor = next;
     }
-
-    const clipsData = await clipsRes.json();
-    const clips = clipsData.data || [];
-
-    if (!clips.length) {
-      return res.status(200).json({ clips: [] });
-    }
-
-    const topClips = clips
-      .filter(clip => clip.game_id === LEAGUE_OF_LEGENDS_GAME_ID)
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-      .slice(0, 10)
-      .map(clip => ({
-        id: clip.id,
-        url: clip.url,
-        embedUrl: clip.embed_url,
-        title: clip.title,
-        thumbnailUrl: clip.thumbnail_url,
-        viewCount: clip.view_count
-      }));
-
-    return res.status(200).json({ clips: topClips });
+    const pool = [...clips.values()].sort((a,b) => Date.parse(b.created_at) - Date.parse(a.created_at)).map(clip => ({
+      id:clip.id, url:clip.url, embedUrl:clip.embed_url, title:clip.title,
+      thumbnailUrl:clip.thumbnail_url, viewCount:clip.view_count, createdAt:clip.created_at
+    }));
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
+    return res.status(200).json({clips:pool});
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.setHeader('Cache-Control', 'no-store');
+    return res.status(502).json({error:error.message});
   }
 }

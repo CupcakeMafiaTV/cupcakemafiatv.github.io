@@ -1,15 +1,28 @@
 <!-- Shared click-to-zoom lightbox. Make any image zoomable with:
      onclick="openModal(this.src)" (or this.querySelector('img').src on a
      wrapping container). Styling lives in head.html (#img-modal). -->
-<dialog id="img-modal" onclick="this.close()">
-    <img id="img-modal-img" src="" alt="Enlarged view">
+<dialog id="img-modal" aria-label="Image preview" onclick="this.close()">
+    <button type="button" class="image-preview-close" aria-label="Close image preview">&times;</button>
+    <img id="img-modal-img" alt="Enlarged view">
 </dialog>
 
 <script>
-    function openModal(imgSrc) {
+    document.querySelectorAll('[data-image-preview], [data-video-preview]').forEach(control => {
+        const image = control.querySelector('img');
+        if (control.hasAttribute('data-image-preview')) control.setAttribute('aria-label', 'Enlarge ' + (image?.alt || 'image'));
+        control.addEventListener('keydown', event => {
+            if (control.getAttribute('role') === 'button' && (event.key === 'Enter' || event.key === ' ')) {
+                event.preventDefault(); control.click();
+            }
+        });
+    });
+    function openModal(source) {
+        const image = typeof source === 'string' ? null : source.querySelector('img');
+        const imgSrc = image ? image.src : source;
         const modal = document.getElementById('img-modal');
         const modalImg = document.getElementById('img-modal-img');
         modalImg.src = imgSrc;
+        modalImg.alt = image?.alt || 'Enlarged view';
         modal.showModal();
     }
 </script>

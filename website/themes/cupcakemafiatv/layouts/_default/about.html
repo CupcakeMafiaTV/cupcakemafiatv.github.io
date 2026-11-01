@@ -46,12 +46,12 @@
     }
 </style>
 
-<main id="main-content" style="flex-grow: 1; padding: 30px 20px 8px 20px;">
-    <div style="max-width: 1360px; margin: 0 auto; font-family: sans-serif;">
+<main id="main-content" class="interior-page about-page">
+    <div class="page-shell">
 
         <!-- Exact Match Header Setup & Size to PC Specs -->
-        <div style="border-bottom: 1px solid rgb(var(--color-gold) / 0.7); padding-bottom: 22px; margin-bottom: 20px;">
-            <h1 style="color: #ffffff; font-size: 33px; font-weight: 800; margin: 0;">
+        <div class="page-title">
+            <h1>
                 About Me
             </h1>
         </div>
@@ -60,18 +60,18 @@
 
             <!-- Bio Section with Increased Font Size -->
             <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-start reveal-on-scroll">
-                <div class="col-span-full pt-2 md:col-span-4 md:justify-self-center" style="position: sticky; top: 24px;">
-                    <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 480px; height: 540px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85); box-shadow: 0 0 18px rgb(var(--color-gold) / 0.35);" onclick="openModal(this.querySelector('img').src)">
+                <div class="about-photo-column col-span-full pt-2 md:col-span-4 md:justify-self-center" style="position: sticky; top: 24px;">
+                    <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 480px; height: 540px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85); box-shadow: 0 0 18px rgb(var(--color-gold) / 0.35);" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                         <img src="/img/CodyAboutMe.webp" alt="Cody, CupcakeMafiaTV" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
                         <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                     </div>
                 </div>
                 <div class="col-span-full md:col-span-8">
-                    <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg">
+                    <div class="about-copy">
                         <p class="mb-4">Hello, I'm CupcakeMafiaTV (Cody)!</p>
-                        <p class="mb-4">I'm a streamer and League of Legends content creator. I first hit <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">"Go Live"</a> back in 2016 and streamed very inconsistently, but these past few years are where I really fell in love with the stream and content creation grind. It's been so amazing getting to interact and game with such incredible people!</p>
+                        <p class="mb-4">I'm a streamer and League of Legends content creator. I first hit <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">"Go Live"</a> back in 2017 and streamed very inconsistently, but these past few years are where I really fell in love with the stream and content creation grind. It's been so amazing getting to interact and game with such incredible people!</p>
                         <p class="mb-4">The name "CupcakeMafiaTV" came from wanting a gamertag that felt both fierce and sweet at the same time. I've always loved the mobster aesthetic, heavily inspired by my favorite childhood cartoon, Hanna-Barbera's Wacky Races, and its iconic <a href="https://hanna-barbera.fandom.com/wiki/The_Ant_Hill_Mob" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Ant Hill Mob</a>. To balance the gangster vibe with something everybody loves, I threw "Cupcake" into the mix. Then I added "TV" to the end (insert Abe Simpson voice) which was the style at the time.</p>
-                        <p class="mb-4">The very first game I ever played was the 1994 classic <a href="https://en.wikipedia.org/wiki/Theme_Park_(video_game)" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Theme Park</a>. From there, I lost years diving headfirst into World of Warcraft, which naturally led me down the custom game rabbit hole of Warcraft III DotA. That addiction kicked off my MOBA journey through Heroes of Newerth and eventually brought me to League of Legends starting all the way back towards the end of Season 2. I've always mained Mid Lane due to my love of ranged and mage champions, looking up to legends such as Bjergsen, xPeke, and the one true GOAT, Faker. My current peak rank is Masters 90 LP, where I've battled in Solo Queue against some of North America's finest including <a href="https://youtu.be/z2DtHEamihU" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Quad</a> (Mid Laner for FlyQuest), <a href="https://lol.fandom.com/wiki/Zinie" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Zinie</a> (Mid Laner for Shopify Rebellion), and the absolute beast of League streamers, <a href="https://www.twitch.tv/loltyler1/clip/AuspiciousPatientMilkThisIsSparta-l5sF20WvkaSXqRTZ?range=7d" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Tyler1</a>.</p>
+                        <p class="mb-4">The very first game I ever played was the 1994 classic <a href="https://en.wikipedia.org/wiki/Theme_Park_(video_game)" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Theme Park</a>. From there, I lost years diving headfirst into World of Warcraft, which naturally led me down the custom game rabbit hole of Warcraft III DotA. That addiction kicked off my MOBA journey through Heroes of Newerth and eventually brought me to League of Legends starting all the way back towards the end of Season 2. I've always mained Mid Lane due to my love of ranged and mage champions, looking up to legends such as Bjergsen, xPeke, and the one true GOAT, Faker. I've reached Masters 90 LP and battled in Solo Queue against some of North America's finest including <a href="https://youtu.be/z2DtHEamihU" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Quad</a>, <a href="https://lol.fandom.com/wiki/Zinie" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Zinie</a>, and the absolute beast of League streamers, <a href="https://www.twitch.tv/loltyler1/clip/AuspiciousPatientMilkThisIsSparta-l5sF20WvkaSXqRTZ?range=7d" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Tyler1</a>.</p>
                         <p>When I'm not grinding ranked, I'm an avid collector hunting down rare wrestling action figures, Funko POPs, retro video games, vinyl records, and anything else that I can get my grubby little hands on. I'm a massive fan of Scott Pilgrim vs. The World, DC Comics (especially the Batman Universe, with Punchline, Teen Titans, Harley Quinn, and Poison Ivy leading the list), and WWE with my all-time favorites being Bray Wyatt, Edge, and Paige.</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                     <!-- Zoe -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/zoe/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Champ-Zoe.webp" alt="Zoe" style="object-position: center 25%;" loading="lazy">
+                        <img src="/img/Champ-Zoe.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Zoe</div>
                         </div>
@@ -99,7 +99,7 @@
                     <!-- LeBlanc -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/leblanc/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Champ-Leblanc.webp" alt="LeBlanc" style="object-position: center 25%;" loading="lazy">
+                        <img src="/img/Champ-Leblanc.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">LeBlanc</div>
                         </div>
@@ -108,7 +108,7 @@
                     <!-- Gwen -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/gwen/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Champ-Gwen.webp" alt="Gwen" style="object-position: center 25%;" loading="lazy">
+                        <img src="/img/Champ-Gwen.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Gwen</div>
                         </div>
@@ -117,7 +117,7 @@
                     <!-- Yorick -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/yorick/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Champ-Yorick.webp" alt="Yorick" style="object-position: center 25%;" loading="lazy">
+                        <img src="/img/Champ-Yorick.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Yorick</div>
                         </div>
@@ -126,7 +126,7 @@
                     <!-- Vel'Koz -->
                     <a href="https://www.leagueoflegends.com/en-us/champions/velkoz/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Champ-Velkoz.webp" alt="Vel'Koz" style="object-position: center 25%;" loading="lazy">
+                        <img src="/img/Champ-Velkoz.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Vel'Koz</div>
                         </div>
@@ -148,7 +148,7 @@
                     <!-- Poster 1: League of Legends -->
                     <a href="https://www.leagueoflegends.com" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/League of Legends.webp" alt="League of Legends" style="object-position: center 48%;" loading="lazy">
+                        <img src="/img/League of Legends.webp" alt="" style="object-position: center 48%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">League of Legends</div>
                         </div>
@@ -175,7 +175,7 @@
                     <!-- Stardew Valley -->
                     <a href="https://store.steampowered.com/app/413150/Stardew_Valley/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/StardewValley.webp" alt="Stardew Valley" style="object-position: center 92%;" loading="lazy">
+                        <img src="/img/StardewValley.webp" alt="" style="object-position: center 92%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Stardew Valley</div>
                         </div>
@@ -184,7 +184,7 @@
                     <!-- Poster 3: Grounded -->
                     <a href="https://store.steampowered.com/app/962130/Grounded/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Grounded.webp" alt="Grounded" style="object-position: center 30%;" loading="lazy">
+                        <img src="/img/Grounded.webp" alt="" style="object-position: center 30%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Grounded</div>
                         </div>
@@ -193,7 +193,7 @@
                     <!-- Shantae and the Seven Sirens -->
                     <a href="https://store.steampowered.com/app/1191630/Shantae_and_the_Seven_Sirens/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Shantae7.webp" alt="Shantae and the Seven Sirens" style="object-position: center 30%;" loading="lazy">
+                        <img src="/img/Shantae7.webp" alt="" style="object-position: center 30%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Shantae and the Seven Sirens</div>
                         </div>

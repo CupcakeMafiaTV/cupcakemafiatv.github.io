@@ -6,6 +6,8 @@ on:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
+  schedule:
+    - cron: "17 10 * * *"
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -47,6 +49,11 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Refresh Twitch clip catalog
+        run: node website/scripts/refresh-clip-catalog.mjs
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

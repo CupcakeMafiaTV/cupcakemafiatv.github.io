@@ -1,0 +1,44 @@
+[
+  {
+    "day": 1,
+    "name": "Monday",
+    "time": "19:00",
+    "activity": "Solo Queue"
+  },
+  {
+    "day": 2,
+    "name": "Tuesday",
+    "time": null,
+    "activity": "Day off"
+  },
+  {
+    "day": 3,
+    "name": "Wednesday",
+    "time": "19:00",
+    "activity": "Solo Queue"
+  },
+  {
+    "day": 4,
+    "name": "Thursday",
+    "time": null,
+    "activity": "Day off"
+  },
+  {
+    "day": 5,
+    "name": "Friday",
+    "time": "19:00",
+    "activity": "Solo Queue"
+  },
+  {
+    "day": 6,
+    "name": "Saturday",
+    "time": "19:00",
+    "activity": "Community Night"
+  },
+  {
+    "day": 0,
+    "name": "Sunday",
+    "time": "19:00",
+    "activity": "Community Night"
+  }
+]

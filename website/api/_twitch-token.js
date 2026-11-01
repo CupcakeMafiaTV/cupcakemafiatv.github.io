@@ -7,29 +7,29 @@
 const TOKEN_KEY = 'twitch-access-token';
 const TOKEN_TTL_SECONDS = 50 * 24 * 60 * 60; // 50 days (Twitch tokens last ~60)
 
-async function kvGet(key) {
+async function kvGet(key, signal) {
   const res = await fetch(`${process.env.KV_REST_API_URL}/get/${key}`, {
-    headers: { Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}` },
+    headers: { Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}` }, signal,
   });
   const data = await res.json();
   return data.result ? JSON.parse(data.result) : null;
 }
 
-async function kvSet(key, value) {
+async function kvSet(key, value, signal) {
   await fetch(`${process.env.KV_REST_API_URL}/set/${key}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(value),
+    body: JSON.stringify(value), signal,
   });
 }
 
-async function fetchNewToken(clientId, clientSecret) {
+async function fetchNewToken(clientId, clientSecret, signal) {
   const tokenRes = await fetch(
     `https://id.twitch.tv/oauth2/token?client_id=${clientId}&client_secret=${clientSecret}&grant_type=client_credentials`,
-    { method: 'POST' }
+    { method: 'POST', signal }
   );
   const tokenData = await tokenRes.json();
   if (!tokenData.access_token) {
@@ -41,12 +41,12 @@ async function fetchNewToken(clientId, clientSecret) {
 // Returns a valid Twitch app access token, reusing a cached one when
 // possible. Pass forceRefresh true after a Helix call comes back 401 to
 // discard a revoked/stale cached token and fetch a fresh one.
-export async function getTwitchToken(clientId, clientSecret, forceRefresh = false) {
+export async function getTwitchToken(clientId, clientSecret, forceRefresh = false, signal = AbortSignal.timeout(6000)) {
   const hasKV = process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN;
 
   if (hasKV && !forceRefresh) {
     try {
-      const cached = await kvGet(TOKEN_KEY);
+      const cached = await kvGet(TOKEN_KEY, signal);
       if (cached && (Date.now() - cached.issuedAt) < TOKEN_TTL_SECONDS * 1000) {
         return cached.token;
       }
@@ -55,11 +55,11 @@ export async function getTwitchToken(clientId, clientSecret, forceRefresh = fals
     }
   }
 
-  const token = await fetchNewToken(clientId, clientSecret);
+  const token = await fetchNewToken(clientId, clientSecret, signal);
 
   if (hasKV) {
     try {
-      await kvSet(TOKEN_KEY, { token, issuedAt: Date.now() });
+      await kvSet(TOKEN_KEY, { token, issuedAt: Date.now() }, signal);
     } catch (error) {
       // Caching failed; the token itself is still valid for this request.
     }

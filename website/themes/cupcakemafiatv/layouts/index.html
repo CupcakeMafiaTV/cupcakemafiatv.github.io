@@ -1,7 +1,7 @@
 {{ define "main" }}
 <link rel="stylesheet" href="/css/home-extras.css?v=3">
 <link rel="stylesheet" href="/css/audience-bar.css">
-<script src="/js/audience-bar.js?v=2" defer></script>
+<script src="/js/audience-bar.js?v=3" defer></script>
 
 <style>
   @keyframes homeLivePulse {
@@ -15,10 +15,6 @@
   @keyframes heroBtnGlowPulse {
     0%, 100% { box-shadow: 0 0 10px rgb(var(--color-gold) / 0.45); }
     50% { box-shadow: 0 0 20px rgb(var(--color-gold) / 0.9); }
-  }
-  .schedule-day-today {
-    border: 4px solid #22c55e !important;
-    animation: scheduleTodayPulse 2s ease-in-out infinite;
   }
   .watch-live-split {
     display: flex;
@@ -276,127 +272,89 @@
   <div class="home-intro">
 
   <!-- Hero -->
-  <div class="hero-wrap">
-    <!-- Bleed photo (tablet/desktop only) -->
-    <div class="hero-photo-panel">
-      <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="w-full h-full object-cover" style="object-position: 50% 28%;" fetchpriority="high">
-      <div class="absolute inset-0" style="background: linear-gradient(to right, rgba(32,17,43,0.85) 0%, rgba(32,17,43,0.05) 45%, rgba(32,17,43,0.12) 100%);"></div>
+  <section class="hero-wrap" aria-labelledby="creator-name">
+    <div class="hero-photo-panel" aria-hidden="true">
+      <img src="/img/CodyWeirdAl.webp" alt="" class="w-full h-full object-cover" style="object-position: 50% 28%;" fetchpriority="high">
+      <div class="hero-photo-shade"></div>
     </div>
 
     <div class="hero-center-zone">
-
       <div class="hero-text-col">
-        <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="hero-mobile-avatar mx-auto mb-5 w-24 h-24 rounded-full object-cover shadow-2xl" style="object-position: 50% 18%; border: 3px solid rgb(var(--color-accent) / 0.6);" fetchpriority="high">
-        <h1 class="text-4xl font-black tracking-tighter text-white leading-none sm:text-5xl md:text-6xl lg:text-[64px]">
-          CupcakeMafiaTV
-        </h1>
-        <p class="text-gray-300 mt-2 text-xl">
-          Streamer &amp; Content Creator
-        </p>
-        <div class="mt-3 text-sm md:text-base text-gray-300 text-center">
-          Ontario, Canada <img src="/img/flag-canada.svg" alt="Canada" width="24" height="12" style="display: inline-block; height: 12px; width: auto; vertical-align: middle; margin-left: 2px; border-radius: 2px;">
-        </div>
+        <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="hero-mobile-avatar" width="112" height="112" fetchpriority="high">
+        <h1 id="creator-name" class="hero-name">CupcakeMafiaTV</h1>
 
+        <p class="hero-description">MOBA &amp; variety streamer based in <span class="hero-location">Ontario, Canada <img src="/img/flag-canada.svg" alt="" width="28" height="14"></span>.<br>Master&#8217;s ranked <span class="hero-role">mid laner<a class="hero-rank-link" href="https://op.gg/lol/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" aria-label="View CupcakeMafiaTV on OP.GG" title="View my OP.GG"><img class="hero-game-icon hero-mid-icon" src="/img/league-mid.png" alt="" width="20" height="20"></a></span> in League of Legends, streaming since <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer">2017</a>.</p>
+
+        <div class="hero-actions">
+          <a class="hero-action hero-action-primary" href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg>Watch on Twitch</a>
+          <div class="hero-meet-group">
+            <a class="hero-action hero-action-secondary" href="/about/">Meet Cupcake <span aria-hidden="true">&#8594;</span></a>
+            <img class="hero-cupcake" src="/img/hero-clown.png" alt="" aria-hidden="true" width="52" height="52" decoding="async">
+          </div>
+        </div>
       </div>
+
     </div>
-  </div>
+  </section>
   <!-- Hero / End -->
 <div class="audience-section">
 
 <section class="audience-band" aria-label="Audience and reach"><div class="audience-wrap audience-grid">
-<a href="https://twitch.tv/cupcakemafiatv" aria-label="Twitch followers" title="Twitch"><span class="audience-metrics"><span class="audience-value"><strong id="twitch-follower-count">—</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-twitch" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></a>
-<a href="https://youtube.com/@cupcakemafiatv" class="youtube-audience" aria-label="YouTube subscribers and views" title="YouTube"><span class="audience-metrics audience-rotator" aria-live="off"><span class="audience-value" data-youtube-metric="subscribers"><strong id="youtube-sub-count">—</strong><span>Subscribers</span></span><span class="audience-value" data-youtube-metric="views" hidden><strong id="youtube-view-count">—</strong><span>Views</span></span></span><svg class="icon audience-platform-icon platform-youtube" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></a>
-<a href="https://x.com/cupcakemafiatv" aria-label="X followers" title="X"><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.x.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-x" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></a>
-<a href="https://instagram.com/cupcakemafiatv" aria-label="Instagram followers" title="Instagram"><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.instagram.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-instagram" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-instagram"></use></svg></a>
-<a href="https://www.tiktok.com/@cupcakemafiatv" aria-label="TikTok followers" title="TikTok"><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.tiktok.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-tiktok" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-tiktok"></use></svg></a>
-<a href="https://discord.com/invite/DPjsCV6RMj" aria-label="Discord members" title="Discord"><span class="audience-metrics"><span class="audience-value"><strong id="discord-member-count">—</strong><span>Members</span></span></span><svg class="icon audience-platform-icon platform-discord" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-discord"></use></svg></a></div></section>
+<a href="https://twitch.tv/cupcakemafiatv"  title="Twitch"><span class="sr-only">Twitch </span><span class="audience-metrics"><span class="audience-value"><strong id="twitch-follower-count">Ã¢â‚¬â€</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-twitch" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></a>
+<a href="https://youtube.com/@cupcakemafiatv" class="youtube-audience"  title="YouTube"><span class="sr-only">YouTube </span><span class="audience-metrics" aria-live="off"><span class="audience-value" data-youtube-metric="subscribers"><strong id="youtube-sub-count">Ã¢â‚¬â€</strong><span>Subscribers</span></span></span><svg class="icon audience-platform-icon platform-youtube" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></a>
+<a href="https://x.com/cupcakemafiatv"  title="X"><span class="sr-only">X </span><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.x.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-x" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></a>
+<a href="https://instagram.com/cupcakemafiatv"  title="Instagram"><span class="sr-only">Instagram </span><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.instagram.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-instagram" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-instagram"></use></svg></a>
+<a href="https://www.tiktok.com/@cupcakemafiatv"  title="TikTok"><span class="sr-only">TikTok </span><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.tiktok.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-tiktok" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-tiktok"></use></svg></a>
+<a href="https://discord.com/invite/DPjsCV6RMj"  title="Discord"><span class="sr-only">Discord </span><span class="audience-metrics"><span class="audience-value"><strong id="discord-member-count">Ã¢â‚¬â€</strong><span>Members</span></span></span><svg class="icon audience-platform-icon platform-discord" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-discord"></use></svg></a></div></section>
 </div>
 
 
 
-    <!-- Stream Schedule Section -->
-    <div class="section-band-pb section-band reveal-on-scroll">
-      <div class="container">
-        <div class="mb-8 md:mb-10 text-center">
-          <div class="flex items-center justify-center gap-3">
-            <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Stream Schedule</h2>
-          </div>
-        </div>
-        <div class="schedule-grid"><div class="schedule-day" data-day="1"><div class="schedule-day-name">Monday</div><div class="schedule-time">7 PM <span>ET</span></div><div class="schedule-activity">Solo Queue</div></div>
-<div class="schedule-day schedule-off" data-day="2"><div class="schedule-day-name">Tuesday</div><div class="schedule-time">Day off</div></div>
-<div class="schedule-day" data-day="3"><div class="schedule-day-name">Wednesday</div><div class="schedule-time">7 PM <span>ET</span></div><div class="schedule-activity">Solo Queue</div></div>
-<div class="schedule-day schedule-off" data-day="4"><div class="schedule-day-name">Thursday</div><div class="schedule-time">Day off</div></div>
-<div class="schedule-day" data-day="5"><div class="schedule-day-name">Friday</div><div class="schedule-time">7 PM <span>ET</span></div><div class="schedule-activity">Solo Queue</div></div>
-<div class="schedule-day" data-day="6"><div class="schedule-day-name">Saturday</div><div class="schedule-time">7 PM <span>ET</span></div><div class="schedule-activity">Community Night</div></div>
-<div class="schedule-day" data-day="0"><div class="schedule-day-name">Sunday</div><div class="schedule-time">7 PM <span>ET</span></div><div class="schedule-activity">Community Night</div></div></div>
-      </div>
-    </div>
+
 
   </div><!-- home-intro -->
 
-    <!-- Watch Live Section -->
-    <div id="watch-live-section" class="section-band-pb section-band reveal-on-scroll">
+    <section id="latest-videos-section" class="content-section" aria-labelledby="latest-videos-heading">
       <div class="container">
-        <div id="home-twitch-badge" class="hidden items-center justify-center gap-2 mb-3">
-          <span style="width: 12px; height: 12px; border-radius: 9999px; background: #ef4444; animation: homeLivePulse 2s infinite; display: inline-block;"></span>
-          <span class="text-lg sm:text-xl font-black uppercase" style="color: #ef4444; letter-spacing: 0.05em;">Live Now</span>
+        <div class="content-section-heading">
+          <div><h2 id="latest-videos-heading">Latest Videos</h2></div>
         </div>
-        <div class="mb-3 flex items-center justify-center gap-3">
-          <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl md:text-5xl lg:text-[60px] lg:leading-none">Watch Live</h2>
-        </div>
-        <div class="watch-live-split">
-          <div id="watch-live-media" class="watch-live-video relative aspect-video bg-black">
-            <iframe id="twitch-live-iframe" src="https://player.twitch.tv/?channel=cupcakemafiatv&parent=cupcakemafiatv.com&parent=www.cupcakemafiatv.com&parent=cupcakemafiatv.github.io&parent=localhost&autoplay=true&muted=true" title="CupcakeMafiaTV live stream" allow="autoplay; fullscreen" frameborder="0" allowfullscreen="true" scrolling="no" loading="lazy" class="absolute top-0 left-0 w-full h-full"></iframe>
-          </div>
+        <div class="latest-content-grid">
+          <article id="video-container-wrapper" class="latest-content-card">
+            <div id="video-placeholder" class="latest-content-media">
+              <button type="button" class="video-preview-button" onclick="playVideo()" aria-label="Play latest video" disabled>
+                <img id="home-hero-thumbnail" alt="" loading="lazy" width="480" height="270">
+                <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span>
+              </button>
+            </div>
+            <div class="latest-content-copy"><h3><button id="home-hero-title" class="video-title-button" type="button" onclick="playVideo()" disabled>Loading latest video&hellip;</button></h3></div>
+          </article>
+          <article id="vod-container-wrapper" class="latest-content-card">
+            <div id="vod-placeholder" class="latest-content-media">
+              <button type="button" class="video-preview-button" onclick="playVod()" aria-label="Play latest VOD" disabled>
+                <img id="home-vod-thumbnail" alt="" loading="lazy" width="480" height="270">
+                <span class="video-play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></span>
+              </button>
+            </div>
+            <div class="latest-content-copy"><h3><button id="home-vod-title" class="video-title-button" type="button" onclick="playVod()" disabled>Loading latest VOD&hellip;</button></h3></div>
+          </article>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Latest Content Section (Upload + VOD side by side) -->
-    <div id="latest-videos-section" class="section-band-pb section-band reveal-on-scroll">
+    <section id="watch-live-section" class="content-section" aria-labelledby="watch-live-heading">
       <div class="container">
-        <div class="mb-8 text-center">
-          <div class="flex items-center justify-center gap-3">
-            <h2 class="text-3xl font-bold tracking-tighter text-white before:text-gold before:content-['.'] sm:text-4xl">Latest Videos</h2>
-          </div>
+        <div class="content-section-heading">
+          <div><h2 id="watch-live-heading">Watch Live</h2></div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div id="video-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 3px solid rgb(var(--color-gold) / 0.7);">
-            <div id="video-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVideo()">
-              <img id="home-hero-thumbnail" src="" alt="Latest Video" class="w-full h-full object-cover" loading="lazy">
-              <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
-                <svg class="icon" aria-hidden="true" style="color: #FF0000; font-size: 16px;"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg>
-                <span class="text-xs font-black uppercase tracking-wider text-white">Latest Upload</span>
-              </div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
-                  <svg class="icon text-white text-2xl ml-1" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-play"></use></svg>
-                </div>
-              </div>
-            </div>
-            <div id="home-hero-title" class="mt-2 text-center text-base font-bold text-white leading-snug">Loading...</div>
-          </div>
-
-          <div id="vod-container-wrapper" class="p-3 md:p-4 rounded-2xl" style="background-color: #1e293b; box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65); border: 3px solid rgb(var(--color-gold) / 0.7);">
-            <div id="vod-placeholder" class="relative w-full aspect-video overflow-hidden rounded-xl bg-black cursor-pointer group" onclick="playVod()">
-              <img id="home-vod-thumbnail" src="" alt="Latest VOD" class="w-full h-full object-cover" loading="lazy">
-              <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-lg shadow-lg" style="background-color: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);">
-                <svg class="icon" aria-hidden="true" style="color: #FF0000; font-size: 14px;"><use href="/img/icons-sprite.svg#fas-clock-rotate-left"></use></svg>
-                <span class="text-xs font-black uppercase tracking-wider text-white">Latest VOD</span>
-              </div>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-16 h-16 rounded-full flex items-center justify-center transition-transform shadow-2xl" style="background-color: #dc2626;">
-                  <svg class="icon text-white text-2xl ml-1" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-play"></use></svg>
-                </div>
-              </div>
-            </div>
-            <div id="home-vod-title" class="mt-2 text-center text-base font-bold text-white leading-snug">Loading...</div>
-          </div>
+        <div class="watch-stream-column">
+          <div id="watch-live-media" class="watch-live-video live-player"><a class="twitch-mobile-link" href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer"><img src="/img/CodySetup.webp" alt="" width="640" height="360" loading="lazy"><span class="twitch-mobile-label">Watch on Twitch &#8599;</span></a></div>
         </div>
       </div>
-    </div>
+    </section>
+    {{ partial "stream-schedule-data.html" . }}
 
-    {{/* Name Generator Section — commented out for now, keep for later
+    {{/* Name Generator Section Ã¢â‚¬â€ commented out for now, keep for later
     <div class="section-band-pb section-band reveal-on-scroll">
       <div class="container">
         <div class="mb-8 md:mb-10 text-center">
@@ -406,7 +364,7 @@
             </h2>
           </div>
           <p class="text-gray-300 mt-2 max-w-2xl mx-auto">
-            Join the sweetest syndicate in town — enter your name to claim your mafia alias!
+            Join the sweetest syndicate in town Ã¢â‚¬â€ enter your name to claim your mafia alias!
           </p>
         </div>
 
@@ -484,7 +442,7 @@
       const titleCenter = (contentLeft + contentRight) / 2;
       box.style.maxWidth = 'none';
       box.style.width = contentWidth + 'px';
-      // Align using the box's own center, not the row's bounding rect — the
+      // Align using the box's own center, not the row's bounding rect Ã¢â‚¬â€ the
       // row isn't symmetric around the box (the right mascot's -16px margin
       // pulls the row's right edge in), so the row's midpoint isn't the
       // box's midpoint.
@@ -630,7 +588,7 @@
     resultTextEl.innerHTML = resultHTML;
     resultTextEl.dataset.plain = resultPlain;
 
-    const shareMsg = `My CupcakeMafia name is ${resultPlain} 🧁 What's yours?`;
+    const shareMsg = `My CupcakeMafia name is ${resultPlain} Ã°Å¸Â§Â What's yours?`;
     const twitterLink = document.getElementById('mafiaShareTwitter');
     if (twitterLink) {
       twitterLink.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareMsg) + '&url=' + encodeURIComponent('https://cupcakemafiatv.com');
@@ -649,7 +607,7 @@
     const resultTextEl = document.getElementById('mafiaResultText');
     const plain = resultTextEl && resultTextEl.dataset.plain;
     if (!plain) return;
-    const shareMsg = `My CupcakeMafia name is ${plain} 🧁 What's yours? https://cupcakemafiatv.com`;
+    const shareMsg = `My CupcakeMafia name is ${plain} Ã°Å¸Â§Â What's yours? https://cupcakemafiatv.com`;
     const btn = document.getElementById('mafiaCopyBtn');
     const restore = (html) => setTimeout(() => { if (btn) btn.innerHTML = html; }, 1800);
 
@@ -663,6 +621,31 @@
     }
   }
 
+  function validYouTubeData(data) {
+      return data && typeof data.videoId === 'string' && /^[A-Za-z0-9_-]{11}$/.test(data.videoId) && typeof data.title === 'string';
+  }
+
+  function youtubeThumbnail(data) {
+      const fallback = 'https://i.ytimg.com/vi/' + data.videoId + '/hqdefault.jpg';
+      try {
+          const url = new URL(data.thumbnail);
+          if (url.origin === 'https://i.ytimg.com' && !url.username && !url.password &&
+              (url.pathname.startsWith('/vi/' + data.videoId + '/') || url.pathname.startsWith('/vi_webp/' + data.videoId + '/'))) return url.href;
+      } catch {}
+      return fallback;
+  }
+
+  function mountYouTubePlayer(container, videoId, title) {
+      if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return;
+      const frame = document.createElement('iframe');
+      frame.title = title;
+      frame.className = 'w-full h-full';
+      frame.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      frame.allowFullscreen = true;
+      container.replaceChildren(frame);
+  }
+
   let latestVideoId = "";
   async function loadLatestVideo() {
       const thumbEl = document.getElementById('home-hero-thumbnail');
@@ -670,19 +653,24 @@
       try {
           const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/latest-video');
           const data = await response.json();
-          if (!response.ok || !data.videoId) throw new Error('No video data');
+          if (!response.ok || !validYouTubeData(data)) throw new Error('No video data');
           latestVideoId = data.videoId;
-          thumbEl.src = data.thumbnail;
+          document.querySelector('#video-placeholder button').disabled = false;
+          titleEl.disabled = false;
+          thumbEl.src = youtubeThumbnail(data);
           titleEl.innerText = data.title;
-          localStorage.setItem('cmtv_latest_video', JSON.stringify({ videoId: data.videoId, thumbnail: data.thumbnail, title: data.title }));
+          window.cmtvStorage.setItem('cmtv_latest_video', JSON.stringify({ videoId: data.videoId, thumbnail: data.thumbnail, title: data.title }));
       } catch (error) {
           console.error("Error loading video", error);
-          const cached = localStorage.getItem('cmtv_latest_video');
+          const cached = window.cmtvStorage.getItem('cmtv_latest_video');
           if (cached) {
               try {
                   const cachedData = JSON.parse(cached);
+                  if (!validYouTubeData(cachedData)) throw new Error('Invalid cached video');
                   latestVideoId = cachedData.videoId;
-                  thumbEl.src = cachedData.thumbnail;
+                  document.querySelector('#video-placeholder button').disabled = false;
+                  titleEl.disabled = false;
+                  thumbEl.src = youtubeThumbnail(cachedData);
                   titleEl.innerText = cachedData.title;
                   return;
               } catch (e) {}
@@ -692,20 +680,39 @@
       }
   }
 
+  let activeLatestMedia = null;
+  let activeLatestPreview = null;
+  function prepareLatestPlayback(container) {
+      if (activeLatestMedia && activeLatestMedia !== container && activeLatestPreview) {
+          activeLatestMedia.replaceChildren(activeLatestPreview);
+      }
+      activeLatestMedia = container;
+      activeLatestPreview = container.querySelector('button')?.cloneNode(true);
+  }
+
   function playVideo() {
       if (!latestVideoId) return;
       const container = document.getElementById('video-placeholder');
-      container.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${latestVideoId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      const existingPlayer = container.querySelector('iframe');
+      if (existingPlayer) { existingPlayer.focus(); return; }
+      prepareLatestPlayback(container);
+      mountYouTubePlayer(container, latestVideoId, 'Latest CupcakeMafiaTV video');
   }
 
   loadLatestVideo();
 
   function renderVodTitle(el, rawTitle) {
-      const escapedTitle = rawTitle.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      el.innerHTML = escapedTitle.replace(
-        /(\d{4}-\d{2}-\d{2})/,
-        '<span style="color: rgb(var(--color-gold));">$1</span>'
-      );
+      const title = String(rawTitle ?? '');
+      el.title = title;
+      const match = title.match(/\b\d{4}-\d{2}-\d{2}\b/);
+      const text = document.createElement('span');
+      text.className = 'vod-title-text';
+      text.textContent = match ? (title.slice(0, match.index) + title.slice(match.index + match[0].length)).replace(/\s*[|\u2013\u2014-]\s*$/, '').trim() : title;
+      el.replaceChildren(text);
+      if (match) {
+          const date = document.createElement('span'); date.className = 'vod-date'; date.textContent = match[0];
+          el.append(document.createTextNode(' '), date);
+      }
   }
 
   let latestVodId = "";
@@ -715,19 +722,24 @@
       try {
           const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/latest-vod');
           const data = await response.json();
-          if (!response.ok || !data.videoId) throw new Error('No VOD data');
+          if (!response.ok || !validYouTubeData(data)) throw new Error('No VOD data');
           latestVodId = data.videoId;
-          thumbEl.src = data.thumbnail;
+          document.querySelector('#vod-placeholder button').disabled = false;
+          titleEl.disabled = false;
+          thumbEl.src = youtubeThumbnail(data);
           renderVodTitle(titleEl, data.title);
-          localStorage.setItem('cmtv_latest_vod', JSON.stringify({ videoId: data.videoId, thumbnail: data.thumbnail, title: data.title }));
+          window.cmtvStorage.setItem('cmtv_latest_vod', JSON.stringify({ videoId: data.videoId, thumbnail: data.thumbnail, title: data.title }));
       } catch (error) {
           console.error("Error loading VOD", error);
-          const cached = localStorage.getItem('cmtv_latest_vod');
+          const cached = window.cmtvStorage.getItem('cmtv_latest_vod');
           if (cached) {
               try {
                   const cachedData = JSON.parse(cached);
+                  if (!validYouTubeData(cachedData)) throw new Error('Invalid cached video');
                   latestVodId = cachedData.videoId;
-                  thumbEl.src = cachedData.thumbnail;
+                  document.querySelector('#vod-placeholder button').disabled = false;
+                  titleEl.disabled = false;
+                  thumbEl.src = youtubeThumbnail(cachedData);
                   renderVodTitle(titleEl, cachedData.title);
                   return;
               } catch (e) {}
@@ -740,81 +752,52 @@
   function playVod() {
       if (!latestVodId) return;
       const container = document.getElementById('vod-placeholder');
-      container.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${latestVodId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+      const existingPlayer = container.querySelector('iframe');
+      if (existingPlayer) { existingPlayer.focus(); return; }
+      prepareLatestPlayback(container);
+      mountYouTubePlayer(container, latestVodId, 'Latest CupcakeMafiaTV VOD');
   }
 
   loadLatestVod();
 
-  // Twitch live badge/title, lurk emote, and offline fallback clip on this
-  // page are populated by scripts.html's checkLiveStatuses(), which reuses
-  // the same /api/twitch-status fetch shared with the nav live badge.
-
-  async function loadTopClipForOffline() {
+  // A confirmed state change may replace the player; a failed poll must not.
+  let homeStreamMode = null;
+  let homeClipController = null;
+  let homeClipPool = null;
+  async function updateHomeStreamState(isLive) {
+    if (typeof isLive !== 'boolean') return;
     const media = document.getElementById('watch-live-media');
+    if (!media) return;
+    const mode = isLive ? 'live' : 'clips';
+    if (homeStreamMode === mode && homeClipController) return;
+    homeStreamMode = mode;
+    homeClipController?.abort();
+    homeClipController = new AbortController();
+    const signal = homeClipController.signal;
+    media.hidden = false;
     try {
-      const { mountClipPlaylist } = await import('/js/clip-playlist.js');
-      if (await mountClipPlaylist(media, loadEmbeddedClipForOffline)) return;
-    } catch (error) { console.warn('Recent clip playlist unavailable; using Twitch embed.'); }
-    return loadEmbeddedClipForOffline();
-  }
-
-  async function loadEmbeddedClipForOffline() {
-      try {
-          const response = await fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-clips');
-          const data = await response.json();
-          if (!response.ok || !data.clips || !data.clips.length) return;
-
-          // The API caches a top-10 pool at the edge; picking randomly here
-          // means different visitors (and repeat visits) see variety instead
-          // of everyone getting whatever's cached that hour.
-          const clip = data.clips[Math.floor(Math.random() * data.clips.length)];
-
-          const media = document.getElementById('watch-live-media');
-          if (!media) return;
-          const embedUrl = new URL(clip.embedUrl);
-          if (embedUrl.origin !== 'https://clips.twitch.tv' || embedUrl.pathname !== '/embed' || !embedUrl.searchParams.get('clip')) return;
-          embedUrl.searchParams.delete('parent');
-          embedUrl.searchParams.append('parent', window.location.hostname);
-          embedUrl.searchParams.set('autoplay', 'true');
-          embedUrl.searchParams.set('muted', 'true');
-
-          const frame = document.createElement('iframe');
-          frame.id = 'twitch-clip-iframe';
-          frame.title = clip.title ? 'Twitch clip: ' + clip.title : 'Twitch clip';
-          frame.className = 'absolute top-0 left-0 w-full h-full';
-          frame.setAttribute('frameborder', '0');
-          frame.setAttribute('scrolling', 'no');
-          frame.allow = 'autoplay; fullscreen';
-          frame.allowFullscreen = true;
-          media.replaceChildren(frame);
-          // Hide the live-stream caption when showing an offline clip.
-          media.closest('.section-band')?.querySelector('p')?.remove();
-
-          // Clips have no interactive Twitch player API. Load the muted player
-          // once it enters view; do not reload it on subsequent scrolls, which
-          // would restart the clip and reset the viewer's playback controls.
-          if ('IntersectionObserver' in window) {
-            let inView = false;
-            let started = false;
-            const startWhenVisible = () => {
-              if (started || !inView || document.hidden) return;
-              started = true;
-              frame.src = embedUrl.href;
-              observer.disconnect();
-              document.removeEventListener('visibilitychange', startWhenVisible);
-            };
-            const observer = new IntersectionObserver(entries => {
-              inView = entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.5);
-              startWhenVisible();
-            }, { threshold: 0.5 });
-            document.addEventListener('visibilitychange', startWhenVisible);
-            observer.observe(media);
-          } else {
-            // Older browsers still get a muted player with a working Play button.
-            embedUrl.searchParams.set('autoplay', 'false');
-            frame.src = embedUrl.href;
-          }
-      } catch (error) { console.error("Error loading top clip", error); }
+      const { mountStreamMedia } = await import('/js/stream-media.js?v=1');
+      let clip = null;
+      if (!isLive) {
+        const { eligibleClips, pickNextClip } = await import('/js/clip-playlist.js?v=4');
+        if (!homeClipPool) {
+          const requestSignal = AbortSignal.any([signal, AbortSignal.timeout(5000)]);
+          const responses = await Promise.allSettled([
+            fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-clips', { signal: requestSignal }).then(r => { if (!r.ok) throw Error('Clip feed unavailable'); return r.json(); }),
+            fetch('/data/twitch-clips.json', { signal: requestSignal }).then(r => { if (!r.ok) throw Error('Clip catalog unavailable'); return r.json(); })
+          ]);
+          if (signal.aborted) return;
+          const remote = responses[0].status === 'fulfilled' ? responses[0].value.clips : [];
+          const saved = responses[1].status === 'fulfilled' ? responses[1].value.clips : [];
+          const fresh = eligibleClips(remote);
+          homeClipPool = fresh.length ? fresh : eligibleClips(saved);
+        }
+        clip = pickNextClip(eligibleClips(homeClipPool));
+      }
+      if (!signal.aborted) mountStreamMedia(media, { isLive, clip }, signal);
+    } catch (error) {
+      if (!signal.aborted) { homeStreamMode = null; homeClipController = null; }
+    }
   }
 
   // Twitch/YouTube counts for #twitch-follower-count and #youtube-sub-count
@@ -836,7 +819,7 @@
   }
 
   function renderMafiaGame() {
-    const score = parseInt(localStorage.getItem('cupcakeMafiaScore') || '0', 10);
+    const score = parseInt(window.cmtvStorage.getItem('cupcakeMafiaScore') || '0', 10);
     document.getElementById('game-score-val').innerText = score.toLocaleString();
     document.getElementById('game-rank-val').innerText = getMafiaRank(score);
   }
@@ -850,14 +833,14 @@
     const modal = document.getElementById('cupcake-game-modal');
     if (!modal) return;
     modal.classList.remove('active');
-    localStorage.setItem('cupcakeMafiaScore', '0');
+    window.cmtvStorage.setItem('cupcakeMafiaScore', '0');
     renderMafiaGame();
   }
 
   function clickMafiaMascot() {
-    const prevScore = parseInt(localStorage.getItem('cupcakeMafiaScore') || '0', 10);
+    const prevScore = parseInt(window.cmtvStorage.getItem('cupcakeMafiaScore') || '0', 10);
     const score = prevScore + 1;
-    localStorage.setItem('cupcakeMafiaScore', score);
+    window.cmtvStorage.setItem('cupcakeMafiaScore', score);
     renderMafiaGame();
 
     const prevRank = getMafiaRank(prevScore);
@@ -871,5 +854,5 @@
     if (e.key === 'Escape') closeMafiaGame();
   });
 </script>
-<script type="module" src="/js/home-extras.js?v=4"></script>
+<script type="module" src="/js/home-extras.js?v=6"></script>
 {{ end }}
