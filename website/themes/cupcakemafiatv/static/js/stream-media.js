@@ -1,5 +1,8 @@
 // Keep one selected clip through layout changes; narrow screens open Twitch directly.
 export function mountStreamMedia(container, { isLive, clip }, signal) {
+  const heading = document.getElementById('watch-live-heading');
+  if (heading) heading.textContent = 'Watch Live';
+  document.getElementById('stream-state-label')?.remove();
   let layout = null;
   let stopPlayer = () => {};
   const clipId = clip && /^[\w-]+$/.test(clip.id) ? clip.id : null;

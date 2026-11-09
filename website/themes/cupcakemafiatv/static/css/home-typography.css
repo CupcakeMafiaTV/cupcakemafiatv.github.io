@@ -1,0 +1,149 @@
+.home-surface{--home-font:"Segoe UI",Arial,sans-serif;--home-heading:24px;--home-identity:36px;--home-detail:17px;--home-label:15px;--home-spec:22px;--home-motion:280ms cubic-bezier(.2,.7,.3,1);font-family:var(--home-font);}
+.home-surface button,.home-surface a,.home-surface h1,.home-surface h2,.home-surface h3,.home-surface p{font-family:var(--home-font);}
+.home-surface .solo-rank-header h2,.home-surface .wow-card-header p,.home-surface .latest-card-label,.esports-theme .home-surface #watch-live-heading{font-size:var(--home-heading);font-weight:750;line-height:1.35;letter-spacing:.2px;color:#fff;text-shadow:none;}
+.home-surface .solo-rank-header h2 .solo-riot-id{font-size:inherit;font-weight:750;letter-spacing:0;color:#fff;}
+.home-surface .solo-rank-header h2,.home-surface .wow-card-header p{padding-block:12px;}
+.home-surface .solo-rank-header .solo-rank-profile,.home-surface .wow-section-profile{font-size:var(--home-label);font-weight:700;line-height:1.4;color:#fff;text-shadow:none;}
+.home-surface .solo-rank-header .solo-rank-profile{padding-top:14px;padding-bottom:14px;}
+.home-surface .solo-rank-main p:first-child,.home-surface .solo-rank-main p:last-child,.home-surface .wow-character-copy .wow-character-identity h2,.home-surface .wow-character-identity [data-wow-level]{font-size:var(--home-identity);font-weight:750;line-height:1.2;letter-spacing:-.8px;}
+.home-surface .solo-rank-record,.home-surface .wow-character-copy .wow-character-class{font-size:var(--home-detail);font-weight:500;line-height:1.6;letter-spacing:0;}
+.home-surface .solo-record-wins,.home-surface .solo-record-losses{font-weight:500;}
+.home-surface .wow-character-level .wow-spec-label{font-size:var(--home-spec);font-weight:650;line-height:1.3;}
+.home-surface .wow-spec-label img{width:28px;height:28px;flex-basis:28px;}
+.home-surface .wow-character-class .wow-faction{vertical-align:middle;}
+.home-surface .wow-faction-icon{width:18px;height:18px;object-fit:contain;flex-shrink:0;}
+.home-surface .wow-region-icon{width:20px;height:14px;object-fit:contain;flex-shrink:0;}
+.home-surface .audience-grid>a .audience-value strong{font-family:var(--home-font);font-weight:750;}
+.home-surface .audience-grid>a .audience-value>span{font-size:var(--home-label);font-weight:700;line-height:1.4;}
+.home-surface .latest-content-copy h3,.home-surface .video-title-button{font-size:18px;font-weight:600;line-height:1.45;letter-spacing:0;}
+.home-surface .hero-description{font-weight:400;}
+.home-surface .hero-action{font-size:var(--home-label);font-weight:650;}
+.home-surface .hero-photo-shade{background:linear-gradient(90deg,#171220f0 0%,#171220c7 32%,#17122052 65%,transparent 100%);}
+.home-surface .wow-character-model{filter:drop-shadow(0 0 12px #b48aff35);}
+.home-surface .solo-rank-emblem-slot img,.home-surface .wow-character-model,.home-surface .audience-grid>a .audience-value strong,.home-surface .audience-grid>a .audience-platform-icon{transition:transform var(--home-motion),filter var(--home-motion);}
+.home-surface .solo-rank-emblem-slot:is(:hover,:focus-visible) img{transform:translate(-50%,calc(-50% - 4px)) scale(1.04);filter:drop-shadow(0 0 18px #c18aff99);}
+.home-surface .wow-character-art:is(:hover,:focus-visible) .wow-character-model{transform:translateY(-4px) scale(1.04);filter:drop-shadow(0 0 18px #c18aff99);}
+.home-surface .audience-grid>a:is(:hover,:focus-visible) .audience-platform-icon{transform:translateY(-3px) scale(1.06);}
+@media(min-width:1200px){.home-surface .league-character-copy .solo-performance{gap:14px;}}
+@media(max-width:1199px){.home-surface{--home-heading:22px;--home-identity:30px;--home-detail:16px;--home-spec:21px;}}
+@media(max-width:600px){.home-surface{--home-heading:18px;--home-identity:26px;--home-detail:14px;--home-label:14px;--home-spec:18px;}
+.home-surface .solo-rank-header,.home-surface .wow-card-header{min-height:104px;}
+.home-surface .solo-rank-header h2,.home-surface .wow-card-header p{white-space:normal;line-height:1.4;padding-block:10px;}
+.home-surface .solo-rank-header .solo-rank-profile{top:78px;padding:0;}
+.home-surface .wow-character-copy{gap:16px;}
+.home-surface .wow-spec-label img{width:26px;height:26px;flex-basis:26px;}
+.home-surface .wow-faction-icon{width:16px;height:16px;}
+.home-surface .latest-content-copy h3,.home-surface .video-title-button{font-size:16px;}}
+@media(max-width:420px){.home-surface{--home-identity:24px;--home-detail:13px;}}
+@media(prefers-reduced-motion:reduce){.home-surface .solo-rank-emblem-slot img,.home-surface .wow-character-model,.home-surface .audience-grid>a .audience-value strong,.home-surface .audience-grid>a .audience-platform-icon{transition:none;}
+.home-surface .solo-rank-emblem-slot:is(:hover,:focus-visible) img{transform:translate(-50%,-50%);}
+.home-surface .wow-character-art:is(:hover,:focus-visible) .wow-character-model,.home-surface .audience-grid>a:is(:hover,:focus-visible) .audience-platform-icon{transform:none;}}
+@media(max-width:600px){.home-surface .solo-performance{flex-direction:column;align-items:center;gap:12px;}
+.home-surface .solo-rank-record{width:100%;text-align:center;font-size:14px;}}
+.home-surface .wow-normal-icon{--normal-size:18px;display:inline-block;width:var(--normal-size);height:var(--normal-size);flex:0 0 var(--normal-size);border-radius:50%;background-image:url("/img/wow/normal-icon.webp");background-repeat:no-repeat;background-size:calc(var(--normal-size)*19.32954545) calc(var(--normal-size)*10.96590909);background-position:calc(var(--normal-size)*-2.09090909) calc(var(--normal-size)*-4.27272727);}
+@media(min-width:1200px){.home-surface .league-character-copy,.home-surface .wow-character-copy{display:grid;grid-template-rows:44px 36px 64px;gap:14px;align-content:center;align-items:center;justify-items:center;}
+.home-surface .league-character-copy .solo-rank-main,.home-surface .wow-character-identity{grid-row:1;margin:0;align-self:center;}
+.home-surface .league-character-copy .solo-rank-record,.home-surface .wow-character-level{grid-row:2;margin:0;}
+.home-surface .league-character-copy .solo-recent,.home-surface .wow-character-class{grid-row:3;margin:0;align-self:center;}
+.home-surface .wow-character-identity{flex-wrap:nowrap;gap:10px;}
+.home-surface .wow-character-copy .wow-character-identity h2{white-space:nowrap;}}
+.home-surface #watch-live-section::before{display:none;}
+.esports-theme .home-surface #watch-live-section{padding-top:12px;}
+@media(max-width:600px){.home-surface .wow-normal-icon{--normal-size:16px;}
+.esports-theme .home-surface #watch-live-section{padding-top:8px;}}
+@media(min-width:1200px){.home-surface .league-character-copy,.home-surface .wow-character-copy{grid-template-columns:minmax(0,1fr);}
+.home-surface .league-character-copy .solo-rank-main,.home-surface .league-character-copy .solo-rank-record,.home-surface .league-character-copy .solo-recent{grid-column:1;}}
+.home-surface #watch-live-section>.container::before{display:none;}
+.home-surface .wow-character-copy .wow-character-class{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;}
+.home-surface .solo-heading-title{position:relative;display:inline-block;}
+@media(min-width:1200px){.home-surface .solo-rank-header h2 .solo-riot-id{position:absolute;left:100%;top:0;margin-left:10px;white-space:nowrap;}}
+@media(max-width:600px){.home-surface .wow-character-copy .wow-character-class{gap:8px 10px;}}
+.home-surface .solo-rank-header h2 .solo-heading-title{color:#fff;margin:0;}
+.home-surface .solo-rank-header h2 .solo-riot-id{position:static;display:inline;margin-left:8px;}
+@media(max-width:600px){.home-surface .solo-rank-header h2 .solo-riot-id{display:block;margin-left:0;}}
+.home-surface .wow-character-copy .wow-character-class{gap:8px;line-height:1.5;}
+.home-surface .wow-character-class .wow-faction{gap:8px;line-height:1.5;align-items:center;}
+@media(min-width:900px){.home-surface .wow-character-copy{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+.home-surface .wow-character-copy .wow-character-identity,.home-surface .wow-character-copy .wow-character-level,.home-surface .wow-character-copy .wow-character-class{margin:0;align-self:center;}
+.home-surface .wow-character-level .wow-spec-label{position:relative;display:inline-flex;gap:0;}
+.home-surface .wow-spec-label .wow-spec-link{position:absolute;right:calc(100% + 9px);top:50%;transform:translateY(-50%);}}
+.home-surface .wow-character-level .wow-spec-text{font-size:inherit;font-weight:inherit;line-height:inherit;color:inherit;margin:0;}
+.home-surface .wow-character-copy .wow-character-level{display:flex;align-items:center;justify-content:center;line-height:1;}
+.home-surface .wow-character-level .wow-spec-label{position:relative;display:inline-grid;grid-template-columns:32px minmax(0,auto) 32px;align-items:center;justify-content:center;gap:10px;max-width:100%;}
+.home-surface .wow-spec-label .wow-spec-link{position:static;inset:auto;transform:none;display:flex;align-items:center;justify-content:center;grid-column:1;grid-row:1;width:32px;height:32px;flex:none;border-radius:6px;}
+.home-surface .wow-spec-label .wow-spec-link img{display:block;width:32px;height:32px;min-width:32px;max-width:none;object-fit:contain;border-radius:6px;margin:0;}
+.home-surface .wow-character-level .wow-spec-text{grid-column:2;grid-row:1;text-align:center;}
+.home-surface .wow-spec-label::after{content:"";grid-column:3;grid-row:1;width:32px;}
+.home-surface .wow-character-class .wow-faction+.wow-faction::before{content:"|";color:#bba9c8;font-weight:400;}
+@media(max-width:600px){.home-surface .wow-character-level .wow-spec-label{grid-template-columns:26px minmax(0,auto) 26px;gap:6px;}
+.home-surface .wow-spec-label .wow-spec-link,.home-surface .wow-spec-label .wow-spec-link img{width:26px;height:26px;min-width:26px;}
+.home-surface .wow-spec-label::after{width:26px;}}
+.home-surface .solo-rank-header h2,.home-surface .wow-card-header p{font-size:20px;position:relative;top:10px;}
+@media(max-width:1199px){.home-surface .solo-rank-header h2,.home-surface .wow-card-header p{font-size:18px;}}
+@media(max-width:600px){.home-surface .solo-rank-header h2,.home-surface .wow-card-header p{font-size:15px;top:6px;}}
+@media(min-width:1200px){.home-surface .league-character-copy,.home-surface .wow-character-copy{position:relative;top:-14px;}}
+@media(max-width:1199px){.home-surface .solo-rank-main,.home-surface .solo-performance,.home-surface .wow-character-copy{position:relative;top:-10px;}}
+@media(min-width:1200px){.home-surface .league-character-copy{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;}
+.home-surface .league-character-copy .solo-rank-main,.home-surface .league-character-copy .solo-rank-record,.home-surface .league-character-copy .solo-recent{margin:0;align-self:center;flex:0 0 auto;}
+.home-surface .league-character-copy .solo-performance{display:contents;}}
+.home-surface .solo-rank-header h2{top:4px;}
+@media(max-width:600px){.home-surface .solo-rank-header h2{top:0;}}
+.home-surface #watch-live-section .content-section-heading{display:flex;justify-content:center;text-align:center;}
+.home-surface .watch-live-title{position:relative;display:block;width:max-content;margin-inline:auto;}
+.home-surface #watch-live-heading{width:auto;margin:0;text-align:center;}
+.home-surface .watch-live-title .twitch-heading-mark{position:absolute;right:calc(100% + 10px);top:50%;transform:translateY(-50%);}
+.home-surface #vod-container-wrapper .video-title-button,.home-surface #home-vod-title .vod-date{color:#ffd45c;}
+
+/* Dedicated assets, declarative profile alignment, and stable loading slots. */
+.home-surface .wow-normal-icon{background-size:contain;background-position:center}
+.home-surface .solo-rank-header .solo-rank-profile,.home-surface .wow-card-header .wow-section-profile{position:absolute;inset:14px 0 auto auto;padding:0;margin:0;font-size:var(--home-label);font-weight:700;line-height:1.4;color:#fff;text-align:right}
+.home-surface .solo-rank-main{min-height:calc(var(--home-identity)*1.2)}
+.home-surface .solo-rank-main p:last-child,.home-surface .wow-character-identity [data-wow-level]{font-variant-numeric:tabular-nums}
+.home-surface .solo-recent{min-height:64px}
+.home-surface .solo-rank-card[aria-busy="true"] #solo-rank-name{font-size:0}
+.home-surface .solo-rank-card[aria-busy="true"] #solo-rank-name::after{content:'—';font-size:var(--home-identity)}
+.home-surface .latest-content-copy{min-height:calc(18px*1.45*2 + 28px)}
+.home-surface .latest-content-copy .video-title-button{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;min-height:2.9em;max-height:2.9em}
+@media(max-width:1199px){.home-surface .wow-card-header .wow-section-profile{right:20px}}
+@media(max-width:600px){
+ .home-surface .solo-rank-header .solo-rank-profile,.home-surface .wow-card-header .wow-section-profile{top:78px;right:0}
+ .home-surface .latest-content-copy{min-height:calc(16px*1.45*2 + 28px)}
+}
+/* Tablets and smaller laptops use artwork beside one coherent text stack. */
+@media(min-width:601px) and (max-width:1199px){
+ .home-surface .solo-rank-summary{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:center;padding:22px 16px;min-height:265px}
+ .home-surface .solo-rank-emblem-slot{grid-column:1;grid-row:1;width:190px;height:210px}
+ .home-surface .league-character-copy{display:flex;grid-column:2;grid-row:1;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-width:0;position:relative;top:-10px}
+ .home-surface .league-character-copy .solo-rank-main{position:static;margin:0;padding:0;align-self:center;flex:none;width:100%;flex-wrap:wrap}
+ .home-surface .league-character-copy .solo-performance{position:static;display:flex;flex-direction:column;align-self:center;align-items:center;gap:12px;margin:0;padding:0}
+ .home-surface .league-character-copy .solo-rank-record{width:auto;text-align:center}
+}
+@media(max-width:600px){.home-surface .wow-character-copy .wow-character-class{display:grid;grid-template-columns:repeat(2,max-content);gap:8px;justify-content:center}.home-surface .wow-character-class .wow-faction:nth-child(3)::before{display:none}}
+
+@media(max-width:360px){.home-surface{--home-identity:22px;--home-detail:12px;--home-spec:17px}.home-surface .wow-card-body{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;align-items:center}.home-surface .wow-character-art{width:90px;align-self:center}.home-surface .wow-character-copy .wow-character-identity h2{white-space:nowrap}.home-surface .solo-rank-main{flex-wrap:nowrap}}
+
+@media(max-width:360px){.home-surface .solo-rank-summary{grid-template-columns:110px minmax(0,1fr)}.home-surface .solo-rank-emblem-slot{width:110px}.home-surface .solo-rank-main{flex-wrap:wrap}.home-surface .solo-rank-main p{white-space:nowrap}}
+/* Give Watch Live a clearer break from the WoW section. */
+.esports-theme .home-surface #watch-live-section{padding-top:30px}
+.home-surface #watch-live-section::before{display:block}
+@media(max-width:600px){.esports-theme .home-surface #watch-live-section{padding-top:24px}}/* Compact, equal-height title areas with balanced top and bottom spacing. */
+.home-surface .latest-content-copy{box-sizing:border-box;display:flex;align-items:center;flex:0 0 auto;min-height:calc(18px*1.45*2 + 16px);padding:8px 18px}
+.home-surface .latest-content-copy h3{width:100%;margin:0}
+.home-surface .latest-content-copy .video-title-button{min-height:0;padding:0;line-height:1.45}
+@media(max-width:600px){.home-surface .latest-content-copy{min-height:calc(16px*1.45*2 + 16px)}}
+/* Fit each video title closely instead of reserving empty lines. */
+.home-surface .latest-content-copy{min-height:0;padding:8px 14px}.home-surface .latest-content-copy .video-title-button{min-height:0}
+/* Crisp white edges around the media-section platform marks. */
+.home-surface .media-logo-link{--logo-outline:drop-shadow(.7px 0 0 #fff) drop-shadow(-.7px 0 0 #fff) drop-shadow(0 .7px 0 #fff) drop-shadow(0 -.7px 0 #fff)}
+.home-surface .media-logo-link svg{filter:var(--logo-outline)}
+.home-surface .media-logo-link:is(:hover,:focus-visible) svg{filter:var(--logo-outline) drop-shadow(0 0 9px var(--logo-glow))}
+/* Outline only the exterior contour, leaving interior details untouched. */
+.home-surface .media-logo-link svg{filter:none;overflow:visible}
+.home-surface .media-logo-link:is(:hover,:focus-visible) svg{filter:drop-shadow(0 0 9px var(--logo-glow))}
+.home-surface .media-logo-outline{fill:none;stroke:#fff;stroke-width:1.4px;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+/* Softer logo edging that complements the purple media sections. */
+.home-surface .media-logo-outline{stroke:#fff;stroke-opacity:.7;stroke-width:1px;stroke-linejoin:round;stroke-linecap:round}
+.home-surface .media-logo-link svg{filter:drop-shadow(0 2px 3px #0005);shape-rendering:geometricPrecision}
+.home-surface .media-logo-link:is(:hover,:focus-visible) .media-logo-outline{stroke-opacity:.95}
+.home-surface .media-logo-link:is(:hover,:focus-visible) svg{filter:drop-shadow(0 2px 3px #0005) drop-shadow(0 0 7px var(--logo-glow))}
+.home-surface .media-logo-outline{display:none}

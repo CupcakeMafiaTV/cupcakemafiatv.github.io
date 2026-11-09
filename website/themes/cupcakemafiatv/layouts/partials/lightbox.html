@@ -1,28 +1,41 @@
-<!-- Shared click-to-zoom lightbox. Make any image zoomable with:
-     onclick="openModal(this.src)" (or this.querySelector('img').src on a
-     wrapping container). Styling lives in head.html (#img-modal). -->
-<dialog id="img-modal" aria-label="Image preview" onclick="this.close()">
-    <button type="button" class="image-preview-close" aria-label="Close image preview">&times;</button>
-    <img id="img-modal-img" alt="Enlarged view">
+<style>
+.image-gallery-controls {display:flex;align-items:center;justify-content:center;gap:1rem;padding:0.75rem;background:#171220;color:white;}
+.image-gallery-controls button {min-width:44px;min-height:44px;border:1px solid #b284ed;border-radius:8px;background:#271d34;color:white;cursor:pointer;}
+</style>
+<dialog id="img-modal" aria-label="Image preview">
+<button type="button" class="image-preview-close" aria-label="Close image preview">&times;</button>
+<img id="img-modal-img" alt="Enlarged view">
+<div class="image-gallery-controls"><button type="button" id="gallery-prev" aria-label="Previous photo">&#8592;</button><span id="gallery-count" role="status" aria-live="polite"></span><button type="button" id="gallery-next" aria-label="Next photo">&#8594;</button></div>
 </dialog>
-
 <script>
-    document.querySelectorAll('[data-image-preview], [data-video-preview]').forEach(control => {
-        const image = control.querySelector('img');
-        if (control.hasAttribute('data-image-preview')) control.setAttribute('aria-label', 'Enlarge ' + (image?.alt || 'image'));
-        control.addEventListener('keydown', event => {
-            if (control.getAttribute('role') === 'button' && (event.key === 'Enter' || event.key === ' ')) {
-                event.preventDefault(); control.click();
-            }
-        });
-    });
-    function openModal(source) {
-        const image = typeof source === 'string' ? null : source.querySelector('img');
-        const imgSrc = image ? image.src : source;
-        const modal = document.getElementById('img-modal');
-        const modalImg = document.getElementById('img-modal-img');
-        modalImg.src = imgSrc;
-        modalImg.alt = image?.alt || 'Enlarged view';
-        modal.showModal();
-    }
+const imageModal=document.getElementById('img-modal');
+let galleryImages=[], galleryIndex=0, touchStart=null;
+document.querySelectorAll('[data-image-preview], [data-video-preview]').forEach(control=>{
+ const image=control.querySelector('img');
+ if(control.hasAttribute('data-image-preview')) control.setAttribute('aria-label','Enlarge '+(image?.alt||'image'));
+ control.addEventListener('keydown',event=>{if(control.getAttribute('role')==='button'&&(event.key==='Enter'||event.key===' ')){event.preventDefault();control.click();}});
+});
+function showGalleryImage(index){
+ galleryIndex=(index+galleryImages.length)%galleryImages.length;
+ const image=galleryImages[galleryIndex], target=document.getElementById('img-modal-img');
+ target.src=image.src;target.alt=image.alt||'Enlarged view';
+ document.getElementById('gallery-count').textContent=(galleryIndex+1)+' of '+galleryImages.length;
+ document.getElementById('gallery-prev').hidden=galleryImages.length<2;
+ document.getElementById('gallery-next').hidden=galleryImages.length<2;
+}
+function openModal(source){
+ const image=typeof source==='string'?null:source.querySelector('img');
+ galleryImages=[...document.querySelectorAll('[data-image-preview] img')];
+ const src=image?image.src:source;
+ galleryIndex=galleryImages.findIndex(item=>item.src===src);
+ if(galleryIndex<0){galleryImages=[{src,alt:image?.alt||'Enlarged view'}];galleryIndex=0;}
+ showGalleryImage(galleryIndex);imageModal.showModal();
+}
+imageModal.querySelector('.image-preview-close').addEventListener('click',()=>imageModal.close());
+imageModal.addEventListener('click',event=>{if(event.target===imageModal)imageModal.close();});
+document.getElementById('gallery-prev').addEventListener('click',()=>showGalleryImage(galleryIndex-1));
+document.getElementById('gallery-next').addEventListener('click',()=>showGalleryImage(galleryIndex+1));
+imageModal.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();showGalleryImage(galleryIndex+(event.key==='ArrowRight'?1:-1));}});
+imageModal.addEventListener('touchstart',event=>{touchStart={x:event.changedTouches[0].clientX,y:event.changedTouches[0].clientY};},{passive:true});
+imageModal.addEventListener('touchend',event=>{if(!touchStart)return;const dx=event.changedTouches[0].clientX-touchStart.x,dy=event.changedTouches[0].clientY-touchStart.y;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))showGalleryImage(galleryIndex+(dx<0?1:-1));touchStart=null;},{passive:true});
 </script>

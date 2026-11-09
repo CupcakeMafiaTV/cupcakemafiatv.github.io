@@ -3,9 +3,10 @@
 <style>
     .charity-stats-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         gap: 1rem;
     }
+    @media (min-width: 640px) { .charity-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (min-width: 768px) { .charity-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     @media (min-width: 1024px) { .charity-stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
@@ -63,6 +64,7 @@
                  connected. Add campaign totals to this baseline, not vice versa.
                  Years participating is recorded separately: the participant API
                  does not expose participation history. -->
+            <p class="mb-6"><a class="footer-contact-btn" href="https://dd.extra-life.org/participants/582414" target="_blank" rel="noopener noreferrer">Donate to Extra Life ↗</a></p>
             <div id="charity-stats" data-participant-id="582414" data-historical-cents="126350" data-historical-donations="37" class="reveal-on-scroll">
                 <div class="mb-6">
                     <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">The Numbers</h2>

@@ -1,7 +1,7 @@
 {{ define "main" }}
 <link rel="stylesheet" href="/css/home-extras.css?v=3">
 <link rel="stylesheet" href="/css/audience-bar.css">
-<script src="/js/audience-bar.js?v=3" defer></script>
+<script src="/js/audience-bar.js?v=4" defer></script>
 
 <style>
   @keyframes homeLivePulse {
@@ -271,6 +271,7 @@
   <main id="main-content" class="grow lg:pt-0 text-white">
   <div class="home-intro">
 
+
   <!-- Hero -->
   <section class="hero-wrap" aria-labelledby="creator-name">
     <div class="hero-photo-panel" aria-hidden="true">
@@ -283,7 +284,7 @@
         <img src="/img/CodyWeirdAl.webp" alt="Cody, CupcakeMafiaTV" class="hero-mobile-avatar" width="112" height="112" fetchpriority="high">
         <h1 id="creator-name" class="hero-name">CupcakeMafiaTV</h1>
 
-        <p class="hero-description">MOBA &amp; variety streamer based in <span class="hero-location">Ontario, Canada <img src="/img/flag-canada.svg" alt="" width="28" height="14"></span>.<br>Master&#8217;s ranked <span class="hero-role">mid laner<a class="hero-rank-link" href="https://op.gg/lol/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" aria-label="View CupcakeMafiaTV on OP.GG" title="View my OP.GG"><img class="hero-game-icon hero-mid-icon" src="/img/league-mid.png" alt="" width="20" height="20"></a></span> in League of Legends, streaming since <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer">2017</a>.</p>
+        <p class="hero-description">MOBA &amp; variety streamer based in <span class="hero-location">Ontario, Canada <img src="/img/flag-canada.svg" alt="" width="28" height="14"></span><br>League of Legends Mid Laner<img src="/img/league-mid.png" alt="Mid lane" width="20" height="20" class="hero-game-icon hero-mid-icon"> streaming since <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer">2017</a></p>
 
         <div class="hero-actions">
           <a class="hero-action hero-action-primary" href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg>Watch on Twitch</a>
@@ -300,12 +301,12 @@
 <div class="audience-section">
 
 <section class="audience-band" aria-label="Audience and reach"><div class="audience-wrap audience-grid">
-<a href="https://twitch.tv/cupcakemafiatv"  title="Twitch"><span class="sr-only">Twitch </span><span class="audience-metrics"><span class="audience-value"><strong id="twitch-follower-count">Ã¢â‚¬â€</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-twitch" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></a>
-<a href="https://youtube.com/@cupcakemafiatv" class="youtube-audience"  title="YouTube"><span class="sr-only">YouTube </span><span class="audience-metrics" aria-live="off"><span class="audience-value" data-youtube-metric="subscribers"><strong id="youtube-sub-count">Ã¢â‚¬â€</strong><span>Subscribers</span></span></span><svg class="icon audience-platform-icon platform-youtube" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></a>
-<a href="https://x.com/cupcakemafiatv"  title="X"><span class="sr-only">X </span><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.x.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-x" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></a>
-<a href="https://instagram.com/cupcakemafiatv"  title="Instagram"><span class="sr-only">Instagram </span><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.instagram.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-instagram" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-instagram"></use></svg></a>
-<a href="https://www.tiktok.com/@cupcakemafiatv"  title="TikTok"><span class="sr-only">TikTok </span><span class="audience-metrics"><span class="audience-value"><strong>{{ .Site.Data.socials.tiktok.followers }}</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-tiktok" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-tiktok"></use></svg></a>
-<a href="https://discord.com/invite/DPjsCV6RMj"  title="Discord"><span class="sr-only">Discord </span><span class="audience-metrics"><span class="audience-value"><strong id="discord-member-count">Ã¢â‚¬â€</strong><span>Members</span></span></span><svg class="icon audience-platform-icon platform-discord" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-discord"></use></svg></a></div></section>
+<a href="https://twitch.tv/cupcakemafiatv"  title="Twitch"><span class="sr-only">Twitch </span><span class="audience-metrics"><span class="audience-value"><strong id="twitch-follower-count">0</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-twitch" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></a>
+<a href="https://youtube.com/@cupcakemafiatv" class="youtube-audience"  title="YouTube"><span class="sr-only">YouTube </span><span class="audience-metrics" aria-live="off"><span class="audience-value" data-youtube-metric="subscribers"><strong id="youtube-sub-count">0</strong><span>Subscribers</span></span></span><svg class="icon audience-platform-icon platform-youtube" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></a>
+<a href="https://x.com/cupcakemafiatv"  title="X"><span class="sr-only">X </span><span class="audience-metrics"><span class="audience-value"><strong data-count-target="{{ .Site.Data.socials.x.followers }}">0</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-x" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></a>
+<a href="https://instagram.com/cupcakemafiatv"  title="Instagram"><span class="sr-only">Instagram </span><span class="audience-metrics"><span class="audience-value"><strong data-count-target="{{ .Site.Data.socials.instagram.followers }}">0</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-instagram" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-instagram"></use></svg></a>
+<a href="https://www.tiktok.com/@cupcakemafiatv"  title="TikTok"><span class="sr-only">TikTok </span><span class="audience-metrics"><span class="audience-value"><strong data-count-target="{{ .Site.Data.socials.tiktok.followers }}">0</strong><span>Followers</span></span></span><svg class="icon audience-platform-icon platform-tiktok" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-tiktok"></use></svg></a>
+<a href="https://discord.com/invite/DPjsCV6RMj"  title="Discord"><span class="sr-only">Discord </span><span class="audience-metrics"><span class="audience-value"><strong id="discord-member-count">0</strong><span>Members</span></span></span><svg class="icon audience-platform-icon platform-discord" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-discord"></use></svg></a></div></section>
 </div>
 
 
@@ -314,12 +315,40 @@
 
   </div><!-- home-intro -->
 
-    <section id="latest-videos-section" class="content-section" aria-labelledby="latest-videos-heading">
+    <section class="ranked-spotlight" aria-labelledby="solo-rank-heading"><div class="container" style="max-width:1048px;padding-inline:24px;"><img class="game-watermark league-watermark" src="/img/league-emblem.png" alt="" aria-hidden="true" loading="lazy">
+      <div id="solo-rank-card" class="solo-rank-card" aria-busy="true">
+        <div class="solo-rank-header"><h2 id="solo-rank-heading"><span class="solo-heading-title">Solo/Duo <span class="solo-riot-id">(CupcakeMafia#NA1)</span></span></h2><a class="solo-rank-profile" href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer">View profile ↗</a></div>
+        <div class="solo-rank-summary"><a class="solo-rank-emblem-slot" href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" aria-label="View League profile on OP.GG"><img id="solo-rank-emblem" hidden alt="" width="90" height="90"></a>
+        <div class="league-character-copy"><div class="solo-rank-main"><p id="solo-rank-name">Checking rank…</p><p><span id="solo-rank-lp">—</span> LP</p></div>
+        <div class="solo-performance"><div class="solo-rank-record"><p><span class="solo-record-wins"><span id="solo-rank-wins">—</span>W</span> <span aria-hidden="true">·</span> <span class="solo-record-losses"><span id="solo-rank-losses">—</span>L</span> <span aria-hidden="true">·</span> <span id="solo-rank-wr" title="Win rate">—</span></p></div>
+        <div class="solo-recent"><div id="solo-rank-recent" aria-label="Recent Solo/Duo results">Match history pending</div></div>
+        </div></div></div>
+
+      </div>
+    </div></section>
+    <script src="/js/wow-card-layout.js?v=8" defer></script><script src="/js/wow-character.js?v=1" defer></script><section class="wow-character-section" aria-labelledby="wow-character-heading"><div class="container" style="max-width:1048px;padding-inline:24px;">
+      <article class="wow-character-card">
+        <div class="wow-card-header"><p>World of Warcraft · Forever</p><a class="wow-section-profile" href="https://worldofwarcraft.blizzard.com/en-us/forever/us/armory/character/cupcake-mafia" target="_blank" rel="noopener noreferrer">View Armory ↗</a></div>
+        <div class="wow-card-body"><a class="wow-character-art" href="https://worldofwarcraft.blizzard.com/en-us/forever/us/armory/character/cupcake-mafia" target="_blank" rel="noopener noreferrer" aria-label="View Cupcake Mafia in the Armory"><div class="wow-character-model"><img src="/img/wow/cupcake-mafia.png" alt="Cupcake Mafia, my Dwarf Shaman" width="1600" height="1200" loading="lazy"></div></a>
+        <div class="wow-character-copy"><div class="wow-character-identity"><h2 id="wow-character-heading">Cupcake Mafia</h2><span data-wow-level>Level 14</span></div><p class="wow-character-level"><span class="wow-spec-label"><a class="wow-spec-link" href="https://worldofwarcraft.blizzard.com/en-us/game/classes/shaman" target="_blank" rel="noopener noreferrer" aria-label="Learn about Shamans on Blizzard" title="Explore the Shaman class"><img src="/img/wow/enhancement.jpg" alt="" width="40" height="40" aria-hidden="true"></a><span class="wow-spec-text">Enhancement Shaman</span></span></p><p class="wow-character-class"><span class="wow-faction">Dwarf <img src="/img/wow/dwarf-male.jpg" alt="" width="16" height="16" class="wow-faction-icon" aria-hidden="true"></span> <span class="wow-faction">Alliance <img src="/img/wow/alliance.gif" alt="" width="16" height="16" class="wow-faction-icon" aria-hidden="true"></span> <span class="wow-faction">Normal <span class="wow-normal-icon" aria-hidden="true"></span></span> <span class="wow-faction">US <img src="/img/flag-us.svg" alt="" width="20" height="14" class="wow-region-icon" aria-hidden="true"></span></p></div></div>
+      </article><img class="game-watermark wow-watermark" src="/img/wow-game-mark.svg" alt="" aria-hidden="true" loading="lazy">
+    </div></section>
+    <section id="watch-live-section" class="content-section" aria-labelledby="watch-live-heading">
       <div class="container">
         <div class="content-section-heading">
-          <div><h2 id="latest-videos-heading">Latest Videos</h2></div>
+          <div class="watch-live-title"><a class="media-logo-link twitch-heading-mark" href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" aria-label="CupcakeMafiaTV on Twitch"><svg class="icon watch-twitch-logo" viewBox="0 0 512 512" aria-hidden="true"><path class="media-logo-outline" d="M120.83,0,24.31,91.42V420.58H140.14V512l96.53-91.42h77.25L487.69,256V0Z"></path><use href="/img/icons-sprite.svg#fab-twitch"></use></svg><span class="logo-sparkles" aria-hidden="true">✦</span></a><h2 id="watch-live-heading">Watch Live</h2></div>
         </div>
-        <div class="latest-content-grid">
+        <div class="watch-stream-column">
+          <div id="watch-live-media" class="watch-live-video live-player"><a class="twitch-mobile-link" href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer"><img src="/img/CodySetup.webp" alt="" width="640" height="360" loading="lazy"><span class="twitch-mobile-label">Watch on Twitch &#8599;</span></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="latest-videos-section" class="content-section" aria-label="Latest video and VOD">
+      <div class="container">
+
+        <div class="latest-content-grid"><a class="media-logo-link latest-youtube-mark" href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" aria-label="CupcakeMafiaTV on YouTube"><svg class="icon latest-youtube-logo" viewBox="0 0 576 512" aria-hidden="true"><path class="media-logo-outline" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305z"></path><use href="/img/icons-sprite.svg#fab-youtube"></use></svg><span class="logo-sparkles" aria-hidden="true">✦</span></a>
+          <div class="latest-content-column"><h2 class="latest-card-label">Latest Video</h2>
           <article id="video-container-wrapper" class="latest-content-card">
             <div id="video-placeholder" class="latest-content-media">
               <button type="button" class="video-preview-button" onclick="playVideo()" aria-label="Play latest video" disabled>
@@ -329,6 +358,8 @@
             </div>
             <div class="latest-content-copy"><h3><button id="home-hero-title" class="video-title-button" type="button" onclick="playVideo()" disabled>Loading latest video&hellip;</button></h3></div>
           </article>
+          </div>
+          <div class="latest-content-column"><h2 class="latest-card-label">Latest VOD</h2>
           <article id="vod-container-wrapper" class="latest-content-card">
             <div id="vod-placeholder" class="latest-content-media">
               <button type="button" class="video-preview-button" onclick="playVod()" aria-label="Play latest VOD" disabled>
@@ -338,20 +369,12 @@
             </div>
             <div class="latest-content-copy"><h3><button id="home-vod-title" class="video-title-button" type="button" onclick="playVod()" disabled>Loading latest VOD&hellip;</button></h3></div>
           </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="watch-live-section" class="content-section" aria-labelledby="watch-live-heading">
-      <div class="container">
-        <div class="content-section-heading">
-          <div><h2 id="watch-live-heading">Watch Live</h2></div>
-        </div>
-        <div class="watch-stream-column">
-          <div id="watch-live-media" class="watch-live-video live-player"><a class="twitch-mobile-link" href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer"><img src="/img/CodySetup.webp" alt="" width="640" height="360" loading="lazy"><span class="twitch-mobile-label">Watch on Twitch &#8599;</span></a></div>
-        </div>
-      </div>
-    </section>
+    <script src="/js/solo-rank.js?v=7" defer></script>
     {{ partial "stream-schedule-data.html" . }}
 
     {{/* Name Generator Section Ã¢â‚¬â€ commented out for now, keep for later
@@ -776,7 +799,7 @@
     const signal = homeClipController.signal;
     media.hidden = false;
     try {
-      const { mountStreamMedia } = await import('/js/stream-media.js?v=1');
+      const { mountStreamMedia } = await import('/js/stream-media.js?v=2');
       let clip = null;
       if (!isLive) {
         const { eligibleClips, pickNextClip } = await import('/js/clip-playlist.js?v=4');

@@ -17,7 +17,7 @@
     script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
     font-src 'self';
-    img-src 'self' data: https://i.ytimg.com https://static-cdn.jtvnw.net https://clips-media-assets2.twitch.tv https://clips-media-assets.twitch.tv;
+    img-src 'self' data: https://render.worldofwarcraft.com https://ddragon.leagueoflegends.com https://i.ytimg.com https://static-cdn.jtvnw.net https://clips-media-assets2.twitch.tv https://clips-media-assets.twitch.tv;
     connect-src 'self' {{ if eq .Layout "charity" }}https://dd.extra-life.org{{ end }} https://cupcakemafiatv-github-io.vercel.app https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com;
     frame-src https://player.twitch.tv https://clips.twitch.tv https://www.twitch.tv https://www.youtube.com;
     object-src 'none';
@@ -493,5 +493,6 @@
       }
   </style>
   <link href="/css/esports-theme.css?v=3" rel="stylesheet">
-<link href="/css/modern-polish.css?v=5" rel="stylesheet">
+<link href="/css/modern-polish.css?v=7" rel="stylesheet">
+<link href="/css/home-typography.css?v=2" rel="stylesheet">
 </head>

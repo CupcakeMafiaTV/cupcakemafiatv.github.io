@@ -10,9 +10,10 @@
   const targets = new Map();
   const elements = [...band.querySelectorAll('.audience-value strong')];
   for (const el of elements) {
-    const target = count(el.textContent.replace(/,/g, ''));
-    if (target !== null) targets.set(el, target);
-    el.textContent = '?';
+    const target = count((el.dataset.countTarget || el.textContent).replace(/,/g, ''));
+    if (target !== null && (el.dataset.countTarget || !el.id)) targets.set(el, target);
+    el.textContent = '0';
+
   }
   band.setAttribute('aria-busy', 'true');
   const cached = key => {
@@ -21,6 +22,12 @@
   const save = (key, value) => {
     try { localStorage.setItem(key, String(value)); } catch { /* Storage is optional. */ }
   };
+  // Keep existing values visible; restore the last good live counts immediately.
+  const cacheKeys = { 'youtube-sub-count': 'cmtv_youtube_subs', 'twitch-follower-count': 'cmtv_twitch_followers', 'discord-member-count': 'cmtv_discord_members' };
+  for (const el of elements) {
+    const value = cacheKeys[el.id] ? cached(cacheKeys[el.id]) : null;
+    if (value !== null) { targets.set(el, value); el.textContent = '0'; }
+  }
   async function load(endpoint, fields) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 4000);
@@ -37,7 +44,7 @@
       const fresh = count(data?.[field]);
       const target = fresh === null ? cached(key) : fresh;
       if (fresh !== null) save(key, fresh);
-      if (target !== null) targets.set(el, target);
+      if (target !== null) { targets.set(el, target); el.textContent = '0'; }
     }
   }
   await Promise.all([

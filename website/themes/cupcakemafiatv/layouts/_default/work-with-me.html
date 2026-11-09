@@ -188,6 +188,8 @@
 
     </div>
 </main>
+<div style="text-align:center; margin: 1rem 0 2rem; overflow-wrap:anywhere;"><a href="mailto:cupcakemafiatvgaming@gmail.com">cupcakemafiatvgaming@gmail.com</a><br><button type="button" class="footer-contact-btn" id="copy-contact-email" style="margin-top:0.75rem;">Copy email</button><p id="copy-email-status" role="status"></p></div>
+<script>document.getElementById('copy-contact-email').addEventListener('click', async () => { const status=document.getElementById('copy-email-status'); try { await navigator.clipboard.writeText('cupcakemafiatvgaming@gmail.com'); status.textContent='Email address copied.'; } catch { status.textContent='Select and copy the email address above.'; } });</script>
 <!-- #youtube-sub-count and #twitch-follower-count are populated
      by the shared fetch in scripts.html; no page-specific fetch
      needed here. -->
