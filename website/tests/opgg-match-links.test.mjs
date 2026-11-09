@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parseMatchLinks} from '../api/_opgg-match-links.js';
-import handler from '../api/opgg-match-links.js';
+import handler from '../api/_opgg-match-handler.js';
 const profile='https://op.gg/lol/summoners/na/CupcakeMafia-NA1';
 const id='eq3KyFixtgUMkbs_jOy8RKm6uY6hSUE9gxtrDS9thuM=';
 const game=(overrides={})=>({startTime:'2026-11-05T23:00:04-05:00',additionalProperty:Object.entries({matchId:id,queueType:'SOLORANKED',champion:'Ahri',result:'LOSE',...overrides}).map(([name,value])=>({name,value}))});

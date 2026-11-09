@@ -1,3 +1,4 @@
+import matchLinksHandler from './_opgg-match-handler.js';
 import { soloHistory } from './_solo-history.js';
 import { setCors } from './_cors.js';
 
@@ -22,6 +23,7 @@ async function fallback(res) {
   return res.status(200).json({ available: false, stale: true, rank: null, inGame: false, updatedAt: null, profileUrl: PROFILE_URL });
 }
 export default async function handler(req, res) {
+  if (req.query?.view === 'match-links') return matchLinksHandler(req, res);
   setCors(req, res, 'GET');
   res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=900');
   if (req.method === 'OPTIONS') return res.status(204).end();

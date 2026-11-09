@@ -54,7 +54,7 @@
    else{el('name').textContent='Rank temporarily unavailable';card.setAttribute('aria-busy','false');}
   }finally{busy=false;}
  }
- loadMatchLinks('/data/opgg-match-links.json').then(()=>loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/opgg-match-links'));
- setInterval(()=>{if(!document.hidden)loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/opgg-match-links');},900000);
+ loadMatchLinks('/data/opgg-match-links.json').then(()=>loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/league-rank?view=match-links'));
+ setInterval(()=>{if(!document.hidden)loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/league-rank?view=match-links');},900000);
  refresh();setInterval(refresh,300000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});
 })();
