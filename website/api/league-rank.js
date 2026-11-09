@@ -1,3 +1,4 @@
+import { soloHistory } from './_solo-history.js';
 import { setCors } from './_cors.js';
 
 const SNAPSHOT_KEY = 'cmtv:league:solo:last-confirmed:v1';
@@ -43,7 +44,9 @@ export default async function handler(req, res) {
     if (!Array.isArray(entries)) return fallback(res);
     const solo = entries.find(entry => entry.queueType === 'RANKED_SOLO_5x5');
     if (solo && (typeof solo.tier !== 'string' || typeof solo.rank !== 'string' || !['leaguePoints', 'wins', 'losses'].every(k => Number.isFinite(solo[k])))) return fallback(res);
+    const history = await soloHistory(account.puuid, riot, redis);
     const snapshot = {
+      recentMatches: history.matches, recentMatchesStale: history.stale,
       rank: solo ? { tier: solo.tier, division: solo.rank, leaguePoints: solo.leaguePoints, wins: solo.wins, losses: solo.losses } : null,
       updatedAt: new Date().toISOString(),
     };

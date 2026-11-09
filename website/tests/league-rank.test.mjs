@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import handler from '../api/league-rank.js';
+const res=()=>({setHeader(){},status(code){this.code=code;return this},json(body){this.body=body;return this},end(){return this}});
+async function run(entries,status=200){const original=globalThis.fetch,env={...process.env};try{process.env.RIOT_API_KEY='test-only-placeholder';delete process.env.KV_REST_API_URL;delete process.env.KV_REST_API_TOKEN;globalThis.fetch=async url=>url.includes('/accounts/')?Response.json({puuid:'test-puuid'}):url.includes('/entries/')?Response.json(entries,{status}):Response.json({}, {status:404});const result=res();await handler({method:'GET',headers:{}},result);return result.body;}finally{globalThis.fetch=original;process.env=env;}}
+test('Solo/Duo wins over Flex even when Flex comes first',async()=>{const result=await run([{queueType:'RANKED_FLEX_SR',tier:'GOLD',rank:'II',leaguePoints:80,wins:9,losses:1},{queueType:'RANKED_SOLO_5x5',tier:'DIAMOND',rank:'IV',leaguePoints:42,wins:60,losses:40}]);assert.equal(result.rank.tier,'DIAMOND');assert.equal(result.rank.wins,60);assert.ok(!JSON.stringify(result).includes('test-only-placeholder'));});
+test('Flex-only player is unranked in Solo/Duo',async()=>{const result=await run([{queueType:'RANKED_FLEX_SR',tier:'GOLD',rank:'II',leaguePoints:80,wins:9,losses:1}]);assert.equal(result.available,true);assert.equal(result.rank,null);});
+test('Riot authorization failure is unavailable, not Unranked',async()=>{const result=await run({},403);assert.equal(result.available,false);assert.equal(result.stale,true);});
