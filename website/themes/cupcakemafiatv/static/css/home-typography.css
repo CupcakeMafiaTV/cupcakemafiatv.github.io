@@ -147,3 +147,6 @@
 .home-surface .media-logo-link:is(:hover,:focus-visible) .media-logo-outline{stroke-opacity:.95}
 .home-surface .media-logo-link:is(:hover,:focus-visible) svg{filter:drop-shadow(0 2px 3px #0005) drop-shadow(0 0 7px var(--logo-glow))}
 .home-surface .media-logo-outline{display:none}
+
+/* Keep character hover movement without a glow. */
+.home-surface .wow-character-model,.home-surface .wow-character-art:is(:hover,:focus-visible) .wow-character-model{filter:none}
