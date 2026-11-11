@@ -181,6 +181,8 @@
       const twitchData = await twitchRes.json();
       if (!twitchRes.ok || twitchData.available === false || typeof twitchData.isLive !== 'boolean') throw new Error('Twitch status unavailable');
       twitchIsLive = Boolean(twitchData.isLive);
+      window.cmtvTwitchIsLive = twitchIsLive;
+      document.dispatchEvent(new CustomEvent('cmtv:twitchstatus', { detail: { isLive: twitchIsLive } }));
 
       const twitchBadge = document.getElementById('twitch-live-badge');
       if (twitchBadge) {

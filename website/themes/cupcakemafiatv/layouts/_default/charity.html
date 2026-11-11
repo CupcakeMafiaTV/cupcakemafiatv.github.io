@@ -1,40 +1,70 @@
 {{ define "main" }}
 
 <style>
-    .charity-stats-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1rem;
-    }
-    @media (min-width: 640px) { .charity-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (min-width: 768px) { .charity-stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (min-width: 1024px) { .charity-stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .charity-intro-heading { display:flex;align-items:center;gap:20px;flex-wrap:wrap; }
+    .charity-extra-life { background:transparent;border-radius:0;padding:0;display:flex;align-items:center;flex-shrink:0;transition:transform .2s ease; }
+    .charity-extra-life:hover { transform:translateY(-2px); }
+    .charity-extra-life img { display:block;height:88px;width:auto;max-width:100%;object-fit:contain; }
+    .charity-intro { max-width:none;color:#fff;font-size:1.05rem;line-height:1.75; }
+    .esports-theme .charity-page .charity-donate-button { position:relative;box-sizing:border-box;min-height:48px;min-width:208px;margin-top:16px;font-size:15px;letter-spacing:0;text-decoration:none;background:#ffcb04;border-color:#ffcb04;color:#211a12;box-shadow:none;animation:none;overflow:visible;transition:transform .25s cubic-bezier(.2,.7,.3,1),background-color .2s ease,border-color .2s ease,box-shadow .25s ease; }
+    .esports-theme .charity-page .charity-donate-button:is(:hover,:focus-visible) { transform:translateY(-3px);background:#ffda4d;border-color:#ffda4d;box-shadow:0 4px 14px #ffcb0426; }
+    .charity-donate-button:focus-visible,.charity-extra-life:focus-visible { outline:2px solid #eee0ff;outline-offset:4px; }
+    .charity-donate-button::before,.charity-donate-button::after { content:"✦";position:absolute;pointer-events:none;line-height:1;color:#ffdf66;text-shadow:0 0 8px #ffcb04;opacity:0;transform:scale(.3); }
+    .charity-donate-button::before { right:12px;top:-6px;font-size:14px; }
+    .charity-donate-button::after { left:12px;bottom:-5px;font-size:10px; }
+    .charity-donate-button:is(:hover,:focus-visible)::before { animation:platform-icon-sparkle 1.4s ease-in-out infinite; }
+    .charity-donate-button:is(:hover,:focus-visible)::after { animation:platform-icon-sparkle 1.4s ease-in-out .45s infinite; }
 
-    /* Same hover/click feel as the shared .brand-card component
-       elsewhere on the site: lift + crisper shadow on hover, icon
-       bounces, quick press-down on click. */
-    .charity-card {
-        background-color: #1e293b;
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+    .charity-stats-grid { max-width:1000px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px; }
+    .esports-theme .charity-page .charity-stats-grid .charity-card {
+        position:relative;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(60px,1fr) 20px;justify-content:stretch;align-content:stretch;
+        align-items:center;justify-items:center;gap:8px;min-width:0;min-height:124px;
+        padding:14px 16px;text-align:center;text-decoration:none;
+        transition:transform .25s cubic-bezier(.2,.7,.3,1),background-color .2s ease,border-color .2s ease,box-shadow .25s ease;
     }
-    .charity-card:hover {
-        transform: translateY(-4px);
-        background-color: #24324a;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    .charity-card-content { display:contents; }
+    .esports-theme .charity-page .charity-stats-grid .charity-card-value {
+        position:relative;display:flex;align-items:center;justify-content:center;
+        width:100%;height:60px!important;min-width:0;margin:0;transform:none;
+        font:750 28px/1.2 "Segoe UI",Arial,sans-serif;letter-spacing:-.4px;
+        font-variant-numeric:tabular-nums;color:#f5f2f8;
     }
-    .charity-card:active {
-        transform: translateY(-1px) scale(0.98);
-        transition-duration: 0.1s;
+    .esports-theme .charity-page .charity-card :is(.charity-raised-total,#charity-donations,#charity-years) { color:#fff; }
+    .esports-theme .charity-page .charity-card .charity-raised-total { white-space:nowrap; }
+    .charity-amount { position:relative;display:inline-block; }
+    .charity-currency { position:absolute;left:calc(100% + 6px);bottom:2px;font:600 11px/1.2 "Segoe UI",Arial,sans-serif;letter-spacing:0;color:#bcb3c8; }
+    .esports-theme .charity-page .charity-stats-grid .charity-card-label {
+        display:flex;align-items:flex-end;justify-content:center;width:100%;height:100%;margin:0!important;
+        font:650 14px/20px "Segoe UI",Arial,sans-serif;letter-spacing:.25px;
+        text-transform:uppercase;color:#c7bad2!important;
     }
-    .charity-card-icon {
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .esports-theme .charity-page .charity-stats-grid .charity-beneficiary img { display:block;height:60px!important;width:auto;max-width:100%;object-fit:contain; }
+    .esports-theme .charity-page .charity-stats-grid .charity-card:is(:hover,:focus-visible) { transform:translateY(-3px);border-color:#e7a3d5!important; }
+    .charity-card::before,.charity-card::after { content:"✦";position:absolute;pointer-events:none;color:#cba5ff;line-height:1;opacity:0;transform:scale(.3);text-shadow:0 0 7px currentColor; }
+    .charity-card::before { right:12px;top:10px;font-size:14px; }
+    .charity-card::after { left:12px;bottom:10px;font-size:10px; }
+    .charity-card:is(:hover,:focus-visible)::before { animation:platform-icon-sparkle 1.4s ease-in-out infinite; }
+    .charity-card:is(:hover,:focus-visible)::after { animation:platform-icon-sparkle 1.4s ease-in-out .45s infinite; }
+    .charity-beneficiary:focus-visible { outline:2px solid #cba5ff;outline-offset:4px; }
+    @media(min-width:1024px) { .charity-stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))} }
+    @media(max-width:767px) {
+        .charity-extra-life img{height:76px}
+        .esports-theme .charity-page .charity-stats-grid{gap:12px}
+        .esports-theme .charity-page .charity-stats-grid .charity-card{grid-template-rows:52px 36px;gap:6px;min-height:120px;padding:12px}
+        .esports-theme .charity-page .charity-stats-grid .charity-card-value{height:52px!important;font-size:24px}
+        .esports-theme .charity-page .charity-stats-grid .charity-card-label{font-size:12px;line-height:18px;letter-spacing:0}
+        .esports-theme .charity-page .charity-stats-grid .charity-beneficiary img{height:50px!important}
     }
-    .charity-card:hover .charity-card-icon {
-        transform: scale(1.14) rotate(-6deg);
+    @media(prefers-reduced-motion:reduce) {
+        .charity-card:is(:hover,:focus-visible)::before,.charity-card:is(:hover,:focus-visible)::after{animation:none;opacity:1;transform:none}
+        .charity-extra-life,.esports-theme .charity-page .charity-stats-grid .charity-card,.esports-theme .charity-page .charity-donate-button{transition:none}
+        .charity-extra-life:hover,.esports-theme .charity-page .charity-stats-grid .charity-card:is(:hover,:focus-visible),.esports-theme .charity-page .charity-donate-button:is(:hover,:focus-visible){transform:none}
+        .charity-donate-button:is(:hover,:focus-visible)::before,.charity-donate-button:is(:hover,:focus-visible)::after{animation:none;opacity:1;transform:none}
     }
 </style>
+{{ partial "platform-card-styles.html" . }}
 
-<main id="main-content" class="interior-page charity-page">
+<main id="main-content" class="interior-page charity-page" data-count-animation="none">
     <div class="page-shell">
 
         <div class="page-title">
@@ -46,17 +76,15 @@
         <div class="flex flex-col" style="gap: 1.35rem;">
 
             <!-- Pitch -->
-            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;" class="reveal-on-scroll">
-                <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" style="background-color: #ffffff; border-radius: 12px; padding: 8px 14px; display: flex; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <img src="/img/ExtraLifeLogo.svg" alt="Extra Life" width="134" height="40" style="height: 40px; width: auto;">
+            <div class="charity-intro-heading reveal-on-scroll">
+                <a href="https://www.extra-life.org/" target="_blank" rel="noopener noreferrer" class="charity-extra-life">
+                    <!-- Official transparent artwork: https://extra-life.org/wp-content/uploads/sites/3/2026/07/CMN-Extra-Life-Logo-RGB-scaled.webp -->
+                    <img src="/img/extra-life-color.webp" alt="Extra Life" width="2560" height="1024">
                 </a>
-                <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl" style="margin: 0;">Extra Life</h2>
             </div>
 
-            <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75; margin-top: calc(1.5rem - 20px);" class="lg:text-lg reveal-on-scroll">
-                <p class="mb-4">Gaming for a good cause!</p>
-                <p class="mb-4">Every year for Extra Life Game Day, my friends and I go live for a 24-hour stream to support <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">CHEO</a>. By hour 24, we're making complete fools of ourselves, but it's all to raise vital funds for sick and injured kids in our community.</p>
-                <p>100% of donations go directly to their care. If you've ever enjoyed hanging out in chat, this is the one stream a year where our community turns that fun into real, life-changing support.</p>
+            <div class="charity-intro reveal-on-scroll">
+                <p>Every November, during Extra Life Game Day weekend, Cupcake and his friends each host a 24-hour charity stream to raise money for their local children’s hospitals. Whether you’re watching the streams, joining in chat, playing games, or making a donation, you’re helping bring the community together for a great cause. Cupcake appreciates all the love and support from his community and everyone who makes these streams special year after year.</p>
             </div>
 
             <!-- Lifetime baseline before participant 582414 (Extra Life 2026):
@@ -66,43 +94,34 @@
                  does not expose participation history. -->
             <div id="charity-stats" data-participant-id="582414" data-historical-cents="126350" data-historical-donations="37" class="reveal-on-scroll">
                 <div class="mb-6">
-                    <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">The Numbers</h2>
-                    <p id="charity-stats-status" class="mt-3" role="status">Checking the latest Extra Life totals &mdash; THANK YOU to everyone who has donated, raided, or cheered us on!</p>
+                    <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">Community Impact</h2>
+                    <p id="charity-stats-status" class="mt-3" role="status" hidden></p>
                     <noscript><p class="text-gray-300 mt-3">Enable JavaScript for automatic donation updates, or <a href="https://dd.extra-life.org/participants/582414" class="text-gold">view the latest totals on Extra Life</a>.</p></noscript>
                 </div>
                 <div class="charity-stats-grid">
-                    <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 3px solid rgba(234, 179, 8, 0.85);">
-                        <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
-                            <svg class="icon" aria-hidden="true" style="color: #22c55e; font-size: 20px;"><use href="/img/icons-sprite.svg#fas-sack-dollar"></use></svg>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-black text-white" style="display: flex; align-items: baseline; gap: 0.35rem; white-space: nowrap;"><span>$<span id="charity-raised">1,263.50</span></span><span class="font-bold" style="font-size: 0.75rem; color: #94a3b8;">USD</span></div>
-                            <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Raised Lifetime</div>
+                    <div class="charity-card">
+                        <div class="charity-card-content">
+                            <div class="charity-card-value text-3xl font-black charity-raised-total"><span class="charity-amount"><span>$<span id="charity-raised">1,263.50</span></span><span class="charity-currency">USD</span></span></div>
+                            <div class="charity-card-label">Raised Lifetime</div>
                         </div>
                     </div>
-                    <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 3px solid rgba(234, 179, 8, 0.85);">
-                        <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
-                            <svg class="icon" aria-hidden="true" style="color: #22c55e; font-size: 20px;"><use href="/img/icons-sprite.svg#fas-hand-holding-heart"></use></svg>
-                        </div>
-                        <div>
-                            <div id="charity-donations" class="text-3xl font-black text-white">37</div>
-                            <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Donations Received</div>
+                    <div class="charity-card">
+                        <div class="charity-card-content">
+                            <div id="charity-donations" class="charity-card-value text-3xl font-black text-white">37</div>
+                            <div class="charity-card-label">Donations Received</div>
                         </div>
                     </div>
-                    <div class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start gap-3" style="border: 3px solid rgba(234, 179, 8, 0.85);">
-                        <div class="charity-card-icon" style="width: 48px; height: 48px; border-radius: 9999px; background: rgba(34, 197, 94, 0.15); display: flex; align-items: center; justify-content: center;">
-                            <svg class="icon" aria-hidden="true" style="color: #22c55e; font-size: 20px;"><use href="/img/icons-sprite.svg#fas-calendar-check"></use></svg>
-                        </div>
-                        <div>
-                            <div id="charity-years" class="text-3xl font-black text-white static-count-up">6</div>
-                            <div class="text-sm font-bold uppercase tracking-wide mt-1" style="color: #94a3b8;">Years Participating</div>
+                    <div class="charity-card">
+                        <div class="charity-card-content">
+                            <div id="charity-years" class="charity-card-value text-3xl font-black text-white">6</div>
+                            <div class="charity-card-label">Years Participating</div>
                         </div>
                     </div>
-                    <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="charity-card rounded-2xl p-6 shadow-xl flex flex-col items-start justify-between gap-3" style="border: 3px solid rgba(234, 179, 8, 0.85);">
-                        <div class="charity-card-icon" style="height: 72px; display: flex; align-items: center;">
-                            <img src="/img/CHEOLogo.png" alt="CHEO Foundation" width="134" height="68" style="height: 68px; width: auto;" loading="lazy">
+                    <a href="https://cheofoundation.com/" target="_blank" rel="noopener noreferrer" class="charity-card charity-beneficiary">
+                        <div class="charity-card-value">
+                            <img src="/img/CHEOLogo.png" alt="CHEO Foundation" width="134" height="68"  loading="lazy">
                         </div>
-                        <div class="text-sm font-bold uppercase tracking-wide" style="color: #94a3b8;">Beneficiary &middot; Ottawa</div>
+                        <div class="charity-card-label">Beneficiary</div>
                     </a>
                 </div>
             </div>
@@ -110,18 +129,18 @@
             <!-- Donate CTA -->
             <div style="padding-top: 12px;" class="reveal-on-scroll">
                 <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">Donate</h2>
-                <a href="https://dd.extra-life.org/participants/582414" target="_blank" rel="noopener noreferrer" class="footer-contact-btn" style="margin-top:16px;">
+                <a href="https://dd.extra-life.org/participants/582414" target="_blank" rel="noopener noreferrer" class="hero-action charity-donate-button">
                     <svg class="icon" aria-hidden="true" style="font-size: 15px;"><use href="/img/icons-sprite.svg#fas-heart"></use></svg>
-                    <span>Donate</span>
+                    <span>Donate on Extra Life</span><span class="charity-donate-arrow" aria-hidden="true">↗</span>
                 </a>
             </div>
 
         </div>
 
-        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
+        {{ partial "page-end-divider.html" . }}
 
     </div>
 </main>
 
-<script src="/js/charity-stats.js?v=1" defer></script>
+<script src="/js/charity-stats.js?v=3" defer></script>
 {{ end }}

@@ -1,6 +1,21 @@
 {{ define "main" }}
 
 <style>
+    @media(min-width:1024px) {
+        .esports-theme .about-page .about-bio { width:100%;max-width:1060px;margin-inline:auto;grid-template-columns:320px minmax(0,1fr);column-gap:28px; }
+        .esports-theme .about-page .about-bio > .about-photo-column { grid-column:1;grid-row:1; }
+        .esports-theme .about-page .about-bio > .about-bio-copy { grid-column:2;grid-row:1;min-width:0; }
+        .esports-theme .about-page .about-bio .about-photo-column { position:relative!important;top:auto!important;align-self:stretch;width:100%;padding-top:0; }
+        .esports-theme .about-page .about-bio .profile-photo { position:absolute;top:0;left:50%;translate:-50% 0;width:auto;height:100%!important;aspect-ratio:4/5; }
+    }
+    .esports-theme .about-page .poster-card { height:140px;aspect-ratio:auto; }
+    .esports-theme .about-page .poster-overlay { height:auto;min-height:52px;padding:10px;align-items:flex-end; }
+    .esports-theme .about-page .poster-title { font-size:14px;line-height:1.3;white-space:nowrap;text-overflow:ellipsis;display:block; }
+    @media(max-width:600px) {
+        .esports-theme .about-page .poster-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+        .esports-theme .about-page .poster-card { height:132px; }
+        .esports-theme .about-page .poster-title { font-size:13px; }
+    }
     .profile-photo { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
     .profile-photo:hover {
         transform: translateY(-3px);
@@ -59,16 +74,16 @@
         <div class="flex flex-col gap-y-6">
 
             <!-- Bio Section with Increased Font Size -->
-            <div class="grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-start reveal-on-scroll">
+            <div class="about-bio grid grid-cols-12 gap-x-5 gap-y-9 md:gap-x-6 lg:gap-x-7.5 items-start reveal-on-scroll">
                 <div class="about-photo-column col-span-full pt-2 md:col-span-4 md:justify-self-center" style="position: sticky; top: 24px;">
                     <div class="profile-photo rounded-xl shadow-lg overflow-hidden" style="max-width: 480px; height: 540px; cursor: pointer; border: 3px solid rgb(var(--color-gold) / 0.85); box-shadow: 0 0 18px rgb(var(--color-gold) / 0.35);" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                         <img src="/img/CodyAboutMe.webp" alt="Cody, CupcakeMafiaTV" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
                         <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                     </div>
                 </div>
-                <div class="col-span-full md:col-span-8">
+                <div class="about-bio-copy col-span-full md:col-span-8">
                     <div class="about-copy">
-                        <p>Hello, I'm CupcakeMafiaTV (Cody)! I'm a streamer and League of Legends content creator. I first hit <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">"Go Live"</a> back in 2017 and streamed very inconsistently, but these past few years are where I really fell in love with the stream and content creation grind. It's been so amazing getting to interact and game with such incredible people! The name "CupcakeMafiaTV" came from wanting a gamertag that felt both fierce and sweet at the same time. I've always loved the mobster aesthetic, heavily inspired by my favorite childhood cartoon, Hanna-Barbera's Wacky Races, and its iconic <a href="https://hanna-barbera.fandom.com/wiki/The_Ant_Hill_Mob" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Ant Hill Mob</a>. To balance the gangster vibe with something everybody loves, I threw "Cupcake" into the mix. Then I added "TV" to the end (insert Abe Simpson voice) which was the style at the time. The very first game I ever played was the 1994 classic <a href="https://en.wikipedia.org/wiki/Theme_Park_(video_game)" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Theme Park</a>. From there, I lost years diving headfirst into World of Warcraft, which naturally led me down the custom game rabbit hole of Warcraft III DotA. That addiction kicked off my MOBA journey through Heroes of Newerth and eventually brought me to League of Legends starting all the way back towards the end of Season 2.  I've always mained Mid Lane due to my love of ranged and mage champions, looking up to legends such as Bjergsen, xPeke, and the one true GOAT, Faker. I've reached Masters 90 LP and battled in Solo Queue against some of North America's finest including <a href="https://youtu.be/z2DtHEamihU" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Quad</a>, <a href="https://lol.fandom.com/wiki/Zinie" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Zinie</a>, and the absolute beast of League streamers, <a href="https://www.twitch.tv/loltyler1/clip/AuspiciousPatientMilkThisIsSparta-l5sF20WvkaSXqRTZ?range=7d" target="_blank" rel="noopener noreferrer" class="text-gold" style="text-decoration: underline; text-underline-offset: 3px;">Tyler1</a>. When I'm not grinding ranked, I'm an avid collector hunting down rare wrestling action figures, Funko POPs, retro video games, vinyl records, and anything else that I can get my grubby little hands on. I'm a massive fan of Scott Pilgrim vs. The World, DC Comics (especially the Batman Universe, with Punchline, Teen Titans, Harley Quinn, and Poison Ivy leading the list), and WWE with my all-time favorites being Bray Wyatt, Edge, and Paige.</p>
+                        <p>Hello, I’m CupcakeMafiaTV (Cody), a streamer and League of Legends content creator who started streaming in <a href="https://twitchtracker.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="content-link">2016</a>! My name mixes fierce and sweet: “Mafia” reflects my love of the mobster aesthetic, inspired by my childhood favorite, Hanna-Barbera’s Wacky Races, and its <a href="https://hanna-barbera.fandom.com/wiki/The_Ant_Hill_Mob" target="_blank" rel="noopener noreferrer" class="content-link">Ant Hill Mob</a>. “Cupcake” softens the gangster vibe, and I added “TV” because, in my best Abe Simpson voice, it was the style at the time. My gaming journey began with <a href="https://en.wikipedia.org/wiki/Theme_Park_(video_game)" target="_blank" rel="noopener noreferrer" class="content-link">Theme Park</a> (1994), then took me through World of Warcraft, Warcraft III DotA, and Heroes of Newerth before I found League near the end of Season 2. I’ve always mained mid lane for its ranged champions and mages, inspired by Bjergsen, xPeke, and the GOAT, Faker. My solo queue peak is Master 96 LP, and I’ve faced players including <a href="https://youtu.be/z2DtHEamihU" target="_blank" rel="noopener noreferrer" class="content-link">Quad</a> and <a href="https://www.twitch.tv/loltyler1/clip/AuspiciousPatientMilkThisIsSparta-l5sF20WvkaSXqRTZ?range=7d" target="_blank" rel="noopener noreferrer" class="content-link">Tyler1</a>. Away from ranked, I collect wrestling figures, Funko POPs, retro games, vinyl records, and anything else I can get my grubby little hands on. I’m also a huge fan of Scott Pilgrim vs. The World, WWE, and DC Comics—especially Batman’s universe, Punchline, Teen Titans, Harley Quinn, and Poison Ivy.</p>
                     </div>
                 </div>
             </div>
@@ -164,7 +179,7 @@
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
                         <img src="/img/ScottPilgrim.webp" alt="Scott Pilgrim vs The World" style="object-position: center 60%;" loading="lazy">
                         <div class="poster-overlay">
-                            <div class="poster-title">Scott Pilgrim vs. The World</div>
+                            <div class="poster-title" title="Scott Pilgrim vs. The World">Scott Pilgrim vs. The World</div>
                         </div>
                     </a>
 
@@ -191,7 +206,7 @@
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
                         <img src="/img/Shantae7.webp" alt="" style="object-position: center 30%;" loading="lazy">
                         <div class="poster-overlay">
-                            <div class="poster-title">Shantae and the Seven Sirens</div>
+                            <div class="poster-title" title="Shantae and the Seven Sirens">Shantae and the Seven Sirens</div>
                         </div>
                     </a>
 
@@ -200,7 +215,7 @@
 
         </div>
 
-        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
+        {{ partial "page-end-divider.html" . }}
 
     </div>
 </main>

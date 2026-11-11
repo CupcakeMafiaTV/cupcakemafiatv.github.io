@@ -1,310 +1,137 @@
 {{ define "main" }}
 
 <style>
-    /* Plain bulleted spec list — no cards, no icons, no per-item color.
-       Modeled after a reference setup page: bold label, plain value,
-       simple bullets, letting typography (not decoration) carry it. */
-
-    /* Layout Container */
-    .specs-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0px;
+    .esports-theme .specs-page .specs-container { display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:24px;align-items:start; }
+    .esports-theme .specs-page .specs-list { display:flex;flex-direction:column;gap:24px;min-width:0;max-width:none; }
+    .specs-category { min-width:0; }
+    .esports-theme .specs-page .specs-category .specs-heading { display:flex;align-items:center;gap:10px;margin:0 0 12px;font:700 20px/1.4 "Segoe UI",Arial,sans-serif;color:var(--cat-color,#f5f2f8);scroll-margin-top:24px; }
+    .esports-theme .specs-page .specs-category .specs-heading svg { font-size:16px;flex-shrink:0;color:var(--cat-color,#f5f2f8)!important; }
+    .specs-plain-list { list-style:disc;margin:0;padding:0 0 0 20px; }
+    .esports-theme .specs-page .specs-category .specs-plain-list li { display:list-item;padding:4px 0;border:0;color:#f5f2f8;font:400 16px/1.6 "Segoe UI",Arial,sans-serif; }
+    .esports-theme .specs-page .specs-plain-list li::before { display:none; }
+    .specs-plain-list li::marker { color:#897893;font-size:.75em; }
+    .esports-theme .specs-page .specs-category .specs-plain-list strong { color:#f5f2f8;font-weight:600; }
+    .specs-page .specs-plain-list a:focus-visible,.specs-page [data-image-preview]:focus-visible { outline:2px solid #d5baff;outline-offset:4px; }
+    .specs-gallery { display:grid;grid-template-columns:minmax(0,1fr);gap:16px;width:100%;max-width:557px;min-width:0; }
+    .specs-photo { min-width:0;margin:0; }
+    .specs-page .img-container { position:relative;display:flex;aspect-ratio:16 / 9;overflow:hidden;cursor:zoom-in; }
+    .esports-theme .specs-page .specs-container .img-container { background:#25182f;border:1px solid #bb8acc40!important;border-radius:8px!important;box-shadow:none!important;transition:transform .25s cubic-bezier(.2,.7,.3,1),border-color .2s ease; }
+    .esports-theme .specs-page .specs-container .img-container:is(:hover,:focus-visible) { border-color:#e7a3d5!important;box-shadow:none!important;transform:translateY(-3px); }
+    .specs-page .img-container img { display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s ease; }
+    .specs-page .img-container:hover img { transform:scale(1.02); }
+    .specs-page .img-zoom-hint { position:absolute;inset:0;display:grid;place-items:center;opacity:0;pointer-events:none;background:#17122040;transition:opacity .2s; }
+    .specs-page .img-container:is(:hover,:focus-visible) .img-zoom-hint { opacity:1; }
+    .specs-page .img-zoom-hint svg { width:40px;height:40px;padding:10px;border-radius:50%;background:#171220bb;color:white; }
+    @media(max-width:900px) {
+        .esports-theme .specs-page .specs-container { grid-template-columns:minmax(0,1fr);gap:24px; }
+        .specs-gallery { grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:none; }
+        .specs-photo-featured { grid-column:1/-1; }
+        .specs-page .specs-photo:not(.specs-photo-featured) .img-container { aspect-ratio:4 / 3; }
     }
-
-    /* Image Column Sizing — no align-items on the container means this
-       column stretches to match the specs list's full height, and
-       justify-content spaces the 4 photos evenly across it so they run
-       flush from the header all the way to the footer instead of
-       bunching up at the top with empty space below. */
-    .img-column {
-        width: 600px;
-        max-width: 100%;
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 16px;
-    }
-
-    .img-container {
-        position: relative;
-        background: rgba(30, 41, 59, 0.7);
-        border: 3px solid rgb(var(--color-gold) / 0.7);
-        border-radius: 14px;
-        box-shadow: 0 0 18px rgb(var(--color-gold) / 0.35);
-        display: flex;
-        aspect-ratio: 16 / 9;
-        overflow: hidden;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        animation: photoGlowPulse 3.5s ease-in-out infinite;
-    }
-
-    /* Staggered so the 4 photos don't all pulse in sync. */
-    .img-container:nth-of-type(2) { animation-delay: 0.9s; }
-    .img-container:nth-of-type(3) { animation-delay: 1.8s; }
-    .img-container:nth-of-type(4) { animation-delay: 2.6s; }
-
-    @keyframes photoGlowPulse {
-        0%, 100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 rgb(var(--color-gold) / 0); }
-        50% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 16px rgb(var(--color-gold) / 0.5); }
-    }
-
-    /* Image Hover Effect */
-    .img-container:hover {
-        transform: translateY(-3px);
-        border-color: rgb(var(--color-gold));
-        animation-play-state: paused;
-    }
-
-    .img-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-        display: block;
-        transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .img-container:hover img {
-        transform: scale(1.02);
-        filter: brightness(1.1);
-    }
-
-    /* "Click to enlarge" hint — fades in on hover, ties the image back
-       to the click-to-zoom lightbox it already opens. */
-    .img-zoom-hint {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 23, 42, 0);
-        opacity: 0;
-        transition: opacity 0.25s ease, background 0.25s ease;
-        pointer-events: none;
-    }
-    .img-container:hover .img-zoom-hint {
-        opacity: 1;
-        background: rgba(15, 23, 42, 0.35);
-    }
-    .img-zoom-hint svg {
-        color: #ffffff;
-        font-size: 22px;
-        width: 48px;
-        height: 48px;
-        border-radius: 9999px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(15, 23, 42, 0.75);
-        border: 1.5px solid rgb(var(--color-gold) / 0.85);
-        transform: scale(0.85);
-        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .img-container:hover .img-zoom-hint svg {
-        transform: scale(1);
-    }
-
-    .specs-list {
-        flex: 1 1 380px;
-        max-width: 500px;
-        min-width: 280px;
-    }
-
-    .specs-heading {
-        color: #ffffff;
-        font-size: 23px;
-        font-weight: 800;
-        margin-top: 24px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        position: relative;
-    }
-    .specs-heading svg {
-        font-size: 0.8em;
-    }
-    .specs-heading:first-child {
-        margin-top: 0;
-    }
-
-    .specs-plain-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .specs-plain-list li {
-        position: relative;
-        padding-left: 20px;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        color: #cbd5e1;
-        font-size: 17px;
-        line-height: 1.55;
-    }
-    .specs-plain-list li::before {
-        content: '';
-        position: absolute;
-        left: 2px;
-        top: 16px;
-        width: 6px;
-        height: 6px;
-        border-radius: 9999px;
-        background: rgb(var(--color-gold) / 0.8);
-    }
-    .specs-plain-list li strong {
-        color: #ffffff;
-        font-weight: 700;
-    }
-    .specs-plain-list li a {
-        color: rgb(var(--color-gold));
-        text-decoration: none;
-    }
-    .specs-plain-list li a:hover {
-        text-decoration: underline;
-    }
-
-    /* Mobile Adjustments */
-    @media (max-width: 768px) {
-        .img-column {
-            width: 100%;
-        }
-    }
-
-    /* Fades/slides the photo column in once it scrolls into view. */
-    .photo-reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .photo-reveal.is-visible {
-        opacity: 1;
-        transform: none;
+    @media(max-width:600px) { .esports-theme .specs-page .specs-category .specs-plain-list li { font-size:15px; } }
+    @media(prefers-reduced-motion:reduce) {
+        .esports-theme .specs-page .specs-container .img-container,.specs-page .img-container img,.specs-page .img-zoom-hint,.esports-theme .specs-page .specs-category .specs-heading svg { transition:none; }
+        .esports-theme .specs-page .specs-container .img-container:is(:hover,:focus-visible),.specs-page .img-container:hover img { transform:none; }
     }
 </style>
 
-<!-- Main Content Area -->
 <main id="main-content" class="interior-page specs-page">
     <div class="page-shell">
-
-        <!-- Title Banner -->
-        <div class="page-title">
-            <h1>
-                PC Specs
-            </h1>
-        </div>
-
-        <!-- Container Layout -->
+        <div class="page-title"><h1>PC Specs</h1></div>
         <div class="specs-container">
-
-            <!-- Specs List -->
-            <div class="specs-list reveal-on-scroll">
-
-                <h2 class="specs-heading" style="--cat-color: #ef4444;"><svg class="icon" aria-hidden="true" style="color: #ef4444;"><use href="/img/icons-sprite.svg#fas-microchip"></use></svg>System Specs</h2>
-                <ul class="specs-plain-list">
-                    <li><strong>CPU:</strong> <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer">AMD Ryzen 7 9800X3D</a></li>
-                    <li><strong>GPU:</strong> <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer">MSI GeForce RTX 5080</a></li>
-                    <li><strong>RAM:</strong> <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory?speed=6000mt%2Fs&total%20(kit)%20capacity=64gb&kit=kit%20of%202&cas%20latency=30&dram%20density=16gbit&profile%20type=amd%20expo%20%2F%20intel%20xmp&color=black" target="_blank" rel="noopener noreferrer">Kingston 6000MHz DDR5 (64GB)</a></li>
-                    <li><strong>Motherboard:</strong> <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer">X870E AORUS ELITE</a></li>
-                    <li><strong>SSD #1:</strong> <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd?sku=WDS200T2X0E-00BCA0" target="_blank" rel="noopener noreferrer">WD Black NVMe 2TB</a></li>
-                    <li><strong>SSD #2:</strong> <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn7100-nvme-internal-ssd?sku=WDS400T4X0E-00CJA0" target="_blank" rel="noopener noreferrer">WD Black NVMe 4TB</a></li>
-                    <li><strong>Capture Card:</strong> <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer">AVerMedia GC573</a></li>
-                    <li><strong>Computer Case:</strong> <a href="https://www.fractal-design.com/products/cases/north-series/north-xl/north-xl-charcoal-black-mesh/" target="_blank" rel="noopener noreferrer">Fractal Design North XL</a></li>
+            <div class="specs-list">
+                <section class="specs-category" aria-labelledby="system">
+                    <h2 id="system" class="specs-heading" style="--cat-color: #ef4444;"><svg class="icon" aria-hidden="true" style="color: #ef4444;"><use href="/img/icons-sprite.svg#fas-microchip"></use></svg>System Specs</h2>
+<ul class="specs-plain-list">
+                    <li><strong>CPU:</strong> <a href="https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800x3d.html" target="_blank" rel="noopener noreferrer" class="content-link">AMD Ryzen 7 9800X3D</a></li>
+                    <li><strong>GPU:</strong> <a href="https://www.msi.com/Graphics-Card/GeForce-RTX-5080-16G-GAMING-TRIO-OC" target="_blank" rel="noopener noreferrer" class="content-link">MSI GeForce RTX 5080</a></li>
+                    <li><strong>RAM:</strong> <a href="https://www.kingston.com/en/memory/gaming/kingston-fury-beast-ddr5-rgb-memory?speed=6000mt%2Fs&total%20(kit)%20capacity=64gb&kit=kit%20of%202&cas%20latency=30&dram%20density=16gbit&profile%20type=amd%20expo%20%2F%20intel%20xmp&color=black" target="_blank" rel="noopener noreferrer" class="content-link">Kingston 6000MHz DDR5 (64GB)</a></li>
+                    <li><strong>Motherboard:</strong> <a href="https://www.gigabyte.com/Motherboard/X870E-AORUS-ELITE-X3D" target="_blank" rel="noopener noreferrer" class="content-link">X870E AORUS ELITE</a></li>
+                    <li><strong>SSD #1:</strong> <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn850x-nvme-ssd?sku=WDS200T2X0E-00BCA0" target="_blank" rel="noopener noreferrer" class="content-link">WD Black NVMe 2TB</a></li>
+                    <li><strong>SSD #2:</strong> <a href="https://www.sandisk.com/en-ca/products/ssd/internal-ssd/wd-black-sn7100-nvme-internal-ssd?sku=WDS400T4X0E-00CJA0" target="_blank" rel="noopener noreferrer" class="content-link">WD Black NVMe 4TB</a></li>
+                    <li><strong>Capture Card:</strong> <a href="https://www.avermedia.com/product-detail/GC573" target="_blank" rel="noopener noreferrer" class="content-link">AVerMedia GC573</a></li>
+                    <li><strong>Computer Case:</strong> <a href="https://www.fractal-design.com/products/cases/north-series/north-xl/north-xl-charcoal-black-mesh/" target="_blank" rel="noopener noreferrer" class="content-link">Fractal Design North XL</a></li>
                 </ul>
-
-                <h2 class="specs-heading" style="--cat-color: #14b8a6;"><svg class="icon" aria-hidden="true" style="color: #14b8a6;"><use href="/img/icons-sprite.svg#fas-volume-high"></use></svg>Audio</h2>
-                <ul class="specs-plain-list">
-                    <li><strong>Microphone:</strong> <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer">Shure SM7B</a></li>
-                    <li><strong>Mic Arm:</strong> <a href="https://rode.com/en-ca/products/psa1-plus" target="_blank" rel="noopener noreferrer">RODE PSA1 + Studio Arm</a></li>
-                    <li><strong>Audio Mixer:</strong> <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer">RodeCaster Duo</a></li>
+                </section>
+                <section class="specs-category" aria-labelledby="audio">
+                    <h2 id="audio" class="specs-heading" style="--cat-color: #14b8a6;"><svg class="icon" aria-hidden="true" style="color: #14b8a6;"><use href="/img/icons-sprite.svg#fas-volume-high"></use></svg>Audio</h2>
+<ul class="specs-plain-list">
+                    <li><strong>Microphone:</strong> <a href="https://www.shure.com/en-US/products/microphones/sm7b" target="_blank" rel="noopener noreferrer" class="content-link">Shure SM7B</a></li>
+                    <li><strong>Mic Arm:</strong> <a href="https://rode.com/en-ca/products/psa1-plus" target="_blank" rel="noopener noreferrer" class="content-link">RODE PSA1 + Studio Arm</a></li>
+                    <li><strong>Audio Mixer:</strong> <a href="https://rode.com/en-ca/products/rodecaster-duo" target="_blank" rel="noopener noreferrer" class="content-link">RodeCaster Duo</a></li>
                 </ul>
-
-                <h2 class="specs-heading" style="--cat-color: #3b82f6;"><svg class="icon" aria-hidden="true" style="color: #3b82f6;"><use href="/img/icons-sprite.svg#fas-camera-retro"></use></svg>Camera</h2>
-                <ul class="specs-plain-list">
-                    <li><strong>Camera:</strong> <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer">Canon EOS M200</a></li>
-                    <li><strong>CAM Link:</strong> <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer">Elgato CAM Link 4K</a></li>
+                </section>
+                <section class="specs-category" aria-labelledby="camera">
+                    <h2 id="camera" class="specs-heading" style="--cat-color: #3b82f6;"><svg class="icon" aria-hidden="true" style="color: #3b82f6;"><use href="/img/icons-sprite.svg#fas-camera-retro"></use></svg>Camera</h2>
+<ul class="specs-plain-list">
+                    <li><strong>Camera:</strong> <a href="https://www.canon.ca/en/product?name=EOS_M200" target="_blank" rel="noopener noreferrer" class="content-link">Canon EOS M200</a></li>
+                    <li><strong>CAM Link:</strong> <a href="https://www.elgato.com/ca/en/p/cam-link-4k?srsltid=AfmBOop19yzPEKKxr9DP_BLitoCh6JqJFeC5n5aqlFCY4DOYwTrwDw1W" target="_blank" rel="noopener noreferrer" class="content-link">Elgato CAM Link 4K</a></li>
                 </ul>
-
-                <h2 class="specs-heading" style="--cat-color: #ec4899;"><svg class="icon" aria-hidden="true" style="color: #ec4899;"><use href="/img/icons-sprite.svg#fas-computer"></use></svg>Peripherals</h2>
-                <ul class="specs-plain-list">
-                    <li><strong>Mouse:</strong> <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer">Razer Naga V2 HyperSpeed</a></li>
-                    <li><strong>Keyboard:</strong> <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer">Razer Huntsman V3 Pro</a></li>
-                    <li><strong>Monitor:</strong> <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer">HP Omen 27" QHD 280Hz (x3)</a></li>
-                    <li><strong>Headset:</strong> <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset?variant=52630368256365" target="_blank" rel="noopener noreferrer">HyperX Cloud III Wired (White)</a></li>
+                </section>
+                <section class="specs-category" aria-labelledby="peripherals">
+                    <h2 id="peripherals" class="specs-heading" style="--cat-color: #ec4899;"><svg class="icon" aria-hidden="true" style="color: #ec4899;"><use href="/img/icons-sprite.svg#fas-computer"></use></svg>Peripherals</h2>
+<ul class="specs-plain-list">
+                    <li><strong>Mouse:</strong> <a href="https://www.razer.com/ca-en/gaming-mice/razer-naga-v2-hyperspeed" target="_blank" rel="noopener noreferrer" class="content-link">Razer Naga V2 HyperSpeed</a></li>
+                    <li><strong>Keyboard:</strong> <a href="https://www.razer.com/ca-en/gaming-keyboards/razer-huntsman-v3-pro" target="_blank" rel="noopener noreferrer" class="content-link">Razer Huntsman V3 Pro</a></li>
+                    <li><strong>Monitor:</strong> <a href="https://www.hp.com/ca-en/shop/products/monitors/omen-27-inch-qhd-280hz-gaming-monitor-omen-27qs-g2-aw3v0aa-aba" target="_blank" rel="noopener noreferrer" class="content-link">HP Omen 27" QHD 280Hz (x3)</a></li>
+                    <li><strong>Headset:</strong> <a href="https://ca.hyperx.com/products/hyperx-cloud-iii-wired-gaming-headset?variant=52630368256365" target="_blank" rel="noopener noreferrer" class="content-link">HyperX Cloud III Wired (White)</a></li>
                 </ul>
-
-                <h2 class="specs-heading" style="--cat-color: #f97316;"><svg class="icon" aria-hidden="true" style="color: #f97316;"><use href="/img/icons-sprite.svg#fas-layer-group"></use></svg>Miscellaneous</h2>
-                <ul class="specs-plain-list">
-                    <li><strong>Desk:</strong> <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer">Secretlab MAGNUS Pro XL</a></li>
-                    <li><strong>Chair:</strong> <a href="https://secretlabchairs.ca/products/skins?sku=SKR24S-JINXX" target="_blank" rel="noopener noreferrer">Secretlab TITAN Evo XL</a></li>
-                    <li><strong>Green Screen:</strong> <a href="https://www.elgato.com/ca/en/p/green-screen" target="_blank" rel="noopener noreferrer">Elgato Green Screen XL</a></li>
-                    <li><strong>Stream Deck:</strong> <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer">Elgato Stream Deck XL</a></li>
-                    <li><strong>Teleprompter:</strong> <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer">Elgato Prompter</a></li>
-                    <li><strong>Lights:</strong> <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer">Elgato Key Light (x2)</a></li>
-                    <li><strong>Desk Decor:</strong> <a href="https://www.amazon.com/dp/B09H3YWPCH" target="_blank" rel="noopener noreferrer">Divoom Pixoo-64 (x2)</a></li>
+                </section>
+                <section class="specs-category" aria-labelledby="desk-streaming">
+                    <h2 id="desk-streaming" class="specs-heading" style="--cat-color: #f97316;"><svg class="icon" aria-hidden="true" style="color: #f97316;"><use href="/img/icons-sprite.svg#fas-layer-group"></use></svg>Miscellaneous</h2>
+<ul class="specs-plain-list">
+                    <li><strong>Desk:</strong> <a href="https://secretlabchairs.ca/products/magnus-pro?sku=4MPB2-B17B-JINXX" target="_blank" rel="noopener noreferrer" class="content-link">Secretlab MAGNUS Pro XL</a></li>
+                    <li><strong>Chair:</strong> <a href="https://secretlabchairs.ca/products/titan-evo-2022-series" target="_blank" rel="noopener noreferrer" class="content-link">Secretlab TITAN Evo XL</a></li>
+                    <li><strong>Green Screen:</strong> <a href="https://www.elgato.com/ca/en/p/green-screen" target="_blank" rel="noopener noreferrer" class="content-link">Elgato Green Screen XL</a></li>
+                    <li><strong>Stream Deck:</strong> <a href="https://www.elgato.com/ca/en/p/stream-deck-xl" target="_blank" rel="noopener noreferrer" class="content-link">Elgato Stream Deck XL</a></li>
+                    <li><strong>Teleprompter:</strong> <a href="https://www.elgato.com/ca/en/p/prompter" target="_blank" rel="noopener noreferrer" class="content-link">Elgato Prompter</a></li>
+                    <li><strong>Lights:</strong> <a href="https://www.elgato.com/ca/en/p/key-light" target="_blank" rel="noopener noreferrer" class="content-link">Elgato Key Light (x2)</a></li>
+                    <li><strong>Desk Decor:</strong> <a href="https://www.amazon.com/dp/B09H3YWPCH" target="_blank" rel="noopener noreferrer" class="content-link">Divoom Pixoo-64 (x2)</a></li>
                 </ul>
-
-                <h2 class="specs-heading" style="--cat-color: #22c55e;"><svg class="icon" aria-hidden="true" style="color: #22c55e;"><use href="/img/icons-sprite.svg#fas-gamepad"></use></svg>Gaming Consoles</h2>
-                <ul class="specs-plain-list">
-                    <li><strong>Console:</strong> <a href="https://www.nintendo.com/en-ca/gaming-systems/switch-2/features/" target="_blank" rel="noopener noreferrer">Nintendo Switch 2</a></li>
-                    <li><strong>Handheld:</strong> <a href="https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS-XL/Nintendo-3DS-XL-727629.html" target="_blank" rel="noopener noreferrer">Nintendo 3DS XL</a></li>
-                    <li><strong>Console:</strong> <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer">PlayStation 5</a></li>
-                    <li><strong>Virtual Reality:</strong> <a href="https://www.playstation.com/en-ca/ps-vr2/" target="_blank" rel="noopener noreferrer">PSVR2</a></li>
+                </section>
+                <section class="specs-category" aria-labelledby="consoles">
+                    <h2 id="consoles" class="specs-heading" style="--cat-color: #22c55e;"><svg class="icon" aria-hidden="true" style="color: #22c55e;"><use href="/img/icons-sprite.svg#fas-gamepad"></use></svg>Gaming Consoles</h2>
+<ul class="specs-plain-list">
+                    <li><strong>Console:</strong> <a href="https://www.nintendo.com/en-ca/gaming-systems/switch-2/features/" target="_blank" rel="noopener noreferrer" class="content-link">Nintendo Switch 2</a></li>
+                    <li><strong>Handheld:</strong> <a href="https://www.nintendo.com/en-gb/Hardware/Nintendo-3DS-Family/Nintendo-3DS-XL/Nintendo-3DS-XL-727629.html" target="_blank" rel="noopener noreferrer" class="content-link">Nintendo 3DS XL</a></li>
+                    <li><strong>Console:</strong> <a href="https://www.playstation.com/en-ca/ps5/" target="_blank" rel="noopener noreferrer" class="content-link">PlayStation 5</a></li>
+                    <li><strong>Virtual Reality:</strong> <a href="https://www.playstation.com/en-ca/ps-vr2/" target="_blank" rel="noopener noreferrer" class="content-link">PSVR2</a></li>
                 </ul>
+                </section>
             </div>
-
-            <!-- Stacked Images Column -->
-            <div class="img-column photo-reveal">
-
-                <!-- Image 1: setup photo -->
+            <div class="specs-gallery" aria-label="Setup photos">
+<figure class="specs-photo specs-photo-featured">
                 <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
-                    <img src="/img/PCSpecs-2.webp" alt="CupcakeMafiaTV gaming desk and monitors" loading="lazy">
+                    <img src="/img/PCSpecs-2.webp" alt="CupcakeMafiaTV gaming desk and monitors" loading="eager" fetchpriority="high">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
-                <!-- Image 2: setup photo -->
+</figure>
+<figure class="specs-photo">
                 <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-1.webp" alt="CupcakeMafiaTV triple-monitor gaming setup" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
-                <!-- Image 3: setup photo -->
+</figure>
+<figure class="specs-photo">
                 <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-3.webp" alt="CupcakeMafiaTV plushie and Funko shelf" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
-                <!-- Image 4: setup photo -->
+</figure>
+<figure class="specs-photo">
                 <div class="img-container" role="button" tabindex="0" data-image-preview onclick="openModal(this)">
                     <img src="/img/PCSpecs-4.webp" alt="CupcakeMafiaTV Funko collection wall" loading="lazy">
                     <div class="img-zoom-hint"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-magnifying-glass-plus"></use></svg></div>
                 </div>
 
+</figure>
             </div>
         </div>
-
+        {{ partial "page-end-divider.html" . }}
     </div>
 </main>
-
-<script>
-    (function () {
-        const el = document.querySelector('.photo-reveal');
-        if (!el) return;
-        if (!('IntersectionObserver' in window)) { el.classList.add('is-visible'); return; }
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        observer.observe(el);
-    })();
-</script>
 
 {{ end }}

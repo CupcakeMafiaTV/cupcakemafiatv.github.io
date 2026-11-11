@@ -1,57 +1,59 @@
 {{ define "main" }}
 
 <style>
-    .wwm-get-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 1rem;
+    .esports-theme .work-with-me-page { padding-top:28px;padding-bottom:24px; }
+    .esports-theme .work-with-me-page .page-title { margin-bottom:24px; }
+    .work-with-me-page .work-sections { row-gap:28px; }
+    .work-with-me-page .work-sections .mb-6 { margin-bottom:18px; }
+    .social-stat-grid,.wwm-get-grid { display:grid;max-width:1100px;gap:16px; }
+    .social-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .wwm-get-grid { grid-template-columns:minmax(0,1fr); }
+    .esports-theme .work-with-me-page .social-stat-grid .brand-card {
+        box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr);
+        grid-template-rows:44px auto;justify-items:center;align-content:center;
+        gap:12px;min-width:0;min-height:160px;padding:16px 14px;text-align:center;
     }
-    @media (min-width: 640px) { .wwm-get-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (min-width: 1024px) { .wwm-get-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-    .social-stat-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+    .social-stat-grid .brand-card-body { display:grid;gap:8px;flex:none;width:100%;min-width:0; }
+    .esports-theme .work-with-me-page .brand-card-title-lg {
+        margin:0;font-size:28px!important;line-height:1.2;font-weight:750;
+        letter-spacing:-.4px;font-variant-numeric:tabular-nums;
     }
-    @media (min-width: 640px) { .social-stat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (min-width: 1024px) { .social-stat-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; } }
-
-    /* Stat cards use the shared .brand-card component but stack the
-       icon above the number/label instead of sitting beside it. */
-    .social-stat-grid .brand-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 16px 10px;
+    .esports-theme .work-with-me-page .brand-card-subtitle {
+        margin:0;font-size:14px!important;line-height:20px;font-weight:650;
+        letter-spacing:.25px;text-transform:uppercase;color:#c7bad2;
     }
-    .social-stat-grid .brand-card-body { flex: none; width: 100%; }
-    .social-stat-grid .brand-card-title-lg { font-size: 2.1rem; line-height: 1.1; margin-bottom: 0; }
-    .social-stat-grid .brand-card-subtitle { font-size: 16px; color: #cbd5e1; }
-    .social-stat-grid .brand-card-icon { width: 56px; height: 56px; font-size: 26px; border: 1.5px solid rgba(255, 255, 255, 0.35); }
-
-    /* Same hover/click feel as the shared .brand-card component elsewhere
-       on the site: lift + crisper shadow on hover, icon bounces. */
+    .social-stat-grid .brand-card-icon { width:44px;height:44px;font-size:22px; }
     .wwm-get-grid > div {
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+        box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr);
+        grid-template-rows:28px auto 1fr;justify-items:start;align-content:start;
+        gap:10px;min-width:0;padding:18px 20px;text-align:left;
+        transition:transform .25s cubic-bezier(.2,.7,.3,1),background-color .2s ease,border-color .2s ease;
     }
-    .wwm-get-grid > div svg {
-        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .wwm-get-grid > div > div:not(.wwm-offer-icon) { margin:0;font:700 16px/1.35 "Segoe UI",Arial,sans-serif;align-self:center; }
+    .wwm-get-grid p { margin:0;font:400 14px/1.5 "Segoe UI",Arial,sans-serif;color:#c7bad2; }
+    .wwm-offer-icon { position:relative;display:flex;align-items:center;justify-content:center;width:28px;height:28px;color:#cba5ff; }
+    .wwm-offer-icon svg { margin:0;color:inherit;font-size:22px; }
+    .wwm-offer-icon::before,.wwm-offer-icon::after { content:"✦";position:absolute;pointer-events:none;color:currentColor;line-height:1;opacity:0;transform:scale(.3);text-shadow:0 0 7px currentColor; }
+    .wwm-offer-icon::before { right:-9px;top:-5px;font-size:12px; }
+    .wwm-offer-icon::after { left:-8px;bottom:-4px;font-size:9px; }
+    .wwm-get-grid > div:hover .wwm-offer-icon::before { animation:platform-icon-sparkle 1.4s ease-in-out infinite; }
+    .wwm-get-grid > div:hover .wwm-offer-icon::after { animation:platform-icon-sparkle 1.4s ease-in-out .45s infinite; }
+    .work-contact-actions { display:flex;flex-wrap:wrap;gap:12px;margin-top:16px; }
+    .work-with-me-page .work-contact .footer-contact-btn { margin-top:0; }
+    @media(min-width:640px) { .social-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))} .wwm-get-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media(min-width:1024px) { .social-stat-grid{grid-template-columns:repeat(6,minmax(0,1fr))} .wwm-get-grid{grid-template-columns:repeat(4,minmax(0,1fr))} }
+    @media(max-width:767px) {
+        .social-stat-grid,.wwm-get-grid{gap:12px}
+        .esports-theme .work-with-me-page .brand-card-title-lg{font-size:24px!important}
+        .esports-theme .work-with-me-page .brand-card-subtitle{font-size:12px!important;line-height:18px;letter-spacing:0}
     }
-    .wwm-get-grid > div:hover svg {
-        transform: scale(1.14) rotate(-6deg);
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .esports-theme .wwm-get-grid > div,
-        .wwm-get-grid > div svg { transition: none; }
-        .esports-theme .wwm-get-grid > div:hover,
-        .wwm-get-grid > div:hover svg { transform: none; }
-    }
-    /* Reuse the exact platform palette from the header and footer. */
-    .work-with-me-page .social-stat-grid .brand-card-icon {
-        color: var(--social-color);
-        background: color-mix(in srgb, var(--social-color) 15%, transparent);
+    @media(prefers-reduced-motion:reduce) {
+        .esports-theme .wwm-get-grid>div{transition:none}
+        .esports-theme .wwm-get-grid>div:hover{transform:none}
+        .wwm-get-grid>div:hover .wwm-offer-icon::before,.wwm-get-grid>div:hover .wwm-offer-icon::after{animation:none;opacity:1;transform:none}
     }
 </style>
+{{ partial "platform-card-styles.html" . }}
 
 <main id="main-content" class="interior-page work-with-me-page" data-count-animation="none">
     <div class="page-shell">
@@ -62,7 +64,7 @@
             </h1>
         </div>
 
-        <div class="flex flex-col gap-y-12">
+        <div class="work-sections flex flex-col">
 
             <!-- Pitch -->
             <div style="color: #ffffff!important; font-size: 1.05rem; line-height: 1.75;" class="lg:text-lg reveal-on-scroll">
@@ -73,9 +75,8 @@
             <div class="reveal-on-scroll">
                 <div class="mb-6">
                     <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">Audience &amp; Reach</h2>
-                    <p class="text-gray-300 mt-3 max-w-2xl">Audience reach across live streams, VODs, clips, and social updates.</p>
                 </div>
-                <div class="social-stat-grid">
+                <div class="social-stat-grid platform-cards">
                     <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-twitch">
                         <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></div>
                         <div class="brand-card-body">
@@ -130,45 +131,49 @@
             <div class="reveal-on-scroll">
                 <div class="mb-6">
                     <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">What You Get</h2>
-                    <p class="text-gray-300 mt-3 max-w-2xl">Straightforward deliverables built around a League-focused audience.</p>
                 </div>
                 <div class="wwm-get-grid">
-                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 3px solid rgba(234, 179, 8, 0.75);">
-                        <svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-tower-broadcast"></use></svg>
+                    <div class="work-offer-card">
+                        <div class="wwm-offer-icon"><svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-tower-broadcast"></use></svg></div>
                         <div class="text-base font-bold text-white mb-1">Dedicated Stream Segment</div>
-                        <p class="text-sm text-gray-400">Engaging live integration built directly into the broadcast to drive organic viewer interaction.</p>
+                        <p class="text-sm text-gray-400">A dedicated segment featuring your brand live on stream.</p>
                     </div>
-                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 3px solid rgba(234, 179, 8, 0.75);">
-                        <svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-share-nodes"></use></svg>
+                    <div class="work-offer-card">
+                        <div class="wwm-offer-icon"><svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-share-nodes"></use></svg></div>
                         <div class="text-base font-bold text-white mb-1">Multi-Platform Shoutouts</div>
-                        <p class="text-sm text-gray-400">Cross-promotional posts and mentions across Twitch, YouTube, Instagram, TikTok, X and more.</p>
+                        <p class="text-sm text-gray-400">Shoutouts across all platforms.</p>
                     </div>
-                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 3px solid rgba(234, 179, 8, 0.75);">
-                        <svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-clapperboard"></use></svg>
+                    <div class="work-offer-card">
+                        <div class="wwm-offer-icon"><svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-clapperboard"></use></svg></div>
                         <div class="text-base font-bold text-white mb-1">VOD &amp; Highlight Placement</div>
-                        <p class="text-sm text-gray-400">Featured placement in uploaded VODs and highlight clips after the stream.</p>
+                        <p class="text-sm text-gray-400">Your brand featured in VODs and highlight clips.</p>
                     </div>
-                    <div class="bg-gray-900/60 rounded-2xl shadow-2xl p-6" style="border: 3px solid rgba(234, 179, 8, 0.75);">
-                        <svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-bolt"></use></svg>
+                    <div class="work-offer-card">
+                        <div class="wwm-offer-icon"><svg class="icon text-gold mb-3" aria-hidden="true" style="font-size: 22px;"><use href="/img/icons-sprite.svg#fas-bolt"></use></svg></div>
                         <div class="text-base font-bold text-white mb-1">Direct Collaboration</div>
-                        <p class="text-sm text-gray-400">Fast turnaround on logistics and zero agency middlemen&mdash;you deal directly with the creator.</p>
+                        <p class="text-sm text-gray-400">Work directly with Cupcake from planning to launch.</p>
                     </div>
                 </div>
             </div>
 
             <!-- Contact CTA -->
-            <div style="padding-top: 12px;" class="reveal-on-scroll">
+            <div class="reveal-on-scroll work-contact">
                 <h2 class="text-2.5xl font-bold tracking-tighter text-white sm:text-3.5xl">Let's Talk</h2>
-                <p class="text-gray-300 mt-3 mb-6">Whether you're looking for a sponsored stream, custom integration, or long-term partnership, let's build a campaign that hits your goals. Click below to get in touch.</p>
+                <div class="work-contact-actions">
                 <a href="mailto:cupcakemafiatvgaming@gmail.com" class="footer-contact-btn">
                     <svg class="icon" aria-hidden="true" style="font-size: 15px;"><use href="/img/icons-sprite.svg#fas-envelope"></use></svg>
                     <span>CONTACT ME</span>
                 </a>
+                <a href="/downloads/cupcakemafiatv-media-kit.pdf" class="footer-contact-btn" download>
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></svg>
+                    <span>MEDIA KIT (PDF)</span>
+                </a>
+                </div>
             </div>
 
         </div>
 
-        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
+        {{ partial "page-end-divider.html" . }}
 
     </div>
 </main>

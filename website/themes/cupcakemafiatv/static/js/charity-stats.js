@@ -61,7 +61,8 @@
       if (!valid(data)) throw new Error('Invalid Extra Life totals');
       render(data);
       stats.dataset.syncState = 'live';
-      status.textContent = 'Raised and donation totals update automatically every minute. THANK YOU to everyone who has donated, raided, or cheered us on!';
+      status.textContent = '';
+      status.hidden = true;
       try {
         localStorage.setItem(cacheKey, JSON.stringify({
           participantID: participantId,
@@ -71,6 +72,7 @@
       } catch { /* A storage failure must not hide a successful live update. */ }
     } catch {
       stats.dataset.syncState = 'unavailable';
+      status.hidden = false;
       status.textContent = lastGood
         ? 'Showing the last available totals. Extra Life is temporarily unavailable; updates will retry automatically.'
         : 'Showing previously recorded totals. Extra Life is temporarily unavailable; updates will retry automatically.';

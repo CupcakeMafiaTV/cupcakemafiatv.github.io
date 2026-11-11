@@ -1,23 +1,11 @@
 {{ define "main" }}
 
 <style>
-    /* Social links use the shared .brand-card component (see head.html);
-       sized up a bit from the shared default so the text reads at the
-       same weight as the rest of the site's sub-pages. */
-    .social-grid .brand-card {
-        border-width: 3px;
-    }
-    .social-grid .brand-card-icon {
-        width: 46px;
-        height: 46px;
-        font-size: 20px;
-    }
-    .social-grid .brand-card-title {
-        font-size: 16px;
-    }
-    .social-grid .brand-card-subtitle {
-        font-size: 13px;
-    }
+    /* Match the shared Charity and Work With Me card spacing and typography. */
+    .esports-theme .socials-page .social-grid .brand-card { box-sizing:border-box;min-width:0;min-height:96px;padding:16px;gap:16px; }
+    .social-grid .brand-card-icon { width:44px;height:44px;font-size:22px; }
+    .social-grid .brand-card-body { display:grid;gap:6px;overflow:visible; }
+    .esports-theme .socials-page .brand-card-title { margin:0;font-size:16px;line-height:1.3;font-weight:700;white-space:normal;overflow:visible; }
 
     /* Video Box Styling */
     .video-container {
@@ -144,7 +132,18 @@
         }
     }
 
+
+    /* Match the five desktop link rows to the full media column height. */
+    @media(min-width:1101px) {
+        .esports-theme .socials-page .main-social-container { align-items:stretch; }
+        .esports-theme .socials-page .main-social-container > .social-grid {
+            align-self:stretch;align-content:stretch;grid-template-rows:repeat(5,minmax(72px,1fr));
+        }
+        .esports-theme .socials-page .social-grid > .brand-card { min-height:72px;padding:12px 16px; }
+    }
+
 </style>
+{{ partial "platform-card-styles.html" . }}
 
 <!-- Main Content Area with flex-grow -->
 <main id="main-content" class="interior-page socials-page">
@@ -161,107 +160,97 @@
         <div class="main-social-container" style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start;">
 
             <!-- Social Cards Grid -->
-            <div class="social-grid reveal-on-scroll" style="flex: 1; max-width: 880px; min-width: 0; display: grid; grid-template-columns: repeat(2, 1fr); align-content: start; gap: 16px;">
+            <div class="social-grid platform-cards reveal-on-scroll" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
 
                 <!-- Twitch -->
-                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(145, 70, 255, 0.5);">
+                <a href="https://twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-twitch">
                     <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(145, 70, 255, 0.15); color: #a855f7;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></div>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-twitch"></use></svg></div>
                     <div class="brand-card-body">
                         <div class="brand-card-title">Twitch</div>
-                        <div class="brand-card-subtitle">Live Broadcasts</div>
                     </div>
                     <span id="twitch-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
                 </a>
 
-                <!-- YouTube -->
-                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-instagram">
                     <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></div>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-instagram"></use></svg></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Instagram</div>
+                    </div>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-youtube">
+                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></div>
                     <div class="brand-card-body">
                         <div class="brand-card-title">YouTube</div>
-                        <div class="brand-card-subtitle">Video Uploads</div>
                     </div>
                     <span id="youtube-live-badge" class="brand-card-badge" style="display: none;">LIVE</span>
                 </a>
 
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/cupcakemafiatv/" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(214, 41, 118, 0.5);">
-                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(214, 41, 118, 0.15); color: #ec4899;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-instagram"></use></svg></div>
-                    <div class="brand-card-body">
-                        <div class="brand-card-title">Instagram</div>
-                        <div class="brand-card-subtitle">Photos</div>
-                    </div>
-                </a>
-
                 <!-- YouTube VODs -->
-                <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 0, 0, 0.5);">
+                <a href="https://www.youtube.com/@CupcakeMafiaTVODs" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-youtube">
                     <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(255, 0, 0, 0.15); color: #ef4444;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></div>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-youtube"></use></svg></div>
                     <div class="brand-card-body">
                         <div class="brand-card-title">YouTube VODs</div>
-                        <div class="brand-card-subtitle">Full Stream VOD Archive</div>
-                    </div>
-                </a>
-
-                <!-- X -->
-                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
-                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></div>
-                    <div class="brand-card-body">
-                        <div class="brand-card-title">X</div>
-                        <div class="brand-card-subtitle">Daily Discussions</div>
-                    </div>
-                </a>
-
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(255, 255, 255, 0.45);">
-                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(255, 255, 255, 0.1); color: #ffffff;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-tiktok"></use></svg></div>
-                    <div class="brand-card-body">
-                        <div class="brand-card-title">TikTok</div>
-                        <div class="brand-card-subtitle">Clips &amp; Highlights</div>
-                    </div>
-                </a>
-
-                <!-- Merch Shop -->
-                <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(234, 179, 8, 0.5);">
-                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(234, 179, 8, 0.15); color: #eab308;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-bag-shopping"></use></svg></div>
-                    <div class="brand-card-body">
-                        <div class="brand-card-title">Merch Shop</div>
-                        <div class="brand-card-subtitle">Official Merch</div>
                     </div>
                 </a>
 
                 <!-- Discord -->
-                <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(88, 101, 242, 0.5);">
+                <a href="https://discord.com/invite/DPjsCV6RMj" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-discord">
                     <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(88, 101, 242, 0.15); color: #818cf8;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-discord"></use></svg></div>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-discord"></use></svg></div>
                     <div class="brand-card-body">
                         <div class="brand-card-title">Discord</div>
-                        <div class="brand-card-subtitle">Join The Community!</div>
                     </div>
                 </a>
 
-                <!-- OP.GG -->
-                <a href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(59, 130, 246, 0.5);">
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-tiktok">
                     <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(59, 130, 246, 0.15); color: #3b82f6;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-chart-simple"></use></svg></div>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-tiktok"></use></svg></div>
                     <div class="brand-card-body">
-                        <div class="brand-card-title">OP.GG</div>
-                        <div class="brand-card-subtitle">Live Ranked Stats</div>
+                        <div class="brand-card-title">TikTok</div>
+                    </div>
+                </a>
+
+                <!-- X -->
+                <a href="https://x.com/cupcakemafiatv" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-x">
+                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-x-twitter"></use></svg></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">X</div>
+                    </div>
+                </a>
+
+                <!-- Merch Shop -->
+                <a href="https://cupcakemafiatv-shop.fourthwall.com/en-cad" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-merch">
+                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-bag-shopping"></use></svg></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Merch Shop</div>
                     </div>
                 </a>
 
                 <!-- Spotify -->
-                <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J?si=62fa4e68d09d4b53" target="_blank" rel="noopener noreferrer" class="brand-card" style="border-color: rgba(34, 197, 94, 0.5);">
+                <a href="https://open.spotify.com/playlist/5JzzUmPLUkl25CAIfJrj7J" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-spotify">
                     <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
-                    <div class="brand-card-icon" style="background: rgba(34, 197, 94, 0.15); color: #22c55e;"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-spotify"></use></svg></div>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-spotify"></use></svg></div>
                     <div class="brand-card-body">
                         <div class="brand-card-title">Spotify</div>
-                        <div class="brand-card-subtitle">Stream Playlist</div>
+                    </div>
+                </a>
+
+                <!-- Reddit -->
+                <a href="https://www.reddit.com/r/CupcakeMafiaTV/" target="_blank" rel="noopener noreferrer" class="brand-card social-platform-reddit">
+                    <svg class="icon brand-card-ext" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg>
+                    <div class="brand-card-icon"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fab-reddit-alien"></use></svg></div>
+                    <div class="brand-card-body">
+                        <div class="brand-card-title">Reddit</div>
                     </div>
                 </a>
 
@@ -291,7 +280,7 @@
 
         </div>
 
-        <div style="border-top: 1px solid rgb(var(--color-gold) / 0.7); margin-top: 32px; padding-top: 24px;"></div>
+        {{ partial "page-end-divider.html" . }}
 
     </div>
 </main>

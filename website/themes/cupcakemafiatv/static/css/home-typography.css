@@ -1,6 +1,7 @@
 .home-surface{--home-font:"Segoe UI",Arial,sans-serif;--home-heading:24px;--home-identity:36px;--home-detail:17px;--home-label:15px;--home-spec:22px;--home-motion:280ms cubic-bezier(.2,.7,.3,1);font-family:var(--home-font);}
 .home-surface button,.home-surface a,.home-surface h1,.home-surface h2,.home-surface h3,.home-surface p{font-family:var(--home-font);}
 .home-surface .solo-rank-header h2,.home-surface .wow-card-header p,.home-surface .latest-card-label,.esports-theme .home-surface #watch-live-heading{font-size:var(--home-heading);font-weight:750;line-height:1.35;letter-spacing:.2px;color:#fff;text-shadow:none;}
+.home-surface .latest-card-label,.esports-theme .home-surface #watch-live-heading{font-size:calc(var(--home-heading) + 4px);}
 .home-surface .solo-rank-header h2 .solo-riot-id{font-size:inherit;font-weight:750;letter-spacing:0;color:#ffd45c;}
 .home-surface .solo-rank-header h2,.home-surface .wow-card-header p{padding-block:12px;}
 .home-surface .solo-rank-header .solo-rank-profile,.home-surface .wow-section-profile{font-size:var(--home-label);font-weight:700;line-height:1.4;color:#fff;text-shadow:none;}
@@ -12,6 +13,7 @@
 .home-surface .wow-spec-label img{width:28px;height:28px;flex-basis:28px;}
 .home-surface .wow-character-class .wow-faction{vertical-align:middle;}
 .home-surface .wow-faction-icon{width:18px;height:18px;object-fit:contain;flex-shrink:0;}
+.home-surface .wow-faction-icon.wow-alliance-icon{width:auto;}
 .home-surface .wow-region-icon{width:20px;height:14px;object-fit:contain;flex-shrink:0;}
 .home-surface .audience-grid>a .audience-value strong{font-family:var(--home-font);font-weight:750;}
 .home-surface .audience-grid>a .audience-value>span{font-size:var(--home-label);font-weight:700;line-height:1.4;}
@@ -214,24 +216,18 @@
 .home-surface .watch-schedule-face{position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:7px 12px;border:1px solid #dec1ff9c;border-radius:8px;background:linear-gradient(125deg,#513367,#30203f);box-shadow:0 3px 12px #10091c66,inset 0 1px #ffffff19;animation:ladder-glint 6.5s ease-in-out infinite;transition:border-color .2s ease}
 .home-surface .watch-schedule-face>.icon{width:14px;height:14px;flex-shrink:0;color:#f5d6ff}
 .home-surface .watch-schedule-face::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#fff1d76b 50%,transparent 75%);transform:translateX(-150%);animation:ladder-shimmer 6.5s ease-in-out infinite}
-.home-surface .watch-schedule-sparkles{position:absolute;inset:0;pointer-events:none}
-.home-surface .watch-schedule-sparkles::before,.home-surface .watch-schedule-sparkles::after{content:"✦";position:absolute;color:#f1dcff;line-height:1;opacity:0;text-shadow:0 0 8px #c18aff;animation:schedule-sparkle 6.5s ease-in-out infinite}
-.home-surface .watch-schedule-sparkles::before{right:8px;top:-6px;font-size:13px}
-.home-surface .watch-schedule-sparkles::after{left:8px;bottom:-5px;font-size:9px;animation-delay:.35s}
-@keyframes schedule-sparkle{0%,68%,100%{opacity:0;transform:scale(.3) rotate(-15deg)}78%,86%{opacity:1;transform:scale(1) rotate(15deg)}94%{opacity:0;transform:scale(.3) rotate(25deg)}}
 .home-surface .watch-schedule-link:is(:hover,:focus-visible) .watch-schedule-face{animation:none;border-color:#f1dbff;box-shadow:0 0 14px #c18aff60,inset 0 1px #ffffff26}
-.home-surface .watch-schedule-link:is(:hover,:focus-visible) .watch-schedule-sparkles::before{animation:rank-sparkle 1.3s ease-in-out infinite}
-.home-surface .watch-schedule-link:is(:hover,:focus-visible) .watch-schedule-sparkles::after{animation:rank-sparkle 1.3s ease-in-out .45s infinite}
 .home-surface .watch-schedule-link:focus-visible{outline:2px solid #f1dbff;outline-offset:5px;border-radius:8px}
 @media(max-width:600px){
- .home-surface .watch-live-title{display:flex;align-items:center;justify-content:center;gap:12px;max-width:100%}
+ .home-surface .watch-live-title{display:flex;align-items:center;justify-content:center;gap:8px;max-width:100%}
+ .home-surface #watch-live-heading{white-space:nowrap}
  .home-surface .watch-live-title .twitch-heading-mark{position:static;transform:none;flex-shrink:0}
  .home-surface .watch-schedule-link{position:relative;inset:auto;font-size:12px;transform:rotate(-3deg);flex-shrink:0}
  .home-surface .watch-schedule-face{min-height:44px;padding:7px 10px;gap:6px}
  .home-surface .watch-schedule-face>.icon{width:13px;height:13px}
 }
 @media(prefers-reduced-motion:reduce){
- .home-surface .watch-schedule-face,.home-surface .watch-schedule-face::after,.home-surface .watch-schedule-sparkles::before,.home-surface .watch-schedule-sparkles::after,.home-surface .watch-schedule-link:is(:hover,:focus-visible) .watch-schedule-sparkles::before,.home-surface .watch-schedule-link:is(:hover,:focus-visible) .watch-schedule-sparkles::after{animation:none;transition:none}
+ .home-surface .watch-schedule-face,.home-surface .watch-schedule-face::after{animation:none;transition:none}
  .home-surface .watch-schedule-face::after{display:none}
 }
 
@@ -239,7 +235,7 @@
 .home-surface .solo-rank-record .solo-record-row{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:max-content;max-width:100%;margin:0 auto;padding:8px 0;border:1px solid #c9abeb30;border-radius:10px;background:linear-gradient(110deg,#b48aff0e,#b48aff05);font-size:18px;font-weight:500;line-height:1.2;font-variant-numeric:tabular-nums;text-shadow:none}
 .home-surface .solo-record-row>span{box-sizing:border-box;display:inline-flex;align-items:baseline;justify-content:center;gap:5px;min-width:88px;padding:0 12px}
 .home-surface .solo-record-row>span+span{border-left:1px solid #c9abeb30}
-.home-surface .solo-record-row .solo-record-suffix{font-size:14px;font-weight:500;opacity:.9}
+.home-surface .solo-record-row .solo-record-suffix{font-size:14px;font-weight:700;opacity:.9}
 .home-surface .solo-record-rate{color:#eee3f7}
 @media(max-width:600px){.home-surface .solo-rank-record .solo-record-row{font-size:16px;padding-block:8px}.home-surface .solo-record-row>span{min-width:80px;padding-inline:10px}.home-surface .solo-record-row .solo-record-suffix{font-size:13px}}
 
