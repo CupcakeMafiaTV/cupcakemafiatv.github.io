@@ -56,6 +56,7 @@
     duration = duration || 1200;
     decimals = decimals || 0;
     const format = (n) => n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    if (el.closest('[data-count-animation="none"]') || matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = format(target); return; }
     const startTime = performance.now();
     function step(now) {
       const progress = Math.min((now - startTime) / duration, 1);
@@ -115,68 +116,14 @@
     }
   };
 
-  // Count up any static number on load (e.g. the X/Instagram/TikTok
-  // follower cards on Work With Me, or the charity stats). Add
+  // Count up static totals on pages that use the animation (e.g.
+  // charity stats). Add
   // data-decimals="2" on an element to count up a money figure.
   document.querySelectorAll('.static-count-up').forEach(el => {
     const decimals = parseInt(el.dataset.decimals || '0', 10);
     const target = parseFloat(el.textContent.replace(/,/g, ''));
     if (!isNaN(target)) window.cmtvCountUp(el, target, undefined, decimals);
   });
-
-  // The homepage audience bar loads these together in audience-bar.js.
-  if (!document.querySelector('.audience-band')) {
-  // Fetch live YouTube subscriber count (falls back to the last known-good
-  // value in localStorage if the API is unreachable, so the count never
-  // gets stuck on "..."). This one fetch covers every page — the homepage
-  // hero and Work With Me's stat card both reuse the same element ID.
-  if (document.getElementById('youtube-sub-count') || document.getElementById('youtube-view-count')) fetch('https://cupcakemafiatv-github-io.vercel.app/api/subscribers')
-    .then(response => response.json())
-    .then(data => {
-      const subElement = document.getElementById('youtube-sub-count');
-      if (subElement && data.subscriberCount) {
-        window.cmtvCountUp(subElement, Number(data.subscriberCount));
-      }
-      if (data.subscriberCount) window.cmtvStorage.setItem('cmtv_youtube_subs', data.subscriberCount);
-
-      // Lifetime views is shown compact (850K, 1.2M) rather than count-up
-      // animated, to match the "media kit" style number creators quote
-      // rather than a long comma-separated figure.
-      const viewElement = document.getElementById('youtube-view-count');
-      if (viewElement && data.viewCount) {
-        viewElement.textContent = window.cmtvFormatCompact(Number(data.viewCount));
-      }
-      if (data.viewCount) window.cmtvStorage.setItem('cmtv_youtube_views', data.viewCount);
-    })
-    .catch(error => {
-      console.error('Error fetching subscriber count:', error);
-      const subElement = document.getElementById('youtube-sub-count');
-      const cachedSubs = window.cmtvStorage.getItem('cmtv_youtube_subs');
-      if (subElement && cachedSubs) window.cmtvCountUp(subElement, Number(cachedSubs));
-
-      const viewElement = document.getElementById('youtube-view-count');
-      const cachedViews = window.cmtvStorage.getItem('cmtv_youtube_views');
-      if (viewElement && cachedViews) viewElement.textContent = window.cmtvFormatCompact(Number(cachedViews));
-    });
-
-  // Fetch live Twitch follower count from Vercel API (same fallback pattern)
-  if (document.getElementById('twitch-follower-count')) fetch('https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers')
-    .then(response => response.json())
-    .then(data => {
-      const twitchCountEl = document.getElementById('twitch-follower-count');
-      if (twitchCountEl && data.followerCount) {
-        window.cmtvCountUp(twitchCountEl, Number(data.followerCount));
-      }
-      if (data.followerCount) window.cmtvStorage.setItem('cmtv_twitch_followers', data.followerCount);
-    })
-    .catch(error => {
-      console.error('Error fetching Twitch followers:', error);
-      const twitchCountEl = document.getElementById('twitch-follower-count');
-      const cached = window.cmtvStorage.getItem('cmtv_twitch_followers');
-      if (twitchCountEl && cached) window.cmtvCountUp(twitchCountEl, Number(cached));
-    });
-
-  }
 
   // Swaps the browser tab title/favicon to a "live" state while streaming,
   // so a backgrounded tab still announces it. Draws the red dot onto the
@@ -218,26 +165,6 @@
     } else if (cmtvOriginalFaviconHref) {
       cmtvFaviconEl.setAttribute('href', cmtvOriginalFaviconHref);
     }
-  }
-
-  // Live Discord member count (Work With Me's stat row only — no-op
-  // elsewhere since the element won't exist).
-  if (!document.querySelector('.audience-band') && document.getElementById('discord-member-count')) {
-    fetch('https://cupcakemafiatv-github-io.vercel.app/api/discord-widget')
-      .then(response => response.json())
-      .then(data => {
-        const countEl = document.getElementById('discord-member-count');
-        if (countEl && (data.memberCount || data.memberCount === 0)) {
-          window.cmtvCountUp(countEl, Number(data.memberCount));
-        }
-        if (data.memberCount || data.memberCount === 0) window.cmtvStorage.setItem('cmtv_discord_members', data.memberCount);
-      })
-      .catch(error => {
-        console.error('Error fetching Discord widget:', error);
-        const countEl = document.getElementById('discord-member-count');
-        const cached = window.cmtvStorage.getItem('cmtv_discord_members');
-        if (countEl && cached) window.cmtvCountUp(countEl, Number(cached));
-      });
   }
 
   // Fetch and Toggle Live Status Badges
@@ -314,3 +241,4 @@
   // not per-visitor Cache-Control, so extra client polls just hit that cache.
   setInterval(checkLiveStatuses, 300000);
 </script>
+<script src="/js/audience-bar.js?v=6" defer></script>

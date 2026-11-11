@@ -8,7 +8,8 @@
  const sync=()=>{
   pending=false;
   const bounds=rankSection.getBoundingClientRect();
-  set(rankSection,'--rank-section-top',(bounds.top+window.scrollY)+'px');
+  let rankTop=0;for(let node=rankSection;node;node=node.offsetParent)rankTop+=node.offsetTop;
+  set(rankSection,'--rank-section-top',Math.max(0,rankTop)+'px');
   set(wowSection,'--league-section-height',Math.ceil(bounds.height)+'px');
   if(tablet.matches)set(wow,'--league-card-height',Math.ceil(league.getBoundingClientRect().height)+'px');
   else wow.style.removeProperty('--league-card-height');

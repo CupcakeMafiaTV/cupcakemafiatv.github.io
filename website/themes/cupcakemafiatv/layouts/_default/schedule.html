@@ -2,15 +2,12 @@
 <main id="main-content" class="interior-page schedule-page">
   <div class="container page-shell">
 
-    <h1>Stream Schedule</h1>
-    <p class="schedule-page-intro">League of Legends during the week. Community nights on the weekend.</p>
-    <div class="schedule-page-next"><span>Next scheduled stream</span><strong id="next-stream-time">7 PM Eastern</strong><a class="hero-action hero-action-primary" href="https://www.twitch.tv/cupcakemafiatv" target="_blank" rel="noopener noreferrer">Watch on Twitch &#8599;</a></div>
-    <p class="schedule-timezone">All times Eastern (Ontario, Canada)</p>
+    <h1><svg class="icon schedule-heading-icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-calendar-check"></use></svg><span>Stream Schedule</span></h1>
     <div class="weekly-schedule-list">
       {{ range .Site.Data.stream_schedule }}
       <div class="schedule-day{{ if not .time }} schedule-off{{ end }}" data-day="{{ .day }}">
         <h2 class="schedule-day-name">{{ .name }}</h2>
-        {{ if .time }}{{ $clock := time.AsTime (printf "2000-01-01T%s:00Z" .time) }}<time datetime="{{ .time }}">{{ $clock.Format "3:04 PM" | replaceRE ":00" "" }}</time><p>{{ .activity }}</p>{{ else }}<span class="schedule-day-off">Day off</span><p>See you next stream.</p>{{ end }}
+        {{ if .time }}{{ $clock := time.AsTime (printf "2000-01-01T%s:00Z" .time) }}<time datetime="{{ .time }}">{{ $clock.Format "3:04 PM" | replaceRE ":00" "" }} <span class="schedule-timezone-label">(Eastern)</span></time><p>{{ .activity }}</p>{{ else }}<span class="schedule-day-off">Day off</span><p>Content Day</p>{{ end }}
       </div>
       {{ end }}
     </div>

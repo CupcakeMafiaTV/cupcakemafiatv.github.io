@@ -1,6 +1,6 @@
 import {setCors} from './_cors.js';
 let token=null, tokenUntil=0, snapshot=null, pending=null, retryAt=0;
-const SNAPSHOT_KEY='cmtv:wow:forever:cupcake-mafia:v1';
+const SNAPSHOT_KEY='cmtv:wow:forever:cupcake-mafia:v2';
 async function redis(command){if(!process.env.KV_REST_API_URL||!process.env.KV_REST_API_TOKEN)return null;const r=await fetch(process.env.KV_REST_API_URL,{method:'POST',headers:{Authorization:'Bearer '+process.env.KV_REST_API_TOKEN,'Content-Type':'application/json'},body:JSON.stringify(command),signal:AbortSignal.timeout(1500)});if(!r.ok)return null;return (await r.json()).result;}
 function mediaUrl(value){try{const u=new URL(value);return u.protocol==='https:'&&u.hostname==='render.worldofwarcraft.com'&&!u.username&&!u.password?u.href:null;}catch{return null;}}
 async function refresh(){
@@ -11,7 +11,7 @@ async function refresh(){
  const profile=await get('');if(!Number.isInteger(profile.level)||profile.level<1||profile.name!=='Cupcake'||profile.surname!=='Mafia')throw new Error('Invalid profile');
  let artwork=snapshot?.artwork||null;
  try{const media=await get('/character-media');artwork=mediaUrl(media.assets?.find(a=>a.key==='main-raw')?.value)||artwork;}catch{}
- const result={available:true,name:profile.name+' '+profile.surname,level:profile.level,race:profile.playable_race?.name||null,characterClass:profile.character_class?.name||null,faction:profile.faction?.name||null,ruleset:profile.ruleset?.name||null,region:'US',artwork,updatedAt:new Date().toISOString()};
+ const result={available:true,name:profile.name+' '+profile.surname,level:profile.level,race:profile.playable_race?.name||null,characterClass:profile.character_class?.name||null,faction:profile.faction?.name||null,ruleset:profile.ruleset?.name||null,region:'US',specialization:typeof profile.active_spec?.name==='string'?profile.active_spec.name:null,artwork,updatedAt:new Date().toISOString()};
  snapshot=result;try{await redis(['SET',SNAPSHOT_KEY,JSON.stringify(result)]);}catch{}return result;
 }
 export default async function handler(req,res){

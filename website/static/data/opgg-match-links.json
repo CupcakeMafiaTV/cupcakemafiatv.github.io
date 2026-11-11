@@ -1,6 +1,42 @@
 {
   "matches": [
     {
+      "champion": "Viktor",
+      "result": "W",
+      "playedAt": 1794285289000,
+      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgXBFAPG3ezIuDjMr13TPHsFyIkAwCAcD3s%3D/1794285289000"
+    },
+    {
+      "champion": "Viktor",
+      "result": "W",
+      "playedAt": 1794283293000,
+      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgWgBBeTDxjBWbJBZMsrtg6cvaknGZ7h3Qc%3D/1794283293000"
+    },
+    {
+      "champion": "Malzahar",
+      "result": "L",
+      "playedAt": 1794280809000,
+      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgV0N2JAWKx6nG0_PrTuygPSCOzmhfMXquU%3D/1794280809000"
+    },
+    {
+      "champion": "Zoe",
+      "result": "W",
+      "playedAt": 1794278547000,
+      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgWqdo4grOz3YcS9sUkFtHyivcUC7IveEfY%3D/1794278547000"
+    },
+    {
+      "champion": "TwistedFate",
+      "result": "L",
+      "playedAt": 1794276254000,
+      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgXnHrKwj4CMbRvxaSh55JVpG_6QiDVIaDM%3D/1794276254000"
+    },
+    {
+      "champion": "Sion",
+      "result": "L",
+      "playedAt": 1794274969000,
+      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgVjcWA1twNRXkYW17TJW3BJRScjdogps6I%3D/1794274969000"
+    },
+    {
       "champion": "Ahri",
       "result": "L",
       "playedAt": 1793937604000,
@@ -23,43 +59,12 @@
       "result": "L",
       "playedAt": 1793932217000,
       "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgVyUmRWUdp-bCd-Mg2LwCo-JjG1ZBEFPrY%3D/1793932217000"
-    },
-    {
-      "champion": "Jhin",
-      "result": "L",
-      "playedAt": 1793929650000,
-      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgUD9en-OS15p1KZd4XBYZGctfJqDoC3f2M%3D/1793929650000"
-    },
-    {
-      "champion": "Lux",
-      "result": "W",
-      "playedAt": 1793927834000,
-      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgXiZNeWAyc9e4bLlVqVE6OlC7_7ru9CEg0%3D/1793927834000"
-    },
-    {
-      "champion": "Viktor",
-      "result": "L",
-      "playedAt": 1793925725000,
-      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgUl7qzQFJ9bOv9sHSWt3mQ60gplXKw7OWs%3D/1793925725000"
-    },
-    {
-      "champion": "Yorick",
-      "result": "W",
-      "playedAt": 1793680527000,
-      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgUJRh4To3LUo4b06-5Ab89Op7KK6AguAYw%3D/1793680527000"
-    },
-    {
-      "champion": "Viktor",
-      "result": "W",
-      "playedAt": 1793678621000,
-      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgV5G5zrUrTk4-aVDaNXxHRwks7DFzd_t-o%3D/1793678621000"
-    },
-    {
-      "champion": "Galio",
-      "result": "L",
-      "playedAt": 1793676572000,
-      "url": "https://op.gg/lol/summoners/na/CupcakeMafia-NA1/matches/eq3KyFixtgUaTyD2G5QpuL8BFZdmOzN9arssPSPXzhE%3D/1793676572000"
     }
   ],
-  "updatedAt": "2026-11-09T20:12:13.581923+00:00"
+  "ladder": {
+    "rank": 22692,
+    "topPercent": 1.38,
+    "region": "NA"
+  },
+  "updatedAt": "2026-11-10T15:58:50.041201+00:00"
 }
