@@ -25,14 +25,52 @@
     .about-page .about-story-body { padding:0 0 16px; }
     .about-page .about-story-body p { margin:0; }
     @media(prefers-reduced-motion:reduce) { .about-page .about-story summary svg { transition:none; } }
-    .esports-theme .about-page .poster-card { height:124px;aspect-ratio:auto; }
+    .esports-theme .about-page .poster-card { height:144px;aspect-ratio:auto; }
     .esports-theme .about-page .poster-overlay { height:auto;min-height:44px;padding:10px;align-items:flex-end; }
     .esports-theme .about-page .poster-title { font-size:14px;line-height:1.3;white-space:nowrap;text-overflow:ellipsis;display:block; }
     @media(max-width:600px) {
         .esports-theme .about-page .poster-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
-        .esports-theme .about-page .poster-card { height:120px; }
+        .esports-theme .about-page .poster-card { height:140px; }
         .esports-theme .about-page .poster-title { font-size:13px; }
     }
+    /* Share a compact favorites row on desktop; expanded stories grow the page normally. */
+    @media(min-width:1200px) {
+        .esports-theme .about-page { padding-top:20px;padding-bottom:18px; }
+        .esports-theme .about-page .page-title { margin-bottom:16px; }
+        .about-page .about-sections { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px; }
+        .about-page .about-bio { grid-column:1/-1; }
+        .esports-theme .about-page .about-favorites .category-header { margin-bottom:10px!important; }
+        .esports-theme .about-page .poster-grid { grid-template-columns:repeat(3,minmax(0,1fr));gap:10px; }
+        .esports-theme .about-page .poster-card { height:clamp(80px,calc((100svh - 756px)/2),130px); }
+        .esports-theme .about-page .poster-overlay { min-height:32px;padding:8px; }
+        .esports-theme .about-page .poster-title { font-size:13px; }
+        .esports-theme .about-page .page-end-divider { margin-top:16px; }
+    }
+    /* Frame each favourite individually, with consistent gutters and quiet overlays. */
+    .esports-theme .about-page .about-favorites { min-width:0;box-sizing:border-box;margin-top:6px;padding:0;border:0;border-radius:0;background:transparent; }
+    .esports-theme .about-page .about-favorites .category-header { gap:9px;margin:0 0 12px!important; }
+    .esports-theme .about-page .about-favorites .category-header-icon { width:26px;height:26px;flex-shrink:0; }
+    .esports-theme .about-page .about-favorites .category-header-line { display:none; }
+    .esports-theme .about-page .poster-grid { gap:10px; }
+    .esports-theme .about-page .about-favorites .poster-card { min-width:0;box-sizing:border-box;border:3px solid #b48aff80!important; }
+    .esports-theme .about-page .about-favorites .poster-card:is(:hover,:focus-visible) { border-color:#d5baff!important; }
+    .esports-theme .about-page .poster-overlay { background:linear-gradient(to top,#100d18f5,#100d1870 70%,transparent); }
+    .esports-theme .about-page .poster-ext { opacity:0;transition:opacity .2s ease; }
+    .esports-theme .about-page .poster-card:is(:hover,:focus-visible) .poster-ext { opacity:1; }
+    @media(min-width:1200px) {
+        .esports-theme .about-page .poster-card { height:clamp(80px,calc((100svh - 756px)/2),130px); }
+        .esports-theme .about-page .about-favorites .category-header { margin-bottom:10px!important; }
+        .esports-theme .about-page { padding-top:18px;padding-bottom:16px; }
+        .esports-theme .about-page .page-title { margin-bottom:14px; }
+        .esports-theme .about-page .page-end-divider { margin-top:12px; }
+        .about-page .about-sections { row-gap:14px; }
+    }
+    @media(max-width:600px) {
+        .esports-theme .about-page .about-favorites .category-header-label { font-size:20px; }
+        .esports-theme .about-page .poster-card { height:140px; }
+    }
+    @media(hover:none) { .esports-theme .about-page .poster-ext { opacity:1; } }
+    @media(prefers-reduced-motion:reduce) { .esports-theme .about-page .poster-ext { transition:none; } }
     .profile-photo { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
     .profile-photo:hover {
         transform: translateY(-3px);
@@ -102,15 +140,15 @@
                     <div class="about-copy">
                         <p>Hello, I’m CupcakeMafiaTV (Cody), a League of Legends content creator and variety streamer from Ontario, Canada. I’ve been streaming since 2016, sharing ranked climbs, community games, and whatever adventure catches my attention next. Mid lane is home, mages are my comfort pick, and my solo queue peak is Master 96 LP. League is a big part of the channel, but so are the people who make it fun. Whether we’re chasing the next rank, jumping into World of Warcraft, or hanging out for a community night, I’m here for good games and good company.</p>
                         <div class="about-stories">
-                            <details class="about-story">
+                            <details class="about-story" name="about-stories">
                                 <summary>The Story Behind the Name<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7 5 5 5-5"/></svg></summary>
                                 <div class="about-story-body"><p>My name mixes fierce and sweet: “Mafia” comes from my love of mobsters, Wacky Races, and the <a href="https://hanna-barbera.fandom.com/wiki/The_Ant_Hill_Mob" target="_blank" rel="noopener noreferrer" class="content-link">Ant Hill Mob</a>. “Cupcake” softens the gangster vibe, and “TV” was, in my best Abe Simpson voice, the style at the time.</p></div>
                             </details>
-                            <details class="about-story">
+                            <details class="about-story" name="about-stories">
                                 <summary>My Gaming Journey<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7 5 5 5-5"/></svg></summary>
                                 <div class="about-story-body"><p>My gaming journey began with <a href="https://en.wikipedia.org/wiki/Theme_Park_(video_game)" target="_blank" rel="noopener noreferrer" class="content-link">Theme Park</a> (1994), followed by World of Warcraft, Warcraft III DotA, and Heroes of Newerth before I found League near the end of Season 2. I main mid lane for its mages and ranged champions, inspired by Bjergsen, xPeke, and the GOAT, Faker. Along the way, I’ve faced players including <a href="https://youtu.be/z2DtHEamihU" target="_blank" rel="noopener noreferrer" class="content-link">Quad</a> and <a href="https://www.twitch.tv/loltyler1/clip/AuspiciousPatientMilkThisIsSparta-l5sF20WvkaSXqRTZ?range=7d" target="_blank" rel="noopener noreferrer" class="content-link">Tyler1</a>.</p></div>
                             </details>
-                            <details class="about-story">
+                            <details class="about-story" name="about-stories">
                                 <summary>Outside of the Rift<svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 7 5 5 5-5"/></svg></summary>
                                 <div class="about-story-body"><p>Away from ranked, I collect wrestling figures, Funko POPs, retro games, vinyl records, and anything else I can get my hands on. I also love Scott Pilgrim vs. The World, WWE, and DC Comics—especially Batman’s universe, Punchline, Teen Titans, Harley Quinn, and Poison Ivy.</p></div>
                             </details>
@@ -156,12 +194,12 @@
                         </div>
                     </a>
 
-                    <!-- Yorick -->
-                    <a href="https://www.leagueoflegends.com/en-us/champions/yorick/" target="_blank" rel="noopener noreferrer" class="poster-card">
+                    <!-- Twisted Fate -->
+                    <a href="https://www.leagueoflegends.com/en-us/champions/twistedfate/" target="_blank" rel="noopener noreferrer" class="poster-card">
                         <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
-                        <img src="/img/Champ-Yorick.webp" alt="" style="object-position: center 25%;" loading="lazy">
+                        <img src="/img/Champ-TwistedFate.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
-                            <div class="poster-title">Yorick</div>
+                            <div class="poster-title">Twisted Fate</div>
                         </div>
                     </a>
 
@@ -171,6 +209,15 @@
                         <img src="/img/Champ-Velkoz.webp" alt="" style="object-position: center 25%;" loading="lazy">
                         <div class="poster-overlay">
                             <div class="poster-title">Vel'Koz</div>
+                        </div>
+                    </a>
+
+                    <!-- Viktor -->
+                    <a href="https://www.leagueoflegends.com/en-us/champions/viktor/" target="_blank" rel="noopener noreferrer" class="poster-card">
+                        <div class="poster-ext"><svg class="icon" aria-hidden="true"><use href="/img/icons-sprite.svg#fas-arrow-up-right-from-square"></use></svg></div>
+                        <img src="/img/Champ-Viktor.webp" alt="" style="object-position: center 25%;" loading="lazy">
+                        <div class="poster-overlay">
+                            <div class="poster-title">Viktor</div>
                         </div>
                     </a>
 

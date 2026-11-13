@@ -3,12 +3,14 @@
  const el=id=>document.getElementById('solo-rank-'+id);
  let busy=false, lastGood=null, matchLinks=[], ladder=null;
  const ladderKey='cmtv_na_ladder_v2';
+ const rankKey='cmtv_solo_rank_v1';
+ const rankMaxAge=7*24*60*60*1000;
  const validLadder=value=>value&&Number.isSafeInteger(value.rank)&&value.rank>0&&Number.isFinite(value.topPercent)&&value.topPercent>0&&value.topPercent<=100&&value.region==='NA'&&Number.isFinite(Date.parse(value.updatedAt))&&Date.now()-Date.parse(value.updatedAt)<259200000&&Date.parse(value.updatedAt)<=Date.now()+60000;
  function displayLadder(){
   const badge=document.getElementById('solo-ladder-badge');if(!badge)return;
   const valid=validLadder(ladder);
   badge.hidden=!valid;if(!valid)return;
-  badge.textContent='Top '+new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(ladder.topPercent)+'% · NA';
+  badge.textContent='Top '+new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(ladder.topPercent)+'% (NA)';
   badge.title='OP.GG ladder rank '+new Intl.NumberFormat('en-US').format(ladder.rank)+' · last checked '+new Date(ladder.updatedAt).toLocaleString();
  }
  function recentMatches(data){
@@ -26,10 +28,18 @@
  async function loadMatchLinks(url){
   try{const response=await fetch(url,{signal:AbortSignal.timeout(8000)});if(!response.ok)return;const data=await response.json();if(Array.isArray(data.matches)&&data.matches.length)matchLinks=[...new Map([...matchLinks,...data.matches.map(m=>({...m,champion:m.champion==='Twisted Fate'?'TwistedFate':m.champion}))].filter(m=>safeMatchUrl(m.url)).map(m=>[m.url,m])).values()].sort((a,b)=>b.playedAt-a.playedAt).slice(0,20);const next={...data.ladder,updatedAt:data.ladder?.updatedAt||data.updatedAt};if(validLadder(next)&&(!ladder||Date.parse(next.updatedAt)>=Date.parse(ladder.updatedAt))){ladder=next;try{localStorage.setItem(ladderKey,JSON.stringify(ladder));}catch{}}displayLadder();if(lastGood)display(lastGood);}catch{}
  }
- const validRank=r=>r && typeof r.tier==='string' && typeof r.division==='string' && ['leaguePoints','wins','losses'].every(k=>Number.isInteger(r[k])&&r[k]>=0);
+ const validRank=r=>r && ['IRON','BRONZE','SILVER','GOLD','PLATINUM','EMERALD','DIAMOND','MASTER','GRANDMASTER','CHALLENGER'].includes(r.tier) && ['I','II','III','IV'].includes(r.division) && ['leaguePoints','wins','losses'].every(k=>Number.isSafeInteger(r[k])&&r[k]>=0);
+ const validSavedRank=data=>data?.available===true && (data.rank===null||validRank(data.rank)) && Number.isFinite(Date.parse(data.updatedAt)) && Date.now()-Date.parse(data.updatedAt)<=rankMaxAge && Date.parse(data.updatedAt)<=Date.now()+60000 && Array.isArray(data.recentMatches) && data.recentMatches.length<=8 && data.recentMatches.every(match=>match&&['W','L','R'].includes(match.result)&&typeof match.champion==='string'&&/^[A-Za-z0-9]+$/.test(match.champion)&&(match.playedAt===null||Number.isFinite(match.playedAt)));
+ function rememberRank(data){
+  const snapshot={available:true,rank:data.rank,updatedAt:data.updatedAt,stale:data.stale===true,recentMatchesStale:data.recentMatchesStale===true,recentMatches:(Array.isArray(data.recentMatches)?data.recentMatches:[]).slice(0,8).filter(match=>match&&['W','L','R'].includes(match.result)&&typeof match.champion==='string'&&/^[A-Za-z0-9]+$/.test(match.champion)).map(match=>({champion:match.champion,result:match.result,playedAt:Number.isFinite(match.playedAt)?match.playedAt:null}))};
+  if(!validSavedRank(snapshot))return;
+  try{localStorage.setItem(rankKey,JSON.stringify(snapshot));}catch{/* Saved rank is optional when browser storage is blocked. */}
+ }
+
  function display(data) {
   if(!data || data.available!==true || !Number.isFinite(Date.parse(data.updatedAt)) || (data.rank!==null&&!validRank(data.rank))) throw new Error('Unavailable');
   const rank=data.rank;
+  card.setAttribute('data-rank-tier',rank?rank.tier:'UNRANKED');
   el('name').textContent=rank ? rank.tier.charAt(0)+rank.tier.slice(1).toLowerCase()+(['MASTER','GRANDMASTER','CHALLENGER'].includes(rank.tier)?'':' '+rank.division) : 'Unranked';
   el('lp').textContent=rank?rank.leaguePoints:'—';
   el('wins').textContent=rank?rank.wins:'—'; el('losses').textContent=rank?rank.losses:'—';
@@ -58,7 +68,10 @@
    }
   }else recent.textContent='Match history pending';
   card.setAttribute('aria-busy','false');
+  const status=el('status');
+  if(status){status.hidden=data.stale!==true;status.textContent='Last confirmed';status.title='Rank and results confirmed '+new Date(data.updatedAt).toLocaleString();}
   lastGood=data;
+  rememberRank(data);
  }
  async function refresh(){
   if(busy||document.hidden)return;busy=true;
@@ -70,6 +83,7 @@
    else{el('name').textContent='Rank temporarily unavailable';card.setAttribute('aria-busy','false');}
   }finally{busy=false;}
  }
+ try{const saved=JSON.parse(localStorage.getItem(rankKey));if(validSavedRank(saved))display({...saved,stale:true});}catch{/* Ignore expired, malformed or unavailable storage. */}
  try{const cached=JSON.parse(localStorage.getItem(ladderKey));if(validLadder(cached))ladder=cached;}catch{}displayLadder();
  loadMatchLinks('/data/opgg-match-links.json').then(()=>loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/league-rank?view=match-links'));
  setInterval(()=>{if(!document.hidden)loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/league-rank?view=match-links');},900000);

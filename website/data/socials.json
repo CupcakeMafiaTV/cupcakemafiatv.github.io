@@ -1,14 +1,17 @@
 {
   "instagram": {
     "followers": 66,
-    "source": "https://www.instagram.com/cupcakemafiatv/"
+    "source": "https://www.instagram.com/cupcakemafiatv/",
+    "verifiedAt": "2026-11-13T13:35:26.109698Z"
   },
   "tiktok": {
-    "followers": 45,
-    "source": "https://www.tiktok.com/@cupcakemafiatv"
+    "followers": 47,
+    "source": "https://www.tiktok.com/@cupcakemafiatv",
+    "verifiedAt": "2026-11-13T13:35:26.109698Z"
   },
   "x": {
-    "followers": 54,
-    "source": "Confirmed by site owner in conversation"
+    "followers": 53,
+    "source": "https://x.com/CupcakeMafiaTV",
+    "verifiedAt": "2026-11-13T13:35:26.109698Z"
   }
 }

@@ -318,7 +318,7 @@
         <div class="solo-rank-summary"><a class="solo-rank-emblem-slot" href="https://www.op.gg/summoners/na/CupcakeMafia-NA1" target="_blank" rel="noopener noreferrer" aria-label="View League profile on OP.GG"><img id="solo-rank-emblem" hidden alt="" width="90" height="90"></a>
         <div class="league-character-copy"><div class="solo-rank-main"><p id="solo-rank-name">Checking rank…</p><p><span id="solo-rank-lp">—</span> LP</p></div>
         <div class="solo-performance"><div class="solo-rank-record"><p class="solo-record-row"><span class="solo-record-wins"><span id="solo-rank-wins">—</span><span class="solo-record-suffix" aria-label="wins">W</span></span><span class="solo-record-losses"><span id="solo-rank-losses">—</span><span class="solo-record-suffix" aria-label="losses">L</span></span><span class="solo-record-rate"><span id="solo-rank-wr" title="Win rate">—</span></span></p></div>
-        <div class="solo-recent"><div id="solo-rank-recent" aria-label="Recent Solo/Duo results">Match history pending</div></div>
+        <div class="solo-recent"><div id="solo-rank-recent" aria-label="Recent Solo/Duo results">Match history pending</div><span id="solo-rank-status" class="solo-rank-status" role="status" hidden>Last confirmed</span></div>
         </div></div></div>
 
       </div>
@@ -371,7 +371,7 @@
       </div>
     </section>
 
-    <script src="/js/solo-rank.js?v=11" defer></script>
+    <script src="/js/solo-rank.js?v=14" defer></script>
     {{ partial "stream-schedule-data.html" . }}
 
     {{/* Name Generator Section Ã¢â‚¬â€ commented out for now, keep for later
@@ -796,7 +796,7 @@
     const signal = homeClipController.signal;
     media.hidden = false;
     try {
-      const { mountStreamMedia } = await import('/js/stream-media.js?v=2');
+      const { mountStreamMedia } = await import('/js/stream-media.js?v=4');
       let clip = null;
       if (!isLive) {
         const { eligibleClips, pickNextClip } = await import('/js/clip-playlist.js?v=4');

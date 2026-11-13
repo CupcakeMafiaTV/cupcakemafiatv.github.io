@@ -38,19 +38,28 @@ export function mountStreamMedia(container, { isLive, clip }, signal) {
     const url = new URL(isLive ? 'https://player.twitch.tv/' : 'https://clips.twitch.tv/embed');
     url.searchParams.set(isLive ? 'channel' : 'clip', isLive ? 'cupcakemafiatv' : clipId);
     url.searchParams.set('parent', location.hostname);
-    url.searchParams.set('autoplay', isLive ? 'false' : 'true'); url.searchParams.set('muted', 'true');
+    url.searchParams.set('autoplay', 'true'); url.searchParams.set('muted', 'true');
     container.replaceChildren(frame);
-    let visible = false, started = false, observer;
+    let nearby = false, started = false, observer;
     const start = () => {
-      if (started || !visible || document.hidden || signal.aborted) return;
+      if (started || !nearby || document.hidden || signal.aborted) return;
       started = true; frame.src = url.href;
       observer?.disconnect(); document.removeEventListener('visibilitychange', start);
     };
     stopPlayer = () => { observer?.disconnect(); document.removeEventListener('visibilitychange', start); };
+    document.addEventListener('visibilitychange', start);
     if ('IntersectionObserver' in window) {
-      observer = new IntersectionObserver(entries => { visible = entries.some(e => e.isIntersecting && e.intersectionRatio >= .5); start(); }, { threshold: .5 });
-      observer.observe(container); document.addEventListener('visibilitychange', start);
-    } else { url.searchParams.set('autoplay','false'); visible = true; start(); }
+      // Prepare the muted player shortly before it enters view, rather than
+      // waiting until half of a tall player has already been scrolled past.
+      // This site's body is its own scrollport. Use the nearest scrolling
+      // ancestor so its clipping does not cancel the early-loading margin.
+      let root = null;
+      for (let ancestor = container.parentElement; ancestor && ancestor !== document.documentElement; ancestor = ancestor.parentElement) {
+        if (/^(auto|scroll)$/.test(getComputedStyle(ancestor).overflowY) && ancestor.scrollHeight > ancestor.clientHeight) { root = ancestor; break; }
+      }
+      observer = new IntersectionObserver(entries => { nearby = entries.some(e => e.isIntersecting); start(); }, { root, rootMargin: '0px 0px 300px 0px', threshold: 0 });
+      observer.observe(container);
+    } else { url.searchParams.set('autoplay','false'); nearby = true; start(); }
   }
   const resize = new ResizeObserver(render);
   resize.observe(container);

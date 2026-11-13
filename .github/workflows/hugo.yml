@@ -52,6 +52,15 @@ jobs:
           node-version: "22"
       - name: Refresh Twitch clip catalog
         run: node website/scripts/refresh-clip-catalog.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install media kit dependencies
+        run: python -m pip install --disable-pip-version-check -r website/scripts/media-kit-requirements.txt
+      - name: Refresh media kit audience snapshot
+        run: node website/scripts/refresh-audience-snapshot.mjs
+      - name: Build current media kit
+        run: python website/scripts/build-media-kit.py
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache

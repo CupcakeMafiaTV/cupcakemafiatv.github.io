@@ -882,3 +882,11 @@ a.solo-rank-emblem-slot,a.wow-character-art{text-decoration:none;color:inherit;c
 
 .esports-theme #site-header{position:relative;}
 @media(min-width:1024px) and (max-width:1279px){.esports-theme #site-header:has(#nav-live-badge[style*="inline-flex"]) nav{padding-left:120px;}}
+
+/* Light outlines distinguish the media containers from their section backgrounds. */
+.esports-theme #watch-live-section .watch-stream-column,.esports-theme #latest-videos-section .latest-content-card{box-sizing:border-box;border:3px solid #b48aff70!important;border-radius:8px!important;overflow:hidden;}
+
+@media(min-width:900px){.esports-theme .home-surface #watch-live-section>.container,.esports-theme .home-surface #latest-videos-section>.container{max-width:1128px;}}
+
+.esports-theme #latest-videos-section .latest-content-card{border-color:#ff5867!important;}
+.esports-theme #latest-videos-section .latest-content-card:is(:hover,:focus-within){border-color:#ff7d87!important;}

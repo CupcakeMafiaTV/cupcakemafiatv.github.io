@@ -32,7 +32,8 @@ export default async function handler(req, res) {
     }
 
     const followersData = await followersRes.json();
-    const followerCount = followersData.total || 0;
+    if (!followersRes.ok || !Number.isSafeInteger(followersData.total) || followersData.total < 0) { throw new Error('Twitch follower count unavailable'); }
+    const followerCount = followersData.total;
 
     return res.status(200).json({ followerCount });
   } catch (error) {

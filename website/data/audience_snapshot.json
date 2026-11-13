@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "preparedAt": "2026-11-13T13:36:24.094Z",
+  "platforms": {
+    "x": {
+      "count": 53,
+      "unit": "followers",
+      "verifiedAt": "2026-11-13T13:35:26.109698Z",
+      "source": "https://x.com/CupcakeMafiaTV"
+    },
+    "instagram": {
+      "count": 66,
+      "unit": "followers",
+      "verifiedAt": "2026-11-13T13:35:26.109698Z",
+      "source": "https://www.instagram.com/cupcakemafiatv/"
+    },
+    "tiktok": {
+      "count": 47,
+      "unit": "followers",
+      "verifiedAt": "2026-11-13T13:35:26.109698Z",
+      "source": "https://www.tiktok.com/@cupcakemafiatv"
+    },
+    "twitch": {
+      "count": 670,
+      "unit": "followers",
+      "verifiedAt": "2026-11-13T13:36:24.094Z",
+      "source": "https://cupcakemafiatv-github-io.vercel.app/api/twitch-followers"
+    },
+    "discord": {
+      "count": 75,
+      "unit": "members",
+      "verifiedAt": "2026-11-13T13:36:24.094Z",
+      "source": "https://cupcakemafiatv-github-io.vercel.app/api/discord-widget"
+    },
+    "youtube": {
+      "count": 433,
+      "unit": "subscribers",
+      "verifiedAt": "2026-11-13T13:36:24.094Z",
+      "source": "https://cupcakemafiatv-github-io.vercel.app/api/subscribers"
+    }
+  }
+}
