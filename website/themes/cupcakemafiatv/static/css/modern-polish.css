@@ -92,7 +92,7 @@ body.esports-theme{font-family:"Segoe UI",Arial,sans-serif;font-size:15px;line-h
 .hero-location img{display:inline-block;width:28px;height:14px;margin-left:5px;border-radius:1px;vertical-align:baseline;}
 .hero-description a{font-size:inherit;font-weight:inherit;color:inherit;text-decoration:underline;text-decoration-color:#b48aff;text-underline-offset:4px;}
 .esports-theme .home-intro .hero-actions{display:flex;flex-direction:row;justify-content:center;align-items:center;gap:12px;margin-top:24px;}
-.hero-action{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:10px 18px;border:1px solid transparent;border-radius:7px;font-size:14px;font-weight:650;line-height:1.4;transition:background .18s,border-color .18s;}
+.hero-action{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:10px 18px;border:1px solid transparent;border-radius:7px;font-size:14px;font-weight:650;line-height:1.4;transition:background-color .18s ease,border-color .18s ease,transform .18s ease;}
 .hero-action:focus-visible,.hero-description a:focus-visible{outline:2px solid #d5baff;outline-offset:4px;}
 .hero-photo-shade{position:absolute;inset:0;}
 @media(min-width:1024px){.esports-theme .home-intro .hero-photo-panel{display:block;width:46%;height:100%;max-width:650px;top:0;bottom:0;right:0;mask-image:linear-gradient(to right,transparent 0%,#000c 20%,black 45%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000c 20%,black 45%);}}
@@ -288,10 +288,12 @@ body.esports-theme{background-color:#15111d!important;background-image:none!impo
 .video-category{color:#bcb3c8;}
 .watch-stream-column{background:#211a2b;border-color:#bcb3c829;}
 .esports-theme #watch-live-media.live-player,.esports-theme #latest-videos-section .latest-content-media{background:#100d16!important;}
-.hero-action-primary{background:#b48aff;border-color:#b48aff;color:#21132f;}
-.hero-action-primary:hover{background:#c4a2ff;border-color:#c4a2ff;color:#21132f;}
+.hero-action-primary{background:#9146ff;border-color:#9146ff;color:#fff;}
+.hero-action-primary:is(:hover,:focus-visible){background:#a265ff;border-color:#a265ff;color:#fff;}
 .hero-action-secondary{background:#211a2b;color:#f5f2f8;border-color:#b48aff55;}
-.hero-action-secondary:hover{background:#2b2039;color:#f5f2f8;border-color:#b48aff;}
+.hero-action-secondary:is(:hover,:focus-visible){background:#2b2039;color:#f5f2f8;border-color:#b48aff;}
+.home-surface .hero-actions>.hero-action:is(:hover,:focus-visible){transform:translateY(-2px);}
+@media(prefers-reduced-motion:reduce){.home-surface .hero-actions>.hero-action:is(:hover,:focus-visible){transform:none;}}
 .esports-theme #latest-videos-section{padding-top:28px;padding-bottom:28px;}
 .header-navigation{display:flex;align-items:center;gap:16px;min-width:0;}
 @media(min-width:1024px){.esports-theme #site-header nav{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;}
@@ -346,10 +348,10 @@ body.esports-theme{background-color:#15111d!important;background-image:none!impo
 @media(prefers-reduced-motion:reduce){.esports-theme .about-page :is(.profile-photo,.poster-card),.esports-theme .specs-page .img-container{transition:none;}
 .esports-theme .about-page :is(.profile-photo,.poster-card):hover,.esports-theme .specs-page .img-container:hover{transform:none;}}
 .esports-theme .home-intro .hero-actions{gap:12px;flex-wrap:wrap;margin-inline:auto;}
-.home-surface .hero-actions>.hero-action{box-sizing:border-box;width:180px;min-height:44px;padding:10px 16px;}
+.home-surface .hero-actions>.hero-action{box-sizing:border-box;width:170px;min-height:42px;padding:9px 10px;white-space:nowrap;}
 @media(max-width:480px){
  .esports-theme .home-intro .hero-actions{flex-direction:column;gap:10px;width:100%;}
- .home-surface .hero-actions>.hero-action{width:min(220px,100%);}
+ .home-surface .hero-actions>.hero-action{width:min(208px,100%);min-height:44px;}
 }
 .latest-content-copy{padding-top:14px;padding-bottom:16px;}
 @media(min-width:681px){.esports-theme #latest-videos-section #home-vod-title{display:flex;align-items:baseline;gap:8px;}
@@ -867,3 +869,16 @@ a.solo-rank-emblem-slot,a.wow-character-art{text-decoration:none;color:inherit;c
 
 /* Match the charity summary to its introduction without an artificial narrow column. */
 .esports-theme .charity-page #charity-stats-status{max-width:none;font-size:1.05rem;font-weight:500;line-height:1.75;color:#fff;}
+
+/* Anchor the live callout in the header, separate from the social controls. */
+.esports-theme #nav-live-badge{box-sizing:border-box;display:none;position:absolute;top:50%;left:20px;right:auto;transform:translateY(-50%);z-index:90;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;border:1px solid #ff789099;border-radius:8px;background:#2d1831;color:#fff;font:700 12px/1.3 "Segoe UI",Arial,sans-serif;letter-spacing:.7px;text-transform:uppercase;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px #10091c55;animation:site-live-pulse 3s ease-in-out infinite;transition:background-color .2s ease,border-color .2s ease;}
+.esports-theme #nav-live-badge .site-live-dot{flex:none;width:7px;height:7px;border-radius:50%;background:#ff7890;animation:site-live-dot-pulse 3s ease-in-out infinite;}
+.esports-theme #nav-live-badge:is(:hover,:focus-visible){color:#fff!important;background:#422039;border-color:#ffb0bf;}
+.esports-theme #nav-live-badge:focus-visible{outline:2px solid #fff;outline-offset:4px;}
+@keyframes site-live-pulse{0%,100%{box-shadow:0 4px 16px #10091c55,0 0 0 0 #ff789000}50%{box-shadow:0 4px 16px #10091c55,0 0 0 5px #ff789025}}
+@keyframes site-live-dot-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@media(max-width:1023px){.esports-theme #nav-live-badge{left:78px;min-height:44px;padding-inline:12px;font-size:11px;}}
+@media(prefers-reduced-motion:reduce){.esports-theme #nav-live-badge,.esports-theme #nav-live-badge .site-live-dot{animation:none;transition:none;}}
+
+.esports-theme #site-header{position:relative;}
+@media(min-width:1024px) and (max-width:1279px){.esports-theme #site-header:has(#nav-live-badge[style*="inline-flex"]) nav{padding-left:120px;}}
