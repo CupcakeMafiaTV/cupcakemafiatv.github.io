@@ -292,6 +292,7 @@
 /* Leave the centred hero copy clear of the portrait on ordinary desktops. */
 @media(min-width:1200px) and (max-width:1599px){
  .esports-theme .home-intro .hero-photo-panel{width:32%;max-width:none}
+ .esports-theme .home-intro .hero-name{font-size:clamp(54px,4.4vw,70px);letter-spacing:-2.5px}
  .esports-theme .home-intro .hero-name,.esports-theme .home-intro .hero-description{text-shadow:0 2px 10px #171220b3}
 }
 
@@ -328,7 +329,9 @@
 .home-surface .ranked-spotlight .solo-rank-emblem-slot:is(:hover,:focus-visible) img{filter:drop-shadow(0 0 12px color-mix(in srgb,var(--rank-glow) 70%,transparent)) drop-shadow(0 0 18px color-mix(in srgb,var(--rank-glow-accent) 35%,transparent));}
 .home-surface .solo-rank-emblem-slot::before,.home-surface .solo-rank-emblem-slot::after{color:color-mix(in srgb,var(--rank-glow) 30%,white);text-shadow:0 0 10px var(--rank-glow),28px 50px 0 color-mix(in srgb,var(--rank-glow-accent) 60%,white);}
 .home-surface .solo-rank-emblem-slot::after{text-shadow:0 0 10px var(--rank-glow),-32px 38px 0 color-mix(in srgb,var(--rank-glow-accent) 60%,white);}
-.home-surface .solo-rank-emblem-slot:focus-visible{outline-color:var(--rank-glow);}
+/* Mouse interactions use the artwork glow; only keyboard focus draws a frame. */
+.home-surface .ranked-spotlight a.solo-rank-emblem-slot{outline:none;}
+.home-surface .ranked-spotlight a.solo-rank-emblem-slot:focus-visible{outline:2px solid var(--rank-glow,#8a8dff);outline-offset:5px;}
 .home-surface .wow-character-art:is(:hover,:focus-visible) .wow-character-model{filter:drop-shadow(0 0 12px #0070ddbb) drop-shadow(0 0 18px #59b8ff66);}
 .home-surface .wow-character-sparkles::before,.home-surface .wow-character-sparkles::after{color:#c8e9ff;text-shadow:0 0 10px #0070dd,28px 50px 0 #85ccff;}
 .home-surface .wow-character-sparkles::after{text-shadow:0 0 10px #0070dd,-32px 38px 0 #a6dbff;}

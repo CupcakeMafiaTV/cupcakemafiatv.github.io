@@ -881,7 +881,12 @@ a.solo-rank-emblem-slot,a.wow-character-art{text-decoration:none;color:inherit;c
 @media(prefers-reduced-motion:reduce){.esports-theme #nav-live-badge,.esports-theme #nav-live-badge .site-live-dot{animation:none;transition:none;}}
 
 .esports-theme #site-header{position:relative;}
-@media(min-width:1024px) and (max-width:1279px){.esports-theme #site-header:has(#nav-live-badge[style*="inline-flex"]) nav{padding-left:120px;}}
+/* Reserve the live callout's width in the desktop header at every window size. */
+@media(min-width:1024px){
+ .esports-theme #site-header:has(#nav-live-badge[style*="inline-flex"]) nav{padding-left:144px;}
+ .esports-theme #site-header:has(#nav-live-badge[style*="inline-flex"]) .header-navigation{position:static;left:auto;transform:none;width:auto;max-width:none;flex:1 1 auto;margin-left:0;}
+ .esports-theme #site-header:has(#nav-live-badge[style*="inline-flex"]) .header-controls{flex:0 0 auto;}
+}
 
 /* Light outlines distinguish the media containers from their section backgrounds. */
 .esports-theme #watch-live-section .watch-stream-column,.esports-theme #latest-videos-section .latest-content-card{box-sizing:border-box;border:3px solid #b48aff70!important;border-radius:8px!important;overflow:hidden;}

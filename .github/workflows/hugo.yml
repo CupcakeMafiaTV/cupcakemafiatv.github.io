@@ -61,6 +61,8 @@ jobs:
         run: node website/scripts/refresh-audience-snapshot.mjs
       - name: Build current media kit
         run: python website/scripts/build-media-kit.py
+      - name: Refresh character fallback
+        run: node website/scripts/refresh-game-snapshot.mjs
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
