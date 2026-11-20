@@ -1,4 +1,4 @@
-import { easternParts, getNextStream, formatCountdown, STREAM_TIME_ZONE } from './schedule-time.mjs?v=1';
+import { easternParts, getNextStream, formatCountdown, STREAM_TIME_ZONE } from './schedule-time.mjs?v=2';
 
 const cards = [...document.querySelectorAll('.schedule-day, .watch-schedule-day')];
 const scheduleData = document.getElementById('stream-schedule-data');
@@ -36,7 +36,7 @@ function refreshSchedule(now) {
   if (banner.parentElement !== target) target.append(banner);
   banner.hidden = false;
   banner.classList.toggle('is-live', twitchIsLive);
-  bannerLabel.textContent = twitchIsLive ? 'Live now' : 'Next stream';
+  bannerLabel.textContent = twitchIsLive ? 'Live now' : 'Starts in';
   countdown.hidden = twitchIsLive;
   liveLink.hidden = !twitchIsLive;
   if (next) countdown.title = `${startFormatter.format(next.startsAt)} Eastern`;

@@ -6,12 +6,12 @@ const source=await readFile(new URL('../themes/cupcakemafiatv/static/js/solo-ran
 const key='cmtv_solo_rank_v1';
 const snapshot=(extra={})=>({available:true,stale:false,rank:{tier:'DIAMOND',division:'I',leaguePoints:30,wins:470,losses:469},updatedAt:new Date(Date.now()-300000).toISOString(),recentMatches:[{champion:'Ahri',result:'W',playedAt:Date.now()-900000}],...extra});
 function element(){return{textContent:'',hidden:true,children:[],attrs:{},setAttribute(name,value){this.attrs[name]=value;},replaceChildren(...children){this.children=children;},append(...children){this.children.push(...children);},addEventListener(){}};}
-async function visit({storage={},reply=snapshot(),offline=false,blocked=false}={}){
+async function visit({storage={},reply=snapshot(),offline=false,blocked=false,pendingRank=false}={}){
  const values=new Map(Object.entries(storage));
  const ids=['card','name','lp','wins','losses','wr','emblem','recent','status'].map(id=>['solo-rank-'+id,element()]);
  const elements=Object.fromEntries(ids);elements['solo-rank-name'].textContent='Checking rank…';
  let requests=0;
- const context={document:{hidden:false,getElementById:id=>elements[id]||null,createElement:element,addEventListener(){}},Intl,Date,Number,JSON,Map,AbortSignal,setInterval(){},localStorage:{getItem(name){if(blocked)throw Error('blocked');return values.get(name)||null;},setItem(name,value){if(blocked)throw Error('blocked');values.set(name,value);}},fetch:async url=>{requests++;if(offline)throw Error('offline');return{ok:true,json:async()=>String(url).includes('match-links')?{matches:[]}:reply};}};
+ const context={document:{hidden:false,getElementById:id=>elements[id]||null,createElement:element,addEventListener(){}},Intl,Date,Number,JSON,Map,AbortSignal,setInterval(){},localStorage:{getItem(name){if(blocked)throw Error('blocked');return values.get(name)||null;},setItem(name,value){if(blocked)throw Error('blocked');values.set(name,value);}},fetch:async url=>{requests++;if(pendingRank&&!String(url).includes('match-links'))return new Promise(()=>{});if(offline)throw Error('offline');return{ok:true,json:async()=>String(url).includes('match-links')?{matches:[]}:reply};}};
  vm.runInNewContext(source,context);
  for(let turn=0;turn<8;turn++)await new Promise(resolve=>setImmediate(resolve));
  return{elements,values,requests};
@@ -37,4 +37,26 @@ test('blocked browser storage preserves fresh display and honest offline fallbac
 });
 test('server fallback retains its original confirmation time and stale label',async()=>{
  const saved=snapshot({stale:true});const{elements,values}=await visit({reply:saved});assert.equal(elements['solo-rank-status'].hidden,false);assert.equal(JSON.parse(values.get(key)).updatedAt,saved.updatedAt);
+});
+
+test('several-day-old ranks wait for the current request instead of flashing on reload',async()=>{
+ const saved=snapshot({rank:{tier:'MASTER',division:'I',leaguePoints:13,wins:479,losses:476},updatedAt:new Date(Date.now()-6*86400000).toISOString()});
+ const pending=await visit({storage:{[key]:JSON.stringify(saved)},pendingRank:true});
+ assert.equal(pending.elements['solo-rank-name'].textContent,'Checking rank…');
+ assert.equal(pending.elements['solo-rank-emblem'].hidden,true);
+ const fresh=await visit({storage:{[key]:JSON.stringify(saved)},reply:snapshot()});
+ assert.equal(fresh.elements['solo-rank-name'].textContent,'Diamond I');
+ const offline=await visit({storage:{[key]:JSON.stringify(saved)},offline:true});
+ assert.equal(offline.elements['solo-rank-name'].textContent,'Master');
+ assert.equal(offline.elements['solo-rank-status'].hidden,false);
+});
+
+test('only recent successful confirmations appear immediately; previous failures wait too',async()=>{
+ const recent=await visit({storage:{[key]:JSON.stringify(snapshot({updatedAt:new Date(Date.now()-14*60000).toISOString()}))},pendingRank:true});
+ assert.equal(recent.elements['solo-rank-name'].textContent,'Diamond I');
+ for(const saved of [snapshot({updatedAt:new Date(Date.now()-16*60000).toISOString()}),snapshot({stale:true})]){
+  const pending=await visit({storage:{[key]:JSON.stringify(saved)},pendingRank:true});
+  assert.equal(pending.elements['solo-rank-name'].textContent,'Checking rank…');
+  assert.equal(pending.elements['solo-rank-emblem'].hidden,true);
+ }
 });

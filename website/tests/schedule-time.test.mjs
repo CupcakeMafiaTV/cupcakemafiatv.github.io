@@ -37,7 +37,11 @@ test('empty schedules and invalid entries have no upcoming stream', () => {
 });
 
 test('countdown formatting supports days, seconds and a non-negative finish', () => {
-  assert.equal(formatCountdown(90061000), '1d 01:01:01');
-  assert.equal(formatCountdown(3599000), '00:59:59');
-  assert.equal(formatCountdown(-1), '00:00:00');
+  assert.equal(formatCountdown(90061000), '1d 1h 1m');
+  assert.equal(formatCountdown(3599000), '59m');
+  assert.equal(formatCountdown(-1), '0s');
+  assert.equal(formatCountdown(8*3600000+59*60000), '8h 59m');
+  assert.equal(formatCountdown(45000), '45s');
+  assert.equal(formatCountdown(60000), '1m');
+  assert.equal(formatCountdown(3600000), '1h 0m');
 });

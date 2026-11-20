@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 import { easternParts, getNextStream, formatCountdown, STREAM_TIME_ZONE } from '../themes/cupcakemafiatv/static/js/schedule-time.mjs';
 
-const source = (await readFile(new URL('../themes/cupcakemafiatv/static/js/home-extras.js', import.meta.url), 'utf8')).replace(/^import .*\n/, '');
+const source = (await readFile(new URL('../themes/cupcakemafiatv/static/js/home-extras.js', import.meta.url), 'utf8')).replace(/^import [^\r\n]*\r?\n/, '');
 const schedule = JSON.parse(await readFile(new URL('../data/stream_schedule.json', import.meta.url), 'utf8'));
 
 function mount(live = false) {
@@ -29,16 +29,16 @@ function mount(live = false) {
 
 test('confirmed live status replaces the countdown and offline restores it without requests', () => {
   const widget = mount();
-  assert.equal(widget.label.textContent, 'Next stream');
+  assert.equal(widget.label.textContent, 'Starts in');
   assert.equal(widget.clock.hidden, false);
-  assert.equal(widget.clock.textContent, '01:00:00');
+  assert.equal(widget.clock.textContent, '1h 0m');
   widget.listeners.get('cmtv:twitchstatus')({ detail: { isLive: true } });
   assert.equal(widget.label.textContent, 'Live now');
   assert.equal(widget.clock.hidden, true);
   assert.equal(widget.liveLink.hidden, false);
   assert.equal(widget.banner.parentElement.dataset.day, '3');
   widget.listeners.get('cmtv:twitchstatus')({ detail: { isLive: false } });
-  assert.equal(widget.label.textContent, 'Next stream');
+  assert.equal(widget.label.textContent, 'Starts in');
   assert.equal(widget.clock.hidden, false);
   assert.equal(widget.liveLink.hidden, true);
   assert.equal(widget.requests(), 0);

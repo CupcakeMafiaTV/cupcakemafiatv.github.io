@@ -1,10 +1,11 @@
 (() => {
  const card=document.getElementById('solo-rank-card'); if(!card)return;
  const el=id=>document.getElementById('solo-rank-'+id);
- let busy=false, lastGood=null, matchLinks=[], ladder=null;
+ let busy=false, lastGood=null, savedFallback=null, matchLinks=[], ladder=null;
  const ladderKey='cmtv_na_ladder_v2';
  const rankKey='cmtv_solo_rank_v1';
  const rankMaxAge=7*24*60*60*1000;
+ const rankInstantAge=15*60*1000;
  const validLadder=value=>value&&Number.isSafeInteger(value.rank)&&value.rank>0&&Number.isFinite(value.topPercent)&&value.topPercent>0&&value.topPercent<=100&&value.region==='NA'&&Number.isFinite(Date.parse(value.updatedAt))&&Date.now()-Date.parse(value.updatedAt)<259200000&&Date.parse(value.updatedAt)<=Date.now()+60000;
  function displayLadder(){
   const badge=document.getElementById('solo-ladder-badge');if(!badge)return;
@@ -80,10 +81,12 @@
    if(!response.ok)throw new Error('Unavailable');display(await response.json());
   }catch{
    if(lastGood)display({...lastGood,stale:true});
+   else if(savedFallback)display(savedFallback);
    else{el('name').textContent='Rank temporarily unavailable';card.setAttribute('aria-busy','false');}
   }finally{busy=false;}
  }
- try{const saved=JSON.parse(localStorage.getItem(rankKey));if(validSavedRank(saved))display({...saved,stale:true});}catch{/* Ignore expired, malformed or unavailable storage. */}
+ // Recent confirmations can paint immediately. Older saved ranks are only an outage fallback.
+ try{const saved=JSON.parse(localStorage.getItem(rankKey));if(validSavedRank(saved)){savedFallback={...saved,stale:true};if(saved.stale!==true&&Date.now()-Date.parse(saved.updatedAt)<=rankInstantAge)display(savedFallback);}}catch{/* Ignore expired, malformed or unavailable storage. */}
  try{const cached=JSON.parse(localStorage.getItem(ladderKey));if(validLadder(cached))ladder=cached;}catch{}displayLadder();
  loadMatchLinks('/data/opgg-match-links.json').then(()=>loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/league-rank?view=match-links'));
  setInterval(()=>{if(!document.hidden)loadMatchLinks('https://cupcakemafiatv-github-io.vercel.app/api/league-rank?view=match-links');},900000);

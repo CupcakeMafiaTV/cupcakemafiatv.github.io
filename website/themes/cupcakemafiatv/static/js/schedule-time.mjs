@@ -50,6 +50,8 @@ export function formatCountdown(milliseconds) {
   const hours = Math.floor(total % 86400 / 3600);
   const minutes = Math.floor(total % 3600 / 60);
   const seconds = total % 60;
-  const clock = [hours, minutes, seconds].map(value => String(value).padStart(2, '0')).join(':');
-  return days ? `${days}d ${clock}` : clock;
+  if (days) return `${days}d ${hours}h ${minutes}m`;
+  if (hours) return `${hours}h ${minutes}m`;
+  if (minutes) return `${minutes}m`;
+  return `${seconds}s`;
 }
